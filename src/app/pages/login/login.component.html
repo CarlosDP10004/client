@@ -1,0 +1,28 @@
+<div class="wrapper fadeInDown customImage">
+    <div id="formContent"> 
+      <h2 class="active"> Iniciar sesión </h2>
+  
+      <!-- Icon -->
+      <div class="fadeIn first">
+      </div>
+      <div class="imgcontainer">
+        <img src="../../../assets/images/dnm.JPG" alt="Avatar" class="avatar">
+      </div>
+   
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <input type="text" id="login" class="fadeIn second" formControlName="NombreUsuario" name="login" placeholder="Correo">
+        <br>
+        <small *ngIf="Username.invalid && Username.touched">
+          Complete el campo
+        </small>
+        <input type="password" id="password" class="fadeIn third" formControlName="Contrasenna" name="login" placeholder="Contraseña">
+        <br>
+        <small *ngIf="Password.invalid && Password.touched">
+          Complete el campo
+        </small>
+        <br>
+        <input type="submit" class="fadeIn fourth" value="Iniciar sesión">
+      </form>  
+  
+    </div>
+  </div>

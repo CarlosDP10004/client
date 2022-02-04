@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { UserService } from 'src/app/core/http/user.service';
-import { UserAddComponent } from '../user-add/user-add.component';
+import { UseraddComponent } from '../useradd/useradd.component';
 
 @Component({
   selector: 'app-user-list',
@@ -37,10 +37,10 @@ export class UserListComponent implements OnInit {
 
 
   addUser() {
-    this.bsModalRef = this.bsModalService.show(UserAddComponent);
+    this.bsModalRef = this.bsModalService.show(UseraddComponent);
     this.bsModalRef.content.event.subscribe(result => {
       if (result == 'OK') {
-        this.ngOnInit();
+        this.bsModalService.hide();
       }
     });
   }

@@ -1,24 +1,26 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FooterComponent } from './shared/footer/footer.component';
-import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { LoginComponent } from './pages/login/login.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
 import { TemplateModule } from './shared/template/template.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { InterceptorService } from './core/http/interceptor.service';
+import { UseraddComponent } from './pages/user/useradd/useradd.component';
+import { UserListComponent } from './pages/user/user-list/user-list.component';
+import { RoleListComponent } from './pages/role/role-list/role-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FooterComponent,
-    SidebarComponent,
-    LoginComponent
+    LoginComponent,
+    UserListComponent,
+    UseraddComponent,
+    RoleListComponent
   ],
   imports: [
     BrowserModule,

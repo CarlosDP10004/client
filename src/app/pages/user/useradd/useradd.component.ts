@@ -5,12 +5,12 @@ import { RolesService } from 'src/app/core/http/roles.service';
 import { UserService } from 'src/app/core/http/user.service';
 
 @Component({
-  selector: 'app-user-add',
-  templateUrl: './user-add.component.html',
-  styleUrls: ['./user-add.component.scss']
+  selector: 'app-useradd',
+  templateUrl: './useradd.component.html',
+  styleUrls: ['./useradd.component.scss']
 })
-export class UserAddComponent implements OnInit {
-  addNewPostForm: FormGroup;
+export class UseraddComponent implements OnInit {
+  addUser: FormGroup;
   roles: any[] = [];
   event: EventEmitter<any>=new EventEmitter();
 
@@ -19,8 +19,8 @@ export class UserAddComponent implements OnInit {
     private userService: UserService, 
     private rolService: RolesService,
     private bsModalRef: BsModalRef
-  ) {
-      this.addNewPostForm = this.builder.group({      
+  ) { 
+    this.addUser = this.builder.group({      
       NombreUsuario: new FormControl('', []),
       Contrasenna: new FormControl('', []),
       Roles: new FormControl(null, [])
@@ -29,16 +29,17 @@ export class UserAddComponent implements OnInit {
     this.rolService.showAll().subscribe(data => {
       Object.assign(this.roles, data);
     }, error => { console.log('Error al obtener datos.'); });
-   }
+  }
 
   ngOnInit(): void {
   }
 
+
   guardarUsuario(){
     let postData = {
-      'NombreUsuario': this.addNewPostForm.get('NombreUsuario').value,
-      'Contrasenna': this.addNewPostForm.get('Contrasenna').value,
-      'Roles': this.addNewPostForm.get('Roles').value,
+      'NombreUsuario': this.addUser.get('NombreUsuario').value,
+      'Contrasenna': this.addUser.get('Contrasenna').value,
+      'Roles': this.addUser.get('Roles').value,
     };
   
     this.userService.addUser(postData).subscribe(data=>{

@@ -1,30 +1,30 @@
 <div role="document">
     <div>
-      <form class="form-horizontal" [formGroup]="addUser" (ngSubmit)="guardarUsuario()">
+      <form class="form-horizontal" id="add-form" [formGroup]="editUser" (ngSubmit)="editarUsuario()">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="onClose()"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="add-modal-label">Agregar usuario</h4>
+          <h4 class="modal-title" id="add-modal-label">Editar Usuario</h4>
         </div>
         <div class="modal-body">
           <div class="form-group">
             <label class="col-sm-2 control-label">Roles</label>
-            <div class="col-sm-10">
-              <select formControlName="Roles">
+            <div class="col-sm-10">              
+              <select class="form-control" formControlName="Roles" >
                 <option [value]="null">Selecciona el rol</option>
                 <option *ngFor="let item of roles" [value]="item.IdRol">{{item.NombreRol}}</option>
-              </select>
+              </select>              
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-2 control-label">Nombre</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" formControlName="NombreUsuario" />
+              <input type="text" class="form-control" formControlName="NombreUsuario" />
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-2 control-label">Contraseña</label>
             <div class="col-sm-10">
-                <input type="password" class="form-control" formControlName="Contrasenna" />
+              <input type="password" class="form-control" formControlName="Contrasenna"/>
             </div>
           </div>
         </div>

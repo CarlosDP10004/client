@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
+import { ToastrService } from 'ngx-toastr';
 import { RolesService } from 'src/app/core/http/roles.service';
 import { UserService } from 'src/app/core/http/user.service';
 
@@ -18,7 +19,8 @@ export class UseraddComponent implements OnInit {
     private builder: FormBuilder, 
     private userService: UserService, 
     private rolService: RolesService,
-    private bsModalRef: BsModalRef
+    private bsModalRef: BsModalRef,
+    private toastr: ToastrService
   ) { 
     this.addUser = this.builder.group({      
       NombreUsuario: new FormControl('', []),
@@ -41,14 +43,24 @@ export class UseraddComponent implements OnInit {
       'Contrasenna': this.addUser.get('Contrasenna').value,
       'Roles': this.addUser.get('Roles').value,
     };
-  
+    this.userService.addUser(postData).subscribe(data=>{
+      console.log(data);
+      if(data!=null){
+        this.event.emit('OK');
+        this.toastr.success(data.toString());
+        this.bsModalRef.hide();
+      }
+    });
+
+
+  /*
     this.userService.addUser(postData).subscribe(data=>{
       console.log(data);
       if(data!=null && data>0){
         this.event.emit('OK');
         this.bsModalRef.hide();
       }
-    });
+    });*/
   }
 
   onClose(){

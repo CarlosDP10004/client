@@ -13,6 +13,8 @@ import { InterceptorService } from './core/http/interceptor.service';
 import { UseraddComponent } from './pages/user/useradd/useradd.component';
 import { UserListComponent } from './pages/user/user-list/user-list.component';
 import { RoleListComponent } from './pages/role/role-list/role-list.component';
+import { UsereditComponent } from './pages/user/useredit/useredit.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import { RoleListComponent } from './pages/role/role-list/role-list.component';
     LoginComponent,
     UserListComponent,
     UseraddComponent,
-    RoleListComponent
+    RoleListComponent,
+    UsereditComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +33,8 @@ import { RoleListComponent } from './pages/role/role-list/role-list.component';
     ReactiveFormsModule,
     TemplateModule,
     HttpClientModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    ToastrModule.forRoot()
   ],
   providers: [
     {      

@@ -15,6 +15,7 @@ import { UserListComponent } from './pages/user/user-list/user-list.component';
 import { RoleListComponent } from './pages/role/role-list/role-list.component';
 import { UsereditComponent } from './pages/user/useredit/useredit.component';
 import { ToastrModule } from 'ngx-toastr';
+import { RoleAddComponent } from './pages/role/role-add/role-add.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ToastrModule } from 'ngx-toastr';
     UserListComponent,
     UseraddComponent,
     RoleListComponent,
-    UsereditComponent
+    UsereditComponent,
+    RoleAddComponent
   ],
   imports: [
     BrowserModule,

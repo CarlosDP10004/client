@@ -1,4 +1,4 @@
-<div class="card">
+<!--<div class="card">
     <div class="card-header">
         Roles
     </div>
@@ -33,4 +33,85 @@
             </nav>
           </table>
     </div>
+  </div>-->
+
+<!--<div class="card">
+  <ngx-spinner></ngx-spinner>
+    <div class="card-header">
+        Usuarios
+    </div>
+    <button class="btn btn-lg btn-outline-primary">Agregar usuario</button>
+    <div class="card-body">
+        <table class="table table-sm">
+            <thead>
+              <tr>
+                <th scope="col">Correlativo</th>
+                <th scope="col">Nombre usuario</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Número de intentos</th>
+                <th scope="col">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of users; let iControl = index">
+                <th >{{user.IdUsuario}}</th>
+                <td>{{user.NombreUsuario}}</td>
+                <td>{{user.Estado}}</td>
+                <td>{{user.Intento}}</td>
+                <td>
+                    <a href="" title="Modificar" class="text-success" data-toggle="modal">
+                      <i class="fa fa-fw fa-pencil-square-o"></i>
+                    </a>
+                    <div >Activar</div>
+                </td>
+              </tr>
+            </tbody>
+            <nav aria-label="Page navigation example">
+              <ul class="pagination">
+                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+              </ul>
+            </nav>
+          </table>
+          
+    </div>
+  </div>-->
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6" style="text-align:center;">
+        <h3>Mantenimiento de roles</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8">
+        <span (click)="addRole()" class="btn btn-primary btn-xs">Nuevo rol</span>
+        <br /><br />
+        <div class="table-responsive">
+          <table id="mytable" class="table table-bordred table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Correlativo</th>
+                <th scope="col">Nombre rol</th>
+                <th scope="col">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let role of roles; let iControl = index">
+                <th >{{role.IdRol}}</th>
+                <td>{{role.NombreRol}}</td>
+                <td><span class="btn btn-primary btn-xs" (click)="editRole(role.IdRol)">
+                  <span class="glyphicon glyphicon-pencil"></span></span></td>
+              <!--<td><span class="btn btn-danger btn-xs" (click)="deletePost(item.postId, item.title)">
+                  <span class="glyphicon glyphicon-trash"></span></span></td>-->
+              </tr>             
+            </tbody>
+          </table>  
+        </div>
+      </div>
+    </div>
   </div>
+

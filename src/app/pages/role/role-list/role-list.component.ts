@@ -1,23 +1,45 @@
 import { Component, OnInit } from '@angular/core';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { RolesService } from 'src/app/core/http/roles.service';
+import { RoleAddComponent } from '../role-add/role-add.component';
 
 @Component({
   selector: 'app-role-list',
   templateUrl: './role-list.component.html',
   styleUrls: ['./role-list.component.scss']
 })
-export class RoleListComponent implements OnInit {
+export class RoleListComponent {
 
-  roles:any;
+  roles: any[] = [];
+  bsModalRef: BsModalRef;
   constructor(
-    private rolService: RolesService
-  ) { }
+    private rolService: RolesService,
+    private bsModalService: BsModalService
+  ) {
+    this.showAll();
+   }
 
-  ngOnInit(): void {
-    this.rolService.showAll().subscribe(data =>{
-      console.log(data);
-      this.roles= data;
+
+
+  showAll(){
+    this.rolService.showAll().subscribe(data => {
+      Object.assign(this.roles, data);
+    }, error => {
+      console.log("Error al obtener los registros ", error);
     });
+  }
+
+  addRole(){
+    this.bsModalRef = this.bsModalService.show(RoleAddComponent);
+    this.bsModalRef.content.event.subscribe(result => {
+      if (result == 'OK') {
+        this.showAll();
+      }
+    });
+  }
+
+  editRole(){
+
   }
 
 }

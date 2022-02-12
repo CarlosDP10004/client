@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { Role } from 'src/app/models/user';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './auth.service';
 
@@ -28,5 +29,15 @@ export class RolesService {
   getRol(Id: number){
     const headers = new HttpHeaders().set('Authorization', `bearer ${this.userService.getToken()}`)
     return this.clienteHttp.get(API_URL + "roles?Id="+ Id, { headers: headers})
+  }
+
+  addRole(role: Role){    
+    const headers = new HttpHeaders().set('Authorization', `bearer ${this.userService.getToken()}`)
+    return this.clienteHttp.post(API_URL + "roles", role, { headers: headers});
+  }
+
+  getPermisos(){
+    const headers = new HttpHeaders().set('Authorization', `bearer ${this.userService.getToken()}`)
+    return this.clienteHttp.get(API_URL + "permisos", { headers: headers})
   }
 }

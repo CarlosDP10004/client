@@ -51,16 +51,6 @@ export class UseraddComponent implements OnInit {
         this.bsModalRef.hide();
       }
     });
-
-
-  /*
-    this.userService.addUser(postData).subscribe(data=>{
-      console.log(data);
-      if(data!=null && data>0){
-        this.event.emit('OK');
-        this.bsModalRef.hide();
-      }
-    });*/
   }
 
   onClose(){

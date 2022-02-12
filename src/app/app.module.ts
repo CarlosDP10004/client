@@ -16,6 +16,9 @@ import { RoleListComponent } from './pages/role/role-list/role-list.component';
 import { UsereditComponent } from './pages/user/useredit/useredit.component';
 import { ToastrModule } from 'ngx-toastr';
 import { RoleAddComponent } from './pages/role/role-add/role-add.component';
+import { ProviderListComponent } from './pages/provider/provider-list/provider-list.component';
+import { ProviderAddComponent } from './pages/provider/provider-add/provider-add.component';
+import { ProviderEditComponent } from './pages/provider/provider-edit/provider-edit.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,10 @@ import { RoleAddComponent } from './pages/role/role-add/role-add.component';
     UseraddComponent,
     RoleListComponent,
     UsereditComponent,
-    RoleAddComponent
+    RoleAddComponent,
+    ProviderListComponent,
+    ProviderAddComponent,
+    ProviderEditComponent
   ],
   imports: [
     BrowserModule,

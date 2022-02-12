@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/core/http/auth.service';
 
 @Component({
@@ -15,7 +16,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private router:Router,
     private formBuilder:FormBuilder, 
-    private userService: AuthService
+    private userService: AuthService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -39,6 +41,7 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['/Assets']);     
     }, (error)=>{
       this.mensajeError = error;
+      this.toastr.error(error.toString());
     });
   }
 

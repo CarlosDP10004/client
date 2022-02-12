@@ -9,7 +9,7 @@
           <div class="form-group">
             <label class="col-sm-2 control-label">Roles</label>
             <div class="col-sm-10">
-              <select formControlName="Roles">
+              <select formControlName="Roles" class="form-control">
                 <option [value]="null">Selecciona el rol</option>
                 <option *ngFor="let item of roles" [value]="item.IdRol">{{item.NombreRol}}</option>
               </select>

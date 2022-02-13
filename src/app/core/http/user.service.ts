@@ -48,5 +48,10 @@ export class UserService {
 
   changeUsuarioId(IdUsuario: number){
     this.IdUsuarioSource.next(IdUsuario);
-}
+  }
+
+  changeStatusUser(id: number){
+    const headers = new HttpHeaders().set('Authorization', `bearer ${this.userService.getToken()}`)
+    return this.clienteHttp.put(`${API_URL}usuarios/changeStatus/${id}`, { headers: headers});
+  }
 }

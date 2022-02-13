@@ -19,6 +19,18 @@ import { RoleAddComponent } from './pages/role/role-add/role-add.component';
 import { ProviderListComponent } from './pages/provider/provider-list/provider-list.component';
 import { ProviderAddComponent } from './pages/provider/provider-add/provider-add.component';
 import { ProviderEditComponent } from './pages/provider/provider-edit/provider-edit.component';
+import { DepartamentListComponent } from './pages/departament/departament-list/departament-list.component';
+import { DepartamentAddComponent } from './pages/departament/departament-add/departament-add.component';
+import { DepartamentEditComponent } from './pages/departament/departament-edit/departament-edit.component';
+import { WorkStationEditComponent } from './pages/work-station/work-station-edit/work-station-edit.component';
+import { WorkStationListComponent } from './pages/work-station/work-station-list/work-station-list.component';
+import { WorkStationAddComponent } from './pages/work-station/work-station-add/work-station-add.component';
+import { AccountEditComponent } from './pages/account/account-edit/account-edit.component';
+import { AccountListComponent } from './pages/account/account-list/account-list.component';
+import { AccountAddComponent } from './pages/account/account-add/account-add.component';
+import { ClassificationEditComponent } from './pages/classification/classification-edit/classification-edit.component';
+import { ClassificationListComponent } from './pages/classification/classification-list/classification-list.component';
+import { ClassificationAddComponent } from './pages/classification/classification-add/classification-add.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +43,19 @@ import { ProviderEditComponent } from './pages/provider/provider-edit/provider-e
     RoleAddComponent,
     ProviderListComponent,
     ProviderAddComponent,
-    ProviderEditComponent
+    ProviderEditComponent,
+    DepartamentListComponent,
+    DepartamentAddComponent,
+    DepartamentEditComponent,
+    WorkStationEditComponent,
+    WorkStationListComponent,
+    WorkStationAddComponent,
+    AccountEditComponent,
+    AccountListComponent,
+    AccountAddComponent,
+    ClassificationEditComponent,
+    ClassificationListComponent,
+    ClassificationAddComponent
   ],
   imports: [
     BrowserModule,

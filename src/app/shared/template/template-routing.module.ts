@@ -17,6 +17,7 @@ const routes: Routes = [
     component: TemplateComponent, 
     canActivate: [AuthGuard],
     children: [
+      {path: "", component: HomeComponent},
       {path: "Assets", component: HomeComponent},
       {path: "Assets/Users", component: UserListComponent},
       {path: "Assets/Roles", component: RoleListComponent},

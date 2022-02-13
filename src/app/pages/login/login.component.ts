@@ -12,7 +12,6 @@ import { AuthService } from 'src/app/core/http/auth.service';
 export class LoginComponent implements OnInit {
 
   public form:FormGroup;
-  mensajeError: string;
   constructor(
     private router:Router,
     private formBuilder:FormBuilder, 
@@ -40,7 +39,6 @@ export class LoginComponent implements OnInit {
     this.userService.login(this.form.value).subscribe( data => {     
       this.router.navigate(['/Assets']);     
     }, (error)=>{
-      this.mensajeError = error;
       this.toastr.error(error.toString());
     });
   }

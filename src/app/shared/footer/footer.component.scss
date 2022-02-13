@@ -1,27 +1,29 @@
 
   .text-center{
     left: 0;
-    width: 100%;
-    //text-align: center;
+    width: 100%;    
     display:flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    background-color: #C9A892;
-    //bottom: 0% !important;
-    height: 60px;
-    //border-bottom: 0 !important;
+    background-color: #313945;
+    bottom: 0% !important;
+    height: 50px;
+    border-bottom: 0 !important;
     //padding-top: 30px;
     //margin-top: 30px;  
     margin-bottom: 0% !important;
-    position:relative;
+    margin-left: -36px;
+    position:absolute;
+    padding-left: 400px;
   
   }
 
   footer {
-    background-color: black;
-    position: absolute;
+    display:flex;
+    position: fixed;
     bottom: 0;
     width: 100%;
     height: 40px;
-    color: white;
-  }
+    color: white;  
+         
+  }  

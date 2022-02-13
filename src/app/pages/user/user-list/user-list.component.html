@@ -51,7 +51,7 @@
     </div>
     <div class="row">
       <div class="col-md-8">
-        <span (click)="addUser()" class="btn btn-primary btn-xs">Nuevo usuario</span>
+        <span (click)="addUser()" class="btn btn-primary">Nuevo usuario</span>
         <br /><br />
         <div class="table-responsive">
           <table id="mytable" class="table table-bordred table-striped">
@@ -68,10 +68,16 @@
               <tr *ngFor="let user of users; let iControl = index">
                 <th >{{user.IdUsuario}}</th>
                 <td>{{user.NombreUsuario}}</td>
-                <td>{{user.Estado}}</td>
+                <td>
+                  <p *ngIf="user.Estado; else bloqueado">Activo</p>
+                  <ng-template #bloqueado>Bloqueado</ng-template>
+                </td>                
+                <!--<td>{{user.Estado}}</td>-->
                 <td>{{user.Intento}}</td>
-                <td><span class="btn btn-primary btn-xs" (click)="editUser(user.IdUsuario)">
+                <td><span class="btn btn-primary" (click)="editUser(user.IdUsuario)">
                   <span class="glyphicon glyphicon-pencil"></span></span></td>
+                <td><span class="btn btn-info">
+                  <span class="glyphicon glyphicon-refresh"></span></span></td>
               <!--<td><span class="btn btn-danger btn-xs" (click)="deletePost(item.postId, item.title)">
                   <span class="glyphicon glyphicon-trash"></span></span></td>-->
               </tr>             

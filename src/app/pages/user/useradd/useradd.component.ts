@@ -50,6 +50,8 @@ export class UseraddComponent implements OnInit {
         this.toastr.success(data.toString());
         this.bsModalRef.hide();
       }
+    }, (error)=>{
+      this.toastr.error(error.error.message.toString());
     });
   }
 

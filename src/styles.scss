@@ -268,10 +268,21 @@ input[type=text]:placeholder, [type=password]:placeholder  {
 }
 
 .customImage{
-  background-image: url("../src/assets/images/bg3.jpg");
+  background-image: url("../src/assets/images/bg1.2.png");
   background-color: #cccccc;
   background-position: center;
+  background-size: cover;
+}
+
+.TituloIndex{ 
+  background-image: url("../src/assets/images/bg1.2.png");
+  background-position: center;
+  background-size: cover;
+  
 }
 
 @import '~ngx-toastr/toastr.css';
 
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

@@ -22,7 +22,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let user of users; let iControl = index">
+              <tr *ngFor="let user of users | paginate: { itemsPerPage: 10, currentPage: page }">
                 <th >{{user.IdUsuario}}</th>
                 <td>{{user.NombreUsuario}}</td>
                 <td>
@@ -37,7 +37,9 @@
                 </td>
               </tr>             
             </tbody>
+            
           </table>  
+          <pagination-controls (pageChange)="page = $event" previousLabel="Anterior" nextLabel="Siguiente" responsive="true" class="float-right"></pagination-controls>                          
         </div>
       </div>
     </div>

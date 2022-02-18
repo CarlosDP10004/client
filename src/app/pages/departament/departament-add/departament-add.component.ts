@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { BsModalRef } from 'ngx-bootstrap/modal';
+import { ToastrService } from 'ngx-toastr';
+import { DepartamentsService } from 'src/app/core/http/departaments.service';
+import { UserService } from 'src/app/core/http/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-departament-add',
@@ -6,10 +12,57 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./departament-add.component.scss']
 })
 export class DepartamentAddComponent implements OnInit {
+  addDepartament: FormGroup;
+  users: any[] = [];
+  event: EventEmitter<any>=new EventEmitter();
 
-  constructor() { }
+  constructor(
+    private bsModalRef: BsModalRef,
+    private builder: FormBuilder,
+    private toastr: ToastrService,
+    private userService: UserService,
+    private departamentService: DepartamentsService
+  ) {
+    this.addDepartament = this.builder.group({      
+      NombreUnidad: new FormControl('', []),
+      IdUsuario: new FormControl('', [])
+    });
+    this.userService.showAll().subscribe(data => {
+      Object.assign(this.users, data);
+    }, error => { 
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: error,
+        confirmButtonColor: '#c9a892',
+        confirmButtonText: 'Aceptar'
+      }) 
+    });
+  }
 
   ngOnInit(): void {
+  }
+
+
+  guardarDepartamento(){
+    let postData = {
+      'NombreUnidad': this.addDepartament.get('NombreUnidad').value,
+      'IdUsuario': this.addDepartament.get('IdUsuario').value
+    };
+    this.departamentService.addDepartament(postData).subscribe(data=>{
+      console.log(data);
+      if(data!=null){
+        this.event.emit('OK');
+        this.toastr.success(data.toString());
+        this.bsModalRef.hide();
+      }
+    }, (error)=>{
+      this.toastr.error(error.error.message.toString());
+    });
+  }
+
+  onClose(){
+    this.bsModalRef.hide();
   }
 
 }

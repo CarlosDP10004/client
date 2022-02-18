@@ -13,7 +13,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./user-list.component.scss']
 })
 export class UserListComponent {
-
+  page: number = 1;
   users: any[] = [];
   bsModalRef: BsModalRef;
   constructor(
@@ -29,12 +29,14 @@ export class UserListComponent {
     this.userService.showAll().subscribe(data => {
       Object.assign(this.users, data);
     }, error => {
-      console.log("Error al obtener los registros ", error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: error,
+        confirmButtonColor: '#c9a892',
+        confirmButtonText: 'Aceptar'
+      })
     });
-    /*this.userService.showAll().subscribe(data =>{      
-      console.log(data);
-      this.users= data;
-    });*/
   }
 
 
@@ -44,8 +46,7 @@ export class UserListComponent {
       if (result == 'OK') {
         this.showAll();
       }
-    });
-    
+    });    
   }
 
 

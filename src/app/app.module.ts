@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -62,6 +63,7 @@ import { ClassificationAddComponent } from './pages/classification/classificatio
     AppRoutingModule,
     BrowserAnimationsModule, 
     FormsModule,
+    NgxPaginationModule,
     ReactiveFormsModule,
     TemplateModule,
     HttpClientModule,

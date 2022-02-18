@@ -1,1 +1,39 @@
-<p>departament-list works!</p>
+<div class="container">
+    <div class="row">
+      <div class="col-md-12 TituloUsuarioList" style="text-align:center;">
+        <h3>Mantenimiento de departamentos</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <p></p>
+        <span (click)="addDepartament()" class="btn btn-primary ">Nuevo departamento</span>
+        <br /><br />
+        <div class="table-responsive">
+          <table id="mytable" class="table table-bordred table-striped">
+            <thead>
+              <tr>
+                <th scope="col"  bgcolor="#c9a892">Correlativo</th>
+                <th scope="col"  bgcolor="#c9a892">Nombre unidad</th>
+                <th scope="col"  bgcolor="#c9a892">Encargado</th>
+                <th scope="col"  bgcolor="#c9a892">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let departament of departaments | paginate: { itemsPerPage: 10, currentPage: page }">
+                <th >{{departament.IdUnidad}}</th>
+                <td>{{departament.NombreUnidad}}</td>               
+                <td>{{departament.IdUsuario}}</td>
+                <td>
+                  <span class="btn btn-primary glyphicon glyphicon-pencil" title="Editar" (click)="editDepartament(departament.IdUnidad)"></span>
+                  &nbsp;&nbsp;
+                  <span class="btn btn-info glyphicon glyphicon-refresh" title="Cambiar estado" (click)="changeStatus()"></span>
+                </td>
+              </tr>             
+            </tbody>            
+          </table>  
+          <pagination-controls (pageChange)="page = $event" previousLabel="Anterior" nextLabel="Siguiente" responsive="true" class="float-right"></pagination-controls>                          
+        </div>
+      </div>
+    </div>
+  </div>

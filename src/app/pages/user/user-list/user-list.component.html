@@ -2,28 +2,29 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12 TituloUsuarioList" style="text-align:center;">
-        <h3>Mantenimiento de usuarios</h3>
+        <hr>
+        <h1 class="fuenteTitulo"><b>Mantenimiento de usuarios</b></h1>
       </div>
     </div>
     <div class="row">
       <div class="col-md-12">
         <p></p>
-        <span (click)="addUser()" class="btn btn-primary ">Nuevo usuario</span>
+        <span (click)="addUser()" class="btn btn-primary btn-lg">Nuevo usuario</span>
         <br /><br />
         <div class="table-responsive">
           <table id="mytable" class="table table-bordred table-striped">
             <thead>
-              <tr>
-                <th scope="col"  bgcolor="#c9a892">Correlativo</th>
+              <tr class="estiloCabecera">
+                <th scope="col" width="10%" bgcolor="#c9a892">Correlativo</th>
                 <th scope="col"  bgcolor="#c9a892">Nombre usuario</th>
                 <th scope="col"  bgcolor="#c9a892">Estado</th>
-                <th scope="col"  bgcolor="#c9a892">Intentos</th>
+                <th scope="col" width="10%" bgcolor="#c9a892">Intentos</th>
                 <th scope="col"  bgcolor="#c9a892">Acciones</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let user of users | paginate: { itemsPerPage: 10, currentPage: page }">
-                <th >{{user.IdUsuario}}</th>
+                <th>{{user.IdUsuario}}</th>
                 <td>{{user.NombreUsuario}}</td>
                 <td>
                   <p *ngIf="user.Estado; else bloqueado">Activo</p>
@@ -36,11 +37,19 @@
                   <span class="btn btn-info glyphicon glyphicon-refresh" (click)="changeStatus(user.IdUsuario)" title="Cambiar estado"></span>
                 </td>
               </tr>             
-            </tbody>
-            
-          </table>  
-          <pagination-controls (pageChange)="page = $event" previousLabel="Anterior" nextLabel="Siguiente" responsive="true" class="float-right"></pagination-controls>                          
+            </tbody>            
+          </table>          
+            <pagination-controls class="paginacion"
+                                 (pageChange)="page = $event"                                 
+                                 maxSize="2"
+                                 autoHide="true"
+                                 nextLabel="Siguiente"
+                                 previousLabel="Anterior"
+                                 responsive="true"
+                                 screenReaderPaginationLabel="Paginacion" >
+            </pagination-controls>                                                      
         </div>
       </div>
     </div>
   </div>
+     

@@ -7,3 +7,18 @@ th, td {
     text-align: center;
     word-wrap: break-word;
 }
+
+.fuenteTitulo{
+    justify-items: center;
+    margin-top: -10px;
+}
+
+.estiloCabecera{
+    font-size: large;
+}
+
+.paginacion {      
+    display: flex;
+    justify-content: right; 
+    font-size: medium;   
+}

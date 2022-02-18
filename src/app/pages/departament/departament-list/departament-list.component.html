@@ -1,19 +1,20 @@
 <div class="container">
     <div class="row">
       <div class="col-md-12 TituloUsuarioList" style="text-align:center;">
-        <h3>Mantenimiento de departamentos</h3>
+        <hr>
+        <h1 class="fuenteTitulo"><b>Mantenimiento de departamentos</b></h1>
       </div>
     </div>
     <div class="row">
       <div class="col-md-12">
         <p></p>
-        <span (click)="addDepartament()" class="btn btn-primary ">Nuevo departamento</span>
+        <span (click)="addDepartament()" class="btn btn-primary btn-lg">Nuevo departamento</span>
         <br /><br />
         <div class="table-responsive">
           <table id="mytable" class="table table-bordred table-striped">
             <thead>
-              <tr>
-                <th scope="col"  bgcolor="#c9a892">Correlativo</th>
+              <tr class="estiloCabecera">
+                <th scope="col" width="10%" bgcolor="#c9a892">Correlativo</th>
                 <th scope="col"  bgcolor="#c9a892">Nombre unidad</th>
                 <th scope="col"  bgcolor="#c9a892">Encargado</th>
                 <th scope="col"  bgcolor="#c9a892">Acciones</th>
@@ -32,7 +33,15 @@
               </tr>             
             </tbody>            
           </table>  
-          <pagination-controls (pageChange)="page = $event" previousLabel="Anterior" nextLabel="Siguiente" responsive="true" class="float-right"></pagination-controls>                          
+          <pagination-controls class="paginacion"
+                                 (pageChange)="page = $event"                                 
+                                 maxSize="2"
+                                 autoHide="true"
+                                 nextLabel="Siguiente"
+                                 previousLabel="Anterior"
+                                 responsive="true"
+                                 screenReaderPaginationLabel="Paginacion" >
+            </pagination-controls>                          
         </div>
       </div>
     </div>

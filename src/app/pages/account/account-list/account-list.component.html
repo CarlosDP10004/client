@@ -1,1 +1,41 @@
-<p>account-list works!</p>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 TituloUsuarioList" style="text-align:center;">
+        <h3>Mantenimiento de cuentas contables</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <p></p>
+        <!--<span (click)="addUser()" class="btn btn-primary ">Nuevo usuario</span>-->
+        <br /><br />
+        <div class="table-responsive">
+          <table id="mytable" class="table table-bordred table-striped">
+            <thead>
+              <tr>
+                <th scope="col"  bgcolor="#c9a892">Correlativo</th>
+                <th scope="col"  bgcolor="#c9a892">Código</th>
+                <th scope="col"  bgcolor="#c9a892">Nombre Cuenta</th>
+                <th scope="col"  bgcolor="#c9a892">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let account of accounts | paginate: { itemsPerPage: 10, currentPage: page }">
+                <th >{{account.IdCuenta}}</th>
+                <td>{{account.Codigo}}</td>                               
+                <td>{{account.NombreCuenta}}</td>
+                <td>
+                  <span class="btn btn-primary glyphicon glyphicon-pencil" title="Editar" (click)="editAccount(account.IdCuenta)"></span>
+                  &nbsp;&nbsp;
+                  <span class="btn btn-info glyphicon glyphicon-refresh" (click)="changeStatus()" title="Cambiar estado"></span>
+                </td>
+              </tr>             
+            </tbody>
+            
+          </table>  
+          <pagination-controls (pageChange)="page = $event" previousLabel="Anterior" nextLabel="Siguiente" responsive="true" class="float-right"></pagination-controls>                          
+        </div>
+      </div>
+    </div>
+  </div>

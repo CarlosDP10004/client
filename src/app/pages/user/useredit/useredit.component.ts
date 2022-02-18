@@ -1,8 +1,10 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
+import { ToastrService } from 'ngx-toastr';
 import { RolesService } from 'src/app/core/http/roles.service';
 import { UserService } from 'src/app/core/http/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-useredit',
@@ -22,7 +24,8 @@ export class UsereditComponent implements OnInit {
     private builder: FormBuilder, 
     private userService: UserService, 
     private rolService: RolesService,
-    private bsModalRef: BsModalRef
+    private bsModalRef: BsModalRef,
+    private toastr: ToastrService
   ) { 
     this.editUser = this.builder.group({
       Roles: new FormControl(null, []),
@@ -32,7 +35,15 @@ export class UsereditComponent implements OnInit {
 
     this.rolService.showAll().subscribe(data => {
       Object.assign(this.roles, data);
-    }, error => { console.log('Error al obtener la información.'); });
+    }, error => { 
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: error,
+        confirmButtonColor: '#c9a892',
+        confirmButtonText: 'Aceptar'
+      }) 
+    });
 
     this.userService.IdUsuario.subscribe(data => {
       this.id = data;
@@ -45,7 +56,15 @@ export class UsereditComponent implements OnInit {
             this.editUser.controls['NombreUsuario'].setValue(this.userData.NombreUsuario);
             this.editUser.controls['Contrasenna'].setValue(this.userData.Contrasenna);
           }
-        }, error => { console.log("Error al obtener los datos del usuario") });
+        }, error => { 
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: error,
+            confirmButtonColor: '#c9a892',
+            confirmButtonText: 'Aceptar'
+          }) 
+        });
       }
     });
   }
@@ -65,6 +84,7 @@ export class UsereditComponent implements OnInit {
 
     this.userService.editUser(this.id, userData).subscribe(data => {      
         this.event.emit('OK');
+        this.toastr.success(data.toString());
         this.bsModalRef.hide();      
     });
   }

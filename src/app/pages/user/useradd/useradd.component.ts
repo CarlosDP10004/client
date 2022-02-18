@@ -4,6 +4,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { RolesService } from 'src/app/core/http/roles.service';
 import { UserService } from 'src/app/core/http/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-useradd',
@@ -30,7 +31,15 @@ export class UseraddComponent implements OnInit {
 
     this.rolService.showAll().subscribe(data => {
       Object.assign(this.roles, data);
-    }, error => { console.log('Error al obtener datos.'); });
+    }, error => { 
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: error,
+        confirmButtonColor: '#c9a892',
+        confirmButtonText: 'Aceptar'
+      }) 
+    });
   }
 
   ngOnInit(): void {

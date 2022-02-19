@@ -53,8 +53,19 @@
   }
 
   .Icono{
-    width: 25px;
-    height: 25px;
+    width: 30px;
+    height: 30px;
     margin-top: -10px;
   }
 
+  .abajo{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-bottom: 1px;
+  }
+
+  .cerrarSesion{
+    color: red;
+  }

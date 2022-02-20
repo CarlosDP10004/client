@@ -17,10 +17,6 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     loadChildren: () =>
     import('./shared/template/template.module').then(m => m.TemplateModule)
-  }, 
-  {
-    path: '**',
-    component: LoginComponent
   }
 ];
 

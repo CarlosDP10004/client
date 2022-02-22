@@ -24,7 +24,7 @@
               <tr *ngFor="let workStation of workStations | paginate: { itemsPerPage: 10, currentPage: page }">
                 <th >{{workStation.IdPlaza}}</th>
                 <td>{{workStation.NombrePlaza}}</td>               
-                <td>{{workStation.IdUnidad}}</td>
+                <td>{{workStation.NombreUnidad}}</td>
                 <td>
                   <span class="btn btn-primary glyphicon glyphicon-pencil" title="Editar" (click)="editWorkStation(workStation.IdPlaza)"></span>
                   &nbsp;&nbsp;

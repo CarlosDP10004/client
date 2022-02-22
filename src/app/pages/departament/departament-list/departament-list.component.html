@@ -24,7 +24,7 @@
               <tr *ngFor="let departament of departaments | paginate: { itemsPerPage: 10, currentPage: page }">
                 <th >{{departament.IdUnidad}}</th>
                 <td>{{departament.NombreUnidad}}</td>               
-                <td>{{departament.IdUsuario}}</td>
+                <td>{{departament.NombreUsuario}}</td>
                 <td>
                   <span class="btn btn-primary glyphicon glyphicon-pencil" title="Editar" (click)="editDepartament(departament.IdUnidad)"></span>
                   &nbsp;&nbsp;

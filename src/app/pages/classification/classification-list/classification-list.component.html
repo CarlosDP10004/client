@@ -1,1 +1,48 @@
-<p>classification-list works!</p>
+<div class="container">
+    <div class="row">
+      <div class="col-md-12 TituloUsuarioList" style="text-align:center;">
+        <hr>
+        <h1 class="fuenteTitulo"><b>Mantenimiento de clasificación de activos</b></h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <p></p>
+        <span (click)="addClasification()" class="btn btn-primary btn-lg">Nueva clasificación</span>
+        <br /><br />
+        <div class="table-responsive">
+          <table id="mytable" class="table table-bordred table-striped">
+            <thead>
+              <tr class="estiloCabecera">
+                <th scope="col" width="10%" bgcolor="#c9a892">Correlativo</th>
+                <th scope="col"  bgcolor="#c9a892">Cuenta</th>
+                <th scope="col"  bgcolor="#c9a892">Descripción</th>
+                <th scope="col"  bgcolor="#c9a892">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let clasification of clasifications | paginate: { itemsPerPage: 10, currentPage: page }">
+                <th >{{clasification.IdClasificacion}}</th>
+                <td>{{clasification.NombreCuenta}}</td>               
+                <td>{{clasification.Descripcion}}</td>
+                <td>
+                  <span class="btn btn-primary glyphicon glyphicon-pencil" title="Editar" (click)="editClasification(clasification.IdClasificacion)"></span>
+                  &nbsp;&nbsp;
+                  <span class="btn btn-info glyphicon glyphicon-refresh" title="Cambiar estado" (click)="changeStatus()"></span>
+                </td>
+              </tr>             
+            </tbody>            
+          </table>  
+          <pagination-controls class="paginacion"
+                                 (pageChange)="page = $event"                                 
+                                 maxSize="2"
+                                 autoHide="true"
+                                 nextLabel="Siguiente"
+                                 previousLabel="Anterior"
+                                 responsive="true"
+                                 screenReaderPaginationLabel="Paginacion" >
+            </pagination-controls>                          
+        </div>
+      </div>
+    </div>
+  </div>

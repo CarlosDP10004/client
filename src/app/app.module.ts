@@ -32,6 +32,9 @@ import { AccountAddComponent } from './pages/account/account-add/account-add.com
 import { ClassificationEditComponent } from './pages/classification/classification-edit/classification-edit.component';
 import { ClassificationListComponent } from './pages/classification/classification-list/classification-list.component';
 import { ClassificationAddComponent } from './pages/classification/classification-add/classification-add.component';
+import { AssetsEditComponent } from './pages/assets/assets-edit/assets-edit.component';
+import { AssetsListComponent } from './pages/assets/assets-list/assets-list.component';
+import { AssetsAddComponent } from './pages/assets/assets-add/assets-add.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +59,10 @@ import { ClassificationAddComponent } from './pages/classification/classificatio
     AccountAddComponent,
     ClassificationEditComponent,
     ClassificationListComponent,
-    ClassificationAddComponent
+    ClassificationAddComponent,
+    AssetsEditComponent,
+    AssetsListComponent,
+    AssetsAddComponent
   ],
   imports: [
     BrowserModule,

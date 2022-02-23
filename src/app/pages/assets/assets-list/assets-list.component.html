@@ -1,0 +1,54 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-12 TituloUsuarioList" style="text-align:center;">
+        <hr>
+        <h1 class="fuenteTitulo"><b>Mantenimiento de activos fijos</b></h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <p></p>
+        <span (click)="addAsset()" class="btn btn-primary btn-lg">Nuevo activo</span>
+        <br /><br />
+        <div class="table-responsive">
+          <table id="mytable" class="table table-bordred table-striped">
+            <thead>
+              <tr class="estiloCabecera">
+                <th scope="col" width="10%" bgcolor="#c9a892">Código</th>
+                <th scope="col"  bgcolor="#c9a892">Marca</th>
+                <th scope="col"  bgcolor="#c9a892">Modelo</th>
+                <th scope="col"  bgcolor="#c9a892">Valor de compra</th>
+                <th scope="col"  bgcolor="#c9a892">Fecha de compra</th>
+                <th scope="col"  bgcolor="#c9a892">Estado</th>
+                <th scope="col"  bgcolor="#c9a892">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let asset of assets | paginate: { itemsPerPage: 10, currentPage: page }">
+                <th >{{asset.CodigoAF}}</th>
+                <td>{{asset.Marca}}</td>               
+                <td>{{asset.Modelo}}</td>
+                <td>$ {{asset.ValorCompra}}</td>
+                <td>{{asset.FechaCompra}}</td>
+                <td>{{asset.NombreEstado}}</td>
+                <td>
+                  <span class="btn btn-primary glyphicon glyphicon-pencil" title="Editar" (click)="editAsset(asset.IdActivoFijo)"></span>
+                  &nbsp;&nbsp;
+                  <span class="btn btn-info glyphicon glyphicon-refresh" title="Cambiar estado" (click)="changeStatus()"></span>
+                </td>
+              </tr>             
+            </tbody>            
+          </table>  
+          <pagination-controls class="paginacion"
+                                 (pageChange)="page = $event"                                 
+                                 maxSize="2"
+                                 autoHide="true"
+                                 nextLabel="Siguiente"
+                                 previousLabel="Anterior"
+                                 responsive="true"
+                                 screenReaderPaginationLabel="Paginacion" >
+            </pagination-controls>                          
+        </div>
+      </div>
+    </div>
+  </div>

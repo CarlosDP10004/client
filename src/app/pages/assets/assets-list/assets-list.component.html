@@ -17,15 +17,15 @@
                 <th scope="col" width="10%" bgcolor="#c9a892">Código</th>
                 <th scope="col"  bgcolor="#c9a892">Marca</th>
                 <th scope="col"  bgcolor="#c9a892">Modelo</th>
-                <th scope="col"  bgcolor="#c9a892">Valor de compra</th>
-                <th scope="col"  bgcolor="#c9a892">Fecha de compra</th>
+                <th scope="col"  bgcolor="#c9a892">Valor compra</th>
+                <th scope="col"  bgcolor="#c9a892">Fecha compra</th>
                 <th scope="col"  bgcolor="#c9a892">Estado</th>
                 <th scope="col"  bgcolor="#c9a892">Acciones</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let asset of assets | paginate: { itemsPerPage: 10, currentPage: page }">
-                <th >{{asset.CodigoAF}}</th>
+                <th>{{asset.CodigoAF}}</th>
                 <td>{{asset.Marca}}</td>               
                 <td>{{asset.Modelo}}</td>
                 <td>$ {{asset.ValorCompra}}</td>

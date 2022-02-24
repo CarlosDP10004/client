@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { Asset } from 'src/app/models/asset';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './auth.service';
 
@@ -26,5 +27,15 @@ export class AssetsService {
   showAll(){
     const headers = new HttpHeaders().set('Authorization', `bearer ${this.userService.getToken()}`)
     return this.clienteHttp.get(API_URL + "activos", { headers: headers});
+  }
+
+  addAsset(asset: Asset){    
+    const headers = new HttpHeaders().set('Authorization', `bearer ${this.userService.getToken()}`)
+    return this.clienteHttp.post(API_URL + "activos", asset, { headers: headers});
+  }
+
+  getOrigen(){
+    const headers = new HttpHeaders().set('Authorization', `bearer ${this.userService.getToken()}`)
+    return this.clienteHttp.get(API_URL + "origenes", { headers: headers});
   }
 }

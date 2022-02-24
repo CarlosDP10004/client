@@ -8,13 +8,14 @@
     <div class="row">
       <div class="col-md-12">
         <p></p>
-        <span (click)="addAsset()" class="btn btn-primary btn-lg">Nuevo activo</span>
+        <span routerLink="/Assets/Supplies/Add" class="btn btn-primary btn-lg">Nuevo activo</span>
         <br /><br />
         <div class="table-responsive">
           <table id="mytable" class="table table-bordred table-striped">
             <thead>
               <tr class="estiloCabecera">
                 <th scope="col" width="10%" bgcolor="#c9a892">Código</th>
+                <th scope="col"  bgcolor="#c9a892">Clasificación</th>
                 <th scope="col"  bgcolor="#c9a892">Marca</th>
                 <th scope="col"  bgcolor="#c9a892">Modelo</th>
                 <th scope="col"  bgcolor="#c9a892">Valor compra</th>
@@ -26,6 +27,7 @@
             <tbody>
               <tr *ngFor="let asset of assets | paginate: { itemsPerPage: 10, currentPage: page }">
                 <th>{{asset.CodigoAF}}</th>
+                <td>{{asset.Descripcion}}</td>               
                 <td>{{asset.Marca}}</td>               
                 <td>{{asset.Modelo}}</td>
                 <td>$ {{asset.ValorCompra}}</td>

@@ -1,1 +1,187 @@
-<p>assets-add works!</p>
+<div role="document">
+  <div >
+    <form class="form-horizontal" [formGroup]="addAsset" (ngSubmit)="guardarActivo()">      
+      <div>  
+        <div class="form-group">
+          <label class="col-sm-2 control-label texto">Cuenta contable</label>
+          <div class="col-sm-6">
+            <select class="form-control" formControlName="IdCuenta" [(ngModel)]="selected" (change)="chargeClasification($event.target.value)">
+              <option [value]="null" disabled selected>Selecciona la cuenta</option>
+              <option *ngFor="let item of accounts" [value]="item.IdCuenta">{{item.NombreCuenta}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label texto">Clasificacion</label>
+          <div class="col-sm-6">
+            <select class="form-control" formControlName="IdClasificacion">
+              <option [value]="null" disabled selected>Selecciona la clasificacion</option>
+              <option *ngFor="let item of clasifications" [value]="item.IdClasificacion">{{item.Descripcion}}</option>
+            </select>
+          </div>
+        </div>    
+        <div class="form-group">
+          <label class="col-sm-2 control-label texto">Marca</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" placeholder="Marca" formControlName="Marca">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label texto">Modelo</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" placeholder="Modelo" formControlName="Modelo">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label texto">Origen</label>
+          <div class="col-sm-6">
+            <select class="form-control" formControlName="IdOrigen">
+              <option [value]="null" disabled selected>Selecciona el origen</option>
+              <option *ngFor="let item of origens" [value]="item.IdOrigen">{{item.NombreOrigen}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label texto">Descripción</label>
+          <div class="col-sm-6">
+            <textarea type="text" class="form-control" placeholder="Descripción" formControlName="Descripcion"></textarea>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label texto">Valor de compra</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" placeholder="Valor de compra" formControlName="ValorCompra">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label texto">Fecha de compra</label>
+          <div class="col-sm-6">
+            <input type="date" class="form-control" placeholder="Fecha de compra" formControlName="FechaCompra">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label texto">Comprobante de compra</label>
+          <div class="col-sm-6">
+            <div class="custom-file form-group">
+              <input type="file" class="custom-file-input" id="customFile" formControlName="DocumentoCompra">
+              <label class="custom-file-label" for="customFile">Adjunto</label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label texto">Serie</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" placeholder="Serie" formControlName="Serie">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label texto">Proveedor</label>
+          <div class="col-sm-6">
+            <select class="form-control" formControlName="IdProveedor">
+              <option [value]="null" disabled selected>Selecciona el proveedor</option>
+              <option *ngFor="let item of providers" [value]="item.IdProveedor">{{item.NombreProveedor}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" *ngIf="selected == 4">
+        <div class="card-header">
+          <label class="col-sm-2 control-label texto">Vehiculos</label>
+        </div>
+        <div class="card-body">
+          <br/><br/>
+          <div class="form-group">
+            <label class="col-sm-2 control-label texto">Placa</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" placeholder="Placa">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label texto">Color</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" placeholder="Color">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label texto">No de Motor</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" placeholder="No de Motor">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label texto">No de VIN</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" placeholder="No de VIN">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label texto">No de Chasis</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" placeholder="No de Chasis">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label texto">No de asientos</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" placeholder="No de asientos">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label texto">Año</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" placeholder="Año">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" *ngIf="selected == 2">
+        <div class="card-header">
+          <label class="col-sm-2 control-label texto">Patentes</label>
+        </div>
+        <div class="card-body">
+          <br/><br/>
+          <div class="form-group">
+            <label class="col-sm-2 control-label texto">Autor</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" placeholder="Autor">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label texto">Título</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" placeholder="Título">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label texto">Editorial</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" placeholder="Editorial">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label texto">Tomo</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" placeholder="Tomo">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label texto">Edición</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" placeholder="Edición">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <br/><br/>
+      
+      <div class="footer">
+        <!--<button type="button" class="btn btn-default" routerLink="/Assets/Supplies">Cancelar</button>-->
+        <span routerLink="/Assets/Supplies" class="btn btn-default">Cancelar</span>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+      </div>
+    </form>
+  </div>
+</div>

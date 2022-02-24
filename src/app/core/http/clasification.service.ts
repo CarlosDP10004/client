@@ -50,4 +50,9 @@ export class ClasificationService {
     return this.clienteHttp.put(`${API_URL}clasificaciones/${id}`, clasification, { headers: headers});
   }
 
+  getClasificacionByAccount(IdAccount: number){
+    const headers = new HttpHeaders().set('Authorization', `bearer ${this.userService.getToken()}`)
+    return this.clienteHttp.get(`${API_URL}clasificaciones/byAccount/${IdAccount}`, { headers: headers});
+  }
+
 }

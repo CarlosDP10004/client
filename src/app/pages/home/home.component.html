@@ -24,8 +24,15 @@
 
 <div class="content">
     <img src="../../../assets/images/FotoDNM.jpeg" alt="Foto de la DNM" class="Dimension" width="340" height="240" >
-    <img src="../../../assets/images/Edificio.jpg" alt="Foto de la DNM" class="Dimension" width="340" height="240" >    
-    <div class="FechaIndex">Hoy es: {{ todayWithPipe }}</div>  
+    <img src="../../../assets/images/Edificio.jpg" alt="Foto de la DNM" class="Dimension" width="340" height="240" >     
 </div>
 
-
+<div class="row tama">
+    <div class = "col-sm-8">
+    <!--aqui va la primera tabla-->
+    </div>
+    <div class = "col-sm-4">        
+      <h6 bgcolor="#313945" style="color:black"><b>Fecha y Hora actual:</b></h6>                
+        {{ todayWithPipe }}&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;{{today | date:'h:mm a'}}    
+    </div>
+</div>

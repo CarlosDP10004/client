@@ -1,71 +1,76 @@
 .sidebar {
-    margin: 0;
-    padding: 0;
-    width: 250px;
-    background-color: #f1f1f1;
-    position: fixed;
-    height:100%;
-    overflow: auto;
-  }
+  margin: 0;
+  padding: 0;
+  width: 250px;
+  background-color: #f1f1f1;
+  position: fixed;
+  height:100%;
+  overflow: auto;
+}
+
+/* Sidebar links */
+.sidebar a {
+  display: block;
+  color: black;
+  padding: 16px;
+  text-decoration: none;
+}
+
+/* Active/current link */
+.sidebar a.active {
+  background-color: #313945;
+  color: white;
+}
+
+/* Links on mouse-over */
+.sidebar a:hover:not(.active) {
+  background-color: #313945;
+  color: white;
+  border: 3px solid #5fbae9;
+}
+.sidebar a:focus {
+  background-color: #7391a3;
+  color: white;
+  border: 3px solid #5fbae9;
+}
+
+.TituloSidebar{
+  text-align: right;
   
-  /* Sidebar links */
-  .sidebar a {
-    display: block;
-    color: black;
-    padding: 16px;
-    text-decoration: none;
-  }
-  
-  /* Active/current link */
-  .sidebar a.active {
-    background-color: #313945;
-    color: white;
-  }
-  
-  /* Links on mouse-over */
-  .sidebar a:hover:not(.active) {
-    background-color: #313945;
-    color: white;
-    border: 3px solid #5fbae9;
-  }
-  .sidebar a:focus {
-    background-color: #7391a3;
-    color: white;
-    border: 3px solid #5fbae9;
-  }
+}
 
-  .TituloSidebar{
-    text-align: right;
-    
-  }
+.ImagenHome{
+  width:60px;
+  height:60px;
+  margin: -20px;
+  padding: 0;
+  margin-top: -10px;
+}
 
-  .ImagenHome{
-    width:60px;
-    height:60px;
-    margin: -20px;
-    padding: 0;
-    margin-top: -10px;
-  }
+.TextoSidebar{
+  text-align: right;
+  font-size: 125%;
+}
 
-  .TextoSidebar{
-    text-align: right;
-    font-size: 125%;
-  }
+.Icono{
+  width: 30px;
+  height: 30px;
+  margin-top: -10px;
+} 
 
-  .Icono{
-    width: 30px;
-    height: 30px;
-    margin-top: -10px;
-  }
+.cerrarSesion{
+  color: red;
+}
 
-  .abajo{
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin-bottom: 1px;
-  }
+.index{
+  z-index: 1;
+}
 
-  .cerrarSesion{
-    color: red;
-  }
+.ajustar{         
+  position:fixed;    
+  bottom:-20px;        
+}
+
+.espacio{
+  margin-bottom: 100px;
+}

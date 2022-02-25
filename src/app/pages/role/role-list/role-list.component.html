@@ -1,91 +1,14 @@
-<!--<div class="card">
-    <div class="card-header">
-        Roles
-    </div>
-    <button class="btn btn-lg btn-outline-primary">Agregar rol</button>
-    <div class="card-body">
-        <table class="table table-sm">
-            <thead>
-              <tr>
-                <th scope="col">Correlativo</th>
-                <th scope="col">Nombre rol</th>
-                <th scope="col">Acciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let rol of roles; let iControl = index">
-                <th >{{rol.IdRol}}</th>
-                <td>{{rol.NombreRol}}</td>
-                <td>
-                  <i class="bi bi-pencil-square"></i>
-                    <div >Activar</div>
-                </td>
-              </tr>
-            </tbody>
-            <nav aria-label="Page navigation example">
-              <ul class="pagination">
-                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">Next</a></li>
-              </ul>
-            </nav>
-          </table>
-    </div>
-  </div>-->
-
-<!--<div class="card">
-  <ngx-spinner></ngx-spinner>
-    <div class="card-header">
-        Usuarios
-    </div>
-    <button class="btn btn-lg btn-outline-primary">Agregar usuario</button>
-    <div class="card-body">
-        <table class="table table-sm">
-            <thead>
-              <tr>
-                <th scope="col">Correlativo</th>
-                <th scope="col">Nombre usuario</th>
-                <th scope="col">Estado</th>
-                <th scope="col">Número de intentos</th>
-                <th scope="col">Acciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let user of users; let iControl = index">
-                <th >{{user.IdUsuario}}</th>
-                <td>{{user.NombreUsuario}}</td>
-                <td>{{user.Estado}}</td>
-                <td>{{user.Intento}}</td>
-                <td>
-                    <a href="" title="Modificar" class="text-success" data-toggle="modal">
-                      <i class="fa fa-fw fa-pencil-square-o"></i>
-                    </a>
-                    <div >Activar</div>
-                </td>
-              </tr>
-            </tbody>
-            <nav aria-label="Page navigation example">
-              <ul class="pagination">
-                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">Next</a></li>
-              </ul>
-            </nav>
-          </table>
-          
-    </div>
-  </div>-->
-
-  <div class="container">
+<div class="container">
     <div class="row">
-      <div class="col-md-10 TituloRolList" style="text-align:center;">
+      <div class="TituloIndex">
         <hr>
-        <h1 class="fuenteTitulo"><b>Mantenimiento de roles</b></h1>
-      </div>
+        <hr>
+            <h1 class="EstiloIndex">
+                <p><b>Mantenimiento de clasificación de roles.</b></p>
+            </h1>
+        <hr>
+        <hr>        
+    </div>
     </div>
     <div class="row">
       <div class="col-md-10">
@@ -115,5 +38,5 @@
         </div>
       </div>
     </div>
-  </div>
+</div>
 

@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./classification-add.component.scss']
 })
 export class ClassificationAddComponent implements OnInit {
-
+  page: number = 1;
   addClasification: FormGroup;
   accounts: any[] = [];
   event: EventEmitter<any>=new EventEmitter();

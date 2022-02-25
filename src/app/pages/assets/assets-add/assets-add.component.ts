@@ -115,6 +115,7 @@ export class AssetsAddComponent implements OnInit {
   }  
 
   chargeClasification(value){
+    this.clasifications = [];
     this.clasificationService.getClasificacionByAccount(value).subscribe(data => {
       Object.assign(this.clasifications, data);
     }, error => { 

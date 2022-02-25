@@ -278,7 +278,15 @@ input[type=text]:placeholder, [type=password]:placeholder  {
   background-image: url("../src/assets/images/bg1.2.png");
   background-position: center;
   background-size: cover;
-  
+  margin-top: -10px;
+  margin-bottom: -10px;
+}
+
+.EstiloIndex{
+  color: white;
+  font-family:sans-serif;
+  text-align: center;
+  font-size: xx-large;
 }
 
 @import '~ngx-toastr/toastr.css';

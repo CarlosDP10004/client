@@ -31,7 +31,7 @@
                 <td>{{asset.Marca}}</td>               
                 <td>{{asset.Modelo}}</td>
                 <td>$ {{asset.ValorCompra}}</td>
-                <td>{{asset.FechaCompra}}</td>
+                <td>{{asset.FechaCompra | date:'dd/MM/yyyy'}}</td>
                 <td>{{asset.NombreEstado}}</td>
                 <td>
                   <span class="btn btn-primary glyphicon glyphicon-pencil" title="Editar" (click)="editAsset(asset.IdActivoFijo)"></span>

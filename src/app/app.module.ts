@@ -36,6 +36,11 @@ import { AssetsEditComponent } from './pages/assets/assets-edit/assets-edit.comp
 import { AssetsListComponent } from './pages/assets/assets-list/assets-list.component';
 import { AssetsAddComponent } from './pages/assets/assets-add/assets-add.component';
 
+
+ 
+import { SpinnerModule } from './shared/spinner/spinner.module';
+import { SpinnerInterceptor } from '../app/core/interceptor/spinner.interceptor';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -74,7 +79,8 @@ import { AssetsAddComponent } from './pages/assets/assets-add/assets-add.compone
     TemplateModule,
     HttpClientModule,
     ModalModule.forRoot(),
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    SpinnerModule,
   ],
   providers: [
     {      
@@ -82,6 +88,7 @@ import { AssetsAddComponent } from './pages/assets/assets-add/assets-add.compone
       useClass: InterceptorService,
       multi: true
     },
+    { provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true},
     BsModalService
   ],
   bootstrap: [AppComponent]

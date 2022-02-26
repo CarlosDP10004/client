@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -14,6 +14,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./assets-add.component.scss']
 })
 export class AssetsAddComponent implements OnInit {
+  @Output() onChange: EventEmitter<File> = new EventEmitter<File>();
   addAsset:FormGroup;
   accounts: any[] = [];
   providers: any[] = [];
@@ -31,6 +32,19 @@ export class AssetsAddComponent implements OnInit {
     private providerService: ProviderService,
     private clasificationService: ClasificationService
   ) { }
+
+  updateSource($event: Event) {  
+      this.projectImage($event.target['files'][0]);
+  }  
+  origen:string = '';
+  projectImage(file: File) {
+      let reader = new FileReader;      
+      reader.onload = (e: any) => {          
+          this.origen = e.target.result;
+          this.onChange.emit(file);
+      };      
+      reader.readAsDataURL(file);
+  }
 
   ngOnInit(): void {
     this.init();

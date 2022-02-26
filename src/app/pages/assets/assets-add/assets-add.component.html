@@ -1,12 +1,10 @@
 <div role="document">
   <div class="TituloIndex">
-    <hr>
-    <hr>
-        <h1 class="EstiloIndex">
-            <p><b>Registro de Activos Fijos.</b></p>
-        </h1>
-    <hr>
-    <hr>        
+    <h1 class="EstiloIndex col-sm-12">
+      <hr>
+        <b>Registro de activos.</b>
+        <hr>
+    </h1>  
 </div>
 <!-- Datos Generales -->
   <div class="EspacioDiv">
@@ -60,10 +58,41 @@
           </div>     
         </div>
 
-        <div class="row Espacio">  
-          <div class="col-sm-6 "><label class="col-sm-7 control-label texto">Comprobante de compra</label>
-            <input type="file" class="custom-file-input" id="customFile" formControlName="DocumentoCompra"></div>
-      </div>
+        <div class="row Espacio">
+          <div class="col-sm-6"><label class="col-sm-8 control-label texto">Orden de compra</label>
+            <label class="botonInputFile file">
+            <div class="row bordeCompra">
+              <div class="col-sm-2 posicionIcono1">
+                <img src="../../../assets/images/factura.png" alt="Subir/Archivo" class="avatar" width="40" height="40">
+              </div>
+              <div class="col-sm-10 posicionInput">
+              <input type="file" class="custom-file-input" id="customFile" formControlName="DocumentoCompra">
+            </div>
+          </div>
+          </label>
+          </div> 
+            <div class="col-sm-3">
+              <label class="col-sm-8 control-label texto2">Nº de libre gestión</label>
+                <input class="form-control" placeholder="Libre Gestión" formControlName="">
+            </div>
+            <div class="col-sm-3">  </div>           
+        </div> 
+      
+        <label class="botonInputImage image">
+          <input class="custom-file-input" id="customFile" formControlName="" type="file" accept="image/*" (change)="updateSource($event)">
+          <div class="row">
+            <div class="col-sm-2 posicionIcono2">
+              <img src="../../../assets/images/photos.png" alt="Subir/Archivo" class="avatar" width="30" height="30">
+            </div>
+            <div class="col-sm-8">
+              <h6><b>Subir Imagen</b></h6>
+            </div>
+          </div>
+        </label>
+        <div>
+        <img *ngIf="origen" [src]="origen" src="" width="190px" height="150px" class="bordesImagen"> 
+        <h6 style="font-size:xx-small" >Previsualización</h6>
+        </div>
              
       </div>
 

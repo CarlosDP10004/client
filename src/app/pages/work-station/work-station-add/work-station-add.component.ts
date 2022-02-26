@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { DepartamentsService } from 'src/app/core/http/departaments.service';
+import { ErrorService } from 'src/app/core/http/error.service';
 import { WorkStationService } from 'src/app/core/http/work-station.service';
 import Swal from 'sweetalert2';
 
@@ -21,7 +22,8 @@ export class WorkStationAddComponent implements OnInit {
     private builder: FormBuilder,
     private toastr: ToastrService,
     private departamentService: DepartamentsService,
-    private workStationService: WorkStationService
+    private workStationService: WorkStationService,
+    private errorService: ErrorService
   ) { 
     this.addWorkStation = this.builder.group({      
       NombrePlaza: new FormControl('', []),
@@ -55,8 +57,8 @@ export class WorkStationAddComponent implements OnInit {
         this.toastr.success(data.toString());
         this.bsModalRef.hide();
       }
-    }, (error)=>{
-      this.toastr.error(error.error.message.toString());
+    }, (error)=>{      
+      this.toastr.error(this.errorService.getErrorMessage(error.error));
     });
   }
 

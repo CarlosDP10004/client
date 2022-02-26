@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { DepartamentsService } from 'src/app/core/http/departaments.service';
+import { ErrorService } from 'src/app/core/http/error.service';
 import { UserService } from 'src/app/core/http/user.service';
 import Swal from 'sweetalert2';
 
@@ -24,7 +25,8 @@ export class DepartamentEditComponent implements OnInit {
     private userService: UserService, 
     private departamentService: DepartamentsService,
     private bsModalRef: BsModalRef,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private errorService: ErrorService
   ) {
     this.editDepartament = this.builder.group({
       IdUsuario: new FormControl(null, []),
@@ -80,8 +82,8 @@ export class DepartamentEditComponent implements OnInit {
         this.toastr.success(data.toString());
         this.bsModalRef.hide();
       }
-    }, (error)=>{
-      this.toastr.error(error.error.message.toString());
+    }, (error)=>{      
+      this.toastr.error(this.errorService.getErrorMessage(error.error));
     });
   }
 

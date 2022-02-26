@@ -4,6 +4,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { AccountService } from 'src/app/core/http/account.service';
 import { ClasificationService } from 'src/app/core/http/clasification.service';
+import { ErrorService } from 'src/app/core/http/error.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -23,7 +24,8 @@ export class ClassificationEditComponent implements OnInit {
     private bsModalRef: BsModalRef,
     private toastr: ToastrService,
     private accountService: AccountService,
-    private clasificationService: ClasificationService
+    private clasificationService: ClasificationService,
+    private errorService: ErrorService
   ) { 
     this.editClasification = this.builder.group({
       IdCuenta: new FormControl(null, []),
@@ -78,8 +80,8 @@ export class ClassificationEditComponent implements OnInit {
         this.toastr.success(data.toString());
         this.bsModalRef.hide();
       }
-    }, (error)=>{
-      this.toastr.error(error.error.message.toString());
+    }, (error)=>{      
+      this.toastr.error(this.errorService.getErrorMessage(error.error));
     });
   }
 

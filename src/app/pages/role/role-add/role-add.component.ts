@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
+import { ErrorService } from 'src/app/core/http/error.service';
 import { RolesService } from 'src/app/core/http/roles.service';
 
 @Component({
@@ -18,7 +19,8 @@ export class RoleAddComponent implements OnInit {
     private builder: FormBuilder, 
     private rolService: RolesService,
     private bsModalRef: BsModalRef,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private errorService: ErrorService
   ) {
       this.addRol = this.builder.group({      
       NombreRol: new FormControl('', []),
@@ -45,6 +47,8 @@ export class RoleAddComponent implements OnInit {
         this.toastr.success(data.toString());
         this.bsModalRef.hide();
       }
+    }, (error)=>{      
+      this.toastr.error(this.errorService.getErrorMessage(error.error));
     });
   }
 

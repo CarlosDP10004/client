@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
+import { ErrorService } from 'src/app/core/http/error.service';
 import { ProviderService } from 'src/app/core/http/provider.service';
 import Swal from 'sweetalert2';
 
@@ -20,7 +21,8 @@ export class ProviderEditComponent implements OnInit {
     private builder: FormBuilder, 
     private providerService: ProviderService,
     private bsModalRef: BsModalRef,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private errorService: ErrorService
   ) { 
     this.editProvider = this.builder.group({
       NombreProveedor: new FormControl(null, [])
@@ -61,8 +63,8 @@ export class ProviderEditComponent implements OnInit {
         this.toastr.success(data.toString());
         this.bsModalRef.hide();
       }
-    }, (error)=>{
-      this.toastr.error(error.error.message.toString());
+    }, (error)=>{      
+      this.toastr.error(this.errorService.getErrorMessage(error.error));
     });
   }
 

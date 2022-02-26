@@ -3,6 +3,7 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/fo
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/core/http/auth.service';
+import { ErrorService } from 'src/app/core/http/error.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,8 @@ export class LoginComponent implements OnInit {
     private router:Router,
     private formBuilder:FormBuilder, 
     private userService: AuthService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private errorService: ErrorService
   ) { }
 
   ngOnInit(): void {
@@ -38,8 +40,8 @@ export class LoginComponent implements OnInit {
     }
     this.userService.login(this.form.value).subscribe( data => {     
       this.router.navigate(['/Assets']);     
-    }, (error)=>{
-      this.toastr.error(error.toString());
+    }, (error)=>{      
+      this.toastr.error(this.errorService.getErrorMessage(error.error));
     });
   }
 

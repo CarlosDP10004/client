@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
+import { ErrorService } from 'src/app/core/http/error.service';
 import { RolesService } from 'src/app/core/http/roles.service';
 import { UserService } from 'src/app/core/http/user.service';
 import Swal from 'sweetalert2';
@@ -25,7 +26,8 @@ export class UsereditComponent implements OnInit {
     private userService: UserService, 
     private rolService: RolesService,
     private bsModalRef: BsModalRef,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private errorService: ErrorService
   ) { 
     this.editUser = this.builder.group({
       Roles: new FormControl(null, []),
@@ -86,6 +88,8 @@ export class UsereditComponent implements OnInit {
         this.event.emit('OK');
         this.toastr.success(data.toString());
         this.bsModalRef.hide();      
+    }, (error)=>{      
+      this.toastr.error(this.errorService.getErrorMessage(error.error));
     });
   }
 

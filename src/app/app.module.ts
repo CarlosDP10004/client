@@ -41,6 +41,8 @@ import { AssetsAddComponent } from './pages/assets/assets-add/assets-add.compone
 import { SpinnerModule } from './shared/spinner/spinner.module';
 import { SpinnerInterceptor } from '../app/core/interceptor/spinner.interceptor';
 import { FilterPipe } from './pipes/filter.pipe';
+import { UnauthorizedComponent } from './shared/unauthorized/unauthorized.component';
+import { NotfoundComponent } from './shared/notfound/notfound.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +71,9 @@ import { FilterPipe } from './pipes/filter.pipe';
     AssetsEditComponent,
     AssetsListComponent,
     AssetsAddComponent,
-    FilterPipe
+    FilterPipe,
+    UnauthorizedComponent,
+    NotfoundComponent
   ],
   imports: [
     BrowserModule,

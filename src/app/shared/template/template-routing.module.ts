@@ -33,7 +33,7 @@ const routes: Routes = [
       {path: "Assets/Work-Stations", component: WorkStationListComponent},
       {path: "Assets/Accounts", component: AccountListComponent},
       {path: "Assets/Classifications", component: ClassificationListComponent},
-      {path: "Unathorized", component: UnauthorizedComponent}
+      {path: "Unauthorized", component: UnauthorizedComponent}
     ]
   }
   

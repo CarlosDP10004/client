@@ -11,7 +11,7 @@ import { ClassificationEditComponent } from '../classification-edit/classificati
   styleUrls: ['./classification-list.component.scss']
 })
 export class ClassificationListComponent {
-
+  filterpost :'';
   page: number = 1;
   clasifications: any[] = [];
   bsModalRef: BsModalRef;

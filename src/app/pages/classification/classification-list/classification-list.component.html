@@ -8,13 +8,21 @@
         </h1>         
     </div>
     </div>
+    <br>
+    
+    <div class="=row">
+      <div class="col-md-8">
+        <span (click)="addClasification()" class="btn btn-primary btn-lg">Nueva clasificación</span>             
+      </div>   
+      <div class="col-md-4 input-icono">  
+        <input type="text" class="forms-control tamanio" placeholder="Buscar..." [(ngModel)]="filterpost" name="filterpost">      
+      </div>     
+    </div>   
+
     <div class="row">
-      <div class="col-md-12">
-        <p></p>
-        <span (click)="addClasification()" class="btn btn-primary btn-lg">Nueva clasificación</span>
-        <br><br>
+      <div class="col-md-12">   
         <div class="table-responsive">
-          <table id="mytable" class="table table-bordred table-striped">
+          <table id="mytable" class="table table-bordered table-striped">
             <thead>
               <tr class="estiloCabecera">
                 <th scope="col" width="10%" bgcolor="#c9a892">Correlativo</th>
@@ -24,7 +32,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let clasification of clasifications | paginate: { itemsPerPage: 10, currentPage: page }">
+              <tr *ngFor="let clasification of clasifications | filter: filterpost | paginate: { itemsPerPage: 10, currentPage: page }">
                 <th >{{clasification.IdClasificacion}}</th>
                 <td>{{clasification.NombreCuenta}}</td>               
                 <td>{{clasification.Descripcion}}</td>
@@ -39,7 +47,7 @@
           <pagination-controls class="paginacion"
                                  (pageChange)="page = $event"                                 
                                  maxSize="6"
-                                 autoHide="true"
+                                 autoHide="false"
                                  nextLabel="Siguiente"
                                  previousLabel="Anterior"
                                  responsive="true"

@@ -40,6 +40,7 @@ import { AssetsAddComponent } from './pages/assets/assets-add/assets-add.compone
  
 import { SpinnerModule } from './shared/spinner/spinner.module';
 import { SpinnerInterceptor } from '../app/core/interceptor/spinner.interceptor';
+import { FilterPipe } from './pipes/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import { SpinnerInterceptor } from '../app/core/interceptor/spinner.interceptor'
     ClassificationAddComponent,
     AssetsEditComponent,
     AssetsListComponent,
-    AssetsAddComponent
+    AssetsAddComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,

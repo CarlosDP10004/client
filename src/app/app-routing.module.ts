@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './core/guard/auth.guard';
 import { LoginComponent } from './pages/login/login.component';
+import { NotfoundComponent } from './shared/notfound/notfound.component';
 
 const routes: Routes = [
   {
@@ -17,7 +18,8 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     loadChildren: () =>
     import('./shared/template/template.module').then(m => m.TemplateModule)
-  }
+  },
+  {path: "**", component: NotfoundComponent}
 ];
 
 @NgModule({

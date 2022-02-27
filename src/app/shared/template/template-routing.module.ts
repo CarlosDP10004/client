@@ -20,7 +20,7 @@ const routes: Routes = [
   {
     path: "", 
     component: TemplateComponent, 
-    canActivate: [AuthorizedGuard],
+    canActivate: [AuthGuard],
     children: [
       {path: "", component: HomeComponent},
       {path: "Assets", component: HomeComponent},
@@ -35,8 +35,8 @@ const routes: Routes = [
       {path: "Assets/Classifications", component: ClassificationListComponent},
       {path: "Unathorized", component: UnauthorizedComponent}
     ]
-  },
-  {path: "**", component: NotfoundComponent}
+  }
+  
 ];
 
 @NgModule({

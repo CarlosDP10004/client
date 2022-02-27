@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AssetsService } from 'src/app/core/http/assets.service';
+import { ErrorService } from 'src/app/core/http/error.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -12,7 +13,8 @@ export class AssetsListComponent {
   assets: any[] = [];
 
   constructor(
-    private assetService: AssetsService
+    private assetService: AssetsService,
+    private errorService: ErrorService
   ) { 
     this.showAll();
   }
@@ -24,7 +26,7 @@ export class AssetsListComponent {
       Swal.fire({
         icon: 'error',
         title: 'Error',
-        text: error,
+        text: this.errorService.getErrorMessage(error.error),
         confirmButtonColor: '#c9a892',
         confirmButtonText: 'Aceptar'
       })

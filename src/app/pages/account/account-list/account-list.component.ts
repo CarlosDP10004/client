@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { AccountService } from 'src/app/core/http/account.service';
+import { ErrorService } from 'src/app/core/http/error.service';
 import Swal from 'sweetalert2';
 import { AccountEditComponent } from '../account-edit/account-edit.component';
 
@@ -18,7 +19,8 @@ export class AccountListComponent {
   constructor(
     private accountService: AccountService,
     private bsModalService: BsModalService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private errorService: ErrorService
   ) { 
     this.showAll();
   }
@@ -30,7 +32,7 @@ export class AccountListComponent {
       Swal.fire({
         icon: 'error',
         title: 'Error',
-        text: error,
+        text: this.errorService.getErrorMessage(error.error),
         confirmButtonColor: '#c9a892',
         confirmButtonText: 'Aceptar'
       })

@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { AccountService } from 'src/app/core/http/account.service';
 import { AssetsService } from 'src/app/core/http/assets.service';
 import { ClasificationService } from 'src/app/core/http/clasification.service';
+import { ErrorService } from 'src/app/core/http/error.service';
 import { ProviderService } from 'src/app/core/http/provider.service';
 import Swal from 'sweetalert2';
 
@@ -30,7 +31,8 @@ export class AssetsAddComponent implements OnInit {
     private assetService: AssetsService,
     private accountService: AccountService,
     private providerService: ProviderService,
-    private clasificationService: ClasificationService
+    private clasificationService: ClasificationService,
+    private errorService: ErrorService
   ) { }
 
   updateSource($event: Event) {  
@@ -71,7 +73,7 @@ export class AssetsAddComponent implements OnInit {
       Swal.fire({
         icon: 'error',
         title: 'Error',
-        text: error,
+        text: this.errorService.getErrorMessage(error.error),
         confirmButtonColor: '#c9a892',
         confirmButtonText: 'Aceptar'
       }) 
@@ -83,7 +85,7 @@ export class AssetsAddComponent implements OnInit {
       Swal.fire({
         icon: 'error',
         title: 'Error',
-        text: error,
+        text: this.errorService.getErrorMessage(error.error),
         confirmButtonColor: '#c9a892',
         confirmButtonText: 'Aceptar'
       }) 
@@ -95,7 +97,7 @@ export class AssetsAddComponent implements OnInit {
       Swal.fire({
         icon: 'error',
         title: 'Error',
-        text: error,
+        text: this.errorService.getErrorMessage(error.error),
         confirmButtonColor: '#c9a892',
         confirmButtonText: 'Aceptar'
       }) 
@@ -136,7 +138,8 @@ export class AssetsAddComponent implements OnInit {
       Swal.fire({
         icon: 'error',
         title: 'Error',
-        text: error,
+        //text: error,
+        text: this.errorService.getErrorMessage(error.error),
         confirmButtonColor: '#c9a892',
         confirmButtonText: 'Aceptar'
       }) 

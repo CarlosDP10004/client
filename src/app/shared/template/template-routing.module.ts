@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AuthGuard } from 'src/app/core/guard/auth.guard';
-import { AuthorizedGuard } from 'src/app/core/guard/authorized.guard';
 import { AccountListComponent } from 'src/app/pages/account/account-list/account-list.component';
 import { AssetsAddComponent } from 'src/app/pages/assets/assets-add/assets-add.component';
 import { AssetsListComponent } from 'src/app/pages/assets/assets-list/assets-list.component';
@@ -19,8 +17,7 @@ import { TemplateComponent } from './template.component';
 const routes: Routes = [
   {
     path: "", 
-    component: TemplateComponent, 
-    canActivate: [AuthGuard],
+    component: TemplateComponent,
     children: [
       {path: "", component: HomeComponent},
       {path: "Assets", component: HomeComponent},

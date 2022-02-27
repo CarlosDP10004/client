@@ -90,9 +90,7 @@ import { NotfoundComponent } from './shared/notfound/notfound.component';
   ],
   providers: [
     {      
-      provide: HTTP_INTERCEPTORS,
-      useClass: InterceptorService,
-      multi: true
+      provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true
     },
     { provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true},
     BsModalService

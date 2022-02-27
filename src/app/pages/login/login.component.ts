@@ -40,8 +40,9 @@ export class LoginComponent implements OnInit {
     }
     this.userService.login(this.form.value).subscribe( data => {     
       this.router.navigate(['/Assets']);     
-    }, (error)=>{      
-      this.toastr.error(this.errorService.getErrorMessage(error.error));
+    }, (error)=>{ 
+      console.log(error);     
+      this.toastr.error(error);
     });
   }
 

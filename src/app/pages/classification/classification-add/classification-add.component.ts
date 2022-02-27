@@ -33,10 +33,11 @@ export class ClassificationAddComponent implements OnInit {
     this.accountService.showAll().subscribe(data => {
       Object.assign(this.accounts, data);
     }, error => { 
+      this.onClose();
       Swal.fire({
         icon: 'error',
         title: 'Error',
-        text: error,
+        text: this.errorService.getErrorMessage(error.error),
         confirmButtonColor: '#c9a892',
         confirmButtonText: 'Aceptar'
       }) 

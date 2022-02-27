@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { environment } from 'src/environments/environment';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
@@ -55,6 +55,11 @@ export class AuthService {
     }else{
       this.logged.next(true);
     }
+  }
+
+  getPermission(){
+    const headers = new HttpHeaders().set('Authorization', `bearer ${this.getToken()}`)
+    return this.http.get(`${API_URL}getPermission`, { headers: headers});
   }
 
   logout():Observable<any>{

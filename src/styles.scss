@@ -321,7 +321,13 @@ input[type=text]:placeholder, [type=password]:placeholder  {
   display: flex;
   align-items: center;
   justify-content: center;
-  }
+  } 
+
+div {
+    overflow-x: hidden !important;
+    overflow-y: hidden !important;
+}
+
 @import '~ngx-toastr/toastr.css';
 
 

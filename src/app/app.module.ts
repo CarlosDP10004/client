@@ -43,6 +43,7 @@ import { SpinnerInterceptor } from '../app/core/interceptor/spinner.interceptor'
 import { FilterPipe } from './pipes/filter.pipe';
 import { UnauthorizedComponent } from './shared/unauthorized/unauthorized.component';
 import { NotfoundComponent } from './shared/notfound/notfound.component';
+import { ThousandPipe } from './pipes/thousand.pipe';
 
 @NgModule({
   declarations: [
@@ -73,7 +74,8 @@ import { NotfoundComponent } from './shared/notfound/notfound.component';
     AssetsAddComponent,
     FilterPipe,
     UnauthorizedComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    ThousandPipe
   ],
   imports: [
     BrowserModule,

@@ -33,7 +33,7 @@
                 <td>{{asset.Descripcion}}</td>               
                 <td>{{asset.Marca}}</td>               
                 <td>{{asset.Modelo}}</td>
-                <td>$ {{asset.ValorCompra}}</td>
+                <td>$ {{asset.ValorCompra | thousand}}</td>
                 <td>{{asset.FechaCompra | date:'dd/MM/yyyy'}}</td>
                 <td>{{asset.NombreEstado}}</td>
                 <td>

@@ -64,7 +64,9 @@ export class AssetsAddComponent implements OnInit {
       FechaCompra:['',[Validators.required]],
       DocumentoCompra:['',[Validators.required]],
       Serie:['',[Validators.required]],
-      IdProveedor:['',[Validators.required]]
+      IdProveedor:['',[Validators.required]],
+      LibreGestion:['',[Validators.required]],
+      Fotografia:['',[Validators.required]]
     });
 
     this.accountService.showAll().subscribe(data => {
@@ -116,7 +118,9 @@ export class AssetsAddComponent implements OnInit {
       'FechaCompra': this.addAsset.get('FechaCompra').value,
       'DocumentoCompra': this.addAsset.get('DocumentoCompra').value,
       'Serie': this.addAsset.get('Serie').value,
-      'IdProveedor': this.addAsset.get('IdProveedor').value
+      'IdProveedor': this.addAsset.get('IdProveedor').value,
+      'LibreGestion': this.addAsset.get('LibreGestion').value,
+      'Fotografia': this.addAsset.get('Fotografia').value
     };
     console.log(postData);
 

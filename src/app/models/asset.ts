@@ -9,4 +9,6 @@ export interface Asset {
     DocumentoCompra: string;
     Serie: string;
     IdProveedor: number;
+    LibreGestion: string;
+    Fotografia: string;
 }

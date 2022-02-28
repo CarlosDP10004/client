@@ -5,13 +5,13 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class FilterPipe implements PipeTransform {
 
-  transform(value: any, para: any): any {
+  transform(value: any, args?: any): any {
     if (!value)return null;
-    if (!para)return value;
+    if (!args)return value;
     const resultPosts = [];   
     for(const classification of value){
-      if(classification.NombreCuenta.toLowerCase().indexOf(para.toLowerCase()) !== -1
-      || classification.Descripcion.toLowerCase().indexOf(para.toLowerCase()) !== -1)
+      if(classification.NombreCuenta.toLowerCase().includes(args.toLowerCase()) 
+      || classification.Descripcion.toLowerCase().includes(args.toLowerCase()) )
       {
         resultPosts.push(classification);      };
       };

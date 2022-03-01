@@ -6,7 +6,7 @@ import { NotfoundComponent } from './shared/notfound/notfound.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: "",
     component: LoginComponent
   }, 
   {
@@ -18,6 +18,10 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     loadChildren: () =>
     import('./shared/template/template.module').then(m => m.TemplateModule)
+  },
+  {
+    path: 'NotFound',
+    component: NotfoundComponent
   }
 ];
 

@@ -14,29 +14,65 @@
 
         <div class="row Espacio">
           <div class="col-sm-4"><label class="col-sm-6 control-label texto">Cuenta contable</label>
-            <select class="form-control" formControlName="IdCuenta" [(ngModel)]="selected" (change)="chargeClasification($event.target.value)">
+            <select class="form-control" formControlName="IdCuenta" [(ngModel)]="selected" (change)="chargeClasification($event.target.value)" required>
               <option [value]="null" disabled selected>Selecciona la cuenta</option>
               <option *ngFor="let item of accounts" [value]="item.IdCuenta">{{item.NombreCuenta}}</option>
-            </select></div>
+            </select>
+            <FONT COLOR="red">
+              <small *ngIf="IdCuenta.invalid && IdCuenta.touched">
+                Complete el campo
+              </small>
+            </FONT>
+          </div>
           <div class="col-sm-4"><label class="col-sm-2 control-label texto">Clasificación</label>
             <select class="form-control" formControlName="IdClasificacion">
               <option [value]="null" disabled selected>Selecciona la clasificacion</option>
               <option *ngFor="let item of clasifications" [value]="item.IdClasificacion">{{item.Descripcion}}</option>
-            </select></div>
+            </select>
+            <FONT COLOR="red">
+              <small *ngIf="IdClasificacion.invalid && IdClasificacion.touched">
+                Complete el campo
+              </small>
+            </FONT>
+          </div>
             <div class="col-sm-4 "><label class="col-sm-7 control-label texto">Origen</label>
               <select class="form-control" formControlName="IdOrigen">
                 <option [value]="null" disabled selected>Selecciona el Origen</option>
                 <option *ngFor="let item of origens" [value]="item.IdOrigen">{{item.NombreOrigen}}</option>
-              </select></div>
+              </select>
+              <FONT COLOR="red">
+                <small *ngIf="IdOrigen.invalid && IdOrigen.touched">
+                  Complete el campo
+                </small>
+              </FONT>
+            </div>
         </div> 
 
         <div class="row Espacio">
           <div class="col-sm-4"><label class="col-sm-2 control-label texto">Marca</label>
-            <input  class="form-control" placeholder="Marca" formControlName="Marca"></div>
+            <input  class="form-control" placeholder="Marca" formControlName="Marca">
+            <FONT COLOR="red">
+              <small *ngIf="Marca.invalid && Marca.touched">
+                Complete el campo
+              </small>
+            </FONT>
+          </div>
           <div class="col-sm-4"><label class="col-sm-2 control-label texto">Modelo</label>
-            <input class="form-control" placeholder="Modelo" formControlName="Modelo"></div>
+            <input class="form-control" placeholder="Modelo" formControlName="Modelo">
+            <FONT COLOR="red">
+              <small *ngIf="Modelo.invalid && Modelo.touched">
+                Complete el campo
+              </small>
+            </FONT>
+          </div>
             <div class="col-sm-4"><label class="col-sm-2 control-label texto">Serie</label>
-              <input class="form-control" placeholder="Serie" formControlName="Serie"></div>
+              <input class="form-control" placeholder="Serie" formControlName="Serie">
+              <FONT COLOR="red">
+                <small *ngIf="Serie.invalid && Serie.touched">
+                  Complete el campo
+                </small>
+              </FONT>
+            </div>
         </div> 
 
         <div class="row Espacio">
@@ -44,17 +80,40 @@
             <select class="form-control" formControlName="IdProveedor">
               <option [value]="null" disabled selected>Selecciona el proveedor</option>
               <option *ngFor="let item of providers" [value]="item.IdProveedor">{{item.NombreProveedor}}</option>
-            </select></div>
+            </select>
+            <FONT COLOR="red">
+              <small *ngIf="IdProveedor.invalid && IdProveedor.touched">
+                Complete el campo
+              </small>
+            </FONT>
+          </div>
           <div class="col-sm-4"><label class="col-sm-6 control-label texto2">Valor de compra</label>
-            <input class="form-control" placeholder="$$$$" formControlName="ValorCompra"></div>            
+            <input class="form-control" placeholder="$$$$" formControlName="ValorCompra">
+            <FONT COLOR="red">
+              <small *ngIf="ValorCompra.invalid && ValorCompra.touched">
+                Complete el campo
+              </small>
+            </FONT>
+          </div>            
           <div class="col-sm-3"><label class="col-sm-12 control-label texto2">Fecha de compra</label>
-            <input type="date" class="form-control" placeholder="Fecha de compra" formControlName="FechaCompra"></div>
+            <input type="date" class="form-control" placeholder="Fecha de compra" formControlName="FechaCompra">
+            <FONT COLOR="red">
+              <small *ngIf="FechaCompra.invalid && FechaCompra.touched">
+                Complete el campo
+              </small>
+            </FONT>
+          </div>
         </div> 
         
         <div class="row Espacio">
           <div class="col-sm-12">
           <label class="col-sm-2 control-label texto">Descripción</label>         
             <textarea type="text" rows="2" class="form-control" placeholder="Descripción" formControlName="Descripcion"></textarea>
+            <FONT COLOR="red">
+              <small *ngIf="Descripcion.invalid && Descripcion.touched">
+                Complete el campo
+              </small>
+            </FONT>
           </div>     
         </div>
 
@@ -66,20 +125,30 @@
                 <img src="../../../assets/images/factura.png" alt="Subir/Archivo" class="avatar" width="40" height="40">
               </div>
               <div class="col-sm-10 posicionInput">
-              <input type="file" class="custom-file-input" id="customFile" formControlName="DocumentoCompra">
-            </div>
+              <input type="file" class="custom-file-input" id="customFile" formControlName="DocumentoCompra">              
+            </div>            
           </div>
+          <FONT COLOR="red">
+            <small *ngIf="DocumentoCompra.invalid && DocumentoCompra.touched">
+              Complete el campo
+            </small>
+          </FONT>
           </label>
           </div> 
             <div class="col-sm-3">
               <label class="col-sm-8 control-label texto2">Nº de libre gestión</label>
                 <input class="form-control" placeholder="Libre Gestión" formControlName="LibreGestion">
+                <FONT COLOR="red">
+                  <small *ngIf="LibreGestion.invalid && LibreGestion.touched">
+                    Complete el campo
+                  </small>
+                </FONT>
             </div>
             <div class="col-sm-3">  </div>           
         </div> 
       
         <label class="botonInputImage image">
-          <input class="custom-file-input" id="customFile" formControlName="Fotografia" type="file" accept="image/*" (change)="updateSource($event)">
+          <input class="custom-file-input" id="customFile" formControlName="Fotografia" type="file" accept="image/*" (change)="updateSource($event)">          
           <div class="row">
             <div class="col-sm-2 posicionIcono2">
               <img src="../../../assets/images/photos.png" alt="Subir/Archivo" class="avatar" width="30" height="30">
@@ -88,6 +157,11 @@
               <h6><b>Subir Imagen</b></h6>
             </div>
           </div>
+          <FONT COLOR="red">
+            <small *ngIf="Fotografia.invalid && Fotografia.touched">
+              Complete el campo
+            </small>
+          </FONT>
         </label>
         <div>
         <img *ngIf="origen" [src]="origen" src="" width="190px" height="150px" class="bordesImagen"> 

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AccountService } from 'src/app/core/http/account.service';
@@ -106,7 +106,12 @@ export class AssetsAddComponent implements OnInit {
     });
   }
 
-  guardarActivo(){
+  guardarActivo(){  
+    if(this.addAsset.invalid){
+      return Object.values(this.addAsset.controls).forEach(control=>{
+        control.markAllAsTouched();
+      })
+    }  
     let postData = {
       'IdCuenta': this.addAsset.get('IdCuenta').value,
       'IdClasificacion': this.addAsset.get('IdClasificacion').value,
@@ -130,7 +135,8 @@ export class AssetsAddComponent implements OnInit {
         this.router.navigate(['/Assets/Supplies']);
       }
     }, (error)=>{
-      this.toastr.error(error.error.message.toString());
+      this.toastr.error(this.errorService.getErrorMessage(error.error));
+      //this.toastr.error(error.error.message.toString());
     });
   }  
 
@@ -149,5 +155,20 @@ export class AssetsAddComponent implements OnInit {
       }) 
     });
   }
+
+  get IdCuenta():AbstractControl{return this.addAsset.get('IdCuenta');}
+  get Marca():AbstractControl{return this.addAsset.get('Marca');}
+  get Modelo():AbstractControl{return this.addAsset.get('Modelo');}
+  get Descripcion():AbstractControl{return this.addAsset.get('Descripcion');}
+  get IdOrigen():AbstractControl{return this.addAsset.get('IdOrigen');}
+  get IdClasificacion():AbstractControl{return this.addAsset.get('IdClasificacion');}
+  get ValorCompra():AbstractControl{return this.addAsset.get('ValorCompra');}
+  get FechaCompra():AbstractControl{return this.addAsset.get('FechaCompra');}
+  get DocumentoCompra():AbstractControl{return this.addAsset.get('DocumentoCompra');}
+  get Serie():AbstractControl{return this.addAsset.get('Serie');}
+  get IdProveedor():AbstractControl{return this.addAsset.get('IdProveedor');}
+  get Fotografia():AbstractControl{return this.addAsset.get('Fotografia');}
+  get LibreGestion():AbstractControl{return this.addAsset.get('LibreGestion');}
+  get FechaRegistro():AbstractControl{return this.addAsset.get('FechaRegistro');}
   
 }

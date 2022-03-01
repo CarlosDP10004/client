@@ -44,6 +44,7 @@ import { FilterPipe } from './pipes/filter.pipe';
 import { UnauthorizedComponent } from './shared/unauthorized/unauthorized.component';
 import { NotfoundComponent } from './shared/notfound/notfound.component';
 import { ThousandPipe } from './pipes/thousand.pipe';
+import { ActivoPipe } from './pipes/activo.pipe';
 
 @NgModule({
   declarations: [
@@ -75,7 +76,8 @@ import { ThousandPipe } from './pipes/thousand.pipe';
     FilterPipe,
     UnauthorizedComponent,
     NotfoundComponent,
-    ThousandPipe
+    ThousandPipe,
+    ActivoPipe
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,57 @@
+<div class="container center">
+    <div class="row profile">
+		<div class="col-md-3">
+			<div class="profile-sidebar">
+				<!-- SIDEBAR USERPIC -->
+				<label class="botonInputImage image">
+                    <input class="custom-file-input" id="customFile" formControlName="" type="file" accept="image/*" (change)="updateSource($event)">          
+                    <div class="row">
+                      <div class="col-sm-2 posicionIcono2">
+                        <img src="../../../assets/images/photos.png" alt="Subir/Archivo" class="avatar" width="30" height="30">
+                      </div>
+                      <div class="col-sm-8">
+                        <h6><b>Subir Imagen</b></h6>
+                      </div>
+                    </div>
+                  </label>
+                  <div>
+                  <img *ngIf="origen" [src]="origen" src="" width="190px" height="150px" class="bordesImagen"> 
+                  <h6 style="font-size:xx-small" ></h6>
+                  </div>
+				<!-- END SIDEBAR USERPIC -->
+				<!-- SIDEBAR USER TITLE -->
+				<div class="profile-usertitle">
+					<div class="profile-usertitle-name">
+						Nombre empleado
+					</div>
+					<div class="profile-usertitle-job">
+						Cargo que desempeña
+					</div>
+				</div>
+				<!-- END SIDEBAR USER TITLE -->
+				<!-- SIDEBAR MENU -->
+				<div class="profile-usermenu">
+					<ul class="nav">
+						<li class="active">
+							<i class="glyphicon glyphicon-home"></i>
+							Cargo
+						</li>
+						<li>
+							<i class="glyphicon glyphicon-user"></i>
+							Correo 
+						</li>
+						<li>
+							<i class="glyphicon glyphicon-ok"></i>
+							Otro 
+						</li>
+						<li>
+							<i class="glyphicon glyphicon-flag"></i>
+							Otro 
+						</li>
+					</ul>
+				</div>
+				<!-- END MENU -->
+			</div>
+		</div>
+	</div>
+</div>

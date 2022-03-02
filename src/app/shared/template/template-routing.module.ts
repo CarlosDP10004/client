@@ -6,6 +6,7 @@ import { AssetsListComponent } from 'src/app/pages/assets/assets-list/assets-lis
 import { ClassificationListComponent } from 'src/app/pages/classification/classification-list/classification-list.component';
 import { DepartamentListComponent } from 'src/app/pages/departament/departament-list/departament-list.component';
 import { HomeComponent } from 'src/app/pages/home/home.component';
+import { ProfileComponent } from 'src/app/pages/profile/profile.component';
 import { ProviderListComponent } from 'src/app/pages/provider/provider-list/provider-list.component';
 import { RoleListComponent } from 'src/app/pages/role/role-list/role-list.component';
 import { UserListComponent } from 'src/app/pages/user/user-list/user-list.component';
@@ -30,7 +31,8 @@ const routes: Routes = [
       {path: "Assets/Work-Stations", component: WorkStationListComponent},
       {path: "Assets/Accounts", component: AccountListComponent},
       {path: "Assets/Classifications", component: ClassificationListComponent},
-      {path: "Unauthorized", component: UnauthorizedComponent},      
+      {path: "Unauthorized", component: UnauthorizedComponent},  
+      {path: "Assets/Profile", component: ProfileComponent}    
     ]
   },
   {path: '**', redirectTo: 'NotFound'}, 

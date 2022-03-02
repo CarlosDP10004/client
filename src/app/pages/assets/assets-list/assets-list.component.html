@@ -8,11 +8,19 @@
         </h1>       
     </div>
     </div>
+    <br>
+
+    <div class="=row">
+      <div class="col-md-8">
+        <span routerLink="/Assets/Supplies/Add" class="btn btn-primary btn-lg">Nuevo activo</span>             
+        </div>&nbsp;
+      <div class="col-md-4 input-icono">  
+        <input type="text" class="forms-control tamanio" placeholder="Buscar..." [(ngModel)]="filter2" name="filter2">      
+      </div>     
+    </div>  
+
     <div class="row">
-      <div class="col-md-12">
-        <p></p>
-        <span routerLink="/Assets/Supplies/Add" class="btn btn-primary btn-lg">Nuevo activo</span>
-        <br /><br />
+      <div class="col-md-12">        
         <div class="table-responsive">
           <table id="mytable" class="table table-bordred table-striped">
             <thead>
@@ -28,7 +36,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let asset of assets | paginate: { itemsPerPage: 10, currentPage: page }">
+              <tr *ngFor="let asset of assets | activo: filter2 | paginate: { itemsPerPage: 10, currentPage: page }">
                 <th>{{asset.CodigoAF}}</th>
                 <td>{{asset.Descripcion}}</td>               
                 <td>{{asset.Marca}}</td>               

@@ -9,6 +9,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./assets-list.component.scss']
 })
 export class AssetsListComponent {
+  filter2: any;  
   page: number = 1;
   assets: any[] = [];
 

@@ -1,10 +1,16 @@
 <div class="sidebar index">
-  
-  <a class="active TituloSidebar TextoSidebar" >&nbsp;&nbsp;
-    <img src="../../../assets/images/DNM_logo.ico" alt="Logo de la DNM" class="ImagenHome">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Administración de activo fijo</a>   
+  <div class="row iconoSide">
+    <div class="col-sm-4 Imagen">
+      <img src="../../../assets/images/DNM_logo.ico" alt="Logo de la DNM" class="ImagenHome">
+    </div>
+    <div class="col-sm-8">
+      <a class="active TituloSidebar TextoSidebar" >Administración de activo fijo</a>  
+    </div>
+  </div>
+   
   <nav class="navbar navbar-default"> 
             
-        <a class="dropdown-toggle " data-toggle="dropdown" routerLink="/Assets" >
+        <a class="dropdown-toggle shadow-X" data-toggle="dropdown" routerLink="/Assets">
           <img src="../../../assets/images/pagina-de-inicio.png" alt="Logo de la DNM" class="Icono">&nbsp;&nbsp;&nbsp;<b>Inicio</b>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -13,7 +19,7 @@
       </nav>
       <nav class="navbar navbar-default"> 
         <ul class="nav navbar-nav">          
-            <a class="dropdown-toggle " data-toggle="dropdown" href="" >
+            <a class="dropdown-toggle shadow-X" data-toggle="dropdown" href="" >
               <img src="../../../assets/images/activo-fijo.png" alt="Logo de la DNM" class="Icono">&nbsp;&nbsp;&nbsp;<b>Activo fijo</b>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -29,10 +35,10 @@
 
   <nav class="navbar navbar-default"> 
     <ul class="nav navbar-nav">          
-        <a class="dropdown-toggle " data-toggle="dropdown" routerLink="/Assets" >
+        <a class="dropdown-toggle shadow-X" data-toggle="dropdown" routerLink="/Assets" >
           <img src="../../../assets/images/inventario.png" alt="Logo de la DNM" class="Icono">&nbsp;&nbsp;&nbsp;<b>Inventario</b>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </a>
         <ul class="dropdown-menu">
          //Aqui va las opciones 
@@ -42,7 +48,7 @@
 
   <nav class="navbar navbar-default"> 
     <ul class="nav navbar-nav">          
-        <a class="dropdown-toggle " data-toggle="dropdown" href="" >
+        <a class="dropdown-toggle shadow-X" data-toggle="dropdown" href="" >
           <img src="../../../assets/images/catalogo.png" alt="Logo de la DNM" class="Icono">&nbsp;&nbsp;&nbsp;<b>Catálogos</b>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -66,7 +72,7 @@
 
   <nav class="navbar navbar-default"> 
       <ul class="nav navbar-nav">          
-          <a class="dropdown-toggle " data-toggle="dropdown" href="" >
+          <a class="dropdown-toggle shadow-X" data-toggle="dropdown" href="" >
             <img src="../../../assets/images/cifrado.png" alt="Logo de la DNM" class="Icono">&nbsp;&nbsp;&nbsp;<b>Seguridad</b>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -88,7 +94,7 @@
 <footer>  
   <nav class="navbar navbar-default dropup ajustar"> 
     <ul class="nav navbar-nav">          
-        <a class="dropdown-toggle" data-toggle="dropdown" href="" >
+        <a class="dropdown-toggle shadow-X" data-toggle="dropdown" href="" >
           <img src="../../../assets/images/usuario.png" alt="Logo de la DNM" class="Icono">&nbsp;&nbsp;&nbsp;<b>Cuenta</b>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -98,7 +104,7 @@
           <li><a routerLink="/Assets/Profile">
             <img src="../../../assets/images/perfil-del-usuario.png" alt="Logo de la DNM" class="Icono">&nbsp;&nbsp;&nbsp;Perfil
           </a></li>
-          <li><a (click)="logOut()" style="color:#cc7b45">
+          <li><a (click)="logOut()" style="color:#cc7b45; text-shadow: 0 0 2px #cc7b45;" >
             <img src="../../../assets/images/Cerrar.png" alt="Logo de la DNM" class="Icono"><b>&nbsp;&nbsp;&nbsp;Cerrar Sesión</b>
           </a></li>              
         </ul>         

@@ -285,6 +285,11 @@ input[type=text]:placeholder, [type=password]:placeholder  {
   align-items: center;
   display: flex;  
   justify-content: center;
+  text-shadow: 0 0 2px #d3d3d3;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
 .TituloIndex1{ 
@@ -298,6 +303,11 @@ input[type=text]:placeholder, [type=password]:placeholder  {
   display: flex;  
   justify-content: center;
   padding-bottom: 10px;
+  text-shadow: 0 0 2px #d3d3d3;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
 .EstiloIndex{
@@ -322,6 +332,11 @@ input[type=text]:placeholder, [type=password]:placeholder  {
   align-items: center;
   justify-content: center;
   } 
+
+  .shadow-X{
+    text-shadow: 0 0 1px #bdb9b6;
+  }
+  
 
 @import '~ngx-toastr/toastr.css';
 

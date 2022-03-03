@@ -1,78 +1,40 @@
-<div class="container center">
-    <div class="row profile">
-		<div class="col-md-9">
-			<div class="profile-sidebar">
-				<!-- SIDEBAR USERPIC -->
+<div role="document">
+	<div class="TituloIndex">
+	  <h1 class="EstiloIndex col-sm-12">
+		<hr>
+		  <b>Información del perfil.</b>
+		  <hr>
+	  </h1>  
+  </div>
+<form class="form-horizontal" [formGroup]="profileForm">  
+	<div class="EspacioDiv">	      
+		<div class="EncabezadoForm shadow-X"><b>&nbsp;Datos:</b></div>
+		<div class="EstiloForm1"> 
 
-				<form class="form-horizontal" [formGroup]="profileForm">
-					<label class="botonInputImage image">
-						<input class="custom-file-input" id="customFile" type="file" accept="image/*" (change)="updateSource($event)">          
-						<div class="row">
-						  <div class="col-sm-2 posicionIcono2">
-							<img src="../../../assets/images/photos.png" alt="Subir/Archivo" class="avatar" width="30" height="30">
-						  </div>
-						  <div class="col-sm-8">
-							<h6><b>Subir Imagen</b></h6>
-						  </div>
-						</div>
-					  </label>
-					  <div>
-					  <img *ngIf="origen" [src]="origen" src="" width="190px" height="150px" class="bordesImagen"> 
-					  <h6 style="font-size:xx-small" ></h6>
-					  </div>
-					<!-- END SIDEBAR USERPIC -->
-					<!-- SIDEBAR USER TITLE -->
-					<div class="profile-usertitle">
-						<div class="form-group">
-							<label class="col-sm-6 control-label texto">Nombre empleado:</label>
-							<div class="col-sm-10">
-								<input type="text" class="form-control" formControlName="empleado" disabled/>
-							</div>
-						</div> 
-						<div class="form-group">
-							<label class="col-sm-6 control-label texto">Cargo que desempeña:</label>
-							<div class="col-sm-10">
-								<input type="text" class="form-control" formControlName="nombrePlazaNominal" disabled/>
-							</div>
-						</div> 
-					</div>
-					<!-- END SIDEBAR USER TITLE -->
-					<!-- SIDEBAR MENU -->
-					<div class="profile-usermenu">
-						<ul class="nav">
-							
-							<li>
-								<i class="glyphicon glyphicon-user">Departamento:</i>
-								<div class="form-group">
-									<div class="col-sm-10">
-										<input type="text" class="form-control" formControlName="nombreUnidad" disabled/>
-									</div>
-								</div>  
-							</li>
-							<li>
-								<i class="glyphicon glyphicon-ok">Plaza:</i>
-								<div class="form-group">
-									<div class="col-sm-10">
-										<input type="text" class="form-control" formControlName="nombrePlaza" disabled/>
-									</div>
-								</div>  
-							</li>
-							<li>
-								<i class="glyphicon glyphicon-flag">Estado:</i>
-								<div class="form-group">
-									<div class="col-sm-10">
-										<input type="text" class="form-control" formControlName="nombreEstadoLaboral" disabled/>
-									</div>
-								</div> 
-							</li>
-	
-						</ul>
-					</div>
-
-				</form>
-				
-				<!-- END MENU -->
+		  <div class="row Espacio">
+			<div class="col-sm-6"><label class="col-sm-6 control-label texto">Nombre empleado</label>
+				<input type="text" class="form-control" formControlName="empleado" disabled/>
 			</div>
+			<div class="col-sm-6"><label class="col-sm-6 control-label texto">Cargo que desempeña</label>
+				<input type="text" class="form-control" formControlName="nombrePlazaNominal" disabled/>
+			</div>	
+		  </div> 
+
+		  <div class="row Espacio">
+			<div class="col-sm-6"><label class="col-sm-6 control-label texto">Departamento</label>
+				<input type="text" class="form-control" formControlName="nombreUnidad" disabled/>
+			</div>
+			<div class="col-sm-6"><label class="col-sm-6 control-label texto">Plaza</label>
+				<input type="text" class="form-control" formControlName="nombrePlaza" disabled/>
+			</div>	
+		  </div> 
+
+		  <div class="row Espacio">
+			<div class="col-sm-6"><label class="col-sm-6 control-label texto">Estado</label>
+				<input type="text" class="form-control" formControlName="nombreEstadoLaboral" disabled/>
+			</div>			
+		  </div> 
+
 		</div>
-	</div>
-</div>
+  	</div>
+</form>

@@ -13,6 +13,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./user-list.component.scss']
 })
 export class UserListComponent {
+  filter3: any;
   page: number = 1;
   users: any[] = [];
   bsModalRef: BsModalRef;

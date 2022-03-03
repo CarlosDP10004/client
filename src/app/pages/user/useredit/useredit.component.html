@@ -18,6 +18,17 @@
               <input type="password" class="form-control tamanio" formControlName="Contrasenna"/>
             </div>
           </div>
+
+          <div class="form-group">
+            <label class="col-sm-2 control-label texto">Empleado</label>
+            <div class="col-sm-9">
+              <select formControlName="IdEmpleado" class="form-control tamanio2">
+                <option [value]="null" disabled selected>Selecciona el empleado</option>
+                <option *ngFor="let item of employees" [value]="item.idEmpleado">{{item.empleado}}</option>
+              </select>
+            </div>
+          </div>
+
           <div class="form-group espacio">
             <label class="col-sm-2 control-label texto">Roles</label>
             <div class="col-sm-9">              

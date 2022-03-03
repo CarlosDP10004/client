@@ -15,6 +15,7 @@ import Swal from 'sweetalert2';
 export class UseraddComponent implements OnInit {
   addUser: FormGroup;
   roles: any[] = [];
+  employees: any[] = [];
   event: EventEmitter<any>=new EventEmitter();
 
   constructor(
@@ -28,11 +29,24 @@ export class UseraddComponent implements OnInit {
     this.addUser = this.builder.group({      
       NombreUsuario: new FormControl('', []),
       Contrasenna: new FormControl('', []),
+      IdEmpleado: new FormControl('', []),
       Roles: new FormControl(null, [])
     });
 
     this.rolService.showAll().subscribe(data => {
       Object.assign(this.roles, data);
+    }, error => { 
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: error,
+        confirmButtonColor: '#c9a892',
+        confirmButtonText: 'Aceptar'
+      }) 
+    });
+
+    this.userService.getEmployees().subscribe(data => {
+      Object.assign(this.employees, data);
     }, error => { 
       Swal.fire({
         icon: 'error',
@@ -52,8 +66,10 @@ export class UseraddComponent implements OnInit {
     let postData = {
       'NombreUsuario': this.addUser.get('NombreUsuario').value,
       'Contrasenna': this.addUser.get('Contrasenna').value,
+      'IdEmpleado': this.addUser.get('IdEmpleado').value,
       'Roles': this.addUser.get('Roles').value,
     };
+    console.log(postData);
     this.userService.addUser(postData).subscribe(data=>{
       console.log(data);
       if(data!=null){

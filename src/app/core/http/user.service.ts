@@ -54,4 +54,11 @@ export class UserService {
     const headers = new HttpHeaders().set('Authorization', `bearer ${this.userService.getToken()}`)
     return this.clienteHttp.put(`${API_URL}usuarios/changeStatus/${id}`, { headers: headers});
   }
+
+  getEmployees(){
+    const headers = new HttpHeaders().set('Authorization', `bearer ${this.userService.getToken()}`)
+    return this.clienteHttp.get(`${API_URL}empleados`, { headers: headers});
+  }
+
+
 }

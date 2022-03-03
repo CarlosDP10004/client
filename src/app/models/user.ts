@@ -14,6 +14,7 @@ export interface UserResponse{
 export interface Usuario{
     NombreUsuario: string;
     Contrasenna: string; 
+    IdEmpleado: number;
     Roles: Role[];
 }
 

@@ -16,6 +16,7 @@ export class UsereditComponent implements OnInit {
 
   editUser: FormGroup;
   roles: any[] = [];
+  employees: any[] = [];
   id: number;
   userData: any;
 
@@ -32,11 +33,24 @@ export class UsereditComponent implements OnInit {
     this.editUser = this.builder.group({
       Roles: new FormControl(null, []),
       NombreUsuario: new FormControl('', []),
+      IdEmpleado: new FormControl('', []),
       Contrasenna: new FormControl('', [])
     });
 
     this.rolService.showAll().subscribe(data => {
       Object.assign(this.roles, data);
+    }, error => { 
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: error,
+        confirmButtonColor: '#c9a892',
+        confirmButtonText: 'Aceptar'
+      }) 
+    });
+
+    this.userService.getEmployees().subscribe(data => {
+      Object.assign(this.employees, data);
     }, error => { 
       Swal.fire({
         icon: 'error',
@@ -56,6 +70,7 @@ export class UsereditComponent implements OnInit {
           if (this.editUser!=null && this.userData!=null) {
             this.editUser.controls['Roles'].setValue(this.userData.IdRol);
             this.editUser.controls['NombreUsuario'].setValue(this.userData.NombreUsuario);
+            this.editUser.controls['IdEmpleado'].setValue(this.userData.IdEmpleado);
             this.editUser.controls['Contrasenna'].setValue(this.userData.Contrasenna);
           }
         }, error => { 
@@ -79,6 +94,7 @@ export class UsereditComponent implements OnInit {
     let userData = {
       'NombreUsuario': this.editUser.get('NombreUsuario').value,
       'Contrasenna': this.editUser.get('Contrasenna').value,
+      'IdEmpleado': this.editUser.get('IdEmpleado').value,
       'Roles': this.editUser.get('Roles').value,
     };
 

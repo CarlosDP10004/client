@@ -4,6 +4,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { DepartamentsService } from 'src/app/core/http/departaments.service';
 import { ErrorService } from 'src/app/core/http/error.service';
+import { UserService } from 'src/app/core/http/user.service';
 import { WorkStationService } from 'src/app/core/http/work-station.service';
 import { WorkStation } from 'src/app/models/work-station';
 import Swal from 'sweetalert2';
@@ -17,6 +18,7 @@ export class WorkStationEditComponent implements OnInit {
   editWorkStation: FormGroup;
   event: EventEmitter<any> = new EventEmitter();
   units: any[] = [];
+  employees: any[] = [];
   id: number;
   workStationData: any;
 
@@ -24,16 +26,30 @@ export class WorkStationEditComponent implements OnInit {
     private builder: FormBuilder, 
     private workStationService: WorkStationService, 
     private departamentService: DepartamentsService,
+    private userService: UserService,
     private bsModalRef: BsModalRef,
     private toastr: ToastrService,
     private errorService: ErrorService
   ) {
     this.editWorkStation = this.builder.group({
       IdUnidad: new FormControl(null, []),
-      NombrePlaza: new FormControl('', [])
+      NombrePlaza: new FormControl('', []),
+      IdEmpleado: new FormControl('', [])
     });
     this.departamentService.showAll().subscribe(data => {
       Object.assign(this.units, data);
+    }, error => { 
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: error,
+        confirmButtonColor: '#c9a892',
+        confirmButtonText: 'Aceptar'
+      }) 
+    });
+
+    this.userService.getEmployees().subscribe(data => {
+      Object.assign(this.employees, data);
     }, error => { 
       Swal.fire({
         icon: 'error',
@@ -53,6 +69,7 @@ export class WorkStationEditComponent implements OnInit {
           if (this.editWorkStation!=null && this.workStationData!=null) {
             this.editWorkStation.controls['NombrePlaza'].setValue(this.workStationData.NombrePlaza);
             this.editWorkStation.controls['IdUnidad'].setValue(this.workStationData.IdUnidad);
+            this.editWorkStation.controls['IdEmpleado'].setValue(this.workStationData.IdEmpleado);
           }
         }, error => { 
           Swal.fire({
@@ -74,6 +91,7 @@ export class WorkStationEditComponent implements OnInit {
     let workStationData = {
       'NombrePlaza': this.editWorkStation.get('NombrePlaza').value,
       'IdUnidad': this.editWorkStation.get('IdUnidad').value,
+      'IdEmpleado': this.editWorkStation.get('IdEmpleado').value,
     };
     this.workStationService.editWorkStation(this.id, workStationData).subscribe(data => {       
       if(data!=null){

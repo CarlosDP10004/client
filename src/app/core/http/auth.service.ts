@@ -16,6 +16,9 @@ const helper = new JwtHelperService();
 export class AuthService {
   private logged = new BehaviorSubject<boolean>(false);
 
+  IdProfileSource = new  BehaviorSubject<number>(0);
+  IdProfile: any;
+
   constructor(
     private http: HttpClient
   ) { 
@@ -68,6 +71,16 @@ export class AuthService {
     return this.http.post(API_URL + 'logout', localStorage.getItem);
     
   } 
+
+  me(){
+    const headers = new HttpHeaders().set('Authorization', `bearer ${this.getToken()}`)
+    return this.http.get(`${API_URL}profile`, { headers: headers});
+  }
+
+  profile($id){
+    const headers = new HttpHeaders().set('Authorization', `bearer ${this.getToken()}`)
+    return this.http.get(`${API_URL}empleados/${$id}`, { headers: headers});
+  }
 
 
   private errorHandler(err):Observable<never>{

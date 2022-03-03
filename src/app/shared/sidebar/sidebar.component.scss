@@ -6,6 +6,8 @@
   position: fixed;
   height:100%;
   overflow: auto;
+  border-right: 1px outset #dbdbdb ;  
+  box-shadow: 0 0 6px #313945;
 }
 
 /* Sidebar links */
@@ -18,8 +20,10 @@
 
 /* Active/current link */
 .sidebar a.active {
-  background-color: #313945;
+  background-color: #3C3F48;
   color: white;
+  font-weight: bold;
+  height: 10px;
 }
 
 /* Links on mouse-over */
@@ -35,27 +39,35 @@
 }
 
 .TituloSidebar{
-  text-align: right;
-  
+  text-align: right; 
+}
+
+.iconoSide{
+  background-color: #3C3F48;
+}
+
+.Imagen{
+  margin-top: 8px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  margin-right: -20px;
 }
 
 .ImagenHome{
-  width:60px;
-  height:60px;
-  margin: -20px;
-  padding: 0;
-  margin-top: -10px;
+  width:68px;
+  height:68px;  
 }
 
 .TextoSidebar{
   text-align: right;
-  font-size: 125%;
+  font-size: 133%;
+  text-shadow: 0 0 2px #d3d3d3;
 }
 
 .Icono{
   width: 30px;
   height: 30px;
-  margin-top: -10px;
+  margin-top: -10px;  
 } 
 
 .cerrarSesion{
@@ -63,14 +75,18 @@
 }
 
 .index{
-  z-index: 1;
+  z-index: 1;  
 }
 
 .ajustar{         
   position:fixed;    
-  bottom:-20px;        
+  bottom:-20px;       
 }
 
 .espacio{
   margin-bottom: 100px;
+}
+
+.colores{
+  color:#cc7b45
 }

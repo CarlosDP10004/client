@@ -4,8 +4,7 @@
 
 export const environment = {
   production: false,
-  //api_url: 'http://server-linux.eastus.cloudapp.azure.com:8080/api/'
-  api_url: 'http://127.0.0.1:8000/api/'
+  api_url: 'http://server-linux.eastus.cloudapp.azure.com:8080/api/'
 };
 
 /*

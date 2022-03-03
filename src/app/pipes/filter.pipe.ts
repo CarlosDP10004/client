@@ -10,7 +10,8 @@ export class FilterPipe implements PipeTransform {
     if (!args)return value;
     const resultPosts = [];   
     for(const classification of value){
-      if(classification.NombreCuenta.toLowerCase().includes(args.toLowerCase()) 
+      if(classification.IdClasificacion.toString().includes(args)
+      || classification.NombreCuenta.toLowerCase().includes(args.toLowerCase()) 
       || classification.Descripcion.toLowerCase().includes(args.toLowerCase()) )
       {
         resultPosts.push(classification);      };

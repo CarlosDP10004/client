@@ -45,7 +45,9 @@ import { UnauthorizedComponent } from './shared/unauthorized/unauthorized.compon
 import { NotfoundComponent } from './shared/notfound/notfound.component';
 import { ThousandPipe } from './pipes/thousand.pipe';
 import { ActivoPipe } from './pipes/activo.pipe';
+import { UsuarioPipe } from './pipes/usuario.pipe';
 import { ProfileComponent } from './pages/profile/profile.component';
+
 
 @NgModule({
   declarations: [
@@ -79,6 +81,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
     NotfoundComponent,
     ThousandPipe,
     ActivoPipe,
+    UsuarioPipe,
     ProfileComponent
   ],
   imports: [

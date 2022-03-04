@@ -32,7 +32,7 @@
           <div class="form-group espacio">
             <label class="col-sm-2 control-label texto">Roles</label>
             <div class="col-sm-9">              
-              <ng-select class="tamanio2" [(ngModel)]="roles" multiple="true">
+              <ng-select formControlName="Roles" class="tamanio2" [(ngModel)]="seleccion" multiple="true" searchable="true">
                 <ng-option *ngFor="let item of roles" [value]="item.IdRol">{{item.NombreRol}}</ng-option>
              </ng-select>
             </div>

@@ -17,6 +17,7 @@ export class UsereditComponent implements OnInit {
   editUser: FormGroup;
   roles: any[] = [];
   employees: any[] = [];
+  seleccion: any;
   id: number;
   userData: any;
 
@@ -31,7 +32,7 @@ export class UsereditComponent implements OnInit {
     private errorService: ErrorService
   ) { 
     this.editUser = this.builder.group({
-      Roles: new FormControl(null, []),
+      Roles: new FormControl(this.builder.array([])),
       NombreUsuario: new FormControl('', []),
       IdEmpleado: new FormControl('', []),
       Contrasenna: new FormControl('', [])
@@ -68,7 +69,8 @@ export class UsereditComponent implements OnInit {
           this.userData = data;
           
           if (this.editUser!=null && this.userData!=null) {
-            this.editUser.controls['Roles'].setValue(this.userData.IdRol);
+            this.editUser.controls['Roles'].setValue(this.userData.roles);
+            console.log(this.editUser.controls['Roles'])
             this.editUser.controls['NombreUsuario'].setValue(this.userData.NombreUsuario);
             this.editUser.controls['IdEmpleado'].setValue(this.userData.IdEmpleado);
             this.editUser.controls['Contrasenna'].setValue(this.userData.Contrasenna);

@@ -13,6 +13,7 @@ import { RolesService } from 'src/app/core/http/roles.service';
 export class RoleAddComponent implements OnInit {
   addRol: FormGroup;
   permisos: any[] = [];
+  seleccion: any;
   event: EventEmitter<any>=new EventEmitter();
 
   constructor(
@@ -24,7 +25,7 @@ export class RoleAddComponent implements OnInit {
   ) {
       this.addRol = this.builder.group({      
       NombreRol: new FormControl('', []),
-      Permisos: new FormControl(null, [])
+      Permisos: new FormControl(this.builder.array([]))
     });
 
     this.rolService.getPermisos().subscribe(data => {

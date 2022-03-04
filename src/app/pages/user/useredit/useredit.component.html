@@ -3,7 +3,7 @@
       <form class="form-horizontal" id="add-form" [formGroup]="editUser" (ngSubmit)="editarUsuario()">
         <div class="modal-header fondo">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="onClose()"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="add-modal-label"><img src="../../../assets/images/editar.png" alt="Logo de la DNM" class="Icono">&nbsp;&nbsp;Editar Usuario</h4>
+          <h4 class="modal-title sombra" id="add-modal-label"><img src="../../../assets/images/editar.png" alt="Logo de la DNM" class="Icono">&nbsp;&nbsp;Editar Usuario</h4>
         </div>
         <div class="modal-body">          
           <div class="form-group">
@@ -32,10 +32,9 @@
           <div class="form-group espacio">
             <label class="col-sm-2 control-label texto">Roles</label>
             <div class="col-sm-9">              
-              <select class="form-control tamanio2" formControlName="Roles" >
-                <option [value]="null" disabled selected>Selecciona el rol</option>
-                <option *ngFor="let item of roles" [value]="item.IdRol">{{item.NombreRol}}</option>
-              </select>  
+              <ng-select class="tamanio2" [(ngModel)]="roles" multiple="true">
+                <ng-option *ngFor="let item of roles" [value]="item.IdRol">{{item.NombreRol}}</ng-option>
+             </ng-select>
             </div>
           </div>
         </div>

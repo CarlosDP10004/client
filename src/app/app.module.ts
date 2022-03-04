@@ -51,6 +51,7 @@ import { BrandsAddComponent } from './pages/brands/brands-add/brands-add.compone
 import { BrandsListComponent } from './pages/brands/brands-list/brands-list.component';
 import { BrandsEditComponent } from './pages/brands/brands-edit/brands-edit.component';
 
+import { NgSelectModule } from "@ng-select/ng-select";
 
 @NgModule({
   declarations: [
@@ -102,6 +103,7 @@ import { BrandsEditComponent } from './pages/brands/brands-edit/brands-edit.comp
     ModalModule.forRoot(),
     ToastrModule.forRoot(),
     SpinnerModule,
+    NgSelectModule
   ],
   providers: [
     {      

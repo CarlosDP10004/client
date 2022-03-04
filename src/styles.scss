@@ -339,6 +339,7 @@ input[type=text]:placeholder, [type=password]:placeholder  {
   
 
 @import '~ngx-toastr/toastr.css';
+@import "~@ng-select/ng-select/themes/default.theme.css";
 
 
 html, body { height: 100%; }

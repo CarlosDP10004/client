@@ -15,6 +15,7 @@ import Swal from 'sweetalert2';
 export class UseraddComponent implements OnInit {
   addUser: FormGroup;
   roles: any[] = [];
+  seleccion: any;  
   employees: any[] = [];
   event: EventEmitter<any>=new EventEmitter();
 
@@ -30,8 +31,8 @@ export class UseraddComponent implements OnInit {
       NombreUsuario: new FormControl('', []),
       Contrasenna: new FormControl('', []),
       IdEmpleado: new FormControl('', []),
-      Roles: new FormControl(null, [])
-    });
+      Roles: new FormControl(this.builder.array([])) 
+    })
 
     this.rolService.showAll().subscribe(data => {
       Object.assign(this.roles, data);
@@ -62,14 +63,14 @@ export class UseraddComponent implements OnInit {
   }
 
 
-  guardarUsuario(){
+  guardarUsuario(){    
     let postData = {
       'NombreUsuario': this.addUser.get('NombreUsuario').value,
       'Contrasenna': this.addUser.get('Contrasenna').value,
       'IdEmpleado': this.addUser.get('IdEmpleado').value,
       'Roles': this.addUser.get('Roles').value,
     };
-    console.log(postData);
+   
     this.userService.addUser(postData).subscribe(data=>{
       console.log(data);
       if(data!=null){

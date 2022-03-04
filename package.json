@@ -21,6 +21,7 @@
     "@angular/platform-browser-dynamic": "~10.2.4",
     "@angular/router": "~10.2.4",
     "@auth0/angular-jwt": "^5.0.2",
+    "@ng-select/ng-select": "^5.1.0",
     "@popperjs/core": "^2.11.2",
     "bootstrap": "^3.4.1",
     "glyphicons": "^0.2.0",

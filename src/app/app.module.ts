@@ -47,7 +47,7 @@ import { ThousandPipe } from './pipes/thousand.pipe';
 import { ActivoPipe } from './pipes/activo.pipe';
 import { UsuarioPipe } from './pipes/usuario.pipe';
 import { ProfileComponent } from './pages/profile/profile.component';
-
+import { NgSelectModule } from "@ng-select/ng-select";
 
 @NgModule({
   declarations: [
@@ -96,6 +96,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
     ModalModule.forRoot(),
     ToastrModule.forRoot(),
     SpinnerModule,
+    NgSelectModule
   ],
   providers: [
     {      

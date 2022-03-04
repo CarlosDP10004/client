@@ -16,7 +16,7 @@
             <label class="col-sm-2 control-label texto">Unidad</label>
             <div class="col-sm-9">
               <select formControlName="IdUnidad" class="form-control tamanio2">
-                <option [value]="null" disabled selected>Selecciona la unidad</option>
+                <option value="" hidden>Selecciona la unidad</option>
                 <option *ngFor="let item of units" [value]="item.IdUnidad">{{item.NombreUnidad}}</option>
               </select>
             </div>
@@ -26,7 +26,7 @@
             <label class="col-sm-2 control-label texto">Empleado</label>
             <div class="col-sm-9">
               <select formControlName="IdEmpleado" class="form-control tamanio2">
-                <option [value]="null" disabled selected>Selecciona el empleado</option>
+                <option value="" hidden>Selecciona el empleado</option>
                 <option *ngFor="let item of employees" [value]="item.idEmpleado">{{item.empleado}}</option>
               </select>
             </div>

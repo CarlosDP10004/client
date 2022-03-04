@@ -16,7 +16,7 @@
             <label class="col-sm-2 control-label texto">Cuenta</label>
             <div class="col-sm-9">
               <select formControlName="IdCuenta" class="form-control tamanio2" placeholder="Selecciona la cuenta">
-                <option [value]="null" disabled selected>Selecciona la cuenta</option>
+                <option value="" hidden >Selecciona la cuenta</option>
                 <option *ngFor="let item of accounts" [value]="item.IdCuenta">{{item.NombreCuenta}}</option>
               </select>
             </div>

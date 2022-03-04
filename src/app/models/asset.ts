@@ -1,6 +1,6 @@
 export interface Asset {
     IdCuenta:number;
-    Marca: string;
+    IdMarca: string;
     Modelo: string;
     Descripcion: string;
     IdOrigen: number;

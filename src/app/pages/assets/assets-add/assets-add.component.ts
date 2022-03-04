@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AccountService } from 'src/app/core/http/account.service';
 import { AssetsService } from 'src/app/core/http/assets.service';
+import { BrandService } from 'src/app/core/http/brand.service';
 import { ClasificationService } from 'src/app/core/http/clasification.service';
 import { ErrorService } from 'src/app/core/http/error.service';
 import { ProviderService } from 'src/app/core/http/provider.service';
@@ -20,6 +21,7 @@ export class AssetsAddComponent implements OnInit {
   accounts: any[] = [];
   providers: any[] = [];
   origens: any[] = [];
+  brands: any[] = [];
   clasifications: any[] = [];
   selected: number;
   event: EventEmitter<any>=new EventEmitter();
@@ -29,6 +31,7 @@ export class AssetsAddComponent implements OnInit {
     private toastr: ToastrService,
     private router:Router,
     private assetService: AssetsService,
+    private brandService: BrandService,
     private accountService: AccountService,
     private providerService: ProviderService,
     private clasificationService: ClasificationService,
@@ -56,7 +59,7 @@ export class AssetsAddComponent implements OnInit {
     this.addAsset = this.formBuilder.group({
       IdCuenta:['',[Validators.required]],
       IdClasificacion:['',[Validators.required]],
-      Marca:['',[Validators.required]],
+      IdMarca:['',[Validators.required]],
       Modelo:['',[Validators.required]],
       Descripcion:['',[Validators.required]],
       IdOrigen:['',[Validators.required]],
@@ -93,6 +96,18 @@ export class AssetsAddComponent implements OnInit {
       }) 
     });
 
+    this.brandService.getBrandList().subscribe(data => {
+      Object.assign(this.brands, data);
+    }, error => { 
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: this.errorService.getErrorMessage(error.error),
+        confirmButtonColor: '#c9a892',
+        confirmButtonText: 'Aceptar'
+      }) 
+    });
+
     this.providerService.showAll().subscribe(data => {
       Object.assign(this.providers, data);
     }, error => { 
@@ -115,7 +130,7 @@ export class AssetsAddComponent implements OnInit {
     let postData = {
       'IdCuenta': this.addAsset.get('IdCuenta').value,
       'IdClasificacion': this.addAsset.get('IdClasificacion').value,
-      'Marca': this.addAsset.get('Marca').value,
+      'IdMarca': this.addAsset.get('IdMarca').value,
       'Modelo': this.addAsset.get('Modelo').value,
       'Descripcion': this.addAsset.get('Descripcion').value,
       'IdOrigen': this.addAsset.get('IdOrigen').value,

@@ -39,7 +39,7 @@
               <tr *ngFor="let asset of assets | activo: filter2 | paginate: { itemsPerPage: 10, currentPage: page }">
                 <th>{{asset.CodigoAF}}</th>
                 <td>{{asset.Descripcion}}</td>               
-                <td>{{asset.Marca}}</td>               
+                <td>{{asset.NombreMarca}}</td>               
                 <td>{{asset.Modelo}}</td>
                 <td>$ {{asset.ValorCompra | thousand}}</td>
                 <td>{{asset.FechaCompra | date:'dd/MM/yyyy'}}</td>

@@ -47,6 +47,10 @@ import { ThousandPipe } from './pipes/thousand.pipe';
 import { ActivoPipe } from './pipes/activo.pipe';
 import { UsuarioPipe } from './pipes/usuario.pipe';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { BrandsAddComponent } from './pages/brands/brands-add/brands-add.component';
+import { BrandsListComponent } from './pages/brands/brands-list/brands-list.component';
+import { BrandsEditComponent } from './pages/brands/brands-edit/brands-edit.component';
+
 import { NgSelectModule } from "@ng-select/ng-select";
 
 @NgModule({
@@ -82,7 +86,10 @@ import { NgSelectModule } from "@ng-select/ng-select";
     ThousandPipe,
     ActivoPipe,
     UsuarioPipe,
-    ProfileComponent
+    ProfileComponent,
+    BrandsAddComponent,
+    BrandsListComponent,
+    BrandsEditComponent
   ],
   imports: [
     BrowserModule,

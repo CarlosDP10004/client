@@ -49,14 +49,25 @@
         </div> 
 
         <div class="row Espacio">
-          <div class="col-sm-4"><label class="col-sm-2 control-label texto">Marca</label>
+          <div class="col-sm-4 "><label class="col-sm-7 control-label texto">Marca</label>
+            <select class="form-control" formControlName="IdMarca">
+              <option [value]="null" disabled selected>Selecciona la marca</option>
+              <option *ngFor="let item of brands" [value]="item.IdMarca">{{item.NombreMarca}}</option>
+            </select>
+            <FONT COLOR="red">
+              <small *ngIf="IdOrigen.invalid && IdOrigen.touched">
+                Complete el campo
+              </small>
+            </FONT>
+          </div>
+          <!--<div class="col-sm-4"><label class="col-sm-2 control-label texto">Marca</label>
             <input  class="form-control" placeholder="Marca" formControlName="Marca">
             <FONT COLOR="red">
               <small *ngIf="Marca.invalid && Marca.touched">
                 Complete el campo
               </small>
             </FONT>
-          </div>
+          </div>-->
           <div class="col-sm-4"><label class="col-sm-2 control-label texto">Modelo</label>
             <input class="form-control" placeholder="Modelo" formControlName="Modelo">
             <FONT COLOR="red">

@@ -30,7 +30,7 @@ export class ClassificationAddComponent implements OnInit {
       Descripcion: new FormControl('', []),
       IdCuenta: new FormControl('', [])
     });
-    this.accountService.showAll().subscribe(data => {
+    this.accountService.getAccountList().subscribe(data => {
       Object.assign(this.accounts, data);
     }, error => { 
       this.onClose();

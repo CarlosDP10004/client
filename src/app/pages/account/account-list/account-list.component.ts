@@ -51,6 +51,26 @@ export class AccountListComponent {
     });
   }
 
-  changeStatus(){}
+  changeStatus(id:number){
+    Swal.fire({
+      title: '¿Seguro que desea continuar?',
+      text: "Se cambiará el estado del registro.",
+      icon: 'warning',
+      showCancelButton: true,      
+      cancelButtonColor: '#c9a892',
+      confirmButtonColor: '#3085d6',
+      cancelButtonText: 'Cancelar',
+      confirmButtonText: 'Aceptar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.accountService.changeStatusAccount(id).subscribe(data => {
+          this.toastr.success(data.toString());
+          this.showAll();
+        }, (error)=>{
+          this.toastr.error(error.toString());
+        });
+      }
+    })
+  }
 
 }

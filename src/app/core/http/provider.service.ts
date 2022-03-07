@@ -48,4 +48,14 @@ export class ProviderService {
     const headers = new HttpHeaders().set('Authorization', `bearer ${this.userService.getToken()}`)
     return this.clienteHttp.put(`${API_URL}proveedores/${id}`, provider, { headers: headers});
   }
+
+  changeStatusProvider(id: number){
+    const headers = new HttpHeaders().set('Authorization', `bearer ${this.userService.getToken()}`)
+    return this.clienteHttp.put(`${API_URL}proveedores/changeStatus/${id}`, { headers: headers});
+  }
+
+  getProviderList(){
+    const headers = new HttpHeaders().set('Authorization', `bearer ${this.userService.getToken()}`)
+    return this.clienteHttp.get(`${API_URL}proveedoresLista`, { headers: headers});
+  }
 }

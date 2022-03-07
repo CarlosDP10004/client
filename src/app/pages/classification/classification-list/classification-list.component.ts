@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { ToastrService } from 'ngx-toastr';
 import { ClasificationService } from 'src/app/core/http/clasification.service';
 import Swal from 'sweetalert2';
 import { ClassificationAddComponent } from '../classification-add/classification-add.component';
@@ -18,7 +19,8 @@ export class ClassificationListComponent {
 
   constructor(
     private bsModalService: BsModalService,
-    private clasificationService: ClasificationService
+    private clasificationService: ClasificationService,
+    private toastr: ToastrService
   ) { 
     this.showAll();
   }
@@ -56,8 +58,26 @@ export class ClassificationListComponent {
     });
   }
 
-  changeStatus(){
-
+  changeStatus(id:number){
+    Swal.fire({
+      title: '¿Seguro que desea continuar?',
+      text: "Se cambiará el estado del registro.",
+      icon: 'warning',
+      showCancelButton: true,      
+      cancelButtonColor: '#c9a892',
+      confirmButtonColor: '#3085d6',
+      cancelButtonText: 'Cancelar',
+      confirmButtonText: 'Aceptar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.clasificationService.changeStatusClasificacion(id).subscribe(data => {
+          this.toastr.success(data.toString());
+          this.showAll();
+        }, (error)=>{
+          this.toastr.error(error.toString());
+        });
+      }
+    })
   }
 
 }

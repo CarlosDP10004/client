@@ -16,7 +16,7 @@
             <label class="col-sm-2 control-label texto">Encargado</label>
             <div class="col-sm-9">
               <select formControlName="IdUsuario" class="form-control tamanio2">
-                <option [value]="null" disabled selected>Selecciona el encargado</option>
+                <option value="" hidden>Selecciona el encargado</option>
                 <option *ngFor="let item of users" [value]="item.IdUsuario">{{item.NombreUsuario}}</option>
               </select>
             </div>

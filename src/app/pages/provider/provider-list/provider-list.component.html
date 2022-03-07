@@ -19,6 +19,7 @@
               <tr class="estiloCabecera">
                 <th scope="col" width="10%" bgcolor="#c9a892">Correlativo</th>
                 <th scope="col"  bgcolor="#c9a892">Nombre proveedor</th>
+                <th scope="col"  bgcolor="#c9a892">Estado</th>
                 <th scope="col"  bgcolor="#c9a892">Acciones</th>
               </tr>
             </thead>
@@ -27,9 +28,13 @@
                 <th >{{provider.IdProveedor}}</th>
                 <td>{{provider.NombreProveedor}}</td>
                 <td>
+                  <p *ngIf="provider.Estado; else desactivado">Activo</p>
+                  <ng-template #desactivado>Desactivado</ng-template>
+                </td>
+                <td>                  
                   <span class="btn btn-primary glyphicon glyphicon-pencil" title="Editar" (click)="editProvider(provider.IdProveedor)"></span>
                   &nbsp;&nbsp;
-                  <span class="btn btn-info glyphicon glyphicon-refresh" title="Cambiar estado" (click)="changeStatus()"></span>
+                  <span class="btn btn-info glyphicon glyphicon-refresh" title="Cambiar estado" (click)="changeStatus(provider.IdProveedor)"></span>
                 </td>
               </tr>             
             </tbody>            

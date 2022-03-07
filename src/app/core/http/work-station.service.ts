@@ -49,4 +49,9 @@ export class WorkStationService {
     const headers = new HttpHeaders().set('Authorization', `bearer ${this.userService.getToken()}`)
     return this.clienteHttp.put(`${API_URL}plazas/${id}`, workStation, { headers: headers});
   }
+
+  changeStatusWorkStation(id: number){
+    const headers = new HttpHeaders().set('Authorization', `bearer ${this.userService.getToken()}`)
+    return this.clienteHttp.put(`${API_URL}plazas/changeStatus/${id}`, { headers: headers});
+  }
 }

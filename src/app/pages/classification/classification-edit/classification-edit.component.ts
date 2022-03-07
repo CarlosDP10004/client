@@ -31,7 +31,7 @@ export class ClassificationEditComponent implements OnInit {
       IdCuenta: new FormControl(null, []),
       Descripcion: new FormControl('', [])
     });
-    this.accountService.showAll().subscribe(data => {
+    this.accountService.getAccountList().subscribe(data => {
       Object.assign(this.accounts, data);
     }, error => { 
       Swal.fire({

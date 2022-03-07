@@ -20,6 +20,7 @@
                 <th scope="col" width="10%" bgcolor="#c9a892">Correlativo</th>
                 <th scope="col"  bgcolor="#c9a892">Nombre unidad</th>
                 <th scope="col"  bgcolor="#c9a892">Encargado</th>
+                <th scope="col"  bgcolor="#c9a892">Estado</th>
                 <th scope="col"  bgcolor="#c9a892">Acciones</th>
               </tr>
             </thead>
@@ -29,9 +30,13 @@
                 <td>{{departament.NombreUnidad}}</td>               
                 <td>{{departament.NombreUsuario}}</td>
                 <td>
+                  <p *ngIf="departament.Estado; else desactivado">Activo</p>
+                  <ng-template #desactivado>Desactivado</ng-template>
+                </td>
+                <td>
                   <span class="btn btn-primary glyphicon glyphicon-pencil" title="Editar" (click)="editDepartament(departament.IdUnidad)"></span>
                   &nbsp;&nbsp;
-                  <span class="btn btn-info glyphicon glyphicon-refresh" title="Cambiar estado" (click)="changeStatus()"></span>
+                  <span class="btn btn-info glyphicon glyphicon-refresh" title="Cambiar estado" (click)="changeStatus(departament.IdUnidad)"></span>
                 </td>
               </tr>             
             </tbody>            

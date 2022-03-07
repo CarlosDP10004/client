@@ -72,7 +72,7 @@ export class AssetsAddComponent implements OnInit {
       Fotografia:['',[Validators.required]]
     });
 
-    this.accountService.showAll().subscribe(data => {
+    this.accountService.getAccountList().subscribe(data => {
       Object.assign(this.accounts, data);
     }, error => { 
       Swal.fire({
@@ -108,7 +108,7 @@ export class AssetsAddComponent implements OnInit {
       }) 
     });
 
-    this.providerService.showAll().subscribe(data => {
+    this.providerService.getProviderList().subscribe(data => {
       Object.assign(this.providers, data);
     }, error => { 
       Swal.fire({

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { ToastrService } from 'ngx-toastr';
 import { ProviderService } from 'src/app/core/http/provider.service';
 import Swal from 'sweetalert2';
 import { ProviderAddComponent } from '../provider-add/provider-add.component';
@@ -18,7 +19,8 @@ export class ProviderListComponent {
 
   constructor(
     private bsModalService: BsModalService,
-    private providerService: ProviderService
+    private providerService: ProviderService,
+    private toastr: ToastrService
   ) {
     this.showAll();
    }
@@ -55,8 +57,26 @@ export class ProviderListComponent {
     });
   }
 
-  changeStatus(){
-
+  changeStatus(id:number){
+    Swal.fire({
+      title: '¿Seguro que desea continuar?',
+      text: "Se cambiará el estado del registro.",
+      icon: 'warning',
+      showCancelButton: true,      
+      cancelButtonColor: '#c9a892',
+      confirmButtonColor: '#3085d6',
+      cancelButtonText: 'Cancelar',
+      confirmButtonText: 'Aceptar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.providerService.changeStatusProvider(id).subscribe(data => {
+          this.toastr.success(data.toString());
+          this.showAll();
+        }, (error)=>{
+          this.toastr.error(error.toString());
+        });
+      }
+    })
   }
 
 }

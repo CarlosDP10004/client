@@ -55,4 +55,9 @@ export class ClasificationService {
     return this.clienteHttp.get(`${API_URL}clasificaciones/byAccount/${IdAccount}`, { headers: headers});
   }
 
+  changeStatusClasificacion(id: number){
+    const headers = new HttpHeaders().set('Authorization', `bearer ${this.userService.getToken()}`)
+    return this.clienteHttp.put(`${API_URL}clasificaciones/changeStatus/${id}`, { headers: headers});
+  }
+
 }

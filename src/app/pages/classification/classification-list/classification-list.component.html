@@ -28,6 +28,7 @@
                 <th scope="col" width="10%" bgcolor="#c9a892">Correlativo</th>
                 <th scope="col"  bgcolor="#c9a892">Cuenta</th>
                 <th scope="col"  bgcolor="#c9a892">Descripción</th>
+                <th scope="col"  bgcolor="#c9a892">Estado</th>
                 <th scope="col"  bgcolor="#c9a892">Acciones</th>
               </tr>
             </thead>
@@ -37,9 +38,13 @@
                 <td>{{clasification.NombreCuenta}}</td>               
                 <td>{{clasification.Descripcion}}</td>
                 <td>
+                  <p *ngIf="clasification.Estado; else desactivado">Activo</p>
+                  <ng-template #desactivado>Desactivado</ng-template>
+                </td>
+                <td>
                   <span class="btn btn-primary glyphicon glyphicon-pencil" title="Editar" (click)="editClasification(clasification.IdClasificacion)"></span>
                   &nbsp;&nbsp;
-                  <span class="btn btn-info glyphicon glyphicon-refresh" title="Cambiar estado" (click)="changeStatus()"></span>
+                  <span class="btn btn-info glyphicon glyphicon-refresh" title="Cambiar estado" (click)="changeStatus(clasification.IdClasificacion)"></span>
                 </td>
               </tr>             
             </tbody>            

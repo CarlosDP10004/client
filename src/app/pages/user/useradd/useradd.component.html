@@ -23,13 +23,23 @@
             <label class="col-sm-2 control-label texto">Empleado</label>
             <div class="col-sm-9">
               <select formControlName="IdEmpleado" class="form-control tamanio2">
-                <option value="" hidden>Selecciona el empleado</option>
+                <option value="">Selecciona el empleado</option>
                 <option *ngFor="let item of employees" [value]="item.idEmpleado">{{item.empleado}}</option>
               </select>
             </div>
           </div>
 
           <div class="form-group">
+            <label class="col-sm-2 control-label texto">Método</label>
+            <div class="col-sm-9">
+              <select class="form-control tamanio2" formControlName="Tipo" [(ngModel)]="selected" >
+                <option value="" >Selecciona la opción</option>     
+                <option *ngFor="let item of options" [value]="item.id">{{item.name}}</option>          
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group" *ngIf="selected == 1">
             <label class="col-sm-2 control-label texto">Roles</label>
             <div class="col-sm-9">
               <ng-select 
@@ -39,10 +49,26 @@
               multiple="true"  
               [searchable]="true"
               placeholder="Selecciona los roles">
-                <ng-option *ngFor="let item of roles" [value]="item.IdRol">{{item.NombreRol}}</ng-option>
+                <ng-option *ngFor="let item of roles" [value]="item.id">{{item.name}}</ng-option>
              </ng-select>              
             </div>
           </div>
+
+          <div class="form-group" *ngIf="selected == 2">
+            <label class="col-sm-2 control-label texto">Permisos</label>
+            <div class="col-sm-9">
+              <ng-select 
+              formControlName="Permisos" 
+              class="tamanio2" 
+              [(ngModel)]="seleccion" 
+              multiple="true"  
+              [searchable]="true"
+              placeholder="Selecciona los permisos">
+                <ng-option *ngFor="let item of permisos" [value]="item.id">{{item.name}}</ng-option>
+             </ng-select>              
+            </div>
+          </div>
+
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal" (click)="onClose()">Cancelar</button>

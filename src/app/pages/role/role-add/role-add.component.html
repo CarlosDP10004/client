@@ -29,7 +29,7 @@
                 [searchable]="true"                
                 placeholder="Selecciona los permisos"
                 size="10">
-                  <ng-option *ngFor="let item of permisos" [value]="item.IdPermiso">{{item.Modulo}} - {{item.NombrePermiso}}</ng-option>
+                  <ng-option *ngFor="let item of permisos" [value]="item.id">{{item.name}}</ng-option>
                </ng-select>
             <br>
             

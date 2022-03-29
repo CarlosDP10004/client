@@ -16,10 +16,13 @@ export class UsereditComponent implements OnInit {
 
   editUser: FormGroup;
   roles: any[] = [];
+  permisos: any[] = [];
   employees: any[] = [];
   seleccion: any;
   id: number;
   userData: any;
+  options = [{id:1, name: 'Roles'},{id:2, name:'Permisos'}];
+  selected: number;
 
   event: EventEmitter<any> = new EventEmitter();
 
@@ -33,13 +36,27 @@ export class UsereditComponent implements OnInit {
   ) { 
     this.editUser = this.builder.group({
       Roles: new FormControl(this.builder.array([])),
+      Permisos: new FormControl(this.builder.array([])),
       NombreUsuario: new FormControl('', []),
+      Tipo: new FormControl('', []),
       IdEmpleado: new FormControl('', []),
       Contrasenna: new FormControl('', [])
     });
 
     this.rolService.showAll().subscribe(data => {
       Object.assign(this.roles, data);
+    }, error => { 
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: error,
+        confirmButtonColor: '#c9a892',
+        confirmButtonText: 'Aceptar'
+      }) 
+    });
+
+    this.rolService.getPermisos().subscribe(data => {
+      Object.assign(this.permisos, data);
     }, error => { 
       Swal.fire({
         icon: 'error',
@@ -93,22 +110,40 @@ export class UsereditComponent implements OnInit {
   }
 
   editarUsuario(){
-    let userData = {
-      'NombreUsuario': this.editUser.get('NombreUsuario').value,
-      'Contrasenna': this.editUser.get('Contrasenna').value,
-      'IdEmpleado': this.editUser.get('IdEmpleado').value,
-      'Roles': this.editUser.get('Roles').value,
-    };
 
-    console.log(userData);
+    if(this.editUser.get('Tipo').value == 1){
+      let withRole = {
+        'NombreUsuario': this.editUser.get('NombreUsuario').value,
+        'Contrasenna': this.editUser.get('Contrasenna').value,
+        'IdEmpleado': this.editUser.get('IdEmpleado').value,
+        'Roles': this.editUser.get('Roles').value,
+      };
+  
+      this.userService.editUser(this.id, withRole).subscribe(data => {      
+          this.event.emit('OK');
+          this.toastr.success(data.toString());
+          this.bsModalRef.hide();      
+      }, (error)=>{      
+        this.toastr.error(this.errorService.getErrorMessage(error.error));
+      });
+    }
+    if(this.editUser.get('Tipo').value == 2){
+      let withPermission = {
+        'NombreUsuario': this.editUser.get('NombreUsuario').value,
+        'Contrasenna': this.editUser.get('Contrasenna').value,
+        'IdEmpleado': this.editUser.get('IdEmpleado').value,
+        'Permisos': this.editUser.get('Permisos').value,
+      };  
+      this.userService.editUserPermission(this.id, withPermission).subscribe(data => {      
+          this.event.emit('OK');
+          this.toastr.success(data.toString());
+          this.bsModalRef.hide();      
+      }, (error)=>{      
+        this.toastr.error(this.errorService.getErrorMessage(error.error));
+      });
 
-    this.userService.editUser(this.id, userData).subscribe(data => {      
-        this.event.emit('OK');
-        this.toastr.success(data.toString());
-        this.bsModalRef.hide();      
-    }, (error)=>{      
-      this.toastr.error(this.errorService.getErrorMessage(error.error));
-    });
+    }
+    
   }
 
   onClose() {

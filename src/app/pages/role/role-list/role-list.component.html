@@ -24,9 +24,9 @@
             </thead>
             <tbody>
               <tr *ngFor="let role of roles; let iControl = index">
-                <th >{{role.IdRol}}</th>
-                <td>{{role.NombreRol}}</td>
-                <td><span class="btn btn-primary " (click)="editRole(role.IdRol)">
+                <th >{{role.id}}</th>
+                <td>{{role.name}}</td>
+                <td><span class="btn btn-primary " (click)="editRole(role.id)">
                   <span class="glyphicon glyphicon-pencil"></span></span></td>
               <!--<td><span class="btn btn-danger btn-xs" (click)="deletePost(item.postId, item.title)">
                   <span class="glyphicon glyphicon-trash"></span></span></td>-->

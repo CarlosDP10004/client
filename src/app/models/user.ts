@@ -18,6 +18,17 @@ export interface Usuario{
     Roles: Role[];
 }
 
+export interface UsuarioPermission{
+    NombreUsuario: string;
+    Contrasenna: string; 
+    IdEmpleado: number;
+    Permisos: Permiso[];
+}
+
 export interface Role{
     NombreRol: string
+}
+
+export interface Permiso{
+    NombrePermiso: string
 }

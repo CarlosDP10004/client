@@ -20,16 +20,21 @@
             <label class="col-sm-2 control-label texto2">Permisos</label>
             <div class="row">
               <div class="col-sm-6">
+                
                 <ng-select                                 
                 formControlName="Permisos" 
                 class="tamanio2" 
                 [(ngModel)]="seleccion" 
                 multiple="true"
-                [searchable]="true"
-                placeholder="Selecciona los permisos">
+                [searchable]="true"                
+                placeholder="Selecciona los permisos"
+                size="10">
                   <ng-option *ngFor="let item of permisos" [value]="item.IdPermiso">{{item.Modulo}} - {{item.NombrePermiso}}</ng-option>
                </ng-select>
+            <br>
+            
                
+            
               </div>
               <div class="col-sm-6">
 

@@ -15,7 +15,10 @@ import Swal from 'sweetalert2';
 export class UseraddComponent implements OnInit {
   addUser: FormGroup;
   roles: any[] = [];
+  permisos: any[] = [];
   seleccion: any;  
+  options = [{id:1, name: 'Roles'},{id:2, name:'Permisos'}];
+  selected: number;
   employees: any[] = [];
   event: EventEmitter<any>=new EventEmitter();
 
@@ -31,11 +34,26 @@ export class UseraddComponent implements OnInit {
       NombreUsuario: new FormControl('', []),
       Contrasenna: new FormControl('', []),
       IdEmpleado: new FormControl('', []),
-      Roles: new FormControl(this.builder.array([])) 
+      Tipo: new FormControl('', []),
+      Roles: new FormControl(this.builder.array([])),
+      Permisos: new FormControl(this.builder.array([])) 
     })
+    console.log(this.options);
 
     this.rolService.showAll().subscribe(data => {
       Object.assign(this.roles, data);
+    }, error => { 
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: error,
+        confirmButtonColor: '#c9a892',
+        confirmButtonText: 'Aceptar'
+      }) 
+    });
+
+    this.rolService.getPermisos().subscribe(data => {
+      Object.assign(this.permisos, data);
     }, error => { 
       Swal.fire({
         icon: 'error',
@@ -63,24 +81,47 @@ export class UseraddComponent implements OnInit {
   }
 
 
-  guardarUsuario(){    
-    let postData = {
-      'NombreUsuario': this.addUser.get('NombreUsuario').value,
-      'Contrasenna': this.addUser.get('Contrasenna').value,
-      'IdEmpleado': this.addUser.get('IdEmpleado').value,
-      'Roles': this.addUser.get('Roles').value,
-    };
-   
-    this.userService.addUser(postData).subscribe(data=>{
-      console.log(data);
-      if(data!=null){
-        this.event.emit('OK');
-        this.toastr.success(data.toString());
-        this.bsModalRef.hide();
-      }
-    }, (error)=>{      
-      this.toastr.error(this.errorService.getErrorMessage(error.error));
-    });
+  guardarUsuario(){
+    if(this.addUser.get('Tipo').value == 2){
+      let withPermission = {
+        'NombreUsuario': this.addUser.get('NombreUsuario').value,
+        'Contrasenna': this.addUser.get('Contrasenna').value,
+        'IdEmpleado': this.addUser.get('IdEmpleado').value,
+        'Permisos': this.addUser.get('Permisos').value,
+      };
+      this.userService.addUserPermission(withPermission).subscribe(data=>{
+        console.log(data);
+        if(data!=null){
+          this.event.emit('OK');
+          this.toastr.success(data.toString());
+          this.bsModalRef.hide();
+        }
+      }, (error)=>{      
+        this.toastr.error(this.errorService.getErrorMessage(error.error));
+      });
+    }
+
+    if(this.addUser.get('Tipo').value == 1){
+      let withRole = {
+        'NombreUsuario': this.addUser.get('NombreUsuario').value,
+        'Contrasenna': this.addUser.get('Contrasenna').value,
+        'IdEmpleado': this.addUser.get('IdEmpleado').value,
+        'Roles': this.addUser.get('Roles').value,
+      };
+     
+      this.userService.addUser(withRole).subscribe(data=>{
+        console.log(data);
+        if(data!=null){
+          this.event.emit('OK');
+          this.toastr.success(data.toString());
+          this.bsModalRef.hide();
+        }
+      }, (error)=>{      
+        this.toastr.error(this.errorService.getErrorMessage(error.error));
+      });
+    }
+
+    
   }
 
 /*

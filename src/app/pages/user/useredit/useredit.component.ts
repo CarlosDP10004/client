@@ -87,7 +87,6 @@ export class UsereditComponent implements OnInit {
           
           if (this.editUser!=null && this.userData!=null) {
             this.editUser.controls['Roles'].setValue(this.userData.roles);
-            console.log(this.editUser.controls['Roles'])
             this.editUser.controls['NombreUsuario'].setValue(this.userData.NombreUsuario);
             this.editUser.controls['IdEmpleado'].setValue(this.userData.IdEmpleado);
             this.editUser.controls['Contrasenna'].setValue(this.userData.Contrasenna);

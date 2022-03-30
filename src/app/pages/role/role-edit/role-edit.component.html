@@ -1,0 +1,55 @@
+<div class="modal-content" role="document">
+    <div>
+      <form class="form-horizontal" [formGroup]="editRol" (ngSubmit)="editarRol()">
+        <div class="modal-header fondo">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="onClose()"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title sombra" id="add-modal-label"><img src="../../../assets/images/roles.png" alt="Logo de la DNM" class="Icono">&nbsp;&nbsp;Editar rol</h4>
+        </div>
+        <div class="modal-body">          
+          
+
+          <div class="form-group">
+            <label class="col-sm-2 control-label texto">Nombre</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" formControlName="NombreRol" />
+            </div>
+          </div>
+
+
+          <div class="form-group">
+            <label class="col-sm-2 control-label texto2">Permisos</label>
+            <div class="row">
+              <div class="col-sm-6">
+                
+                <ng-select                                 
+                formControlName="Permisos"
+                class="tamanio2" 
+                appendTo="body"
+                [(ngModel)]="rolPermisos" 
+                multiple="true"
+                [searchable]="true"                
+                placeholder="Selecciona los permisos"
+                size="10">
+                  <ng-option *ngFor="let item of permisos" [value]="item.id">{{item.name}}</ng-option>
+               </ng-select>
+            <br>
+            
+               
+            
+              </div>
+              <div class="col-sm-6">
+
+              </div>
+            </div>            
+            <br>            
+          </div>
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" (click)="onClose()">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>

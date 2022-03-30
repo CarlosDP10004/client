@@ -11,14 +11,15 @@ const API_URL = environment.api_url;
   providedIn: 'root'
 })
 export class RolesService {
-  postIdSource = new  BehaviorSubject<number>(0);
-  postIdData: any;
+
+  IdRoleSource = new  BehaviorSubject<number>(0);
+  IdRol: any;
 
   constructor(
     private clienteHttp: HttpClient,
     private userService: AuthService
   ) {
-    this.postIdData= this.postIdSource.asObservable();
+    this.IdRol= this.IdRoleSource.asObservable();
    }
 
   showAll(){
@@ -26,9 +27,9 @@ export class RolesService {
     return this.clienteHttp.get(API_URL + "roles", { headers: headers})
   }
 
-  getRol(Id: number){
+  getRol(id: number){
     const headers = new HttpHeaders().set('Authorization', `bearer ${this.userService.getToken()}`)
-    return this.clienteHttp.get(API_URL + "roles?Id="+ Id, { headers: headers})
+    return this.clienteHttp.get(API_URL + `roles/${id}`, { headers: headers})
   }
 
   addRole(role: Role){    
@@ -39,5 +40,19 @@ export class RolesService {
   getPermisos(){
     const headers = new HttpHeaders().set('Authorization', `bearer ${this.userService.getToken()}`)
     return this.clienteHttp.get(API_URL + "permisos", { headers: headers})
+  }
+
+  getPermisosByRol(id: number){
+    const headers = new HttpHeaders().set('Authorization', `bearer ${this.userService.getToken()}`)
+    return this.clienteHttp.get(`${API_URL}permisosRoles/${id}`, { headers: headers})
+  }
+
+  changeRolId(IdRol: number){
+    this.IdRoleSource.next(IdRol);
+  }
+
+  editRole(id: number, rol: Role){
+    const headers = new HttpHeaders().set('Authorization', `bearer ${this.userService.getToken()}`)
+    return this.clienteHttp.put(`${API_URL}roles/${id}`, rol, { headers: headers});
   }
 }

@@ -52,6 +52,7 @@ import { BrandsListComponent } from './pages/brands/brands-list/brands-list.comp
 import { BrandsEditComponent } from './pages/brands/brands-edit/brands-edit.component';
 
 import { NgSelectModule } from "@ng-select/ng-select";
+import { RoleEditComponent } from './pages/role/role-edit/role-edit.component';
 
 @NgModule({
   declarations: [
@@ -89,7 +90,8 @@ import { NgSelectModule } from "@ng-select/ng-select";
     ProfileComponent,
     BrandsAddComponent,
     BrandsListComponent,
-    BrandsEditComponent
+    BrandsEditComponent,
+    RoleEditComponent
   ],
   imports: [
     BrowserModule,

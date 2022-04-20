@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AccountListComponent } from 'src/app/pages/account/account-list/account-list.component';
 import { AssetsAddComponent } from 'src/app/pages/assets/assets-add/assets-add.component';
+import { AssetsEditComponent } from 'src/app/pages/assets/assets-edit/assets-edit.component';
 import { AssetsListComponent } from 'src/app/pages/assets/assets-list/assets-list.component';
 import { BrandsListComponent } from 'src/app/pages/brands/brands-list/brands-list.component';
 import { ClassificationListComponent } from 'src/app/pages/classification/classification-list/classification-list.component';
@@ -25,6 +26,7 @@ const routes: Routes = [
       {path: "Assets", component: HomeComponent},
       {path: "Assets/Supplies", component: AssetsListComponent},
       {path: "Assets/Supplies/Add", component: AssetsAddComponent},
+      {path: "Assets/Supplies/Edit/:id", component: AssetsEditComponent},
       {path: "Assets/Users", component: UserListComponent},
       {path: "Assets/Roles", component: RoleListComponent},
       {path: "Assets/Providers", component: ProviderListComponent},

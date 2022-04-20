@@ -4,11 +4,13 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AccountService } from 'src/app/core/http/account.service';
 import { AssetsService } from 'src/app/core/http/assets.service';
+import { AttachmentService } from 'src/app/core/http/attachment.service';
 import { BrandService } from 'src/app/core/http/brand.service';
 import { ClasificationService } from 'src/app/core/http/clasification.service';
 import { ErrorService } from 'src/app/core/http/error.service';
 import { ProviderService } from 'src/app/core/http/provider.service';
 import Swal from 'sweetalert2';
+import {finalize} from 'rxjs/operators';
 
 @Component({
   selector: 'app-assets-add',
@@ -24,6 +26,12 @@ export class AssetsAddComponent implements OnInit {
   brands: any[] = [];
   clasifications: any[] = [];
   selected: number;
+  origen:string = '';
+
+  files: any = [];
+  idFile: number;
+  images: any = [];
+  idImage: number;
   event: EventEmitter<any>=new EventEmitter();
 
   constructor(
@@ -35,13 +43,16 @@ export class AssetsAddComponent implements OnInit {
     private accountService: AccountService,
     private providerService: ProviderService,
     private clasificationService: ClasificationService,
-    private errorService: ErrorService
+    private errorService: ErrorService,
+    private attachmentService: AttachmentService
   ) { }
 
-  updateSource($event: Event) {  
-      this.projectImage($event.target['files'][0]);
+  updateSource(event: Event) {
+      this.projectImage(event.target['files'][0]);
+      const capturedFile = event.target['files'][0];
+      this.images.push(capturedFile);
   }  
-  origen:string = '';
+  
   projectImage(file: File) {
       let reader = new FileReader;      
       reader.onload = (e: any) => {          
@@ -69,7 +80,19 @@ export class AssetsAddComponent implements OnInit {
       Serie:['',[Validators.required]],
       IdProveedor:['',[Validators.required]],
       LibreGestion:['',[Validators.required]],
-      Fotografia:['',[Validators.required]]
+      Fotografia:['',[Validators.required]],
+      Autor:['',[]],
+      Titulo:['',[]],
+      Editorial:['',[]],
+      Tomo:['',[]],
+      Edicion:['',[]],
+      Placa:['',[]],
+      Color:['',[]],
+      NoMotor:['',[]],
+      NoVIN:['',[]],
+      NoChasis:['',[]],
+      NoAsientos:['',[]],
+      Anno:['',[]],
     });
 
     this.accountService.getAccountList().subscribe(data => {
@@ -121,39 +144,182 @@ export class AssetsAddComponent implements OnInit {
     });
   }
 
-  guardarActivo(){  
+  async guardarActivo(){  
     if(this.addAsset.invalid){
       return Object.values(this.addAsset.controls).forEach(control=>{
         control.markAllAsTouched();
       })
-    }  
-    let postData = {
-      'IdCuenta': this.addAsset.get('IdCuenta').value,
-      'IdClasificacion': this.addAsset.get('IdClasificacion').value,
-      'IdMarca': this.addAsset.get('IdMarca').value,
-      'Modelo': this.addAsset.get('Modelo').value,
-      'Descripcion': this.addAsset.get('Descripcion').value,
-      'IdOrigen': this.addAsset.get('IdOrigen').value,
-      'ValorCompra': this.addAsset.get('ValorCompra').value,
-      'FechaCompra': this.addAsset.get('FechaCompra').value,
-      'DocumentoCompra': this.addAsset.get('DocumentoCompra').value,
-      'Serie': this.addAsset.get('Serie').value,
-      'IdProveedor': this.addAsset.get('IdProveedor').value,
-      'LibreGestion': this.addAsset.get('LibreGestion').value,
-      'Fotografia': this.addAsset.get('Fotografia').value
-    };
-    console.log(postData);
+    } 
+    let archivo = await this.uploadFile(1);
+    let fotografia = await this.uploadImage(2);
+    let postData = await this.getObject(archivo['IdArchivo'], fotografia['IdFotografia']);    
+    switch (this.addAsset.get('IdCuenta').value) {
+      case '2':
+        this.assetService.addPatent(postData).subscribe(data=>{
+          if(data!=null){
+              this.toastr.success(data.toString());
+              this.router.navigate(['/Assets/Supplies']);
+            }
+          }, (error)=>{
+          this.toastr.error(this.errorService.getErrorMessage(error.error));
+        }); 
+        break;
+      case '4':
+        this.assetService.addVehicle(postData).subscribe(data=>{
+          if(data!=null){
+              this.toastr.success(data.toString());
+              this.router.navigate(['/Assets/Supplies']);
+            }
+          }, (error)=>{
+          this.toastr.error(this.errorService.getErrorMessage(error.error));
+        }); 
+        break;
+      case '1':
+      case '3':
+      case '5':
+      case '6':
+        this.assetService.addAsset(postData).subscribe(data=>{
+          if(data!=null){
+              this.toastr.success(data.toString());
+              this.router.navigate(['/Assets/Supplies']);
+            }
+          }, (error)=>{
+          this.toastr.error(this.errorService.getErrorMessage(error.error));
+        }); 
+        break;
+      default:
+        console.log(postData);
+    }    
+  } 
 
-    this.assetService.addAsset(postData).subscribe(data=>{
-      if(data!=null){
-        this.toastr.success(data.toString());
-        this.router.navigate(['/Assets/Supplies']);
-      }
-    }, (error)=>{
-      this.toastr.error(this.errorService.getErrorMessage(error.error));
-      //this.toastr.error(error.error.message.toString());
-    });
-  }  
+  getFile(event): any{  
+    const capturedFile = event.target['files'][0];
+    this.files.push(capturedFile);
+  }
+
+  getObject(file, photo){
+    let asset;
+    switch (this.addAsset.get('IdCuenta').value) {
+      case '2':
+        asset = {
+          'IdCuenta': this.addAsset.get('IdCuenta').value,
+          'IdClasificacion': this.addAsset.get('IdClasificacion').value,
+          'IdMarca': this.addAsset.get('IdMarca').value,
+          'Modelo': this.addAsset.get('Modelo').value,
+          'Descripcion': this.addAsset.get('Descripcion').value,
+          'IdOrigen': this.addAsset.get('IdOrigen').value,
+          'ValorCompra': this.addAsset.get('ValorCompra').value,
+          'FechaCompra': this.addAsset.get('FechaCompra').value,
+          'IdArchivo': file,
+          'Serie': this.addAsset.get('Serie').value,
+          'IdProveedor': this.addAsset.get('IdProveedor').value,
+          'LibreGestion': this.addAsset.get('LibreGestion').value,
+          'IdFotografia': photo,
+          'Placa': null,
+          'Color': null,
+          'NoMotor': null,
+          'NoVIN': null,
+          'NoChasis': null,
+          'NoAsientos': null,
+          'Anno': null,
+          'Autor': this.addAsset.get('Autor').value,
+          'Titulo': this.addAsset.get('Titulo').value,
+          'Editorial': this.addAsset.get('Editorial').value,
+          'Tomo': this.addAsset.get('Tomo').value,
+          'Edicion': this.addAsset.get('Edicion').value,
+        }
+        break;
+      case '4':
+        asset = {
+          'IdCuenta': this.addAsset.get('IdCuenta').value,
+          'IdClasificacion': this.addAsset.get('IdClasificacion').value,
+          'IdMarca': this.addAsset.get('IdMarca').value,
+          'Modelo': this.addAsset.get('Modelo').value,
+          'Descripcion': this.addAsset.get('Descripcion').value,
+          'IdOrigen': this.addAsset.get('IdOrigen').value,
+          'ValorCompra': this.addAsset.get('ValorCompra').value,
+          'FechaCompra': this.addAsset.get('FechaCompra').value,
+          'IdArchivo': file,
+          'Serie': this.addAsset.get('Serie').value,
+          'IdProveedor': this.addAsset.get('IdProveedor').value,
+          'LibreGestion': this.addAsset.get('LibreGestion').value,
+          'IdFotografia': photo,    
+          'Placa': this.addAsset.get('Placa').value,
+          'Color': this.addAsset.get('Color').value,
+          'NoMotor': this.addAsset.get('NoMotor').value,
+          'NoVIN': this.addAsset.get('NoVIN').value,
+          'NoChasis': this.addAsset.get('NoChasis').value,
+          'NoAsientos': this.addAsset.get('NoAsientos').value,
+          'Anno': this.addAsset.get('Anno').value,    
+          'Autor': null,
+          'Titulo': null,
+          'Editorial': null,
+          'Tomo': null,
+          'Edicion': null,
+        }
+        console.log(asset);
+        break;
+      case '1':
+      case '3':
+      case '5':
+      case '6':
+        asset = {
+          'IdCuenta': this.addAsset.get('IdCuenta').value,
+          'IdClasificacion': this.addAsset.get('IdClasificacion').value,
+          'IdMarca': this.addAsset.get('IdMarca').value,
+          'Modelo': this.addAsset.get('Modelo').value,
+          'Descripcion': this.addAsset.get('Descripcion').value,
+          'IdOrigen': this.addAsset.get('IdOrigen').value,
+          'ValorCompra': this.addAsset.get('ValorCompra').value,
+          'FechaCompra': this.addAsset.get('FechaCompra').value,
+          'IdArchivo': file,
+          'Serie': this.addAsset.get('Serie').value,
+          'IdProveedor': this.addAsset.get('IdProveedor').value,
+          'LibreGestion': this.addAsset.get('LibreGestion').value,
+          'IdFotografia': photo,    
+          'Placa': null,
+          'Color': null,
+          'NoMotor': null,
+          'NoVIN': null,
+          'NoChasis': null,
+          'NoAsientos': null,
+          'Anno': null,
+          'Autor': null,
+          'Titulo': null,
+          'Editorial': null,
+          'Tomo': null,
+          'Edicion': null,
+        }
+        break;
+      default:
+        console.log();
+    }
+    return asset;
+  }
+
+  uploadFile(tipo): any{ 
+    return new Promise((resolved, reject) => {
+      const fileData = new FormData();    
+      this.files.forEach(file =>{
+        fileData.append('Adjunto', file)
+      });
+      fileData.append('Tipo', tipo)
+      this.attachmentService.uploadFiles(fileData).subscribe(data=>{
+      resolved(data);});
+    }); 
+  }
+
+  uploadImage(tipo): any{ 
+    return new Promise((resolved, reject) => {
+      const fileData = new FormData();    
+      this.images.forEach(file =>{
+        fileData.append('Adjunto', file)
+      });
+      fileData.append('Tipo', tipo)
+      this.attachmentService.uploadFiles(fileData).subscribe(data=>{
+      resolved(data);});
+    });  
+  }
 
   chargeClasification(value){
     this.clasifications = [];

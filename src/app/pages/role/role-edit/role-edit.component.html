@@ -21,17 +21,21 @@
             <div class="row">
               <div class="col-sm-6">
                 
-                <ng-select                                 
+                <!--<ng-select                                 
                 formControlName="Permisos"
                 class="tamanio2" 
                 appendTo="body"
-                [(ngModel)]="rolPermisos" 
                 multiple="true"
                 [searchable]="true"                
                 placeholder="Selecciona los permisos"
                 size="10">
-                  <ng-option *ngFor="let item of permisos" [value]="item.id">{{item.name}}</ng-option>
-               </ng-select>
+                  <ng-option *ngFor="let item of permisos; let x = index" [value]="item.id">{{item.name}}</ng-option>
+               </ng-select>-->
+
+
+               <ng-select formControlName="Permisos" [(ngModel)]="rolPermisos">
+                <ng-option *ngFor="let item of permisos" [value]="item.id">{{item.name}}</ng-option>
+              </ng-select>
             <br>
             
                

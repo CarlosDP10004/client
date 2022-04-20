@@ -129,7 +129,7 @@
                 <img src="../../../assets/images/factura.png" alt="Subir/Archivo" class="avatar" width="40" height="40">
               </div>
               <div class="col-sm-10 posicionInput">
-              <input type="file" class="custom-file-input" id="customFile" formControlName="DocumentoCompra">              
+              <input type="file" class="custom-file-input" id="customFile" formControlName="DocumentoCompra" (change)="getFile($event)">              
             </div>            
           </div>
           <FONT COLOR="red">
@@ -183,23 +183,37 @@
         <div class="card-body EstiloForm1">
           
           <div class="row Espacio">
-            <div class="col-sm-4"><label class="col-sm-4 control-label texto">Placa</label>
-              <input class="form-control" placeholder="Placa"></div>
-            <div class="col-sm-3"><label class="col-sm-2 control-label texto">Color</label>
-              <input class="form-control" placeholder="Color"></div>
-              <div class="col-sm-5"><label class="col-sm-4 control-label texto">Nº de Motor</label>
-                <input class="form-control" placeholder="Nº de Motor"></div>
+            <div class="col-sm-4">
+              <label class="col-sm-4 control-label texto">Placa</label>
+              <input class="form-control" placeholder="Placa" formControlName="Placa">
+            </div>
+            <div class="col-sm-3">
+              <label class="col-sm-2 control-label texto">Color</label>
+              <input class="form-control" placeholder="Color" formControlName="Color">
+            </div>
+            <div class="col-sm-5">
+              <label class="col-sm-4 control-label texto">Nº de Motor</label>
+              <input class="form-control" placeholder="Nº de Motor" formControlName="NoMotor">
+            </div>
           </div>
 
           <div class="row Espacio">
-            <div class="col-sm-4"><label class="col-sm-4 control-label texto">Nº de VIN</label>
-              <input class="form-control" placeholder="Nº de VIN"></div>
-            <div class="col-sm-3"><label class="col-sm-6 control-label texto">Nº de Chasis</label>
-              <input class="form-control" placeholder="Nº de Chasis"></div>
-              <div class="col-sm-3"><label class="col-sm-6 control-label texto">Nº de asientos</label>
-                <input class="form-control" placeholder="Nº de Motor"></div>
-                <div class="col-sm-2"><label class="col-sm-4 control-label texto">Año</label>
-                  <input class="form-control" placeholder="Año"></div>
+            <div class="col-sm-4">
+              <label class="col-sm-4 control-label texto">Nº de VIN</label>
+              <input class="form-control" placeholder="Nº de VIN" formControlName="NoVIN">
+            </div>
+            <div class="col-sm-3">
+              <label class="col-sm-6 control-label texto">Nº de Chasis</label>
+              <input class="form-control" placeholder="Nº de Chasis" formControlName="NoChasis">
+            </div>
+            <div class="col-sm-3">
+              <label class="col-sm-6 control-label texto">Nº de asientos</label>
+              <input class="form-control" placeholder="Nº de Motor" formControlName="NoAsientos">
+            </div>
+            <div class="col-sm-2">
+              <label class="col-sm-4 control-label texto">Año</label>
+              <input class="form-control" placeholder="Año" formControlName="Anno">
+            </div>
           </div>
           
         </div>
@@ -214,19 +228,29 @@
         <div class="card-body EstiloForm1">
           
           <div class="row Espacio">
-            <div class="col-sm-6"><label class="col-sm-4 control-label texto">Autor</label>
-              <input class="form-control" placeholder="Autor"></div>
-            <div class="col-sm-6"><label class="col-sm-2 control-label texto">Título</label>
-              <input class="form-control" placeholder="Título"></div>
+            <div class="col-sm-6">
+              <label class="col-sm-4 control-label texto">Autor</label>
+              <input class="form-control" placeholder="Autor" formControlName="Autor">
+            </div>
+            <div class="col-sm-6">
+              <label class="col-sm-2 control-label texto">Título</label>
+              <input class="form-control" placeholder="Título" formControlName="Titulo">
+            </div>
           </div> 
 
           <div class="row Espacio">
-            <div class="col-sm-4"><label class="col-sm-4 control-label texto">Editorial</label>
-              <input class="form-control" placeholder="Editorial"></div>
-            <div class="col-sm-4"><label class="col-sm-2 control-label texto">Tomo</label>
-              <input class="form-control" placeholder="Tomo"></div>
-            <div class="col-sm-4"><label class="col-sm-2 control-label texto">Edición</label>
-              <input class="form-control" placeholder="Edición"></div>
+            <div class="col-sm-4">
+              <label class="col-sm-4 control-label texto">Editorial</label>
+              <input class="form-control" placeholder="Editorial" formControlName="Editorial">
+            </div>
+            <div class="col-sm-4">
+              <label class="col-sm-2 control-label texto">Tomo</label>
+              <input class="form-control" placeholder="Tomo" formControlName="Tomo">
+            </div>
+            <div class="col-sm-4">
+              <label class="col-sm-2 control-label texto">Edición</label>
+              <input class="form-control" placeholder="Edición" formControlName="Edicion">
+            </div>
           </div>     
         </div>
       </div>

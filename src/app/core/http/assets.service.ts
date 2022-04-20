@@ -34,8 +34,29 @@ export class AssetsService {
     return this.clienteHttp.post(API_URL + "activos", asset, { headers: headers});
   }
 
+  addPatent(asset: Asset){    
+    const headers = new HttpHeaders().set('Authorization', `bearer ${this.userService.getToken()}`)
+    return this.clienteHttp.post(API_URL + "patentes", asset, { headers: headers});
+  }
+
+  addVehicle(asset: Asset){    
+    const headers = new HttpHeaders().set('Authorization', `bearer ${this.userService.getToken()}`)
+    return this.clienteHttp.post(API_URL + "vehiculos", asset, { headers: headers});
+  }
+
   getOrigen(){
     const headers = new HttpHeaders().set('Authorization', `bearer ${this.userService.getToken()}`)
     return this.clienteHttp.get(API_URL + "origenes", { headers: headers});
   }
+
+  getEstados(){
+    const headers = new HttpHeaders().set('Authorization', `bearer ${this.userService.getToken()}`)
+    return this.clienteHttp.get(API_URL + "estados", { headers: headers});
+  }
+
+  getAsset(IdAsset: any){
+    const headers = new HttpHeaders().set('Authorization', `bearer ${this.userService.getToken()}`)
+    return this.clienteHttp.get(`${API_URL}activos/${IdAsset}`,{ headers: headers})
+  }
+  
 }

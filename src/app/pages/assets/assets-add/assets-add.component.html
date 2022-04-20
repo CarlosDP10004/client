@@ -35,16 +35,33 @@
               </small>
             </FONT>
           </div>
-            <div class="col-sm-4 "><label class="col-sm-7 control-label texto">Origen</label>
-              <select class="form-control" formControlName="IdOrigen">
-                <option value="" hidden>Selecciona el Origen</option>
-                <option *ngFor="let item of origens" [value]="item.IdOrigen">{{item.NombreOrigen}}</option>
-              </select>
-              <FONT COLOR="red">
-                <small *ngIf="IdOrigen.invalid && IdOrigen.touched">
-                  Complete el campo
-                </small>
-              </FONT>
+            <div class="col-sm-4 ">
+              
+             
+              <div>
+              <img *ngIf="origen" [src]="origen" src="" width="190px" height="150px" class="bordesImagen"> 
+              <h6 style="font-size:xx-small" >Previsualización</h6>
+              </div>
+              <label class="botonInputImage image">
+                <input class="custom-file-input" id="customFile" formControlName="Fotografia" type="file" accept="image/*" (change)="updateSource($event)">          
+                <div class="row">
+                  <div class="col-sm-2 posicionIcono2">
+                    <img src="../../../assets/images/photos.png" alt="Subir/Archivo" class="avatar" width="30" height="30">
+                  </div>
+                  <div class="col-sm-8">
+                    <h6><b>Subir Imagen</b></h6>
+                  </div>
+                </div>
+                <FONT COLOR="red">
+                  <small *ngIf="Fotografia.invalid && Fotografia.touched">
+                    Complete el campo
+                  </small>
+                </FONT>
+              </label>
+              
+              
+
+
             </div>
         </div> 
 
@@ -151,26 +168,17 @@
             <div class="col-sm-3">  </div>           
         </div> 
       
-        <label class="botonInputImage image">
-          <input class="custom-file-input" id="customFile" formControlName="Fotografia" type="file" accept="image/*" (change)="updateSource($event)">          
-          <div class="row">
-            <div class="col-sm-2 posicionIcono2">
-              <img src="../../../assets/images/photos.png" alt="Subir/Archivo" class="avatar" width="30" height="30">
-            </div>
-            <div class="col-sm-8">
-              <h6><b>Subir Imagen</b></h6>
-            </div>
-          </div>
-          <FONT COLOR="red">
-            <small *ngIf="Fotografia.invalid && Fotografia.touched">
-              Complete el campo
-            </small>
-          </FONT>
-        </label>
-        <div>
-        <img *ngIf="origen" [src]="origen" src="" width="190px" height="150px" class="bordesImagen"> 
-        <h6 style="font-size:xx-small" >Previsualización</h6>
-        </div>
+        <label class="col-sm-7 control-label texto">Origen</label>
+              <select class="form-control" formControlName="IdOrigen">
+                <option value="" hidden>Selecciona el Origen</option>
+                <option *ngFor="let item of origens" [value]="item.IdOrigen">{{item.NombreOrigen}}</option>
+              </select>
+              <FONT COLOR="red">
+                <small *ngIf="IdOrigen.invalid && IdOrigen.touched">
+                  Complete el campo
+                </small>
+              </FONT>
+              <br>
              
       </div>
 

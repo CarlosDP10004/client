@@ -37,3 +37,9 @@
     color: #fff; 
     opacity: 1;
 }
+
+::ng-deep .ng-select-container {
+    height: auto !important;
+    font-size: 0.8em!important;
+    overflow: auto;
+  }

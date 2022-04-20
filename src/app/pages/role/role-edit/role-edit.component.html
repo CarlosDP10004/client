@@ -10,40 +10,31 @@
 
           <div class="form-group">
             <label class="col-sm-2 control-label texto">Nombre</label>
-            <div class="col-sm-6">
+            <div class="col-sm-8">
                 <input type="text" class="form-control" formControlName="NombreRol" />
             </div>
           </div>
 
 
           <div class="form-group">
-            <label class="col-sm-2 control-label texto2">Permisos</label>
+            <label class="col-sm-2 control-label texto">Permisos</label>
             <div class="row">
-              <div class="col-sm-6">
-                
-                <!--<ng-select                                 
-                formControlName="Permisos"
-                class="tamanio2" 
-                appendTo="body"
-                multiple="true"
-                [searchable]="true"                
-                placeholder="Selecciona los permisos"
-                size="10">
-                  <ng-option *ngFor="let item of permisos; let x = index" [value]="item.id">{{item.name}}</ng-option>
-               </ng-select>-->
+              <div class="col-sm-8">  
 
 
-               <ng-select formControlName="Permisos" [(ngModel)]="rolPermisos">
+               <ng-select                 
+               formControlName="Permisos" 
+               [(ngModel)]="seleccion"
+               multiple="true"
+               [searchable]="true"                
+               placeholder="Selecciona los permisos"
+               size="10">
                 <ng-option *ngFor="let item of permisos" [value]="item.id">{{item.name}}</ng-option>
               </ng-select>
-            <br>
+            <br>              
             
-               
-            
-              </div>
-              <div class="col-sm-6">
 
-              </div>
+              </div>            
             </div>            
             <br>            
           </div>

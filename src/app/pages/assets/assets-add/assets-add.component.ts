@@ -153,8 +153,8 @@ export class AssetsAddComponent implements OnInit {
     let archivo = await this.uploadFile(1);
     let fotografia = await this.uploadImage(2);
     let postData = await this.getObject(archivo['IdArchivo'], fotografia['IdFotografia']);    
-    switch (this.addAsset.get('IdCuenta').value) {
-      case '2':
+    switch (parseInt(this.addAsset.get('IdCuenta').value)) {
+      case 2:
         this.assetService.addPatent(postData).subscribe(data=>{
           if(data!=null){
               this.toastr.success(data.toString());
@@ -164,7 +164,7 @@ export class AssetsAddComponent implements OnInit {
           this.toastr.error(this.errorService.getErrorMessage(error.error));
         }); 
         break;
-      case '4':
+      case 4:
         this.assetService.addVehicle(postData).subscribe(data=>{
           if(data!=null){
               this.toastr.success(data.toString());
@@ -174,10 +174,10 @@ export class AssetsAddComponent implements OnInit {
           this.toastr.error(this.errorService.getErrorMessage(error.error));
         }); 
         break;
-      case '1':
-      case '3':
-      case '5':
-      case '6':
+      case 1:
+      case 3:
+      case 5:
+      case 6:
         this.assetService.addAsset(postData).subscribe(data=>{
           if(data!=null){
               this.toastr.success(data.toString());
@@ -199,8 +199,8 @@ export class AssetsAddComponent implements OnInit {
 
   getObject(file, photo){
     let asset;
-    switch (this.addAsset.get('IdCuenta').value) {
-      case '2':
+    switch (parseInt(this.addAsset.get('IdCuenta').value)) {
+      case 2:
         asset = {
           'IdCuenta': this.addAsset.get('IdCuenta').value,
           'IdClasificacion': this.addAsset.get('IdClasificacion').value,
@@ -229,7 +229,7 @@ export class AssetsAddComponent implements OnInit {
           'Edicion': this.addAsset.get('Edicion').value,
         }
         break;
-      case '4':
+      case 4:
         asset = {
           'IdCuenta': this.addAsset.get('IdCuenta').value,
           'IdClasificacion': this.addAsset.get('IdClasificacion').value,
@@ -259,10 +259,10 @@ export class AssetsAddComponent implements OnInit {
         }
         console.log(asset);
         break;
-      case '1':
-      case '3':
-      case '5':
-      case '6':
+      case 1:
+      case 3:
+      case 5:
+      case 6:
         asset = {
           'IdCuenta': this.addAsset.get('IdCuenta').value,
           'IdClasificacion': this.addAsset.get('IdClasificacion').value,

@@ -12,7 +12,6 @@
       <div class="EncabezadoForm shadow-X"><b>&nbsp;Datos Generales:</b></div>
       <div class="EstiloForm1">
       
-        
         <div class="row Espacio">
           <div class="margen col-sm-4"><label class="col-sm-6 control-label texto">Cuenta contable</label>
             <select class="form-control" formControlName="IdCuenta" [(ngModel)]="selected" (change)="chargeClasification($event.target.value)" required>
@@ -41,7 +40,7 @@
             <div class="esp">        
               <div class="dimensiones">
               <img *ngIf="origen" [src]="origen" src="" width="190px" height="181px" class="bordesImagen"> 
-              <h6 style="font-size:x-small" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Previsualización de la imagen**</h6>
+              <h6 style="font-size:x-small">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Previsualización de la imagen**</h6>
               </div>
               <label class="botonInputImage image">
                 <input class="custom-file-input" id="customFile" formControlName="Fotografia" type="file" accept="image/*" (change)="updateSource($event)">          

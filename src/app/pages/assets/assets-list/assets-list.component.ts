@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AssetsService } from 'src/app/core/http/assets.service';
 import { ErrorService } from 'src/app/core/http/error.service';
 import Swal from 'sweetalert2';
@@ -15,7 +16,8 @@ export class AssetsListComponent {
 
   constructor(
     private assetService: AssetsService,
-    private errorService: ErrorService
+    private errorService: ErrorService,
+    private router: Router
   ) { 
     this.showAll();
   }
@@ -38,8 +40,8 @@ export class AssetsListComponent {
 
   }
 
-  editAsset(){
-
+  editAsset(IdAsset:number){
+    this.router.navigate(['/Assets/Supplies/Edit/', IdAsset]);
   }
 
   changeStatus(){

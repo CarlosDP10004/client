@@ -53,6 +53,7 @@ import { BrandsEditComponent } from './pages/brands/brands-edit/brands-edit.comp
 
 import { NgSelectModule } from "@ng-select/ng-select";
 import { RoleEditComponent } from './pages/role/role-edit/role-edit.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -112,7 +113,8 @@ import { RoleEditComponent } from './pages/role/role-edit/role-edit.component';
       provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true
     },
     { provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true},
-    BsModalService
+    BsModalService,
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })

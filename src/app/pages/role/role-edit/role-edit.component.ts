@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
+import { map } from 'rxjs/operators';
 import { ErrorService } from 'src/app/core/http/error.service';
 import { RolesService } from 'src/app/core/http/roles.service';
 import Swal from 'sweetalert2';
@@ -44,13 +45,14 @@ export class RoleEditComponent implements OnInit {
       if (this.id !== undefined) {
         this.rolService.getRol(this.id).subscribe(data => {
           this.roleData = data;
+          
 
           this.rolService.getPermisosByRol(this.id).subscribe(data => {
             Object.assign(this.rolPermisos, data);
           }, error => { console.log('Error al obtener datos.'); });
 
           if (this.editRol!=null && this.roleData!=null) {
-            //this.editRol.controls['Permisos'].setValue(this.rolPermisos);
+            this.editRol.controls['Permisos'].setValue(this.rolPermisos);
             this.editRol.controls['NombreRol'].setValue(this.roleData.name);
           }
         }, error => { 

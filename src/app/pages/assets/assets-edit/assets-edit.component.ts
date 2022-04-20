@@ -199,8 +199,17 @@ export class AssetsEditComponent implements OnInit {
     });
   }
 
-  guardarActivo(){
-
+  async guardarActivo(){   
+    let postData = await this.getObject();   
+    let IdAsset = this.route.snapshot.paramMap.get("id"); 
+    this.assetService.editAsset(IdAsset, postData).subscribe(data => {       
+      if(data!=null){
+        this.toastr.success(data.toString());
+        this.router.navigate(['/Assets/Supplies']);
+      }
+    }, (error)=>{      
+      this.toastr.error(this.errorService.getErrorMessage(error.error));
+    });
   }
 
 
@@ -209,11 +218,12 @@ export class AssetsEditComponent implements OnInit {
     this.files.push(capturedFile);
   }
 
-  getObject(file, photo){
+  getObject(){
     let asset;
-    switch (this.editAsset.get('IdCuenta').value) {
-      case '2':
+    switch (parseInt(this.editAsset.get('IdCuenta').value)) {
+      case 2:
         asset = {
+          'IdEstado':this.editAsset.get('IdEstado').value,
           'IdCuenta': this.editAsset.get('IdCuenta').value,
           'IdClasificacion': this.editAsset.get('IdClasificacion').value,
           'IdMarca': this.editAsset.get('IdMarca').value,
@@ -222,11 +232,11 @@ export class AssetsEditComponent implements OnInit {
           'IdOrigen': this.editAsset.get('IdOrigen').value,
           'ValorCompra': this.editAsset.get('ValorCompra').value,
           'FechaCompra': this.editAsset.get('FechaCompra').value,
-          'IdArchivo': file,
+          'IdArchivo': 1,
           'Serie': this.editAsset.get('Serie').value,
           'IdProveedor': this.editAsset.get('IdProveedor').value,
           'LibreGestion': this.editAsset.get('LibreGestion').value,
-          'IdFotografia': photo,
+          'IdFotografia': 1,          
           'Placa': null,
           'Color': null,
           'NoMotor': null,
@@ -241,8 +251,9 @@ export class AssetsEditComponent implements OnInit {
           'Edicion': this.editAsset.get('Edicion').value,
         }
         break;
-      case '4':
+      case 4:
         asset = {
+          'IdEstado':this.editAsset.get('IdEstado').value,
           'IdCuenta': this.editAsset.get('IdCuenta').value,
           'IdClasificacion': this.editAsset.get('IdClasificacion').value,
           'IdMarca': this.editAsset.get('IdMarca').value,
@@ -251,11 +262,11 @@ export class AssetsEditComponent implements OnInit {
           'IdOrigen': this.editAsset.get('IdOrigen').value,
           'ValorCompra': this.editAsset.get('ValorCompra').value,
           'FechaCompra': this.editAsset.get('FechaCompra').value,
-          'IdArchivo': file,
+          'IdArchivo': 1,
           'Serie': this.editAsset.get('Serie').value,
           'IdProveedor': this.editAsset.get('IdProveedor').value,
           'LibreGestion': this.editAsset.get('LibreGestion').value,
-          'IdFotografia': photo,    
+          'IdFotografia': 1,    
           'Placa': this.editAsset.get('Placa').value,
           'Color': this.editAsset.get('Color').value,
           'NoMotor': this.editAsset.get('NoMotor').value,
@@ -271,11 +282,12 @@ export class AssetsEditComponent implements OnInit {
         }
         console.log(asset);
         break;
-      case '1':
-      case '3':
-      case '5':
-      case '6':
+      case 1:
+      case 3:
+      case 5:
+      case 6:
         asset = {
+          'IdEstado':this.editAsset.get('IdEstado').value,
           'IdCuenta': this.editAsset.get('IdCuenta').value,
           'IdClasificacion': this.editAsset.get('IdClasificacion').value,
           'IdMarca': this.editAsset.get('IdMarca').value,
@@ -284,11 +296,11 @@ export class AssetsEditComponent implements OnInit {
           'IdOrigen': this.editAsset.get('IdOrigen').value,
           'ValorCompra': this.editAsset.get('ValorCompra').value,
           'FechaCompra': this.editAsset.get('FechaCompra').value,
-          'IdArchivo': file,
+          'IdArchivo': 1,
           'Serie': this.editAsset.get('Serie').value,
           'IdProveedor': this.editAsset.get('IdProveedor').value,
           'LibreGestion': this.editAsset.get('LibreGestion').value,
-          'IdFotografia': photo,    
+          'IdFotografia': 1,    
           'Placa': null,
           'Color': null,
           'NoMotor': null,

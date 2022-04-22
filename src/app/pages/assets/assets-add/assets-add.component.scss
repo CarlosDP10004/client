@@ -50,6 +50,7 @@
     border-bottom-left-radius: 10px;
     padding-left:20px;
     padding-right: 20px;
+    margin-bottom: -65px;
 }
 
 .Espacio{
@@ -79,7 +80,7 @@
 
 textarea:focus, input:focus, input[type]:focus, select:focus {
     border-color: 3px solid #3bb2ee;
-    box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075)inset, 0 0 8px #3bb2ee;
+    box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075) inset, 0 0 8px #3bb2ee;
     outline: 0 none;
 }
 
@@ -94,13 +95,15 @@ textarea:focus, input:focus, input[type]:focus, select:focus {
 }
 
 .EspacioDiv{
-    margin-top: 30px;
+    margin-top: 30px;   
 }
 
 .image{
         input[type="file"] {
         display: none;
         }
+        margin-top: 5px;
+        margin-left: 18px;
 }
 
 .botonInputImage {
@@ -144,7 +147,7 @@ textarea:focus, input:focus, input[type]:focus, select:focus {
  .bordeCompra{
      border: 1px solid #ccc;
      border-radius: 5px;
-     height: 50px;
+     height: 50px;     
      margin-top: -10px;
  }
 
@@ -152,3 +155,35 @@ textarea:focus, input:focus, input[type]:focus, select:focus {
     margin-right: -20px;
     margin-top: 12px;
  }
+
+ .dimensiones{    
+    width: 194px;
+    height: 185px;
+    border: solid 2px black;
+ }
+
+ .esp{
+     margin-top: 10px;
+     margin-left: 900px;
+ }
+
+ .esp1{
+     margin-top: 20px;
+     margin-bottom: 50px;
+ }
+
+ .esp2{
+    margin-top: 60px;
+    margin-bottom: 10px;
+}
+ .ajuste{
+     margin-top: -185px;
+ }
+
+ .margen{
+     margin-right: 15px;
+ }
+
+ input[type=file] {
+    width: 600px;    
+    }

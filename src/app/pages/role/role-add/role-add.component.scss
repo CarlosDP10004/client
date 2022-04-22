@@ -11,16 +11,12 @@
     text-align: right;
 }
 
-.texto2{
-    text-align: left;
-}
-
 .fondo{
     color: white;
     background-color: #313945;
     margin-left: -2px;
     margin-top: -1px;
-    width: 1000px;
+    width: 701px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
 }
@@ -35,9 +31,8 @@
 }
 
 .modal-content{
-    width: 1000px;
-    height: 700px;
-    margin-left: -210px;
+    width: 700px;
+    height: 360px;    
 }
 
 .close {
@@ -47,6 +42,7 @@
 
 
 ::ng-deep .ng-select-container {
-    height: 50px !important;
+    height: auto !important;
     font-size: 0.8em!important;
+    overflow: auto;
   }

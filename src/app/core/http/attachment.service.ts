@@ -21,6 +21,11 @@ export class AttachmentService {
     return this.clienteHttp.post(API_URL + "subirAdjunto", files,{ headers: headers});
   }
 
+  updateAttachment(files: any, id: number){
+    const headers = new HttpHeaders().set('Authorization', `bearer ${this.userService.getToken()}`)
+    return this.clienteHttp.post(`${API_URL}actualizarAdjunto/${id}`, files,{ headers: headers});
+  }
+
   getImage(path: any){
     const headers = new HttpHeaders().set('Authorization', `bearer ${this.userService.getToken()}`)
     return this.clienteHttp.get(`${API_URL}imagenActivo/${path}` ,{ headers: headers});
@@ -28,5 +33,9 @@ export class AttachmentService {
 
   getPathImage(name: string){
     return API_URL + 'imagenActivo/'+ name;
+  }
+
+  downloadPDF(name: string){
+    return API_URL + 'pdfActivo/'+ name;
   }
 }

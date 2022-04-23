@@ -41,8 +41,9 @@ export class LoginComponent implements OnInit {
     this.userService.login(this.form.value).subscribe( data => {     
       this.router.navigate(['/Assets']);     
     }, (error)=>{ 
-      console.log(error);     
-      this.toastr.error(error);
+      console.log(this.errorService.getErrorMessage(error.error));     
+      this.toastr.error(this.errorService.getErrorMessage(error.error));
+
     });
   }
 

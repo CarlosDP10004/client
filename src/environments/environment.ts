@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   api_url: 'http://server-linux.eastus.cloudapp.azure.com:8080/api/'
+  
 };
 
 /*

@@ -53,7 +53,7 @@
   
           <div class="row Espacio ajuste">
             <div class="margen col-sm-4"><label class="col-sm-6 control-label texto">Cuenta contable</label>
-              <select class="form-control" formControlName="IdCuenta" [(ngModel)]="selected" (change)="chargeClasification($event.target.value)" required>
+              <select class="form-control" formControlName="IdCuenta" [(ngModel)]="selected" (change)="chargeClasification($event.target.value)" required disabled>
                 <option [value]="null" disabled selected>Selecciona la cuenta</option>
                 <option *ngFor="let item of accounts" [value]="item.IdCuenta">{{item.NombreCuenta}}</option>
               </select>
@@ -64,7 +64,7 @@
               </FONT>
             </div>
             <div class="col-sm-4"><label class="col-sm-2 control-label texto">Clasificación</label>
-              <select class="form-control" formControlName="IdClasificacion">
+              <select class="form-control" formControlName="IdClasificacion" disabled>
                 <option value="" hidden>Selecciona la clasificacion</option>
                 <option *ngFor="let item of clasifications" [value]="item.IdClasificacion">{{item.Descripcion}}</option>
               </select>
@@ -192,9 +192,9 @@
           <div class="row Espacio">
             <div class="col-sm-3"><label class="col-sm-10 control-label texto">Descargar Orden de compra</label>
             <div class="col-sm-3">
-              <button class="btn botonInputFile2">                
+              <a class="btn botonInputFile2" (click)="downloadPDF()" download="">                
               <img src="../../../assets/images/download.png" alt="Subir/Archivo" class="avatar" width="45" height="40">
-            </button>
+              </a>
           </div>
           </div>
             <div class="col-sm-6"><label class="col-sm-8 control-label texto">Orden de compra</label>

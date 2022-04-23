@@ -10,6 +10,7 @@ import { BrandService } from 'src/app/core/http/brand.service';
 import { ClasificationService } from 'src/app/core/http/clasification.service';
 import { ErrorService } from 'src/app/core/http/error.service';
 import { ProviderService } from 'src/app/core/http/provider.service';
+import { AssetModel } from 'src/app/models/asset';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -31,12 +32,16 @@ export class AssetsEditComponent implements OnInit {
   clasifications: any[] = [];
   selected: number;
   origen:string = '';
+  adjunto:any;
 
   image: any;
   files: any = [];
   idFile: number;
   images: any = [];
   idImage: number;
+
+  flagImage: number = 0;
+  flagFile: number = 0;
   event: EventEmitter<any>=new EventEmitter();
 
   constructor(
@@ -58,7 +63,14 @@ export class AssetsEditComponent implements OnInit {
     this.projectImage(event.target['files'][0]);
     const capturedFile = event.target['files'][0];
     this.images.push(capturedFile);
+    this.flagImage = 1;
   }  
+
+  getFile(event): any{  
+    const capturedFile = event.target['files'][0];
+    this.files.push(capturedFile);
+    this.flagFile = 1;
+  }
 
   projectImage(file: File) {
       let reader = new FileReader;      
@@ -185,8 +197,24 @@ export class AssetsEditComponent implements OnInit {
         this.editAsset.controls['FechaCompra'].setValue(this.datepipe.transform(this.assetData.FechaCompra, 'yyyy-MM-dd'));
         this.editAsset.controls['Descripcion'].setValue(this.assetData.Descripcion);
         this.editAsset.controls['LibreGestion'].setValue(this.assetData.LibreGestion);
-        //this.editAsset.controls['DocumentoCompra'].setValue(this.assetData.archivo.Ubicacion);
         this.origen = this.attachmentService.getPathImage(this.assetData.fotografia.Ubicacion);
+        if(this.assetData.IdCuenta == 2){
+          this.editAsset.controls['Autor'].setValue(this.assetData.patente.Autor);
+          this.editAsset.controls['Titulo'].setValue(this.assetData.patente.Titulo);
+          this.editAsset.controls['Editorial'].setValue(this.assetData.patente.Editorial);
+          this.editAsset.controls['Tomo'].setValue(this.assetData.patente.Tomo);
+          this.editAsset.controls['Edicion'].setValue(this.assetData.patente.Edicion);
+        }
+        if(this.assetData.IdCuenta == 4){
+          this.editAsset.controls['Placa'].setValue(this.assetData.vehiculo.Placa);
+          this.editAsset.controls['Color'].setValue(this.assetData.vehiculo.Color);
+          this.editAsset.controls['NoMotor'].setValue(this.assetData.vehiculo.NoMotor);
+          this.editAsset.controls['NoVIN'].setValue(this.assetData.vehiculo.NoVIN);
+          this.editAsset.controls['NoChasis'].setValue(this.assetData.vehiculo.NoChasis);
+          this.editAsset.controls['NoAsientos'].setValue(this.assetData.vehiculo.NoAsientos);
+          this.editAsset.controls['Anno'].setValue(this.assetData.vehiculo.Anno);
+        }
+
       }
     }, error => { 
       Swal.fire({
@@ -199,9 +227,13 @@ export class AssetsEditComponent implements OnInit {
     });
   }
 
-  async guardarActivo(){   
-    let postData = await this.getObject();   
+  async guardarActivo(){ 
     let IdAsset = this.route.snapshot.paramMap.get("id"); 
+    let aux = new AssetModel();  
+    let idNewImage: any = this.thereIsChange(this.flagFile) ? await this.uploadFile(1, IdAsset) : 0;
+    let idNewFile: any = this.thereIsChange(this.flagImage) ? await this.uploadImage(2, IdAsset) : 0;
+    let postData = await aux.getAsset(this.editAsset, idNewFile, idNewImage);
+    
     this.assetService.editAsset(IdAsset, postData).subscribe(data => {       
       if(data!=null){
         this.toastr.success(data.toString());
@@ -213,136 +245,62 @@ export class AssetsEditComponent implements OnInit {
   }
 
 
-  getFile(event): any{  
-    const capturedFile = event.target['files'][0];
-    this.files.push(capturedFile);
-  }
-
-  getObject(){
-    let asset;
-    switch (parseInt(this.editAsset.get('IdCuenta').value)) {
-      case 2:
-        asset = {
-          'IdEstado':this.editAsset.get('IdEstado').value,
-          'IdCuenta': this.editAsset.get('IdCuenta').value,
-          'IdClasificacion': this.editAsset.get('IdClasificacion').value,
-          'IdMarca': this.editAsset.get('IdMarca').value,
-          'Modelo': this.editAsset.get('Modelo').value,
-          'Descripcion': this.editAsset.get('Descripcion').value,
-          'IdOrigen': this.editAsset.get('IdOrigen').value,
-          'ValorCompra': this.editAsset.get('ValorCompra').value,
-          'FechaCompra': this.editAsset.get('FechaCompra').value,
-          'IdArchivo': 1,
-          'Serie': this.editAsset.get('Serie').value,
-          'IdProveedor': this.editAsset.get('IdProveedor').value,
-          'LibreGestion': this.editAsset.get('LibreGestion').value,
-          'IdFotografia': 1,          
-          'Placa': null,
-          'Color': null,
-          'NoMotor': null,
-          'NoVIN': null,
-          'NoChasis': null,
-          'NoAsientos': null,
-          'Anno': null,
-          'Autor': this.editAsset.get('Autor').value,
-          'Titulo': this.editAsset.get('Titulo').value,
-          'Editorial': this.editAsset.get('Editorial').value,
-          'Tomo': this.editAsset.get('Tomo').value,
-          'Edicion': this.editAsset.get('Edicion').value,
-        }
-        break;
-      case 4:
-        asset = {
-          'IdEstado':this.editAsset.get('IdEstado').value,
-          'IdCuenta': this.editAsset.get('IdCuenta').value,
-          'IdClasificacion': this.editAsset.get('IdClasificacion').value,
-          'IdMarca': this.editAsset.get('IdMarca').value,
-          'Modelo': this.editAsset.get('Modelo').value,
-          'Descripcion': this.editAsset.get('Descripcion').value,
-          'IdOrigen': this.editAsset.get('IdOrigen').value,
-          'ValorCompra': this.editAsset.get('ValorCompra').value,
-          'FechaCompra': this.editAsset.get('FechaCompra').value,
-          'IdArchivo': 1,
-          'Serie': this.editAsset.get('Serie').value,
-          'IdProveedor': this.editAsset.get('IdProveedor').value,
-          'LibreGestion': this.editAsset.get('LibreGestion').value,
-          'IdFotografia': 1,    
-          'Placa': this.editAsset.get('Placa').value,
-          'Color': this.editAsset.get('Color').value,
-          'NoMotor': this.editAsset.get('NoMotor').value,
-          'NoVIN': this.editAsset.get('NoVIN').value,
-          'NoChasis': this.editAsset.get('NoChasis').value,
-          'NoAsientos': this.editAsset.get('NoAsientos').value,
-          'Anno': this.editAsset.get('Anno').value,    
-          'Autor': null,
-          'Titulo': null,
-          'Editorial': null,
-          'Tomo': null,
-          'Edicion': null,
-        }
-        console.log(asset);
-        break;
-      case 1:
-      case 3:
-      case 5:
-      case 6:
-        asset = {
-          'IdEstado':this.editAsset.get('IdEstado').value,
-          'IdCuenta': this.editAsset.get('IdCuenta').value,
-          'IdClasificacion': this.editAsset.get('IdClasificacion').value,
-          'IdMarca': this.editAsset.get('IdMarca').value,
-          'Modelo': this.editAsset.get('Modelo').value,
-          'Descripcion': this.editAsset.get('Descripcion').value,
-          'IdOrigen': this.editAsset.get('IdOrigen').value,
-          'ValorCompra': this.editAsset.get('ValorCompra').value,
-          'FechaCompra': this.editAsset.get('FechaCompra').value,
-          'IdArchivo': 1,
-          'Serie': this.editAsset.get('Serie').value,
-          'IdProveedor': this.editAsset.get('IdProveedor').value,
-          'LibreGestion': this.editAsset.get('LibreGestion').value,
-          'IdFotografia': 1,    
-          'Placa': null,
-          'Color': null,
-          'NoMotor': null,
-          'NoVIN': null,
-          'NoChasis': null,
-          'NoAsientos': null,
-          'Anno': null,
-          'Autor': null,
-          'Titulo': null,
-          'Editorial': null,
-          'Tomo': null,
-          'Edicion': null,
-        }
-        break;
-      default:
-        console.log();
+  thereIsChange(flag: number){
+    if(flag == 1){
+      return true;
     }
-    return asset;
+    return false;
   }
 
-  uploadFile(tipo): any{ 
+
+  uploadFile(tipo, id): any{ 
     return new Promise((resolved, reject) => {
       const fileData = new FormData();    
       this.files.forEach(file =>{
         fileData.append('Adjunto', file)
       });
       fileData.append('Tipo', tipo)
-      this.attachmentService.uploadFiles(fileData).subscribe(data=>{
-      resolved(data);});
+      this.attachmentService.updateAttachment(fileData, id).subscribe(data=>{
+      resolved(data['IdArchivo']);});
     }); 
   }
 
-  uploadImage(tipo): any{ 
+  uploadImage(tipo, id): any{ 
     return new Promise((resolved, reject) => {
       const fileData = new FormData();    
       this.images.forEach(file =>{
         fileData.append('Adjunto', file)
       });
       fileData.append('Tipo', tipo)
-      this.attachmentService.uploadFiles(fileData).subscribe(data=>{
-      resolved(data);});
+      this.attachmentService.updateAttachment(fileData, id).subscribe(data=>{
+      resolved(data['IdFotografia']);});
     });  
+  }
+
+
+  downloadPDF(){
+    let IdAsset = this.route.snapshot.paramMap.get("id");
+    let pdf;
+    this.assetService.getAsset(IdAsset).subscribe(data => {       
+      pdf = data;
+      this.manageFile(data, pdf.archivo.Ubicacion);
+      this.toastr.success("Archivo descargado con éxito")
+    }, (error)=>{      
+      this.toastr.error(this.errorService.getErrorMessage(error.error));
+    });
+  }
+
+
+  manageFile(response: any, filename: string): void{
+    const dataType = response.type;
+    const binaryData = [];
+    binaryData.push(response);
+    const filePath = window.URL.createObjectURL(new Blob(binaryData, {type: dataType}));
+    const downloadLink = document.createElement('a');
+    downloadLink.href = filePath;
+    downloadLink.setAttribute('download', filename);
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
   }
 
   chargeClasification(value){

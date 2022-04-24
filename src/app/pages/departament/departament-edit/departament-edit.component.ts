@@ -38,7 +38,7 @@ export class DepartamentEditComponent implements OnInit {
       Swal.fire({
         icon: 'error',
         title: 'Error',
-        text: error,
+        text: this.errorService.getErrorMessage(error.error),
         confirmButtonColor: '#c9a892',
         confirmButtonText: 'Aceptar'
       }) 
@@ -58,7 +58,7 @@ export class DepartamentEditComponent implements OnInit {
           Swal.fire({
             icon: 'error',
             title: 'Error',
-            text: error,
+            text: this.errorService.getErrorMessage(error.error),
             confirmButtonColor: '#c9a892',
             confirmButtonText: 'Aceptar'
           })  

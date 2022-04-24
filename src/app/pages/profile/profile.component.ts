@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { AuthService } from 'src/app/core/http/auth.service';
+import { ErrorService } from 'src/app/core/http/error.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -18,6 +19,7 @@ export class ProfileComponent implements OnInit {
   
   constructor(
     private builder: FormBuilder,
+    private errorService: ErrorService,
     private authService: AuthService
   ) { 
     this.profileForm = this.builder.group({
@@ -29,7 +31,6 @@ export class ProfileComponent implements OnInit {
     });
 
     this.authService.me().subscribe(data => {
-        console.log(data);
         if (this.profileForm!=null && data!=null) {
           this.profileForm.controls['empleado'].setValue(data[0]['empleado']);
           this.profileForm.controls['nombrePlazaNominal'].setValue(data[0]['nombrePlazaNominal']);
@@ -42,7 +43,7 @@ export class ProfileComponent implements OnInit {
       Swal.fire({
         icon: 'error',
         title: 'Error',
-        text: error,
+        text: this.errorService.getErrorMessage(error.error),
         confirmButtonColor: '#c9a892',
         confirmButtonText: 'Aceptar'
       }) 
@@ -58,7 +59,6 @@ profile(){
   this.authService.me().subscribe(data => {
     this.authService.profile(data).subscribe(profile => {
       Object.assign(this.user, profile);
-      console.log(profile);
     },err => {
       console.log(err);
     });
@@ -66,7 +66,7 @@ profile(){
     Swal.fire({
       icon: 'error',
       title: 'Error',
-      text: error,
+      text: this.errorService.getErrorMessage(error.error),
       confirmButtonColor: '#c9a892',
       confirmButtonText: 'Aceptar'
     }) 
@@ -75,8 +75,8 @@ profile(){
 
 
 
-  updateSource($event: Event) {  
-    this.projectImage($event.target['files'][0]);
+updateSource($event: Event) {  
+  this.projectImage($event.target['files'][0]);
 }  
 origen:string = '';
 projectImage(file: File) {

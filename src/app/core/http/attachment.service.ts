@@ -36,6 +36,7 @@ export class AttachmentService {
   }
 
   downloadPDF(name: string){
-    return API_URL + 'pdfActivo/'+ name;
+    const headers = new HttpHeaders().set('Authorization', `bearer ${this.userService.getToken()}`)
+    return this.clienteHttp.get(`${API_URL}pdfActivo/${name}` ,{ headers: headers, responseType: 'blob' as 'json'});
   }
 }

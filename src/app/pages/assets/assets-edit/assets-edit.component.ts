@@ -283,8 +283,11 @@ export class AssetsEditComponent implements OnInit {
     let pdf;
     this.assetService.getAsset(IdAsset).subscribe(data => {       
       pdf = data;
-      this.manageFile(data, pdf.archivo.Ubicacion);
+      this.attachmentService.downloadPDF(pdf.archivo.Ubicacion).subscribe(response =>{
+      console.log(pdf.archivo.Ubicacion);
+      this.manageFile(response, pdf.archivo.Ubicacion);
       this.toastr.success("Archivo descargado con éxito")
+      });      
     }, (error)=>{      
       this.toastr.error(this.errorService.getErrorMessage(error.error));
     });
@@ -293,6 +296,7 @@ export class AssetsEditComponent implements OnInit {
 
   manageFile(response: any, filename: string): void{
     const dataType = response.type;
+    console.log(dataType);
     const binaryData = [];
     binaryData.push(response);
     const filePath = window.URL.createObjectURL(new Blob(binaryData, {type: dataType}));

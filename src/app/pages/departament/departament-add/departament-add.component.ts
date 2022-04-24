@@ -35,7 +35,7 @@ export class DepartamentAddComponent implements OnInit {
       Swal.fire({
         icon: 'error',
         title: 'Error',
-        text: error,
+        text: this.errorService.getErrorMessage(error.error),
         confirmButtonColor: '#c9a892',
         confirmButtonText: 'Aceptar'
       }) 
@@ -52,7 +52,6 @@ export class DepartamentAddComponent implements OnInit {
       'IdUsuario': this.addDepartament.get('IdUsuario').value
     };
     this.departamentService.addDepartament(postData).subscribe(data=>{
-      console.log(data);
       if(data!=null){
         this.event.emit('OK');
         this.toastr.success(data.toString());

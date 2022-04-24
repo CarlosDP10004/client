@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { DepartamentsService } from 'src/app/core/http/departaments.service';
+import { ErrorService } from 'src/app/core/http/error.service';
 import Swal from 'sweetalert2';
 import { DepartamentAddComponent } from '../departament-add/departament-add.component';
 import { DepartamentEditComponent } from '../departament-edit/departament-edit.component';
@@ -20,6 +21,7 @@ export class DepartamentListComponent {
   constructor(
     private bsModalService: BsModalService,
     private toastr: ToastrService,
+    private errorService: ErrorService,
     private departamentService: DepartamentsService
   ) {
     this.showAll();
@@ -33,7 +35,7 @@ export class DepartamentListComponent {
       Swal.fire({
         icon: 'error',
         title: 'Error',
-        text: error,
+        text: this.errorService.getErrorMessage(error.error),
         confirmButtonColor: '#c9a892',
         confirmButtonText: 'Aceptar'
       })
@@ -77,7 +79,7 @@ export class DepartamentListComponent {
           this.toastr.success(data.toString());
           this.showAll();
         }, (error)=>{
-          this.toastr.error(error.toString());
+          this.toastr.error(this.errorService.getErrorMessage(error.error));
         });
       }
     })

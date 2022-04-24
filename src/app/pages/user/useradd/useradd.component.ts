@@ -89,7 +89,6 @@ export class UseraddComponent implements OnInit {
         'Permisos': this.addUser.get('Permisos').value,
       };
       this.userService.addUserPermission(withPermission).subscribe(data=>{
-        console.log(data);
         if(data!=null){
           this.event.emit('OK');
           this.toastr.success(data.toString());
@@ -109,7 +108,6 @@ export class UseraddComponent implements OnInit {
       };
      
       this.userService.addUser(withRole).subscribe(data=>{
-        console.log(data);
         if(data!=null){
           this.event.emit('OK');
           this.toastr.success(data.toString());

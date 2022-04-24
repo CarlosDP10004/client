@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { ClasificationService } from 'src/app/core/http/clasification.service';
+import { ErrorService } from 'src/app/core/http/error.service';
 import Swal from 'sweetalert2';
 import { ClassificationAddComponent } from '../classification-add/classification-add.component';
 import { ClassificationEditComponent } from '../classification-edit/classification-edit.component';
@@ -20,6 +21,7 @@ export class ClassificationListComponent {
   constructor(
     private bsModalService: BsModalService,
     private clasificationService: ClasificationService,
+    private errorService: ErrorService,
     private toastr: ToastrService
   ) { 
     this.showAll();
@@ -32,7 +34,7 @@ export class ClassificationListComponent {
       Swal.fire({
         icon: 'error',
         title: 'Error',
-        text: error,
+        text: this.errorService.getErrorMessage(error.error),
         confirmButtonColor: '#c9a892',
         confirmButtonText: 'Aceptar'
       })

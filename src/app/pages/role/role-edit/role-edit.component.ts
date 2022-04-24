@@ -17,6 +17,7 @@ export class RoleEditComponent implements OnInit {
   editRol: FormGroup;
   permisos: any[] = [];
   rolPermisos: any[] = [];
+  permisosByRol: any[] = [];
   seleccion: any;
   event: EventEmitter<any>=new EventEmitter();
   id: number;
@@ -28,38 +29,36 @@ export class RoleEditComponent implements OnInit {
     private bsModalRef: BsModalRef,
     private toastr: ToastrService,
     private errorService: ErrorService
-  ) { 
+  ) { }
+
+  ngOnInit(): void {
+    this.init();
+  }
+
+  init(){ 
     this.editRol = this.builder.group({      
       NombreRol: new FormControl('', []),
       Permisos: new FormControl(this.builder.array([]))
     });
-
     this.rolService.getPermisos().subscribe(data => {
       Object.assign(this.permisos, data);
-    }, error => { console.log('Error al obtener datos.'); });
-
-    
+    }, error => { console.log('Error al obtener datos.'); });       
 
     this.rolService.IdRol.subscribe(data => {
       this.id = data;
       if (this.id !== undefined) {
-        this.rolService.getRol(this.id).subscribe(data => {
+        this.rolService.getRol(this.id).subscribe(async data => {
           this.roleData = data;
-          
-
-          this.rolService.getPermisosByRol(this.id).subscribe(data => {
-            Object.assign(this.rolPermisos, data);
-          }, error => { console.log('Error al obtener datos.'); });
-
           if (this.editRol!=null && this.roleData!=null) {
-            this.editRol.controls['Permisos'].setValue(this.rolPermisos);
+            this.permisosByRol = await this.getIds(this.id);
+            this.editRol.controls['Permisos'].setValue(this.permisosByRol);
             this.editRol.controls['NombreRol'].setValue(this.roleData.name);
           }
         }, error => { 
           Swal.fire({
             icon: 'error',
             title: 'Error',
-            text: error,
+            text: this.errorService.getErrorMessage(error.error),
             confirmButtonColor: '#c9a892',
             confirmButtonText: 'Aceptar'
           }) 
@@ -68,15 +67,11 @@ export class RoleEditComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-  }
-
   editarRol(){
     let role = {
       'NombreRol': this.editRol.get('NombreRol').value,
       'Permisos': this.editRol.get('Permisos').value,
     };
-
     this.rolService.editRole(this.id, role).subscribe(data => {      
         this.event.emit('OK');
         this.toastr.success(data.toString());
@@ -84,6 +79,16 @@ export class RoleEditComponent implements OnInit {
     }, (error)=>{      
       this.toastr.error(this.errorService.getErrorMessage(error.error));
     });
+  }
+
+  getIds(idRol): any{ 
+    return new Promise((resolved, reject) => {
+      this.rolService.getPermisosByRol(idRol).subscribe(data => {
+        resolved(data);
+      }, error => { 
+        reject(error);
+        console.log('Error al obtener datos.'); });      
+    }); 
   }
 
   onClose(){

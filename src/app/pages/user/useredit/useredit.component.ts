@@ -33,7 +33,13 @@ export class UsereditComponent implements OnInit {
     private bsModalRef: BsModalRef,
     private toastr: ToastrService,
     private errorService: ErrorService
-  ) { 
+  ) { }
+
+  ngOnInit(): void {
+    this.init();
+  }
+
+  init(){    
     this.editUser = this.builder.group({
       Roles: new FormControl(this.builder.array([])),
       Permisos: new FormControl(this.builder.array([])),
@@ -42,14 +48,13 @@ export class UsereditComponent implements OnInit {
       IdEmpleado: new FormControl('', []),
       Contrasenna: new FormControl('', [])
     });
-
     this.rolService.showAll().subscribe(data => {
       Object.assign(this.roles, data);
     }, error => { 
       Swal.fire({
         icon: 'error',
         title: 'Error',
-        text: error,
+        text: this.errorService.getErrorMessage(error.error),
         confirmButtonColor: '#c9a892',
         confirmButtonText: 'Aceptar'
       }) 
@@ -61,7 +66,7 @@ export class UsereditComponent implements OnInit {
       Swal.fire({
         icon: 'error',
         title: 'Error',
-        text: error,
+        text: this.errorService.getErrorMessage(error.error),
         confirmButtonColor: '#c9a892',
         confirmButtonText: 'Aceptar'
       }) 
@@ -73,7 +78,7 @@ export class UsereditComponent implements OnInit {
       Swal.fire({
         icon: 'error',
         title: 'Error',
-        text: error,
+        text: this.errorService.getErrorMessage(error.error),
         confirmButtonColor: '#c9a892',
         confirmButtonText: 'Aceptar'
       }) 
@@ -82,20 +87,20 @@ export class UsereditComponent implements OnInit {
     this.userService.IdUsuario.subscribe(data => {
       this.id = data;
       if (this.id !== undefined) {
-        this.userService.getUser(this.id).subscribe(data => {
+        this.userService.getUser(this.id).subscribe(async data => {
           this.userData = data;
           
           if (this.editUser!=null && this.userData!=null) {
-            this.editUser.controls['Roles'].setValue(this.userData.roles);
+            this.editUser.controls['Roles'].setValue(await this.getRolesIds(this.id));
+            this.editUser.controls['Permisos'].setValue(await this.getPermissionIds(this.id));
             this.editUser.controls['NombreUsuario'].setValue(this.userData.NombreUsuario);
             this.editUser.controls['IdEmpleado'].setValue(this.userData.IdEmpleado);
-            this.editUser.controls['Contrasenna'].setValue(this.userData.Contrasenna);
           }
         }, error => { 
           Swal.fire({
             icon: 'error',
             title: 'Error',
-            text: error,
+            text: this.errorService.getErrorMessage(error.error),
             confirmButtonColor: '#c9a892',
             confirmButtonText: 'Aceptar'
           }) 
@@ -104,12 +109,7 @@ export class UsereditComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    
-  }
-
   editarUsuario(){
-
     if(this.editUser.get('Tipo').value == 1){
       let withRole = {
         'NombreUsuario': this.editUser.get('NombreUsuario').value,
@@ -147,6 +147,26 @@ export class UsereditComponent implements OnInit {
 
   onClose() {
     this.bsModalRef.hide();
+  }
+
+
+  getRolesIds(idUser): any{ 
+    return new Promise((resolved, reject) => {
+      this.userService.getRolesByUser(idUser).subscribe(data => {
+        resolved(data);
+      }, error => { 
+        reject(error);
+        console.log('Error al obtener datos.'); });      
+    }); 
+  }
+  getPermissionIds(idUser): any{
+    return new Promise((resolved, reject) => {
+      this.userService.getPermisosByUser(idUser).subscribe(data => {
+        resolved(data);
+      }, error => { 
+        reject(error);
+        console.log('Error al obtener datos.'); });      
+    }); 
   }
 
 

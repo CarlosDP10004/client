@@ -38,7 +38,6 @@ export class UseraddComponent implements OnInit {
       Roles: new FormControl(this.builder.array([])),
       Permisos: new FormControl(this.builder.array([])) 
     })
-    console.log(this.options);
 
     this.rolService.showAll().subscribe(data => {
       Object.assign(this.roles, data);
@@ -46,7 +45,7 @@ export class UseraddComponent implements OnInit {
       Swal.fire({
         icon: 'error',
         title: 'Error',
-        text: error,
+        text: this.errorService.getErrorMessage(error.error),
         confirmButtonColor: '#c9a892',
         confirmButtonText: 'Aceptar'
       }) 
@@ -58,7 +57,7 @@ export class UseraddComponent implements OnInit {
       Swal.fire({
         icon: 'error',
         title: 'Error',
-        text: error,
+        text: this.errorService.getErrorMessage(error.error),
         confirmButtonColor: '#c9a892',
         confirmButtonText: 'Aceptar'
       }) 
@@ -70,7 +69,7 @@ export class UseraddComponent implements OnInit {
       Swal.fire({
         icon: 'error',
         title: 'Error',
-        text: error,
+        text: this.errorService.getErrorMessage(error.error),
         confirmButtonColor: '#c9a892',
         confirmButtonText: 'Aceptar'
       }) 
@@ -123,25 +122,6 @@ export class UseraddComponent implements OnInit {
 
     
   }
-
-/*
-  getErrorMessage(error){
-    return typeof error.message === 'string' || error.message instanceof String
-        ? error.message
-        : this.getValidations(error.message);
-  }
-
-  getValidations(message){
-    var messageString = "";
-    var properties = Object.getOwnPropertyNames(message);
-    for (let i = 0; i < properties.length; i++)
-    {
-        let currentProperty = properties[i];
-        //messageString += currentProperty + ": " + message[currentProperty][0];
-        messageString += `\n` + message[currentProperty][0];
-    }
-    return messageString;
-}*/
 
   onClose(){
     this.bsModalRef.hide();

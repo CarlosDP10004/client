@@ -70,5 +70,15 @@ export class UserService {
     return this.clienteHttp.get(`${API_URL}empleados`, { headers: headers});
   }
 
+  getPermisosByUser(id: number){
+    const headers = new HttpHeaders().set('Authorization', `bearer ${this.userService.getToken()}`)
+    return this.clienteHttp.get(`${API_URL}permisosUsuario/${id}`, { headers: headers})
+  }
+
+  getRolesByUser(id: number){
+    const headers = new HttpHeaders().set('Authorization', `bearer ${this.userService.getToken()}`)
+    return this.clienteHttp.get(`${API_URL}rolesUsuario/${id}`, { headers: headers})
+  }
+
 
 }

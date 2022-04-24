@@ -42,7 +42,7 @@
           <div class="form-group espacio" *ngIf="selected == 1">
             <label class="col-sm-2 control-label texto">Roles</label>
             <div class="col-sm-9">              
-              <ng-select formControlName="Roles" class="tamanio2" [(ngModel)]="seleccion" multiple="true" searchable="true">
+              <ng-select formControlName="Roles" class="tamanio2" multiple="true" searchable="true">
                 <ng-option *ngFor="let item of roles" [value]="item.id">{{item.name}}</ng-option>
              </ng-select>
             </div>
@@ -51,7 +51,7 @@
           <div class="form-group" *ngIf="selected == 2">
             <label class="col-sm-2 control-label texto">Permisos</label>
             <div class="col-sm-9">
-              <ng-select formControlName="Permisos" class="tamanio2" [(ngModel)]="seleccion"multiple="true"[searchable]="true">
+              <ng-select formControlName="Permisos" class="tamanio2" multiple="true"[searchable]="true">
                 <ng-option *ngFor="let item of permisos" [value]="item.id">{{item.name}}</ng-option>
              </ng-select>              
             </div>

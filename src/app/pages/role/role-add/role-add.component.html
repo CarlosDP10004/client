@@ -5,20 +5,16 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="onClose()"><span aria-hidden="true">&times;</span></button>
           <h4 class="modal-title sombra" id="add-modal-label"><img src="../../../assets/images/roles.png" alt="Logo de la DNM" class="Icono">&nbsp;&nbsp;Agregar rol</h4>
         </div>
-        <div class="modal-body">          
-          
-
+        <div class="modal-body">   
           <div class="form-group">
             <label class="col-sm-2 control-label texto">Nombre</label>
-            <div class="col-sm-8">
+            <div class="col-sm-10">
                 <input type="text" class="form-control" formControlName="NombreRol" />
             </div>
           </div>
-
-
           <div class="form-group">
             <label class="col-sm-2 control-label texto">Permisos</label>
-            <div class="row">
+            
               <div class="col-sm-8">
                 
                 <ng-select                                 
@@ -33,13 +29,8 @@
                </ng-select>
             <br>
             
-               
-            
               </div>
-              <div class="col-sm-6">
-
-              </div>
-            </div>            
+             
             <br>            
           </div>
 

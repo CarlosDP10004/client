@@ -145,10 +145,11 @@ textarea:focus, input:focus, input[type]:focus, select:focus {
  }
 
  .bordeCompra{
-     border: 1px solid #ccc;
-     border-radius: 5px;
-     height: 50px;     
-     margin-top: -10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    height: 50px;
+    width: 1150px;     
+    margin-top: -10px;    
  }
 
  .posicionInput{
@@ -187,3 +188,11 @@ textarea:focus, input:focus, input[type]:focus, select:focus {
  input[type=file] {
     width: 600px;    
     }
+
+.ubicacion{
+    margin-left: -120px;
+}
+
+.espacio3{
+    margin-left: 10px;
+}

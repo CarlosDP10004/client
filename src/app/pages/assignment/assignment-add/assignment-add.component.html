@@ -1,0 +1,60 @@
+<form [formGroup]="addAssignment" (ngSubmit)="guardarAsignacion()">
+    <button type="submit">Guardar</button>
+    <div class="row Espacio">
+      <div class="margen col-sm-4">
+        <label>Unidad:</label><br />
+        <select class="form-control" formControlName="IdUnidad" (change)="chargeWorkStation($event.target.value)">
+          <option value="" hidden>Selecciona la unidad</option>
+          <option *ngFor="let item of departaments" [value]="item.IdUnidad">{{item.NombreUnidad}}</option>
+        </select>
+    </div>
+    <div class="margen col-sm-4">
+        <label>Plaza:</label><br />
+        
+        <select class="form-control" formControlName="IdPlaza">
+          <option value="" hidden>Selecciona la plaza</option>
+          <option *ngFor="let item of workStations" [value]="item.IdPlaza">{{item.NombrePlaza}}</option>
+        </select>
+    </div>
+    <div class="margen col-sm-4">
+        <label>Estado:</label><br />
+        <select class="form-control" formControlName="IdEstado">
+          <option value="" hidden>Selecciona el Estado</option>
+          <option *ngFor="let item of status" [value]="item.IdEstado">{{item.NombreEstado}}</option>
+        </select>
+    </div>
+
+    <input type="file" class="ubicacion custom-file-input" id="customFile" formControlName="IdArchivo" (change)="getFile($event)"> 
+
+    </div>
+    
+
+    <a (click)="addAsset()" type="button">
+        + Añadir activo
+    </a>
+    <div formArrayName="ListaActivos" class="card">
+        <div  *ngFor="let asset of addAssignment.get('ListaActivos')['controls'];  let i=index " [formGroupName]="i" [formGroup]="asset" class="card-body">
+        <div>
+            <label>Cuenta:</label><br />
+            <select class="form-control" formControlName="IdCuenta">
+              <option value="" hidden>Selecciona la cuenta</option>
+              <option *ngFor="let item of accounts" [value]="item.IdCuenta">{{item.NombreCuenta}}</option>
+            </select>
+        </div>
+        <div>
+            <label>Clasificacion:</label><br />
+            <select class="form-control" formControlName="IdClasificacion">
+              <option value="" hidden>Selecciona la clasificacion</option>
+              <option *ngFor="let item of chargeClasification(addAssignment.controls['ListaActivos']?.value[i]?.IdCuenta)" [value]="item.IdClasificacion">{{item.Descripcion}}</option>
+            </select>
+        </div>
+        <div>
+            <label>Activo:</label><br />
+            <select class="form-control" formControlName="IdActivoFijo">
+              <option value="" hidden>Selecciona la codigo del activo</option>
+              <option *ngFor="let item of chargeAssets(addAssignment.controls['ListaActivos']?.value[i]?.IdClasificacion)" [value]="item.IdActivoFijo">{{item.CodigoAF}}</option>
+            </select>
+        </div>
+      </div>
+    </div>
+  </form>

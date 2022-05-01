@@ -54,4 +54,14 @@ export class WorkStationService {
     const headers = new HttpHeaders().set('Authorization', `bearer ${this.userService.getToken()}`)
     return this.clienteHttp.put(`${API_URL}plazas/changeStatus/${id}`, { headers: headers});
   }
+
+  getWorkStationByUnit(id: number){
+    const headers = new HttpHeaders().set('Authorization', `bearer ${this.userService.getToken()}`)
+    return this.clienteHttp.get(`${API_URL}plazas/byUnidad/${id}`, { headers: headers});
+  }
+
+  getWorkStationWithOutAssignment(id: number){
+    const headers = new HttpHeaders().set('Authorization', `bearer ${this.userService.getToken()}`)
+    return this.clienteHttp.get(`${API_URL}plazas/byUnidad/${id}`, { headers: headers});
+  }
 }

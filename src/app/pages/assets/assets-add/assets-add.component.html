@@ -29,6 +29,14 @@
               <option value="" hidden>Selecciona la clasificacion</option>
               <option *ngFor="let item of clasifications" [value]="item.IdClasificacion">{{item.Descripcion}}</option>
             </select>
+            <!--<ng-select                                 
+                formControlName="IdClasificacion" 
+                class="form-control" 
+                [searchable]="true"                
+                placeholder="Selecciona la clasificacion"
+                size="10">
+                  <ng-option *ngFor="let item of clasifications" [value]="item.IdClasificacion">{{item.Descripcion}}</ng-option>
+               </ng-select>-->
             <FONT COLOR="red">
               <small *ngIf="IdClasificacion.invalid && IdClasificacion.touched">
                 Complete el campo

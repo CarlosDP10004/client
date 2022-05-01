@@ -63,5 +63,10 @@ export class AssetsService {
     const headers = new HttpHeaders().set('Authorization', `bearer ${this.userService.getToken()}`)
     return this.clienteHttp.put(`${API_URL}activos/${id}`, asset, { headers: headers});
   }
+
+  getAssetList(status: string){
+    const headers = new HttpHeaders().set('Authorization', `bearer ${this.userService.getToken()}`)
+    return this.clienteHttp.get(`${API_URL}activosByEstado/${status}`, { headers: headers});
+  }
   
 }

@@ -54,4 +54,9 @@ export class DepartamentsService {
     const headers = new HttpHeaders().set('Authorization', `bearer ${this.userService.getToken()}`)
     return this.clienteHttp.put(`${API_URL}unidades/changeStatus/${id}`, { headers: headers});
   }
+
+  getDepartamentList(){
+    const headers = new HttpHeaders().set('Authorization', `bearer ${this.userService.getToken()}`)
+    return this.clienteHttp.get(`${API_URL}unidadesLista`, { headers: headers});
+  }
 }

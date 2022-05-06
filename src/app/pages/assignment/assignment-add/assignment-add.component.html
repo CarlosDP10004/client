@@ -32,6 +32,8 @@
     <a (click)="addAsset()" type="button">
         + Añadir activo
     </a>
+
+    <!-- Inicio de arreglo de activos -->
     <div formArrayName="ListaActivos" class="card">
         <div  *ngFor="let asset of addAssignment.get('ListaActivos')['controls'];  let i=index " [formGroupName]="i" [formGroup]="asset" class="card-body">
         <div>
@@ -57,4 +59,5 @@
         </div>
       </div>
     </div>
+    <!-- Fin de arreglo de activos -->
   </form>

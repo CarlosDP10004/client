@@ -65,12 +65,11 @@
     <span routerLink="/Assets/Assignments" class="btn btn-default btn-lg" style="float: right">Cancelar</span>
   </div>
   </div>
-
-    
+      
     <!-- Inicio de arreglo de activos -->
     <div formArrayName="ListaActivos" class="card">      
         <div  *ngFor="let asset of addAssignment.get('ListaActivos')['controls'];  let i=index " [formGroupName]="i" [formGroup]="asset" class="card-body EstiloFor2">
-          <div class="row Espacio">
+          <div class="row Espacio">            
           <div class="col-sm-4">
             <label class="col-sm-4 control-label texto">Cuenta:</label><br />
             <select class="form-control" formControlName="IdCuenta">
@@ -79,18 +78,23 @@
             </select>
         </div>
         <div class="col-sm-4">
-          <label class="col-sm-4 control-label texto">Clasificacion:</label><br />
+          <label class="col-sm3 control-label texto">Clasificación:</label><br />
             <select class="form-control" formControlName="IdClasificacion">
-              <option value="" hidden>Selecciona la clasificacion</option>
+              <option value="" hidden>Selecciona la clasificación</option>
               <option *ngFor="let item of chargeClasification(addAssignment.controls['ListaActivos']?.value[i]?.IdCuenta)" [value]="item.IdClasificacion">{{item.Descripcion}}</option>
             </select>
         </div>
-        <div class="col-sm-4">
-            <label>Activo:</label><br />
+        <div class="col-sm-3">
+          <label class="col-sm-4 control-label texto">Activo:</label><br />
             <select class="form-control" formControlName="IdActivoFijo">
-              <option value="" hidden>Selecciona la codigo del activo</option>
+              <option value="" hidden>Selecciona el código del activo</option>
               <option *ngFor="let item of chargeAssets(addAssignment.controls['ListaActivos']?.value[i]?.IdClasificacion)" [value]="item.IdActivoFijo">{{item.CodigoAF}}</option>
             </select>
+        </div>
+        <div class="col-sm-1">
+          <button type="submit" class="btn" style="float: right">                
+            <img src="..\assets\images\trash.png" class="color" width="23" height="23">
+          </button>
         </div>
       </div>
       </div>

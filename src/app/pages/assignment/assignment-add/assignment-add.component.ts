@@ -136,6 +136,10 @@ export class AssignmentAddComponent implements OnInit {
     this.ListaActivos.push(aux);
   }
 
+  removeItem() {
+    this.ListaActivos.removeAt(this.ListaActivos.length - 1);
+ }
+
   async guardarAsignacion(){
     let aux = new AssignmentModel();
     let archivo = await this.uploadFile(1);
@@ -196,6 +200,8 @@ export class AssignmentAddComponent implements OnInit {
       resolved(data);});
     }); 
   }
+
+  
 
   get ListaActivos(): any { return this.addAssignment.get('ListaActivos') as any; }
 

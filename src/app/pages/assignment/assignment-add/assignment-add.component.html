@@ -67,6 +67,7 @@
   </div>
       
     <!-- Inicio de arreglo de activos -->
+    <br>
     <div formArrayName="ListaActivos" class="card">      
         <div  *ngFor="let asset of addAssignment.get('ListaActivos')['controls'];  let i=index " [formGroupName]="i" [formGroup]="asset" class="card-body EstiloFor2">
           <div class="row Espacio">            
@@ -92,8 +93,8 @@
             </select>
         </div>
         <div class="col-sm-1">
-          <a type="submit" class="btn" style="float: right" (click)="removeItem()">                
-            <img src="..\assets\images\trash.png" class="color" width="23" height="23">
+          <a type="submit" class="btn alinear" style="float: right" (click)="removeItem()">                
+            <img src="..\assets\images\trash.png" width="23" height="23">
           </a>
         </div>
       </div>

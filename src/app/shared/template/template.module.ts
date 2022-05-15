@@ -8,18 +8,39 @@ import { FooterComponent } from '../footer/footer.component';
 import { HomeComponent } from 'src/app/pages/home/home.component';
 
 
+import { FilterPipe } from '../../pipes/filter.pipe';
+import { ThousandPipe } from '../../pipes/thousand.pipe';
+import { ActivoPipe } from '../../pipes/activo.pipe';
+import { UsuarioPipe } from '../../pipes/usuario.pipe';
+import { DatePipe } from '@angular/common';
+import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
+
 @NgModule({
   declarations: [
     TemplateComponent,
     SidebarComponent,
     FooterComponent,
-    HomeComponent
+    HomeComponent,
+    FilterPipe,
+    ThousandPipe,
+    ActivoPipe,
+    UsuarioPipe,
   ],
   imports: [
     CommonModule,
-    TemplateRoutingModule
+    TemplateRoutingModule,
+    ModalModule.forRoot(),
   ],
-  providers: [],
+  providers: [
+    BsModalService,  
+    DatePipe
+  ],  
+  exports: [
+    FilterPipe,
+    ThousandPipe,
+    ActivoPipe,
+    UsuarioPipe,
+  ],
   bootstrap: [TemplateComponent]
 })
 export class TemplateModule { }

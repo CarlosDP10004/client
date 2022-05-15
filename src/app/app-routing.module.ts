@@ -1,17 +1,18 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './core/guard/auth.guard';
-import { LoginComponent } from './pages/login/login.component';
 import { NotfoundComponent } from './shared/notfound/notfound.component';
 
 const routes: Routes = [
   {
     path: "",
-    component: LoginComponent
+    loadChildren: () =>
+    import('./pages/login/login.module').then(m => m.LoginModule)
   }, 
   {
     path: 'login',
-    component: LoginComponent
+    loadChildren: () =>
+    import('./pages/login/login.module').then(m => m.LoginModule)
   }, 
   {
     path: 'Assets',

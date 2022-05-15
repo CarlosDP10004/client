@@ -5,6 +5,7 @@ import { AssetsAddComponent } from 'src/app/pages/assets/assets-add/assets-add.c
 import { AssetsEditComponent } from 'src/app/pages/assets/assets-edit/assets-edit.component';
 import { AssetsListComponent } from 'src/app/pages/assets/assets-list/assets-list.component';
 import { AssignmentAddComponent } from 'src/app/pages/assignment/assignment-add/assignment-add.component';
+import { AssignmentEditComponent } from 'src/app/pages/assignment/assignment-edit/assignment-edit.component';
 import { AssignmentsListComponent } from 'src/app/pages/assignment/assignments-list/assignments-list.component';
 import { BrandsListComponent } from 'src/app/pages/brands/brands-list/brands-list.component';
 import { ClassificationListComponent } from 'src/app/pages/classification/classification-list/classification-list.component';
@@ -31,6 +32,7 @@ const routes: Routes = [
       {path: "Assets/Supplies/Edit/:id", component: AssetsEditComponent},
       {path: "Assets/Assignments", component: AssignmentsListComponent},
       {path: "Assets/Assignment/Add", component: AssignmentAddComponent},
+      {path: "Assets/Assignments/Edit/:id", component: AssignmentEditComponent},
       {path: "Assets/Users", component: UserListComponent},
       {path: "Assets/Roles", component: RoleListComponent},
       {path: "Assets/Providers", component: ProviderListComponent},

@@ -56,6 +56,7 @@ import { RoleEditComponent } from './pages/role/role-edit/role-edit.component';
 import { DatePipe } from '@angular/common';
 import { AssignmentAddComponent } from './pages/assignment/assignment-add/assignment-add.component';
 import { AssignmentsListComponent } from './pages/assignment/assignments-list/assignments-list.component';
+import { AssignmentEditComponent } from './pages/assignment/assignment-edit/assignment-edit.component';
 
 @NgModule({
   declarations: [
@@ -96,7 +97,8 @@ import { AssignmentsListComponent } from './pages/assignment/assignments-list/as
     BrandsEditComponent,
     RoleEditComponent,
     AssignmentAddComponent,
-    AssignmentsListComponent
+    AssignmentsListComponent,
+    AssignmentEditComponent
   ],
   imports: [
     BrowserModule,

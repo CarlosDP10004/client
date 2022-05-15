@@ -35,4 +35,14 @@ export class AssignmentService {
     return this.clienteHttp.post(API_URL + "asignaciones", assignment, { headers: headers});
   }
 
+  getAssignment(IdAssignment: any){
+    const headers = new HttpHeaders().set('Authorization', `bearer ${this.userService.getToken()}`)
+    return this.clienteHttp.get(`${API_URL}asignaciones/${IdAssignment}`,{ headers: headers})
+  }
+
+  editAssignment(id: any, assignment: Assignment){    
+    const headers = new HttpHeaders().set('Authorization', `bearer ${this.userService.getToken()}`)
+    return this.clienteHttp.put(`${API_URL}asignaciones/${id}`, assignment, { headers: headers});
+  }
+
 }

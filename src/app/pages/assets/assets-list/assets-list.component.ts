@@ -48,4 +48,8 @@ export class AssetsListComponent {
 
   }
 
+  watchTrace(IdAsset:number){
+
+  }
+
 }

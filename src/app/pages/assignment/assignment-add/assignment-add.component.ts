@@ -23,6 +23,7 @@ export class AssignmentAddComponent implements OnInit {
   departaments: any[] = [];
   workStations: any[] = [];
   status: any[] = [];
+  statusAssignments: any[] = [];
 
   accounts: any[] = [];
   clasifications: any[] = [];  
@@ -77,8 +78,9 @@ export class AssignmentAddComponent implements OnInit {
         confirmButtonText: 'Aceptar'
       }) 
     });
-    this.assetService.getEstados().subscribe(data => {
+    this.assetService.getEstados().subscribe(data => {      
       Object.assign(this.status, data);
+      this.getStatusByDefault();
     }, error => { 
       Swal.fire({
         icon: 'error',
@@ -113,7 +115,7 @@ export class AssignmentAddComponent implements OnInit {
       }) 
     });    
 
-    this.assetService.getAssetList('En Bodega').subscribe(data => {
+    this.assetService.getAssetList().subscribe(data => {
       Object.assign(this.assets, data)
     }, error => {
       Swal.fire({
@@ -124,7 +126,15 @@ export class AssignmentAddComponent implements OnInit {
         confirmButtonText: 'Aceptar'
       }) 
     });
+    
+  }
 
+  getStatusByDefault(){    
+    this.status.forEach(element => {
+      if(element.Modulo == 'Asignacion'){         
+        this.statusAssignments.push(element);          
+      }
+    });
   }
 
   addAsset() {
@@ -144,7 +154,6 @@ export class AssignmentAddComponent implements OnInit {
     let aux = new AssignmentModel();
     let archivo = await this.uploadFile(1);
     let post = aux.getAssignment(this.addAssignment, archivo['IdArchivo']);
-    console.log(post);
     this.assignmentService.addAssignment(post).subscribe(data => {
       if(data!=null){
         this.toastr.success(data.toString());
@@ -181,8 +190,8 @@ export class AssignmentAddComponent implements OnInit {
 
   chargeAssets(value){
     this.filterAsset = [];
-    this.assets.forEach(element => {
-      if(element.IdClasificacion == value){
+    this.assets.forEach(element => {      
+      if(element.IdClasificacion == value && element.NombreEstado == 'En Bodega'){
         this.filterAsset.push(element);
       }
     });

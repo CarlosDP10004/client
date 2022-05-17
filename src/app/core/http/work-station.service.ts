@@ -60,6 +60,11 @@ export class WorkStationService {
     return this.clienteHttp.get(`${API_URL}plazas/byUnidad/${id}`, { headers: headers});
   }
 
+  getWorkStationAssigned(id: number){
+    const headers = new HttpHeaders().set('Authorization', `bearer ${this.userService.getToken()}`)
+    return this.clienteHttp.get(`${API_URL}plazas/assigned/${id}`, { headers: headers});
+  }
+
   getWorkStationWithOutAssignment(id: number){
     const headers = new HttpHeaders().set('Authorization', `bearer ${this.userService.getToken()}`)
     return this.clienteHttp.get(`${API_URL}plazas/byUnidad/${id}`, { headers: headers});

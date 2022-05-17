@@ -31,7 +31,7 @@
           <label class="col-sm-4 control-label texto">Estado:</label><br />
           <select class="form-control" formControlName="IdEstado">
             <option value="" hidden>Selecciona el Estado</option>
-            <option *ngFor="let item of status" [value]="item.IdEstado">{{item.NombreEstado}}</option>
+            <option *ngFor="let item of statusAssignments" [value]="item.IdEstado">{{item.NombreEstado}}</option>
           </select>
       </div>
     </div>
@@ -65,9 +65,45 @@
       <span routerLink="/Assets/Assignments" class="btn btn-default btn-lg" style="float: right">Cancelar</span>
     </div>
     </div>
-        
-      <!-- Inicio de arreglo de activos -->
+
+      <!-- Inicio de arreglo de activos asignados -->
       <br>
+      <div formArrayName="ListaActivosAsignados" class="card">      
+        <div  *ngFor="let asset of editAssignment.get('ListaActivosAsignados')['controls'];  let i=index " [formGroupName]="i" [formGroup]="asset" class="card-body EstiloFor2">
+          <div class="row Espacio">            
+          <div class="col-sm-4">
+            <label class="col-sm-4 control-label texto">Cuenta:</label><br />
+            <select class="form-control" formControlName="IdCuenta" disabled>
+              <option value="" hidden>Selecciona la cuenta</option>
+              <option *ngFor="let item of accounts" [value]="item.IdCuenta">{{item.NombreCuenta}}</option>
+            </select>
+        </div>
+        <div class="col-sm-4">
+          <label class="col-sm3 control-label texto">Clasificación:</label><br />
+            <select class="form-control" formControlName="IdClasificacion" disabled>
+              <option value="" hidden>Selecciona la clasificación</option>
+              <option *ngFor="let item of chargeClasification(editAssignment.controls['ListaActivosAsignados']?.value[i]?.IdCuenta)" [value]="item.IdClasificacion">{{item.Descripcion}}</option>
+            </select>
+        </div>
+        <div class="col-sm-3">
+          <label class="col-sm-4 control-label texto">Activo:</label><br />
+            <select class="form-control" formControlName="IdActivoFijo" disabled>
+              <option value="" hidden>Selecciona el código del activo</option>
+              <option *ngFor="let item of chargeAssignedAssets(editAssignment.controls['ListaActivosAsignados']?.value[i]?.IdClasificacion)" [value]="item.IdActivoFijo">{{item.CodigoAF}}</option>
+            </select>
+        </div>
+        <div class="col-sm-1">
+          <a type="submit" class="btn alinear" style="float: right" (click)="removeAssignment(editAssignment.controls['ListaActivosAsignados']?.value[i]?.IdActivoFijo, i)">                
+            <img src="..\assets\images\trash.png" width="23" height="23">
+          </a>
+        </div>
+      </div>
+      </div>
+    </div>
+
+      <!-- Fin de arreglo de activos asignados -->        
+      <!-- Inicio de arreglo de activos -->
+      <!--<br>-->
       <div formArrayName="ListaActivos" class="card">      
           <div  *ngFor="let asset of editAssignment.get('ListaActivos')['controls'];  let i=index " [formGroupName]="i" [formGroup]="asset" class="card-body EstiloFor2">
             <div class="row Espacio">            
@@ -93,7 +129,7 @@
               </select>
           </div>
           <div class="col-sm-1">
-            <a type="submit" class="btn alinear" style="float: right" (click)="removeItem()">                
+            <a type="submit" class="btn alinear" style="float: right" (click)="removeItem(editAssignment.controls['ListaActivos']?.value[i]?.IdActivoFijo)">                
               <img src="..\assets\images\trash.png" width="23" height="23">
             </a>
           </div>

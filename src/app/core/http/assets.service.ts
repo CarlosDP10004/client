@@ -64,9 +64,14 @@ export class AssetsService {
     return this.clienteHttp.put(`${API_URL}activos/${id}`, asset, { headers: headers});
   }
 
-  getAssetList(status: string){
+  getAssetList(){
     const headers = new HttpHeaders().set('Authorization', `bearer ${this.userService.getToken()}`)
-    return this.clienteHttp.get(`${API_URL}activosByEstado/${status}`, { headers: headers});
+    return this.clienteHttp.get(`${API_URL}activosByEstado`, { headers: headers});
+  }
+
+  getTraceAsset(id: any){
+    const headers = new HttpHeaders().set('Authorization', `bearer ${this.userService.getToken()}`)
+    return this.clienteHttp.get(`${API_URL}historialActivo/${id}`, { headers: headers});
   }
   
 }

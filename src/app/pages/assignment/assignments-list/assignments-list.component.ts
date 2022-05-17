@@ -26,10 +26,8 @@ export class AssignmentsListComponent implements OnInit {
   }
 
   showAll(){
-    this.assignmentService.showAll().subscribe(data => {
-      
+    this.assignmentService.showAll().subscribe(data => {      
       Object.assign(this.assignments, data);
-      console.log(this.assignments);
     }, error => {
       Swal.fire({
         icon: 'error',
@@ -42,7 +40,7 @@ export class AssignmentsListComponent implements OnInit {
   }
 
   editAssignment(IdAssignment:number){
-    this.router.navigate(['/Assets/Supplies/Edit/', IdAssignment]);
+    this.router.navigate(['/Assets/Assignments/Edit/', IdAssignment]);
   }
 
   changeStatus(){

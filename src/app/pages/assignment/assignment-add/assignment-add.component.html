@@ -31,7 +31,7 @@
         <label class="col-sm-4 control-label texto">Estado:</label><br />
         <select class="form-control" formControlName="IdEstado">
           <option value="" hidden>Selecciona el Estado</option>
-          <option *ngFor="let item of status" [value]="item.IdEstado">{{item.NombreEstado}}</option>
+          <option *ngFor="let item of statusAssignments" [value]="item.IdEstado">{{item.NombreEstado}}</option>
         </select>
     </div>
   </div>

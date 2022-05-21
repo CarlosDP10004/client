@@ -25,18 +25,19 @@
             </FONT>
           </div>
           <div class="col-sm-4"><label class="col-sm-2 control-label texto">Clasificación</label>
-            <select class="form-control" formControlName="IdClasificacion">
+            <!--<select class="form-control" formControlName="IdClasificacion">
               <option value="" hidden>Selecciona la clasificacion</option>
               <option *ngFor="let item of clasifications" [value]="item.IdClasificacion">{{item.Descripcion}}</option>
-            </select>
-            <!--<ng-select                                 
+            </select>-->
+            <ng-select                                 
                 formControlName="IdClasificacion" 
-                class="form-control" 
+                class="tamanio2" 
+                [(ngModel)]="seleccion"
                 [searchable]="true"                
-                placeholder="Selecciona la clasificacion"
+                placeholder="Selecciona la clasificación"
                 size="10">
                   <ng-option *ngFor="let item of clasifications" [value]="item.IdClasificacion">{{item.Descripcion}}</ng-option>
-               </ng-select>-->
+               </ng-select>
             <FONT COLOR="red">
               <small *ngIf="IdClasificacion.invalid && IdClasificacion.touched">
                 Complete el campo

@@ -1,0 +1,16 @@
+<div class="container">
+    <ul>
+        <li *ngFor="let item of trace">
+            <span></span>
+            <div>
+                <div class="title">{{item.CodigoAF}}</div>
+                <div class="type">{{item.Comentarios}}</div>
+            </div>
+            <span class="number">            
+                <span>{{item.FechaAccion | date:'dd/MM/yyyy'}}</span>
+            </span>  
+        </li>
+    </ul>
+</div>  
+
+

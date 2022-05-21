@@ -62,6 +62,11 @@ const routes: Routes = [
         path: "Assets/Work-Stations", 
         loadChildren: () =>
         import('../../pages/work-station/work-station.module').then(m => m.WorkStationModule)
+      },      
+      {
+        path: "Assets/Settings", 
+        loadChildren: () =>
+        import('../../pages/settings/settings.module').then(m => m.SettingsModule)
       },
       {
         path: "Unauthorized", 

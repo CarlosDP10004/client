@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AccountService } from 'src/app/core/http/account.service';
@@ -34,6 +34,8 @@ export class AssetsAddComponent implements OnInit {
   images: any = [];
   idImage: number;
   event: EventEmitter<any>=new EventEmitter();
+  value:any = {};
+  seleccion: any;
 
   constructor(
     private formBuilder:FormBuilder,     
@@ -76,6 +78,7 @@ export class AssetsAddComponent implements OnInit {
     this.addAsset = this.formBuilder.group({
       IdCuenta:['',[Validators.required]],
       IdClasificacion:['',[Validators.required]],
+      //IdClasificacion: new FormControl(this.formBuilder.array([])),
       IdMarca:['',[Validators.required]],
       Modelo:['',[Validators.required]],
       Descripcion:['',[Validators.required]],
@@ -209,6 +212,10 @@ export class AssetsAddComponent implements OnInit {
         confirmButtonText: 'Aceptar'
       }) 
     });
+  }
+
+  public refreshValue(value:any):void {
+    this.value = value;
   }
 
   get IdCuenta():AbstractControl{return this.addAsset.get('IdCuenta');}

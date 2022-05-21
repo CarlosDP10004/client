@@ -49,7 +49,7 @@ export class AssetsListComponent {
   }
 
   watchTrace(IdAsset:number){
-
+    this.router.navigate(['/Assets/Supplies/Timeline/', IdAsset]);
   }
 
 }

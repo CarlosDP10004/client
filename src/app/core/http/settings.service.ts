@@ -46,6 +46,12 @@ export class SettingsService {
     return this.clienteHttp.get(`${API_URL}mostrarHome`, { headers: headers});
   }
 
+
+  getTitle(){    
+    const headers = new HttpHeaders().set('Authorization', `bearer ${this.userService.getToken()}`)
+    return this.clienteHttp.get(`${API_URL}mostrarTitulo`, { headers: headers});
+  }
+
   
   
 }

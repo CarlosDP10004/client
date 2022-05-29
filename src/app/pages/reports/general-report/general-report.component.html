@@ -1,0 +1,67 @@
+<form [formGroup]="filters" (ngSubmit)="getReport()">
+
+    <div class="row Espacio">
+        <div class="margen col-sm-4"><label class="col-sm-2 control-label texto">Modelo</label>
+          <input type="date" class="form-control"  formControlName="Desde">          
+        </div>
+
+        <div class="col-sm-4"><label class="col-sm-2 control-label texto">Serie</label>
+          <input type="date" class="form-control"  formControlName="Hasta">          
+        </div>
+    </div> 
+
+    <button type="submit" class="espacio3 btn btn-primary btn-lg" style="float: right">Generar reporte</button>        
+    <span routerLink="/Assets" class="btn btn-default btn-lg" style="float: right">Cancelar</span>
+
+</form>
+
+
+
+<div class="container" *ngIf="showReport">    
+    <div class="row">
+      <div id="htmlData">
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <div [innerHtml]="Titulo"></div>
+        <br/>
+        <br/>
+        <h2>ADMINISTRACIÓN DE BIENES INSTITUCIONALES</h2>
+        <h3>REPORTE GENERAL DE ACTIVO FIJO INSTITUCIONAL</h3>
+        <br/>
+        <br/>
+        <h3> Desde: {{desde | date:'dd/MM/yyyy'}}  Hasta: {{hasta | date:'dd/MM/yyyy'}}</h3>
+        <table class="table table-bordered mt-4">
+          <tr class="table-primary">
+            <th>N° Inventario</th>
+            <th>Nombre</th>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>Serie</th>
+            <th>Unidad</th>
+            <th>Responsable</th>
+            <th>Precio Adquisición</th>
+            <th>Fecha Adquisición</th>
+          </tr>
+          <tr *ngFor="let item of response">
+            <th>{{item.CodigoAF}}</th>
+            <td>{{item.Descripcion}}</td>
+            <td>{{item.NombreMarca}}</td> 
+            <td>{{item.Modelo}}</td>
+            <td>{{item.Serie}}</td>
+            <td>{{item.NombreUnidad}}</td>
+            <td>{{item.NombreUsuario}}</td>
+            <td>{{item.ValorCompra}}</td>
+            <td>{{item.FechaCompra | date:'dd/MM/yyyy'}}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div>
+        <button class="btn btn-primary btn-lg" (click)="downloadPDF()">Descargar PDF</button>
+    </div>
+  </div>
+  
+  
+  

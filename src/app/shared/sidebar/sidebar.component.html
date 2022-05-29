@@ -1,7 +1,8 @@
 <div class="sidebar index">
   <div class="row iconoSide">
     <div class="col-sm-4 Imagen">
-      <img src="../../../assets/images/DNM_logo.ico" alt="Logo de la DNM" class="ImagenHome">
+      <!--<img src="../../../assets/images/DNM_logo.ico" alt="Logo de la DNM" class="ImagenHome">-->
+      <img *ngIf="origen" [src]="origen" src="" alt="Logo de la DNM" class="ImagenHome"> 
     </div>
     <div class="col-sm-8">
       <a class="active TituloSidebar TextoSidebar" >Administración de activo fijo</a>  

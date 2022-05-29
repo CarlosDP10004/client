@@ -36,6 +36,8 @@ export class AssetsAddComponent implements OnInit {
   event: EventEmitter<any>=new EventEmitter();
   value:any = {};
   seleccion: any;
+  seleccion2:any = {};
+  seleccion3:any = {};
 
   constructor(
     private formBuilder:FormBuilder,     

@@ -11,22 +11,35 @@
     <form class="form-horizontal" [formGroup]="editSetting" (ngSubmit)="guardarConfiguracion()">      
       <div class="EncabezadoForm shadow-X"><b>&nbsp;Datos Generales:</b>
       </div>
-      <div class="EstiloForm1"> 
+      <div class="EstiloForm1">
+
         <div class="row Espacio">
 
-          <label class="col-sm-12 control-label texto2">Tipo</label>
-          <input type="text" class="form-control" placeholder="Tipo de configuración" formControlName="Tipo" disabled>
-
-          <label class="col-sm-12 control-label texto2">Nombre</label>
-          <input type="text" class="form-control" placeholder="Tipo de configuración" formControlName="Nombre" disabled>
-
-          <label class="col-sm-12 control-label texto2">Descripción</label>
-          <input type="text" class="form-control" placeholder="Tipo de configuración" formControlName="Descripcion" disabled>
-
-
-          <div class="card esp2" *ngIf="tipo == 'Entero'">
-            <input type="text" class="form-control" placeholder="Valor entero" formControlName="ValorEntero">
+          <div class="col-sm-2">
+            <label class="col-sm-2 control-label texto2">Tipo</label>
+            <input type="text" class="form-control color2" placeholder="Tipo de configuración" formControlName="Tipo" disabled>            
           </div>
+
+          <div class="col-sm-4">
+            <label class="col-sm-2 control-label texto2">Nombre</label>
+            <input type="text" class="form-control color2" placeholder="Tipo de configuración" formControlName="Nombre" disabled>            
+          </div>
+
+          <div class="col-sm-6">
+            <label class="col-sm-4 control-label texto2">Descripción</label>
+            <input type="text" class="form-control color2" placeholder="Tipo de configuración" formControlName="Descripcion" disabled>            
+          </div>        
+
+        </div>
+
+        <div class="row Espacio">    
+
+          <div class="card esp2 col-sm-4" *ngIf="tipo == 'Entero'">
+            <label class="col-sm-2 control-label texto2">Valor</label>
+            <input type="text" class="color form-control" placeholder="Valor entero" formControlName="ValorEntero">
+          </div>
+          
+        </div>  
 
           <div class="card esp2" *ngIf="tipo == 'Imagen'">
             <!--<input type="text" class="form-control" placeholder="Valor entero" formControlName="ValorImagen">            -->
@@ -35,7 +48,7 @@
                 <label class="botonInputFile file">
                 <div class="row bordeCompra">
                   <div class="col-sm-2 posicionIcono1">
-                    <img src="../../../../assets/images/photos.png" alt="Subir/Archivo" class="avatar" width="40" height="40">
+                    <img src="../../../../assets/images/factura.png" alt="Subir/Archivo" class="avatar" width="40" height="40">
                   </div>
                   <div class="col-sm-6 posicionInput">
                   <input type="file" class="ubicacion custom-file-input" id="customFile" formControlName="ValorImagen" (change)="getFile($event)">              
@@ -58,23 +71,17 @@
           </div>
 
           <div class="card esp2" *ngIf="tipo == 'Texto'">
-            <ckeditor formControlName="ValorCadena"></ckeditor>
-          </div>
-          
-
-        </div>   
-        
-        <div class="row Espacio">
-              
-        </div>  
-        
-             
+            <ckeditor            
+            formControlName="ValorCadena">
+          </ckeditor>
+          </div>   
       </div>
+      
 
 <!-- Hasta aqui Datos Generales -->
 
      
-      <div class="footer">        
+      <div class="footer esp4">               
         <button type="submit" class="espacio3 btn btn-primary btn-lg" style="float: right">Guardar</button>
         <span routerLink="/Assets/Settings" class="btn btn-default btn-lg" style="float: right">Cancelar</span>
       </div>

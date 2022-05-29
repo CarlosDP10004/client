@@ -1,7 +1,8 @@
 <div class="sidebar index">
   <div class="row iconoSide">
     <div class="col-sm-4 Imagen">
-      <img src="../../../assets/images/DNM_logo.ico" alt="Logo de la DNM" class="ImagenHome">
+      <!--<img src="../../../assets/images/DNM_logo.ico" alt="Logo de la DNM" class="ImagenHome">-->
+      <img *ngIf="origen" [src]="origen" src="" alt="Logo de la DNM" class="ImagenHome"> 
     </div>
     <div class="col-sm-8">
       <a class="active TituloSidebar TextoSidebar" >Administración de activo fijo</a>  
@@ -55,8 +56,8 @@
 
   <nav class="navbar navbar-default"> 
     <ul class="nav navbar-nav">          
-        <a class="dropdown-toggle shadow-X" data-toggle="dropdown" routerLink="/Assets/Assignment/Add" >
-          <img src="../../../assets/images/inventario.png" alt="Logo de la DNM" class="Icono">&nbsp;&nbsp;&nbsp;<b>Inventario</b>
+        <a class="dropdown-toggle shadow-X" data-toggle="dropdown" routerLink="/Assets/Reports/General" >
+          <img src="../../../assets/images/inventario.png" alt="Logo de la DNM" class="Icono">&nbsp;&nbsp;&nbsp;<b>Reportes</b>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </a>

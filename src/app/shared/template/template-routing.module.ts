@@ -62,6 +62,31 @@ const routes: Routes = [
         path: "Assets/Work-Stations", 
         loadChildren: () =>
         import('../../pages/work-station/work-station.module').then(m => m.WorkStationModule)
+      },      
+      {
+        path: "Assets/Settings", 
+        loadChildren: () =>
+        import('../../pages/settings/settings.module').then(m => m.SettingsModule)
+      },
+      {
+        path: "Assets/Discharges", 
+        loadChildren: () =>
+        import('../../pages/discharges/discharges.module').then(m => m.DischargesModule)
+      },
+      {
+        path: "Assets/Departures", 
+        loadChildren: () =>
+        import('../../pages/departures/departures.module').then(m => m.DeparturesModule)
+      },
+      {
+        path: "Assets/External-Loans", 
+        loadChildren: () =>
+        import('../../pages/external-loans/external-loans.module').then(m => m.ExternalLoansModule)
+      },
+      {
+        path: "Assets/Internal-Loans", 
+        loadChildren: () =>
+        import('../../pages/internal-loans/internal-loans.module').then(m => m.InternalLoansModule)
       },
       {
         path: "Unauthorized", 

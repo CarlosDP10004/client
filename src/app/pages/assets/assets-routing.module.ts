@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AssetsAddComponent } from './assets-add/assets-add.component';
 import { AssetsEditComponent } from './assets-edit/assets-edit.component';
 import { AssetsListComponent } from './assets-list/assets-list.component';
+import { AssetsTimelineComponent } from './assets-timeline/assets-timeline.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path: "Edit/:id", 
     component: AssetsEditComponent
+  },
+  {
+    path: "Timeline/:id", 
+    component: AssetsTimelineComponent
   },
 ];
 

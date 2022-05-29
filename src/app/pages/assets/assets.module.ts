@@ -8,7 +8,9 @@ import { AssetsAddComponent } from './assets-add/assets-add.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { NgSelectModule } from "@ng-select/ng-select";
 import { TemplateModule } from 'src/app/shared/template/template.module';
+import { AssetsTimelineComponent } from './assets-timeline/assets-timeline.component';
 
 
 @NgModule({
@@ -16,6 +18,7 @@ import { TemplateModule } from 'src/app/shared/template/template.module';
     AssetsEditComponent,
     AssetsListComponent,
     AssetsAddComponent,
+    AssetsTimelineComponent,
   ],
   imports: [
     CommonModule,
@@ -23,7 +26,8 @@ import { TemplateModule } from 'src/app/shared/template/template.module';
     FormsModule,
     NgxPaginationModule,
     ReactiveFormsModule,
-    TemplateModule
+    TemplateModule,
+    NgSelectModule
   ]
 })
 export class AssetsModule { }

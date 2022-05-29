@@ -1,0 +1,83 @@
+<div role="document">
+  <div class="TituloIndex">
+    <h1 class="EstiloIndex col-sm-12">
+      <hr>
+        <b>Edición de configuraciones.</b>
+        <hr>
+    </h1>  
+</div>
+<!-- Datos Generales -->
+  <div class="EspacioDiv">
+    <form class="form-horizontal" [formGroup]="editSetting" (ngSubmit)="guardarConfiguracion()">      
+      <div class="EncabezadoForm shadow-X"><b>&nbsp;Datos Generales:</b>
+      </div>
+      <div class="EstiloForm1"> 
+        <div class="row Espacio">
+
+          <label class="col-sm-12 control-label texto2">Tipo</label>
+          <input type="text" class="form-control" placeholder="Tipo de configuración" formControlName="Tipo" disabled>
+
+          <label class="col-sm-12 control-label texto2">Nombre</label>
+          <input type="text" class="form-control" placeholder="Tipo de configuración" formControlName="Nombre" disabled>
+
+          <label class="col-sm-12 control-label texto2">Descripción</label>
+          <input type="text" class="form-control" placeholder="Tipo de configuración" formControlName="Descripcion" disabled>
+
+
+          <div class="card esp2" *ngIf="tipo == 'Entero'">
+            <input type="text" class="form-control" placeholder="Valor entero" formControlName="ValorEntero">
+          </div>
+
+          <div class="card esp2" *ngIf="tipo == 'Imagen'">
+            <!--<input type="text" class="form-control" placeholder="Valor entero" formControlName="ValorImagen">            -->
+            <div class="row Espacio">
+              <div class="col-sm-12"><label class="col-sm-12 control-label texto">Logotipo</label>
+                <label class="botonInputFile file">
+                <div class="row bordeCompra">
+                  <div class="col-sm-2 posicionIcono1">
+                    <img src="../../../../assets/images/photos.png" alt="Subir/Archivo" class="avatar" width="40" height="40">
+                  </div>
+                  <div class="col-sm-6 posicionInput">
+                  <input type="file" class="ubicacion custom-file-input" id="customFile" formControlName="ValorImagen" (change)="getFile($event)">              
+                </div>            
+              </div>
+              </label>
+              </div>
+            </div> 
+            <!--<label class="botonInputImage image">
+              <input class="custom-file-input" id="customFile" formControlName="ValorImagen" type="file" accept="image/*" (change)="updateSource($event)">          
+              <div class="row">
+                <div class="col-sm-2 posicionIcono2">
+                  <img src="../../../assets/images/photos.png" alt="Subir/Archivo" class="avatar" width="30" height="30">
+                </div>
+                <div class="col-sm-8">
+                  <h6><b>Subir Imagen</b></h6>
+                </div>
+              </div>
+            </label>-->
+          </div>
+
+          <div class="card esp2" *ngIf="tipo == 'Texto'">
+            <ckeditor formControlName="ValorCadena"></ckeditor>
+          </div>
+          
+
+        </div>   
+        
+        <div class="row Espacio">
+              
+        </div>  
+        
+             
+      </div>
+
+<!-- Hasta aqui Datos Generales -->
+
+     
+      <div class="footer">        
+        <button type="submit" class="espacio3 btn btn-primary btn-lg" style="float: right">Guardar</button>
+        <span routerLink="/Assets/Settings" class="btn btn-default btn-lg" style="float: right">Cancelar</span>
+      </div>
+    </form>
+  </div>
+

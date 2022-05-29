@@ -8,12 +8,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { TemplateModule } from 'src/app/shared/template/template.module';
+import { CKEditorModule } from 'ng2-ckeditor';
+//import { CKEditorModule } from 'ng2-ckeditor';
+
+//import { CKEditorModule } from '@ckeditor/ckeditor5-build-classic';
+
+
 
 
 @NgModule({
   declarations: [
     SettingsListComponent,
-    SettingsEditComponent
+    SettingsEditComponent,
   ],
   imports: [
     CommonModule,
@@ -22,7 +28,8 @@ import { TemplateModule } from 'src/app/shared/template/template.module';
     NgxPaginationModule,
     ReactiveFormsModule,
     NgSelectModule,
-    TemplateModule
+    TemplateModule,
+    CKEditorModule
   ]
 })
 export class SettingsModule { }

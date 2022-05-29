@@ -1,0 +1,135 @@
+<div class="TituloIndex">
+    <h1 class="EstiloIndex col-sm-12">
+      <hr>
+        <b>Descargo de activos fijos.</b>
+        <hr>
+    </h1>  
+  </div>
+  <br>
+  
+  <form [formGroup]="addRequest" (ngSubmit)="guardarSolicitud()">
+    <div class="EncabezadoForm shadow-X"><b>&nbsp;Datos Generales</b></div>
+    <div class="EstiloForm1">
+      <div class="row Espacio">
+
+        <div class="col-sm-4">
+          <label class="col-sm-4 control-label texto">Tipo</label><br />        
+          <input class="form-control" formControlName="Tipo" disabled/>
+        </div>
+
+        <div class="col-sm-4">
+          <label class="col-sm-4 control-label texto">Fecha actual</label><br />
+          <input type="date" class="form-control" formControlName="FechaActual"  disabled/>
+        </div>              
+      
+        <div class="col-sm-4">
+            <label class="col-sm-4 control-label texto">Estado</label><br />
+            <input class="form-control" formControlName="IdEstado" disabled/>            
+        </div>
+      </div>
+
+      <div class="row Espacio">
+
+        <div class="col-sm-4">
+          <label class="col-sm-4 control-label texto">Unidad</label><br /> 
+          <ng-select formControlName="IdUnidad" class="tamanio2" [searchable]="true" placeholder="Selecciona la unidad" size="10">
+            <ng-option *ngFor="let item of departaments" [value]="item.IdUnidad">{{item.NombreUnidad}}</ng-option>
+          </ng-select>
+        </div>  
+
+        <div class="col-sm-4">
+          <label class="col-sm-4 control-label texto">Solicitante</label><br />
+          <input class="form-control" formControlName="Solicitante"/>          
+      </div>
+
+      <div class="col-sm-4">
+        <label class="col-sm-2 control-label texto">Estado</label>
+        <ng-select formControlName="IdEstadoSolicitado" class="tamanio2" [searchable]="true" placeholder="Selecciona la unidad" size="10">
+            <ng-option *ngFor="let item of statusRequest" [value]="item.IdEstado">{{item.NombreEstado}}</ng-option>
+        </ng-select>
+      </div>     
+      
+        
+      </div>
+
+      <div class="row Espacio">
+        <div class="col-sm-2"><label class="col-sm-12 control-label texto2">Fecha para hacer descargo</label>
+          <input type="date" class="form-control" placeholder="Fecha de compra" formControlName="FechaSolicitud">          
+        </div>    
+      </div>
+
+      <div class="row Espacio">
+        <div class="col-sm-12">
+        <label class="col-sm-2 control-label texto">Motivo</label>         
+          <textarea type="text" rows="2" class="form-control" placeholder="Motivo" formControlName="Motivo"></textarea>         
+        </div>     
+      </div>
+
+      <div class="row Espacio">
+        <div class="col-sm-12">
+        <label class="col-sm-2 control-label texto">Seleccione los activos</label>         
+        <div class="container px-4">
+          <div class="row gx-5">
+            <!-- Columna para los activos disponibles-->
+            <div class="col">
+             <div class="p-3 border bg-light">
+               <!-- Here -->
+              <h5 class="clrGrayBlack">Lista de activos disponibles:</h5>
+              <div class="cont-text">
+                <p class="cursor-pointer" (click)="addItem(i, item)" *ngFor="let item of assets; let i=index">
+                  {{item.CodigoAF}}&nbsp;
+                  <a class="cursor-pointer green">+</a>
+                </p>
+              </div>
+              <!-- Here -->
+             </div>
+            </div>
+  
+            <!-- Columna para los activos seleccionados-->
+            <div class="col">
+              <div class="p-3 border bg-light">
+                <!-- Here -->
+                <h5 class="clrGrayBlack">Seleccionados:</h5>
+                <div class="cont-text">
+                  <p class="cursor-pointer"  (click)="removeItem2(i, item)" *ngFor="let item of selectedAssets; let i = index">
+                    {{item.CodigoAF}}&nbsp;
+                    <a class="red">-</a>
+                  </p>
+                </div>
+                <!-- Here -->
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>     
+      </div>
+    
+      <div class="row Espacio">
+        <div class="col-sm-12">
+          <label class="botonInputFile file">
+          <div class="row bordeCompra">
+            <div class="col-sm-2 posicionIcono1">
+              <img src="../../../assets/images/factura.png" alt="Subir/Archivo" class="avatar" width="40" height="40">
+            </div>
+            <div class="col-sm-6 posicionInput">
+              <input type="file" class="ubicacion custom-file-input" id="customFile" formControlName="IdArchivo" (change)="getFile($event)">              
+          </div>            
+        </div>      
+        </label>
+        </div>
+      </div> 
+  
+  </div>
+  <br>   
+      
+     <div class="row">
+      <div class="col-sm-4 Espacio4">
+      
+    </div>
+    <div class="botones">
+      <button type="submit" class="espacio3 btn btn-primary btn-lg" style="float: right">Guardar</button>        
+      <span routerLink="/Assets/Assignments" class="btn btn-default btn-lg" style="float: right">Cancelar</span>
+    </div>
+    </div>       
+      
+    </form>

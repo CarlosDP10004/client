@@ -53,9 +53,20 @@
     margin-bottom: -65px;
 }
 
+.EstiloFor2{
+    border: 2px solid #313945;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    padding-left:20px;
+    padding-right: 20px;
+    
+    margin-top: 5px;
+}
+
 .Espacio{
     margin-bottom: 20px;
-    margin-top: 10px;
+    margin-top: 15px;
 }
 
 .texto2{
@@ -95,7 +106,7 @@ textarea:focus, input:focus, input[type]:focus, select:focus {
 }
 
 .EspacioDiv{
-    margin-top: 30px;    
+    margin-top: 30px;   
 }
 
 .image{
@@ -130,14 +141,6 @@ textarea:focus, input:focus, input[type]:focus, select:focus {
     width: 400px;
     height: 50px;
 }
-.botonInputFile2 {
-    background-color: #313945;
-    border-radius: 5px;
-    border: 1px solid #ccc;      
-    cursor: pointer;
-    margin-top: 1px;    
-    margin-left: 60px;
-}
 
 .posicion{
     margin-top: 1.5pt;
@@ -152,16 +155,12 @@ textarea:focus, input:focus, input[type]:focus, select:focus {
     margin-right: 5px;
  }
 
- .posicionIcono3{
-    margin-right: -105px;
- }
-
  .bordeCompra{
     border: 1px solid #ccc;
     border-radius: 5px;
     height: 50px;
-    width: 850px;
-    margin-top: -10px;
+    width: 1150px;     
+    margin-top: -10px;    
  }
 
  .posicionInput{
@@ -201,17 +200,29 @@ textarea:focus, input:focus, input[type]:focus, select:focus {
     width: 600px;    
     }
 
-.boton{
-    margin-left: 120px;
-    background-color: #313945;
-    border-radius: 5px;
-    color: white;
+.ubicacion{
+    margin-left: -120px;
 }
 
 .espacio3{
     margin-left: 10px;
 }
+.Espacio4{
+    margin-top: 50px;  
+    margin-left:30px;    
+}
 
-.ubicacion{
-    margin-left: -70px;
+.botones{
+    margin-top:60px;
+    margin-right: 30px;    
+}
+
+.Link{
+    justify-content: center;
+    font-size: large;
+    font-weight: bold;
+}
+
+.alinear{
+    padding-top: 23px;
 }

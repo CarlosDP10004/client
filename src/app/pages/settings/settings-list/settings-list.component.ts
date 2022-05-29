@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { Router } from '@angular/router';
+import { SettingsService } from 'src/app/core/http/settings.service';
 import { SettingsEditComponent } from '../settings-edit/settings-edit.component';
 
 @Component({
@@ -10,29 +11,27 @@ import { SettingsEditComponent } from '../settings-edit/settings-edit.component'
 export class SettingsListComponent implements OnInit {
 
   settings: any[] = [];
-  bsModalRef: BsModalRef;
 
   constructor(
-    private bsModalService: BsModalService
-  ) { }
+    private settingService: SettingsService,
+    private router: Router
+  ) { 
+    this.showAll();
+  }
 
   showAll(){
-
+    this.settingService.showAll().subscribe(data => {
+      Object.assign(this.settings, data);
+    }, error => {
+      console.log("Error al obtener los registros ", error);
+    });
   }
 
   ngOnInit(): void {
   }
 
-  editSetting(){
-    //this.rolService.changeRolId(IdRol);
-    this.bsModalRef = this.bsModalService.show(SettingsEditComponent);
-    this.bsModalRef.content.event.subscribe(result => {
-      if (result == 'OK') {
-        setTimeout(() => {
-          this.showAll();
-        }, 5000);
-      }
-    });
+  editSetting(IdSetting:number){
+    this.router.navigate(['/Assets/Settings/Edit/', IdSetting]);
   }
 
 }

@@ -1,0 +1,61 @@
+<div class="container">
+    <div class="row">
+      <div class="TituloIndex">
+        <h1 class="EstiloIndex col-sm-12">
+          <hr>
+            <b>Mantenimiento de salida de activos.</b>
+            <hr>
+        </h1>       
+    </div>
+    </div>
+    <br>
+
+    <div class="=row">
+      <div class="col-md-8">
+        <span routerLink="/Assets/Departures/Add" class="btn btn-primary btn-lg">Nueva solicitud</span>             
+        </div>&nbsp;
+      <div class="col-md-4 input-icono">  
+        <input type="text" class="forms-control tamanio" placeholder="Buscar..." [(ngModel)]="filter2" name="filter2">      
+      </div>     
+    </div>  
+
+    <div class="row">
+      <div class="col-md-12">        
+        <div class="table-responsive">
+          <table id="mytable" class="table table-bordred table-striped">
+            <thead>
+              <tr class="estiloCabecera">
+                <th scope="col" width="13%" bgcolor="#c9a892">Correlativo</th>
+                <th scope="col"  bgcolor="#c9a892">Departamento</th>
+                <th scope="col"  bgcolor="#c9a892">Fecha de solicitud</th>
+                <th scope="col"  bgcolor="#c9a892">Estado</th>
+                <th scope="col"  bgcolor="#c9a892">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let request of requests | activo: filter2 | paginate: { itemsPerPage: 10, currentPage: page }">
+                <th>{{request.IdSolicitud}}</th>
+                <td>{{request.NombreUnidad}}</td>               
+                <td>{{request.FechaSolicitud | date:'dd/MM/yyyy'}}</td>
+                <td>{{request.NombreEstado}}</td>
+                <td>
+                  <span class="btn btn-primary glyphicon glyphicon-pencil" title="Editar" (click)="validateRequest(request.IdSolicitud)"></span>
+                  &nbsp;&nbsp;
+                  <span class="btn btn-info glyphicon glyphicon-refresh" title="Cambiar estado"></span>
+                </td>
+              </tr>             
+            </tbody>            
+          </table>  
+          <pagination-controls class="paginacion"
+                                 (pageChange)="page = $event"                                 
+                                 maxSize="6"
+                                 autoHide="true"
+                                 nextLabel="Siguiente"
+                                 previousLabel="Anterior"
+                                 responsive="true"
+                                 screenReaderPaginationLabel="Paginacion" >
+            </pagination-controls>                          
+        </div>
+      </div>
+    </div>
+  </div>

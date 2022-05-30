@@ -18,7 +18,7 @@ import Swal from 'sweetalert2';
 })
 export class DischargesAddComponent implements OnInit {
   addRequest: FormGroup;
-  filter2: any;
+  filter6: any;
   departaments: any[] = [];
   status: any[] = [];
   statusRequest: any[] = [];

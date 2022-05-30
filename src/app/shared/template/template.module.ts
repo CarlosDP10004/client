@@ -13,6 +13,9 @@ import { ThousandPipe } from '../../pipes/thousand.pipe';
 import { ActivoPipe } from '../../pipes/activo.pipe';
 import { UsuarioPipe } from '../../pipes/usuario.pipe';
 import { DatePipe } from '@angular/common';
+import { AsigPipe } from '../../pipes/asig.pipe';
+import { DescargoPipe } from '../../pipes/descargo.pipe';
+import { SeleccPipe } from '../../pipes/selecc.pipe';
 import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
 
 @NgModule({
@@ -25,6 +28,9 @@ import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
     ThousandPipe,
     ActivoPipe,
     UsuarioPipe,
+    AsigPipe,
+    DescargoPipe,
+    SeleccPipe,
   ],
   imports: [
     CommonModule,
@@ -40,6 +46,9 @@ import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
     ThousandPipe,
     ActivoPipe,
     UsuarioPipe,
+    AsigPipe,
+    DescargoPipe,
+    SeleccPipe,
   ],
   bootstrap: [TemplateComponent]
 })

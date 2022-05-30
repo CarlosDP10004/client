@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
 })
 export class AssignmentsListComponent implements OnInit {
 
-  filter2: any;  
+  filter4: any;  
   page: number = 1;
   assignments: any[] = [];
 

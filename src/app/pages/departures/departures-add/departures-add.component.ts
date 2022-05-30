@@ -31,6 +31,7 @@ export class DeparturesAddComponent implements OnInit {
 
   filterClasification: any[] = [];
   filterAsset: any[] = [];
+  filter6: any;
 
   
   seleccion: any;

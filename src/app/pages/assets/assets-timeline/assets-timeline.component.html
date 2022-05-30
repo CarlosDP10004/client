@@ -1,17 +1,36 @@
-<div class="container">
+<div class="row">
+    <div class="TituloIndex">
+    <h1 class="EstiloIndex col-sm-12">
+        <hr>
+          <b>Historial del activo fijo</b>
+          <hr>
+      </h1> 
+    </div> 
+    <br>
+    <span routerLink="/Assets/Supplies" class="btn btn-default btn-lg" style="float: right">Cancelar</span>
+    </div>
+<div class="container">    
+    <div>
     <ul>
         <li *ngFor="let item of trace">
             <span></span>
-            <div style="font-size:larger ;">
-                <p>codigo</p>
-                <div style="font-size:larger">{{item.CodigoAF}}</div>
-                <div style="font-size:larger" class="type">{{item.Comentarios}}</div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <p class="titulos">Código: </p>
+                    <p class="titulos2">{{item.CodigoAF}}</p> 
+                </div>
+                <div class="col-sm-9 borde">
+                    <p class="titulos">Comentario: </p>
+                    <p class="titulos2">{{item.Comentarios}}</p>
+                </div>
+               
             </div>
             <span class="number">            
                 <span>{{item.FechaAccion | date:'dd/MM/yyyy'}}</span>
             </span>  
         </li>
-    </ul>
-</div>  
+    </ul>    
+</div> 
+ 
 
 

@@ -10,7 +10,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./discharges-list.component.scss']
 })
 export class DischargesListComponent implements OnInit {
-  filter2: any;  
+  filter5: any;  
   page: number = 1;
   requests: any[] = [];
 

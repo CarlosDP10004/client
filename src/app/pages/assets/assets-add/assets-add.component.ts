@@ -35,9 +35,7 @@ export class AssetsAddComponent implements OnInit {
   idImage: number;
   event: EventEmitter<any>=new EventEmitter();
   value:any = {};
-  seleccion: any;
-  seleccion2:any = {};
-  seleccion3:any = {};
+  seleccion: any;  
 
   constructor(
     private formBuilder:FormBuilder,     
@@ -221,7 +219,7 @@ export class AssetsAddComponent implements OnInit {
   }
 
   get IdCuenta():AbstractControl{return this.addAsset.get('IdCuenta');}
-  get Marca():AbstractControl{return this.addAsset.get('Marca');}
+  get IdMarca():AbstractControl{return this.addAsset.get('IdMarca');}
   get Modelo():AbstractControl{return this.addAsset.get('Modelo');}
   get Descripcion():AbstractControl{return this.addAsset.get('Descripcion');}
   get IdOrigen():AbstractControl{return this.addAsset.get('IdOrigen');}

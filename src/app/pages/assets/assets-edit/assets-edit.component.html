@@ -107,28 +107,37 @@
   
           <div class="row Espacio">
             <div class="margen col-sm-4 "><label class="col-sm-7 control-label texto">Marca</label>
-              <select class="form-control" formControlName="IdMarca">
-                <option value="" hidden>Selecciona la marca</option>
-                <option *ngFor="let item of brands" [value]="item.IdMarca">{{item.NombreMarca}}</option>
-              </select>
+              <ng-select                                 
+              formControlName="IdMarca" 
+              class=""  
+              [searchable]="true"                
+              placeholder="Selecciona la marca"
+              size="10">
+                <ng-option *ngFor="let item of brands" [value]="item.IdMarca">{{item.NombreMarca}}</ng-option>
+             </ng-select>
+             
               <FONT COLOR="red">
                 <small *ngIf="IdOrigen.invalid && IdOrigen.touched">
                   Complete el campo
                 </small>
               </FONT>
-            </div> 
+            </div>  
             
-            <div class="margen col-sm-4"><label class="col-sm-2 control-label texto">Proveedor</label>
-              <select class="form-control" formControlName="IdProveedor">
-                <option value="" hidden>Selecciona el proveedor</option>
-                <option *ngFor="let item of providers" [value]="item.IdProveedor">{{item.NombreProveedor}}</option>
-              </select>
-              <FONT COLOR="red">
-                <small *ngIf="IdProveedor.invalid && IdProveedor.touched">
-                  Complete el campo
-                </small>
-              </FONT>
-            </div>
+            <div class="margen col-sm-4 "><label class="col-sm-2 control-label texto">Proveedor</label>
+              <ng-select                                 
+              formControlName="IdProveedor" 
+              class=""  
+              [searchable]="true"                
+              placeholder="Selecciona el proveedor"
+              size="10">
+                <ng-option *ngFor="let item of providers" [value]="item.IdProveedor">{{item.NombreProveedor}}</ng-option>
+             </ng-select>
+            <FONT COLOR="red">
+              <small *ngIf="IdProveedor.invalid && IdProveedor.touched">
+                Complete el campo
+              </small>
+            </FONT>
+          </div>
 
             <div class="col-sm-3">
               <label class="col-sm-8 control-label texto2">Nº de libre gestión</label>

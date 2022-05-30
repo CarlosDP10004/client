@@ -19,28 +19,46 @@
 
         <div class="col-sm-4">
           <label class="col-sm-4 control-label texto">Fecha actual</label><br />
-          <input type="date" class="form-control" formControlName="FechaRegistro"  disabled/>
+          <input type="date" class="form-control" formControlName="FechaRegistro" disabled/>
         </div>              
       
-        <div class="col-sm-4">
-            <label class="col-sm-4 control-label texto">Estado</label><br />
-            <select class="form-control" formControlName="IdEstado" disabled>
-              <option value="" hidden>Selecciona el estado</option>
-              <option *ngFor="let item of status" [value]="item.IdEstado">{{item.NombreEstado}}</option>
-            </select>
+        
+      </div>
+
+      <div class="esp">        
+        <div class="dimensiones">
+          <div class="texta">
+            <label class=" control-label texto">Motivo</label>         
+              <textarea class="texta" type="text" rows="10" class="form-control" placeholder="Motivo" formControlName="Motivo"  disabled></textarea>         
+            </div>
         </div>
       </div>
 
-      <div class="row Espacio">
+
+      
+
+      <div class="row Espacio ajuste">
 
         <div class="col-sm-4">
-          <label class="col-sm-4 control-label texto">Unidad</label><br />
+          <label class="col-sm-4 control-label texto">Estado</label><br />
+          <select class="form-control" formControlName="IdEstado" disabled>
+            <option value="" hidden>Selecciona el estado</option>
+            <option *ngFor="let item of status" [value]="item.IdEstado">{{item.NombreEstado}}</option>
+          </select>
+      </div>
+
+        <div class="col-sm-4">
+          <label class="col-sm-3 control-label texto">Unidad</label><br />
           <select class="form-control" formControlName="IdUnidad" disabled>
             <option value="" hidden>Selecciona el estado</option>
             <option *ngFor="let item of departaments" [value]="item.IdUnidad">{{item.NombreUnidad}}</option>
           </select>
         </div>  
+        <div class="col-sm-4">
+        </div> 
+      </div>
 
+        <div class="row Espacio">
         <div class="col-sm-4">
           <label class="col-sm-4 control-label texto">Solicitante</label><br />
           <input class="form-control" formControlName="Solicitante" disabled/>          
@@ -58,56 +76,45 @@
       </div>
 
       <div class="row Espacio">
-        <div class="col-sm-2"><label class="col-sm-12 control-label texto2">Fecha para hacer descargo</label>
+        <div class="col-sm-4">
+          <label class="col-sm-10 control-label texto2">Fecha para hacer descargo</label>
           <input type="date" class="form-control" placeholder="Fecha de compra" formControlName="FechaSolicitud" disabled>          
-        </div>    
+        </div> 
+        <div class="col-sm-8">
+          <label class="col-sm-10 control-label texto">Descargar Orden de compra</label>
+            <div class="col-sm-3">
+              <a class="btn botonInputFile2"  download="">                
+              <img src="../../../assets/images/download.png" alt="Subir/Archivo" class="avatar" width="45" height="40">
+              </a>
+          </div>          
+        </div>   
       </div>
 
-      <div class="row Espacio">
-        <div class="col-sm-12">
-        <label class="col-sm-2 control-label texto">Motivo</label>         
-          <textarea type="text" rows="2" class="form-control" placeholder="Motivo" formControlName="Motivo" disabled></textarea>         
-        </div>     
-      </div>
-
-      <div class="row Espacio">
-        <div class="col-sm-12">
-        <label class="col-sm-2 control-label texto">Seleccione los activos</label>         
-        <div class="container px-4">
-          <div class="row gx-5">  
-            <!-- Columna para los activos seleccionados-->
-            <div class="col">
-              <div class="p-3 border bg-light">
-                <!-- Here -->
-                <h5 class="clrGrayBlack">Seleccionados:</h5>
-                <div class="cont-text">
-                  <p class="cursor-pointer" *ngFor="let item of selectedAssets; let i = index">
-                    {{item.CodigoAF}}&nbsp;                    
-                  </p>
-                </div>
-                <!-- Here -->
-              </div>
-            </div>
+      <div class=" row tabla"> 
+        <div class="EncabezadoForm2 shadow-X pos"><b>&nbsp;Activos seleccionados</b></div>       
+        <br>
+      <div class="col-sm-8">
+        <h5 class="encabezado">Lista de activos seleccionados:</h5>
+        <div class="borde2 tam">
+          <p></p>
+          <p class="cursor-pointer tablaSeleccion" *ngFor="let item of selectedAssets; let i = index">
+            <t style="color:cornflowerblue; font-weight: bold;">+</t><t style="font-weight: bold;">&nbsp;{{item.CodigoAF}}</t>
+          </p>
+        </div>
+        <div class="row">
+          <div class="col-sm-8">
+            <p class="pie">Total de activos seleccionados:</p>
+          </div>
+          <div class="col-sm-4 cont">
+            <th class="num">{{assets ? assets.length : ''}}</th>
           </div>
         </div>
-        </div>     
+        <br>
       </div>
-    
-      <div class="row Espacio">
-        <div class="col-sm-12">
-          <label class="botonInputFile file">
-          <div class="row bordeCompra">
-            <div class="col-sm-2 posicionIcono1">
-              <img src="../../../assets/images/factura.png" alt="Subir/Archivo" class="avatar" width="40" height="40">
-            </div>
-            <div class="col-sm-6 posicionInput">
-              <input type="file" class="ubicacion custom-file-input" id="customFile" formControlName="IdArchivo" (change)="getFile($event)">              
-          </div>            
-        </div>      
-        </label>
-        </div>
-      </div> 
-  
+      
+      </div><br><br>
+
+      
   </div>
   <br>   
       
@@ -117,8 +124,8 @@
     </div>
     <div class="botones">
       <button type="submit" class="espacio3 btn btn-primary btn-lg" style="float: right">Guardar</button>       
-      <span (click)="rechazarSolicitud()" class="btn btn-default btn-lg" style="float: right">Rechazar</span> 
-      <span routerLink="/Assets/Assignments" class="btn btn-default btn-lg" style="float: right">Cancelar</span>
+      <span (click)="rechazarSolicitud()" class="espacio3 btn btn-default btn-lg" style="float: right; background-color: rgb(244, 90, 90); color: white">Rechazar</span> 
+      <span routerLink="/Assets/Discharges" class=" btn btn-default btn-lg" style="float: right">Cancelar</span>
     </div>
     </div>
         

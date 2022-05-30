@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
 })
 export class DeparturesListComponent implements OnInit {
 
-  filter2: any;  
+  filter7: any;  
   page: number = 1;
   requests: any[] = [];
 

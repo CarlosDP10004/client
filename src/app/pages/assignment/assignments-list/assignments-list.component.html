@@ -15,7 +15,7 @@
         <span routerLink="/Assets/Assignments/Add" class="btn btn-primary btn-lg">Nueva asignación</span>             
         </div>&nbsp;
       <div class="col-md-4 input-icono">  
-        <input type="text" class="forms-control tamanio" placeholder="Buscar..." [(ngModel)]="filter2" name="filter2">      
+        <input type="text" class="forms-control tamanio" placeholder="Buscar..." [(ngModel)]="filter4" name="filter4">      
       </div>     
     </div>  
 
@@ -34,7 +34,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let assignment of assignments | activo: filter2 | paginate: { itemsPerPage: 10, currentPage: page }">
+              <tr *ngFor="let assignment of assignments | asig :filter4 | paginate: { itemsPerPage: 10, currentPage: page }">
                 <th>{{assignment.IdAsignacion}}</th>
                 <td>{{assignment.NombreUnidad}}</td>               
                 <td>{{assignment.NombrePlaza}}</td>                 

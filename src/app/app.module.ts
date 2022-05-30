@@ -14,11 +14,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UnauthorizedComponent } from './shared/unauthorized/unauthorized.component';
 import { NotfoundComponent } from './shared/notfound/notfound.component';
 
+
+
 @NgModule({
   declarations: [
     AppComponent, 
     UnauthorizedComponent,
-    NotfoundComponent
+    NotfoundComponent,          
   ],
   imports: [
     BrowserModule,

@@ -2,20 +2,25 @@
 
   .container ul {
     list-style: none;
-    position: absolute;
-    top: 50%;
+    position: relative;
+    top: 280px;
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 1px 100px;
     color: #025;
     font-size: 13px;
+    overflow: auto;
+    height: 500px;
+    border: 3px solid rgb(83, 88, 96);
+    border-radius: 5px;
+    padding-top: 10px;
   }
   .container ul:before {
     content: '';
     width: 1px;
     height: 100%;
     position: absolute;
-    border-left: 2px dashed rgb(172, 37, 37);
+    border-left: 3px dashed rgb(172, 37, 37);
     
   }
   .container ul li {
@@ -24,11 +29,11 @@
     background-color: rgba(255, 255, 255, 0.2);
     padding: 14px;
     border-radius: 6px;
-    width: 250px;
+    width:890px;
     box-shadow: 0 0 4px rgba(0, 0, 0, .12), 0 2px 2px rgba(0, 0, 0, .08)
   }
   .container ul li:not(:first-child) {
-    margin-top: 60px;
+    margin-top: 40px;
   }
   .container ul li > span {
     width: 2px;
@@ -40,8 +45,8 @@
   }
   .container ul li > span:before, .container ul li > span:after {
     content: '';
-    width: 8px;
-    height: 8px;
+    width: 13px;
+    height: 13px;
     border-radius: 50%;
     border: 2px solid #fff;
     position: absolute;
@@ -70,8 +75,9 @@
   }
   .container span.number span {
     position: absolute;
-    font-size: 10px;
-    left: -55px;
+    font-size: 14px;
+    left: -80px;
+    margin-top: -67px;
     font-weight: bold;
   }
   .container span.number span:first-child {
@@ -80,3 +86,17 @@
   .container span.number span:last-child {
     top: 100%;
   }
+
+.titulos{
+  font-size: 20px;
+  font-weight: bold; 
+  color: black; 
+}
+.titulos2{
+  font-size: 16px;
+  font-weight: bold;   
+}
+
+.borde{
+  border-left: 3px solid #025;
+}

@@ -1,7 +1,7 @@
 <div class="TituloIndex">
     <h1 class="EstiloIndex col-sm-12">
       <hr>
-        <b>Descargo de activos fijos.</b>
+        <b>Préstamo de activos fijos.</b>
         <hr>
     </h1>  
   </div>
@@ -77,11 +77,11 @@
 
       <div class="row Espacio">
         <div class="col-sm-4">
-          <label class="col-sm-10 control-label texto2">Fecha para hacer descargo</label>
+          <label class="col-sm-10 control-label texto2">Fecha para hacer la préstamo</label>
           <input type="date" class="form-control" placeholder="Fecha de compra" formControlName="FechaSolicitud" disabled>          
         </div> 
         <div class="col-sm-8">
-          <label class="col-sm-10 control-label texto">Descargar solicitud de descargo</label>
+          <label class="col-sm-10 control-label texto">Descargar solicitud de préstamo</label>
             <div class="col-sm-3">
               <a class="btn botonInputFile2" (click)="downloadPDF()"  download="">                
               <img src="../../../assets/images/download.png" alt="Subir/Archivo" class="avatar" width="45" height="40">
@@ -127,7 +127,7 @@
       <span (click)="rechazarSolicitud()" class="espacio3 btn btn-default btn-lg" style="float: right; background-color: rgb(244, 90, 90); color: white">Rechazar</span> 
     </div>
     <div class="botones">       
-      <span routerLink="/Assets/Discharges" class=" btn btn-default btn-lg" style="float: right">Cancelar</span>
+      <span routerLink="/Assets/Internal-Loans" class=" btn btn-default btn-lg" style="float: right">Cancelar</span>
     </div>
     </div>
         

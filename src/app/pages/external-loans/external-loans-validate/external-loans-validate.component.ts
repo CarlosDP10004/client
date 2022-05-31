@@ -11,11 +11,11 @@ import { RequestService } from 'src/app/core/http/request.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-discharges-validate',
-  templateUrl: './discharges-validate.component.html',
-  styleUrls: ['./discharges-validate.component.scss']
+  selector: 'app-external-loans-validate',
+  templateUrl: './external-loans-validate.component.html',
+  styleUrls: ['./external-loans-validate.component.scss']
 })
-export class DischargesValidateComponent implements OnInit {
+export class ExternalLoansValidateComponent implements OnInit {
 
   validateRequest: FormGroup;
   departaments: any[] = [];
@@ -240,6 +240,5 @@ export class DischargesValidateComponent implements OnInit {
       }) 
     }); 
   }
-
 
 }

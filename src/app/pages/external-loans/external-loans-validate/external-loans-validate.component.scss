@@ -98,11 +98,11 @@ textarea:focus, input:focus, input[type]:focus, select:focus {
 .EncabezadoForm2{
     background-color: #e2d0c4;
     border-left: 15px solid #cc9774;
-    border-bottom-right-radius: 10px;
-    width: 220px;
+    border-top-right-radius: 10px;
+    width: 180px;
     height: 30px;
     font-size: larger;
-    line-height: 30px;
+    line-height: 15px;
 }
 
 .EspacioDiv{
@@ -139,6 +139,15 @@ textarea:focus, input:focus, input[type]:focus, select:focus {
     padding-top: 30px;
     cursor: pointer;
     height: 50px;
+}
+
+.botonInputFile2 {
+    background-color: #313945;
+    border-radius: 5px;
+    border: 1px solid #ccc;      
+    cursor: pointer;
+    margin-top: 1px;    
+    margin-left: 60px;
 }
 
 .posicion{
@@ -201,7 +210,7 @@ textarea:focus, input:focus, input[type]:focus, select:focus {
     }
 
 .ubicacion{
-    margin-left: -60px;
+    margin-left: -120px;
 }
 
 .espacio3{
@@ -235,7 +244,7 @@ textarea:focus, input:focus, input[type]:focus, select:focus {
 .tabla{
     border: 3px ridge #93979d;
     margin-left: 100px;
-    width: 950px;
+    width: 450px;
 }
 
 .pos{
@@ -277,7 +286,7 @@ textarea:focus, input:focus, input[type]:focus, select:focus {
 
 .tablaSeleccion{
     padding-left: 60px;
-    cursor: pointer;    
+     
 }
 
 .tam{
@@ -323,34 +332,27 @@ textarea:focus, input:focus, input[type]:focus, select:focus {
 .pie{
     background-color: #313945;
     color: #FFFFFF;
-    width: 180px;
+    width: 200px;
     height: 24px;
     justify-content: center;
     margin-top: 1px;
     margin-left: 0px;
+    padding-right: 5px;
     border-bottom-left-radius: 5px;
-}
-.pie2{
-    background-color: #313945;
-    color: #FFFFFF;
-    width: 180px;
-    height: 24px;
-    justify-content: center;
-    margin-top: 1px;
-    margin-left: 0px;
-    border-bottom-left-radius: 5px;
-    font-size: 13px;
+    font-size: 14px;
 }
 
 .num{
-    width: 100px;  
+    width: 70px;  
     height: 1px;  
-    text-align: center;    
-    border: 2px solid #313945;
+    text-align: center;
+    align-content: center;    
+    border: 2px solid #313945;  
+    
 }
 
 .cont{
-    margin-left: -5px;
+    margin-left: 0px;
     margin-top: 1px;
       
 }

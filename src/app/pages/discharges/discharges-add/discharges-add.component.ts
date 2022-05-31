@@ -94,8 +94,9 @@ export class DischargesAddComponent implements OnInit {
       }) 
     });
 
-    this.assetService.getAssetList().subscribe(data => {
+    this.assetService.getAssetToRequest().subscribe(data => {
       Object.assign(this.assets, data)
+      this.chargeAssets();
     }, error => {
       Swal.fire({
         icon: 'error',

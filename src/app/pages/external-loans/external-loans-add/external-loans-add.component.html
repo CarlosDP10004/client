@@ -102,7 +102,7 @@
         <br>
         
           <div class="col-md-2 input-icono">  
-            <input type="text" class="tamanio" placeholder="Buscar..." formControlName="IdArchivo" [(ngModel)]="filter6" name="filter6">
+            <input type="text" class="tamanio" placeholder="Buscar..." formControlName="IdArchivo" [(ngModel)]="filter8" name="filter8">
               
           </div> 
         
@@ -110,7 +110,7 @@
         <h5 class="encabezado">Lista de activos disponibles:</h5>
         <div class="borde2 tam">
           <p></p>
-          <p class="cursor-pointer tablaSeleccion" (click)="addItem(i, item)" *ngFor="let item of filterAsset | selecc: filter6 ; let i=index;">
+          <p class="cursor-pointer tablaSeleccion" (click)="addItem(i, item)" *ngFor="let item of filterAsset | prestamoex: filter8 ; let i=index;">
             <th>{{item.CodigoAF}}&nbsp;
             <a class="cursor-pointer green">
               <img class="cursor-pointer green icono" src="../../../assets/images/flecha-correcta.png" width="20" height="20">

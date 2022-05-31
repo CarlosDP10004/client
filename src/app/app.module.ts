@@ -20,7 +20,7 @@ import { NotfoundComponent } from './shared/notfound/notfound.component';
   declarations: [
     AppComponent, 
     UnauthorizedComponent,
-    NotfoundComponent,          
+    NotfoundComponent,       
   ],
   imports: [
     BrowserModule,

@@ -7,12 +7,14 @@ import { ExternalLoansAddComponent } from './external-loans-add/external-loans-a
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { TemplateModule } from 'src/app/shared/template/template.module';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { ExternalLoansValidateComponent } from './external-loans-validate/external-loans-validate.component';
 
 
 @NgModule({
   declarations: [
     ExternalLoansListComponent, 
-    ExternalLoansAddComponent
+    ExternalLoansAddComponent, ExternalLoansValidateComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import { TemplateModule } from 'src/app/shared/template/template.module';
     FormsModule,
     NgxPaginationModule,
     ReactiveFormsModule,
-    TemplateModule
+    TemplateModule,
+    NgSelectModule
   ]
 })
 export class ExternalLoansModule { }

@@ -7,12 +7,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { TemplateModule } from 'src/app/shared/template/template.module';
 import { InternalLoansListComponent } from './internal-loans-list/internal-loans-list.component';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { InternalLoansValidateComponent } from './internal-loans-validate/internal-loans-validate.component';
 
 
 @NgModule({
   declarations: [
     InternalLoansListComponent,
-    InternalLoansAddComponent
+    InternalLoansAddComponent,
+    InternalLoansValidateComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +23,8 @@ import { InternalLoansListComponent } from './internal-loans-list/internal-loans
     FormsModule,
     NgxPaginationModule,
     ReactiveFormsModule,
-    TemplateModule
+    TemplateModule,
+    NgSelectModule
   ]
 })
 export class InternalLoansModule { }

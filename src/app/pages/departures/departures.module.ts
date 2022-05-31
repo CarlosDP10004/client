@@ -8,12 +8,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { TemplateModule } from 'src/app/shared/template/template.module';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { DeparturesValidateComponent } from './departures-validate/departures-validate.component';
 
 
 @NgModule({
   declarations: [
     DeparturesListComponent, 
-    DeparturesAddComponent
+    DeparturesAddComponent, DeparturesValidateComponent
   ],
   imports: [
     CommonModule,

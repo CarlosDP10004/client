@@ -95,8 +95,9 @@ export class DeparturesAddComponent implements OnInit {
       }) 
     });
 
-    this.assetService.getAssetList().subscribe(data => {
+    this.assetService.getAssetToRequest().subscribe(data => {
       Object.assign(this.assets, data)
+      this.chargeAssets();
     }, error => {
       Swal.fire({
         icon: 'error',
@@ -134,6 +135,7 @@ export class DeparturesAddComponent implements OnInit {
         this.filterAsset.push(element);     
       }
     });
+    console.log(this.filterAsset);
     return this.filterAsset;
   }
 

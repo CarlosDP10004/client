@@ -73,5 +73,10 @@ export class AssetsService {
     const headers = new HttpHeaders().set('Authorization', `bearer ${this.userService.getToken()}`)
     return this.clienteHttp.get(`${API_URL}historialActivo/${id}`, { headers: headers});
   }
+
+  getAssetToRequest(){
+    const headers = new HttpHeaders().set('Authorization', `bearer ${this.userService.getToken()}`)
+    return this.clienteHttp.get(`${API_URL}listaActivosSolicitud`, { headers: headers});    
+  }
   
 }

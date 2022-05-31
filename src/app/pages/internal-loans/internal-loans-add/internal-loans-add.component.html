@@ -1,1 +1,171 @@
-<p>internal-loans-add works!</p>
+<div class="TituloIndex">
+    <h1 class="EstiloIndex col-sm-12">
+      <hr>
+        <b>Préstamo interno de activos fijos.</b>
+        <hr>
+    </h1>  
+  </div>
+  <br>
+  
+  <form [formGroup]="addRequest" (ngSubmit)="guardarSolicitud()">
+    <div class="EncabezadoForm shadow-X"><b>&nbsp;Datos Generales</b></div>
+    <div class="EstiloForm1">
+      <div class="row Espacio">
+
+        <div class="col-sm-4">
+          <label class="col-sm-4 control-label texto">Tipo</label><br />        
+          <input class="form-control" formControlName="Tipo" disabled/>
+        </div>
+        <div class="col-sm-4">
+          <label class="col-sm-4 control-label texto">Fecha actual</label><br />
+          <input type="date" class="form-control" formControlName="FechaActual"  disabled/>
+        </div> 
+      </div>
+
+      
+      <div class="esp">        
+        <div class="dimensiones">
+          <div class="texta">
+            <label class=" control-label texto">Motivo</label>         
+              <textarea class="texta" type="text" rows="10" class="form-control" placeholder="Motivo" formControlName="Motivo"></textarea>         
+            </div>
+        </div>
+      </div>
+
+      <div class="row Espacio ajuste">
+        <div class="col-sm-4">
+            <label class="col-sm-4 control-label texto">Estado</label><br />
+            <input class="form-control" formControlName="IdEstado" disabled/>            
+        </div>
+        <div class="col-sm-4">
+          <label class="col-sm-3 control-label texto">Unidad</label><br />         
+          <ng-select                                 
+                formControlName="IdUnidad" 
+                class="" 
+                [searchable]="true"                
+                placeholder="Selecciona la unidad"
+                size="10">
+                  <ng-option *ngFor="let item of departaments" [value]="item.IdUnidad">{{item.NombreUnidad}}</ng-option>
+          </ng-select>
+        </div> 
+        <div class="col-sm-4">
+        </div> 
+      </div>
+      
+      <div class="row Espacio">   
+      <div class="col-sm-4">
+          <label class="col-sm-2 control-label texto">Solicitante</label><br />
+          <input class="form-control" formControlName="Solicitante"/>          
+      </div>
+
+      <div class="col-sm-4">
+        <label class="col-sm-4 control-label texto">Estado</label>
+        <ng-select                                 
+                formControlName="IdEstadoSolicitado" 
+                class="" 
+                [searchable]="true"                
+                placeholder="Selecciona la unidad"
+                size="10">
+                  <ng-option *ngFor="let item of statusRequest" [value]="item.IdEstado">{{item.NombreEstado}}</ng-option>
+          </ng-select>
+      </div>     
+      
+      </div>
+
+      <div class="row Espacio">
+        <div class="col-sm-4">
+          <label class="col-sm-10 control-label texto2">Fecha para hacer descargo</label>
+          <input type="date" class="form-control" placeholder="Fecha de compra" formControlName="FechaSolicitud">          
+        </div> 
+
+        <div class="col-sm-8">
+          <label class="col-sm-10 control-label texto">Descargar solicitud de descargo</label>
+          <label class="botonInputFile file">
+          <div class="row bordeCompra">
+            <div class="col-sm-2 posicionIcono1">
+              <img src="../../../assets/images/factura.png" alt="Subir/Archivo" class="avatar" width="40" height="40">
+            </div>
+            <div class="col-sm-6 posicionInput">
+              <input type="file" class="ubicacion custom-file-input" id="customFile" formControlName="IdArchivo" (change)="getFile($event)">              
+          </div>            
+        </div>      
+        </label>
+        </div>   
+      </div>
+      <br>
+      <br>
+
+
+      
+      <div class=" row tabla"> 
+        <div class="EncabezadoForm2 shadow-X pos"><b>&nbsp;Seleccione los activos</b></div>       
+        <br>
+        
+          <div class="col-md-2 input-icono">  
+            <input type="text" class="tamanio" placeholder="Buscar..." formControlName="IdArchivo" [(ngModel)]="filter6" name="filter6">
+              
+          </div> 
+        
+      <div class="col-sm-4">
+        <h5 class="encabezado">Lista de activos disponibles:</h5>
+        <div class="borde2 tam">
+          <p></p>
+          <p class="cursor-pointer tablaSeleccion" (click)="addItem(i, item)" *ngFor="let item of filterAsset | selecc: filter6 ; let i=index;">
+            <th>{{item.CodigoAF}}&nbsp;
+            <a class="cursor-pointer green">
+              <img class="cursor-pointer green icono" src="../../../assets/images/flecha-correcta.png" width="20" height="20">
+            </a></th>            
+          </p>                       
+        </div>
+        <div class="row">
+          <div class="col-sm-7">
+            <p class="pie">Total de activos disponibles:</p>
+          </div>
+          <div class="col-sm-5 cont">
+            <th class="num">{{filterAsset ? filterAsset.length : ''}}</th>
+          </div>
+        </div>
+        <br>
+      </div>
+
+      <div class="col-sm-4">
+        <h5 class="encabezado">Seleccionados:</h5>
+        <div class="borde3 tam">
+          <p></p>          
+          <p class="cursor-pointer tablaSeleccion"  (click)="removeItem2(i, item)" *ngFor="let item of selectedAssets; let i = index;">
+            <a class="cursor-pointer red">
+              <img class="cursor-pointer green" src="../../../assets/images/flecha-correcta2.png" width="20" height="20">
+            </a>&nbsp;&nbsp;{{item.CodigoAF}}
+          </p>            
+        </div>
+        <div class="row">
+          <div class="col-sm-7">
+            <p class="pie2">Total de activos seleccionados:</p>
+          </div>
+          <div class="col-sm-5 cont">
+            <th class="num">{{selectedAssets ? selectedAssets.length : ''}}</th>
+          </div>
+        </div>
+       
+      </div>
+      <div class="col-sm-2"></div>
+      <br><br>
+      </div><br><br>
+     
+  </div>
+  <br>   
+      
+     <div class="row">
+      
+    <div class="botones">
+      <button type="submit" class="espacio3 btn btn-primary btn-lg" style="float: right">Guardar</button>        
+      <span routerLink="/Assets/Discharges" class="btn btn-default btn-lg" style="float: right">Cancelar</span>
+    </div>
+    </div>
+        
+      <!-- Inicio de arreglo de activos -->
+      <br>
+ 
+      
+      <!-- Fin de arreglo de activos -->
+    </form>

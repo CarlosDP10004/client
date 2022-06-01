@@ -48,7 +48,7 @@
                 <label class="botonInputFile file">
                 <div class="row bordeCompra">
                   <div class="col-sm-2 posicionIcono1">
-                    <img src="../../../../assets/images/factura.png" alt="Subir/Archivo" class="avatar" width="40" height="40">
+                    <img src="../../../../assets/images/imagen.png" alt="Subir/Archivo" class="avatar" width="40" height="40">
                   </div>
                   <div class="col-sm-6 posicionInput">
                   <input type="file" class="ubicacion custom-file-input" id="customFile" formControlName="ValorImagen" (change)="getFile($event)">              
@@ -57,17 +57,6 @@
               </label>
               </div>
             </div> 
-            <!--<label class="botonInputImage image">
-              <input class="custom-file-input" id="customFile" formControlName="ValorImagen" type="file" accept="image/*" (change)="updateSource($event)">          
-              <div class="row">
-                <div class="col-sm-2 posicionIcono2">
-                  <img src="../../../assets/images/photos.png" alt="Subir/Archivo" class="avatar" width="30" height="30">
-                </div>
-                <div class="col-sm-8">
-                  <h6><b>Subir Imagen</b></h6>
-                </div>
-              </div>
-            </label>-->
           </div>
 
           <div class="card esp2" *ngIf="tipo == 'Texto'">

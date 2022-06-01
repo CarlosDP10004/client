@@ -19,7 +19,7 @@ import Swal from 'sweetalert2';
 export class ExternalLoansAddComponent implements OnInit {
 
   addRequest: FormGroup;
-  filter6: any;
+  filter8: any;
   departaments: any[] = [];
   status: any[] = [];
   statusRequest: any[] = [];

@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReportService } from 'src/app/core/http/report.service';
-import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
 import { SettingsService } from 'src/app/core/http/settings.service';
 
 @Component({

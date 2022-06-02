@@ -41,13 +41,18 @@
     <div class="row">
       <div id="htmlData">       
         <br>
-        <div [innerHtml]="Titulo" class="centrar"></div>
-        <br/>        
-        <h2 class="ali">ADMINISTRACIÓN DE BIENES INSTITUCIONALES</h2>
-        <h3 class="ali3">REPORTE GENERAL DE ACTIVO FIJO INSTITUCIONAL</h3>        
-        <br/>
-        <h5 class="ali2"> Desde: {{desde | date:'dd/MM/yyyy'}}  Hasta: {{hasta | date:'dd/MM/yyyy'}}</h5>
-        <table class="table mt-4 ">          
+
+        <div id="Titulo">
+          <div [innerHtml]="Titulo" class="centrar"></div>
+          <br/>        
+          <h2 class="ali">ADMINISTRACIÓN DE BIENES INSTITUCIONALES</h2>
+          <h3 class="ali3">REPORTE GENERAL DE ACTIVO FIJO INSTITUCIONAL</h3>        
+          <br/>
+          <h5 class="ali2"> Desde: {{desde | date:'dd/MM/yyyy'}}  Hasta: {{hasta | date:'dd/MM/yyyy'}}</h5>
+          <br/>
+        </div> 
+        
+        <table id="Reporte" class="table mt-4 ">          
           <tr class="table-primary estiloCabecera">
             <th style="text-align: center" bgcolor="#c9a892">&nbsp;N° Inventario</th>
             <th style="text-align: center" bgcolor="#c9a892">&nbsp;Nombre</th>

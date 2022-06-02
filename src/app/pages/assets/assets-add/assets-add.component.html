@@ -13,11 +13,16 @@
       <div class="EstiloForm1">
       
         <div class="row Espacio">
-          <div class="margen col-sm-4"><label class="col-sm-6 control-label texto">Cuenta contable</label>            
-            <select class="form-control" formControlName="IdCuenta" [(ngModel)]="selected" (change)="chargeClasification($event.target.value)" required>
-              <option [value]="null" disabled selected>Selecciona la cuenta</option>
-              <option *ngFor="let item of accounts" [value]="item.IdCuenta">{{item.NombreCuenta}}</option>
-            </select>
+          <div class="margen col-sm-4"><label class="col-sm-6 control-label texto">Cuenta contable</label>
+            <ng-select                                 
+                formControlName="IdCuenta" 
+                class=""                 
+                (change)="chargeClasification()"
+                [searchable]="true"                
+                placeholder="Selecciona la cuenta"
+                size="10" >
+                  <ng-option *ngFor="let item of accounts" [value]="item.IdCuenta">{{item.NombreCuenta}}</ng-option>
+            </ng-select>
             <FONT COLOR="red">
               <small *ngIf="IdCuenta.invalid && IdCuenta.touched">
                 Complete el campo

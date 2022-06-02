@@ -6,11 +6,11 @@ import html2canvas from 'html2canvas';
 import { SettingsService } from 'src/app/core/http/settings.service';
 
 @Component({
-  selector: 'app-general-report',
-  templateUrl: './general-report.component.html',
-  styleUrls: ['./general-report.component.scss']
+  selector: 'app-depreciation',
+  templateUrl: './depreciation.component.html',
+  styleUrls: ['./depreciation.component.scss']
 })
-export class GeneralReportComponent implements OnInit {
+export class DepreciationComponent implements OnInit {
 
   filters: FormGroup;
   Titulo: string;
@@ -19,6 +19,8 @@ export class GeneralReportComponent implements OnInit {
 
   desde: any;
   hasta: any;
+  year: number;
+  
 
   constructor(
     private formBuilder:FormBuilder,
@@ -34,6 +36,8 @@ export class GeneralReportComponent implements OnInit {
     this.settingService.getTitle().subscribe(data => {
       this.Titulo = data['ValorCadena'];
     });
+    let date: Date = new Date();
+    this.year = date.getFullYear();
   }
 
   getReport(){
@@ -42,9 +46,8 @@ export class GeneralReportComponent implements OnInit {
       'Hasta': this.filters.get('Hasta').value,
     }
     this.setRange();    
-    this.reportService.getGeneral(filter).subscribe(data => {
-      this.showReport = true;
-      
+    this.reportService.getDepreciation(filter).subscribe(data => {
+      this.showReport = true;      
       Object.assign(this.response, data);
     });
     
@@ -58,5 +61,4 @@ export class GeneralReportComponent implements OnInit {
   downloadPDF(): void {
     this.reportService.downloadPDF();
   }
-
 }

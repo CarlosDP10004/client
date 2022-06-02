@@ -6,10 +6,11 @@ import { GeneralReportComponent } from './general-report/general-report.componen
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TemplateModule } from 'src/app/shared/template/template.module';
+import { DepreciationComponent } from './depreciation/depreciation.component';
 
 
 @NgModule({
-  declarations: [GeneralReportComponent],
+  declarations: [GeneralReportComponent, DepreciationComponent],
   imports: [
     CommonModule,
     ReportsRoutingModule,

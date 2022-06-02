@@ -78,7 +78,6 @@ export class AssetsAddComponent implements OnInit {
     this.addAsset = this.formBuilder.group({
       IdCuenta:['',[Validators.required]],
       IdClasificacion:['',[Validators.required]],
-      //IdClasificacion: new FormControl(this.formBuilder.array([])),
       IdMarca:['',[Validators.required]],
       Modelo:['',[Validators.required]],
       Descripcion:['',[Validators.required]],
@@ -199,9 +198,11 @@ export class AssetsAddComponent implements OnInit {
     });  
   }
 
-  chargeClasification(value){
+  chargeClasification(){
+    let IdCuenta = this.addAsset.get('IdCuenta').value;
+    this.selected = IdCuenta;
     this.clasifications = [];
-    this.clasificationService.getClasificacionByAccount(value).subscribe(data => {
+    this.clasificationService.getClasificacionByAccount(IdCuenta).subscribe(data => {
       Object.assign(this.clasifications, data);
     }, error => { 
       Swal.fire({

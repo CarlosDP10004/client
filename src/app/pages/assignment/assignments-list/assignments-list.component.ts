@@ -43,8 +43,8 @@ export class AssignmentsListComponent implements OnInit {
     this.router.navigate(['/Assets/Assignments/Edit/', IdAssignment]);
   }
 
-  changeStatus(){
-
+  validateAssignment(IdAssignment:number){
+    this.router.navigate(['/Assets/Assignments/Validate/', IdAssignment]);
   }
 
 }

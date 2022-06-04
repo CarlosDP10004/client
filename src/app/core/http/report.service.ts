@@ -31,6 +31,26 @@ export class ReportService {
     return this.clienteHttp.post(API_URL + "reportes/depreciacion", filters, { headers: headers});
   }
 
+  getAmortization(filters: any){
+    const headers = new HttpHeaders().set('Authorization', `bearer ${this.userService.getToken()}`)
+    return this.clienteHttp.post(API_URL + "reportes/amortizacion", filters, { headers: headers});
+  }
+
+  getReportByUnits(filters: any){
+    const headers = new HttpHeaders().set('Authorization', `bearer ${this.userService.getToken()}`)
+    return this.clienteHttp.post(API_URL + "reportes/unidad", filters, { headers: headers});
+  }
+
+  getReportByStatus(filters: any){
+    const headers = new HttpHeaders().set('Authorization', `bearer ${this.userService.getToken()}`)
+    return this.clienteHttp.post(API_URL + "reportes/estado", filters, { headers: headers});
+  }
+
+  getHistoricalReport(filters: any){
+    const headers = new HttpHeaders().set('Authorization', `bearer ${this.userService.getToken()}`)
+    return this.clienteHttp.post(API_URL + "reportes/historico", filters, { headers: headers});
+  }
+
   
   // Test para descargar desde servicio
   downloadPDF(): void { 

@@ -4,72 +4,64 @@
         <b>Asignación de activos fijos.</b>
         <hr>
     </h1>  
-  </div>
-  <br>
+</div>
+<br>
   
-  <form [formGroup]="editAssignment" (ngSubmit)="editarAsignacion()">
-    <div class="EncabezadoForm shadow-X"><b>&nbsp;Datos Generales:</b></div>
+<form [formGroup]="validateAssignment" (ngSubmit)="validarSolicitud()">
+    <div class="EncabezadoForm shadow-X"><b>&nbsp;Datos Generales:</b>
+    </div>
     <div class="EstiloForm1">
       <div class="row Espacio">
         <div class="col-sm-4">
           <label class="col-sm-4 control-label texto">Unidad:</label><br />
-          <select class="form-control" formControlName="IdUnidad" (change)="chargeWorkStation($event.target.value)">
+          <select class="form-control" formControlName="IdUnidad" (change)="chargeWorkStation($event.target.value)" disabled>
             <option value="" hidden>Selecciona la unidad</option>
             <option *ngFor="let item of departaments" [value]="item.IdUnidad">{{item.NombreUnidad}}</option>
           </select>
-      </div>
-  
-      <div class="col-sm-4">
-          <label class="col-sm-4 control-label texto">Plaza:</label><br />        
-          <select class="form-control" formControlName="IdPlaza">
-            <option value="" hidden>Selecciona la plaza</option>
-            <option *ngFor="let item of workStations" [value]="item.IdPlaza">{{item.NombrePlaza}}</option>
-          </select>
-      </div>
-      
-      <div class="col-sm-4">
-          <label class="col-sm-4 control-label texto">Estado:</label><br />
-          <select class="form-control" formControlName="IdEstado" disabled>
-            <option value="" hidden>Selecciona el Estado</option>
-            <option *ngFor="let item of statusAssignments" [value]="item.IdEstado">{{item.NombreEstado}}</option>
-          </select>
-      </div>
-    </div>
-    
-      <div class="row Espacio">
-        <div class="col-sm-12">
-          <label class="botonInputFile file">
-          <div class="row bordeCompra">
-            <div class="col-sm-2 posicionIcono1">
-              <img src="../../../assets/images/factura.png" alt="Subir/Archivo" class="avatar" width="40" height="40">
-            </div>
-            <div class="col-sm-6 posicionInput">
-              <input type="file" class="ubicacion custom-file-input" id="customFile" formControlName="IdArchivo" (change)="getFile($event)">              
-          </div>            
-        </div>      
-        </label>
         </div>
-      </div> 
   
-  </div>
+        <div class="col-sm-4">
+            <label class="col-sm-4 control-label texto">Plaza:</label><br />        
+            <select class="form-control" formControlName="IdPlaza" disabled>
+              <option value="" hidden>Selecciona la plaza</option>
+              <option *ngFor="let item of workStations" [value]="item.IdPlaza">{{item.NombrePlaza}}</option>
+            </select>
+        </div>
+      
+        <div class="col-sm-4">
+            <label class="col-sm-4 control-label texto">Estado:</label><br />
+            <select class="form-control" formControlName="IdEstado" disabled>
+              <option value="" hidden>Selecciona el Estado</option>
+              <option *ngFor="let item of status" [value]="item.IdEstado">{{item.NombreEstado}}</option>
+            </select>
+        </div>
+      </div>
+    
+      
+      <div class="row Espacio">
+        <div class="col-sm-3"><label class="col-sm-10 control-label texto">Descargar solicitud de asignación</label>
+          <div class="col-sm-3">
+            <a class="btn botonInputFile2" (click)="downloadPDF()" download="">                
+            <img src="../../../../assets/images/download.png" alt="Subir/Archivo" class="avatar" width="45" height="40">
+            </a>
+          </div>
+        </div>
+      </div>
+  
+    </div>
   <br>   
       
-     <div class="row">
-      <div class="col-sm-4 Espacio4">
-      <a class="Link" (click)="addAsset()" style="cursor:pointer;" type="button">
-        &nbsp; + Añadir activo
-      </a>
-    </div>
-    <div class="botones">
-      <button type="submit" class="espacio3 btn btn-primary btn-lg" style="float: right">Guardar</button>        
-      <span routerLink="/Assets/Assignments" class="btn btn-default btn-lg" style="float: right">Cancelar</span>
-    </div>
+    <div class="row">      
+      <div class="botones">
+        <button type="submit" class="espacio3 btn btn-primary btn-lg" style="float: right">Aprobar</button>        
+        <span (click)="rechazarAsignacion()" class="btn btn-default btn-lg" style="float: right">Rechazar</span>
+      </div>
     </div>
 
       <!-- Inicio de arreglo de activos asignados -->
       <br>
       <div formArrayName="ListaActivosAsignados" class="card">      
-        <div  *ngFor="let asset of editAssignment.get('ListaActivosAsignados')['controls'];  let i=index " [formGroupName]="i" [formGroup]="asset" class="card-body EstiloFor2">
+        <div  *ngFor="let asset of validateAssignment.get('ListaActivosAsignados')['controls'];  let i=index " [formGroupName]="i" [formGroup]="asset" class="card-body EstiloFor2">
           <div class="row Espacio">            
           <div class="col-sm-4">
             <label class="col-sm-4 control-label texto">Cuenta:</label><br />
@@ -82,20 +74,20 @@
           <label class="col-sm3 control-label texto">Clasificación:</label><br />
             <select class="form-control" formControlName="IdClasificacion" disabled>
               <option value="" hidden>Selecciona la clasificación</option>
-              <option *ngFor="let item of chargeClasification(editAssignment.controls['ListaActivosAsignados']?.value[i]?.IdCuenta)" [value]="item.IdClasificacion">{{item.Descripcion}}</option>
+              <option *ngFor="let item of chargeClasification(validateAssignment.controls['ListaActivosAsignados']?.value[i]?.IdCuenta)" [value]="item.IdClasificacion">{{item.Descripcion}}</option>
             </select>
         </div>
         <div class="col-sm-3">
           <label class="col-sm-4 control-label texto">Activo:</label><br />
             <select class="form-control" formControlName="IdActivoFijo" disabled>
               <option value="" hidden>Selecciona el código del activo</option>
-              <option *ngFor="let item of chargeAssignedAssets(editAssignment.controls['ListaActivosAsignados']?.value[i]?.IdClasificacion)" [value]="item.IdActivoFijo">{{item.CodigoAF}}</option>
+              <option *ngFor="let item of chargeAssignedAssets(validateAssignment.controls['ListaActivosAsignados']?.value[i]?.IdClasificacion)" [value]="item.IdActivoFijo">{{item.CodigoAF}}</option>
             </select>
         </div>
         <div class="col-sm-1">
-          <a type="submit" class="btn alinear" style="float: right" (click)="removeAssignment(editAssignment.controls['ListaActivosAsignados']?.value[i]?.IdActivoFijo, i)">                
+          <!--<a type="submit" class="btn alinear" style="float: right" (click)="removeAssignment(validateAssignment.controls['ListaActivosAsignados']?.value[i]?.IdActivoFijo, i)">                
             <img src="..\assets\images\trash.png" width="23" height="23">
-          </a>
+          </a>-->
         </div>
       </div>
       </div>
@@ -104,7 +96,7 @@
       <!-- Fin de arreglo de activos asignados -->        
       <!-- Inicio de arreglo de activos -->
       <!--<br>-->
-      <div formArrayName="ListaActivos" class="card">      
+      <!--<div formArrayName="ListaActivos" class="card">      
           <div  *ngFor="let asset of editAssignment.get('ListaActivos')['controls'];  let i=index " [formGroupName]="i" [formGroup]="asset" class="card-body EstiloFor2">
             <div class="row Espacio">            
             <div class="col-sm-4">
@@ -135,7 +127,7 @@
           </div>
         </div>
         </div>
-      </div>
+      </div>-->
       
       <!-- Fin de arreglo de activos -->
-    </form>
+</form>

@@ -29,10 +29,7 @@
     
     <div class="col-sm-4">
         <label class="col-sm-4 control-label texto">Estado:</label><br />
-        <select class="form-control" formControlName="IdEstado">
-          <option value="" hidden>Selecciona el Estado</option>
-          <option *ngFor="let item of statusAssignments" [value]="item.IdEstado">{{item.NombreEstado}}</option>
-        </select>
+        <input type="text" class="form-control" disabled formControlName="IdEstado"/>
     </div>
   </div>
   
@@ -93,7 +90,7 @@
             </select>
         </div>
         <div class="col-sm-1">
-          <a type="submit" class="btn alinear" style="float: right" (click)="removeItem()">                
+          <a type="submit" class="btn alinear" style="float: right" (click)="removeItem(i)">                
             <img src="..\assets\images\trash.png" width="23" height="23">
           </a>
         </div>

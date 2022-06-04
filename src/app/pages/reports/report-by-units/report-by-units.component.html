@@ -1,0 +1,107 @@
+<form [formGroup]="filters" (ngSubmit)="getReport()">
+    <div class="TituloIndex">
+      <h1 class="EstiloIndex col-sm-12">
+        <hr>
+          <b>Reporte de activo fijo por unidad.</b>
+          <hr>
+      </h1>  
+  </div>
+  <br>
+  <br>
+  
+      
+        <div class="EncabezadoForm shadow-X"><b>&nbsp;Datos Generales:</b></div>
+        <div class="EstiloForm1">
+          <div class="row Espacio">
+          <div class="margen col-sm-3"><label class="col-sm-6 control-label texto">Fecha inicio:</label>
+            <input type="date" class="form-control"  formControlName="Desde">          
+          </div>
+  
+          <div class="col-sm-3"><label class="col-sm-6 control-label texto">Fecha final:</label>
+            <input type="date" class="form-control"  formControlName="Hasta">          
+          </div>
+
+          <div class="col-sm-3"><label class="col-sm-6 control-label texto">Departamentos:</label>
+            <ng-select                                 
+                formControlName="IdUnidad" 
+                multiple="true"
+                [searchable]="true"                
+                placeholder="Selecciona los departamentos"
+                size="10">
+                  <ng-option *ngFor="let item of units" [value]="item.IdUnidad">{{item.NombreUnidad}}</ng-option>
+            </ng-select>          
+          </div>
+        
+      </div> 
+    </div>
+  
+      <button type="submit" class="espacio3 btn btn-primary btn-lg" style="float: right">Generar reporte</button>        
+      <span routerLink="/Assets" class="btn btn-default btn-lg" style="float: right">Cancelar</span>
+  
+  </form>
+  <br>
+  <br>
+  <br>
+  <br>
+  
+  
+  
+  <div *ngIf="showReport"> 
+    <div class="EncabezadoForm2 shadow-X"><b>&nbsp;Previsualizacion:</b></div>
+        <div class="EstiloForm1">   
+      <div class="row">
+        <div id="htmlData">       
+          <br>
+  
+          <div id="Titulo">
+            <div [innerHtml]="Titulo" class="centrar"></div>
+            <br/>        
+            <h2 class="ali">ADMINISTRACIÓN DE BIENES INSTITUCIONALES</h2>
+            <h3 class="ali3">REPORTE DE ACTIVO FIJO POR DEPARTAMENTO</h3>        
+            <br/>
+            <h5 class="ali2" *ngIf="desde != ''"> Desde: {{desde | date:'dd/MM/yyyy'}}</h5>
+            <h5 class="ali2" *ngIf="hasta != ''"> Hasta: {{hasta | date:'dd/MM/yyyy'}}</h5>
+            <h5 class="ali2" *ngIf="unidades != ''"> Departamentos solicitados: {{unidades}}</h5>
+            <br/>
+          </div> 
+          
+          <table id="Reporte" class="table mt-4 ">          
+            <tr class="table-primary estiloCabecera">
+              <th style="text-align: center" bgcolor="#c9a892">&nbsp;N° Inventario</th>
+              <th style="text-align: center" bgcolor="#c9a892">&nbsp;Nombre</th>
+              <th style="text-align: center" bgcolor="#c9a892">&nbsp;Marca</th>
+              <th style="text-align: center" bgcolor="#c9a892">&nbsp;Modelo</th>
+              <th style="text-align: center" bgcolor="#c9a892">&nbsp;Serie</th>
+              <th style="text-align: center" bgcolor="#c9a892">&nbsp;Unidad</th>
+              <th style="text-align: center" bgcolor="#c9a892">&nbsp;Responsable</th>
+              <th style="text-align: center" bgcolor="#c9a892">&nbsp;Precio Adquisición</th>
+              <th style="text-align: center" bgcolor="#c9a892">&nbsp;Fecha Adquisición</th>
+            </tr>        
+            <tr *ngFor="let item of response">
+              <th style="text-align: center">{{item.CodigoAF}}</th>
+              <td style="text-align: center">{{item.Descripcion}}</td>
+              <td style="text-align: center">{{item.NombreMarca}}</td> 
+              <td style="text-align: center">{{item.Modelo}}</td>
+              <td style="text-align: center">{{item.Serie}}</td>
+              <td style="text-align: center">{{item.NombreUnidad}}</td>
+              <td style="text-align: center">{{item.NombreUsuario}}</td>
+              <td style="text-align: center">${{item.ValorCompra}}</td>
+              <td style="text-align: center">{{item.FechaCompra | date:'dd/MM/yyyy'}}</td>          
+          </table>
+        </div>
+      </div>
+      <div>
+          <button class="btn btn-primary btn-lg" (click)="downloadPDF()">Descargar PDF</button>
+          <br>
+    <br>
+      </div>
+    </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    
+    
+    
+  

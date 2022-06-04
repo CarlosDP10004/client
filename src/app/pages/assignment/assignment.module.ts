@@ -10,6 +10,7 @@ import { AssignmentRemoveComponent } from './assignment-remove/assignment-remove
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { TemplateModule } from 'src/app/shared/template/template.module';
+import { AssignmentValidateComponent } from './assignment-validate/assignment-validate.component';
 
 
 
@@ -19,6 +20,7 @@ import { TemplateModule } from 'src/app/shared/template/template.module';
     AssignmentsListComponent,
     AssignmentEditComponent,
     AssignmentRemoveComponent,
+    AssignmentValidateComponent,
   ],
   imports: [
     CommonModule,

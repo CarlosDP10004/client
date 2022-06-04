@@ -62,7 +62,7 @@ export class AssignmentAddComponent implements OnInit {
     this.addAssignment = this.formBuilder.group({
       IdUnidad:['',[Validators.required]],
       IdPlaza:['',[Validators.required]],
-      IdEstado:['',[Validators.required]],
+      IdEstado:['Pendiente',[]],
       IdArchivo:['',[Validators.required]],
       ListaActivos: this.formBuilder.array([])
     });
@@ -131,7 +131,7 @@ export class AssignmentAddComponent implements OnInit {
 
   getStatusByDefault(){    
     this.status.forEach(element => {
-      if(element.Modulo == 'Asignacion'){         
+      if(element.Modulo == 'Solicitud'){         
         this.statusAssignments.push(element);          
       }
     });
@@ -146,8 +146,8 @@ export class AssignmentAddComponent implements OnInit {
     this.ListaActivos.push(aux);
   }
 
-  removeItem() {
-    this.ListaActivos.removeAt(this.ListaActivos.length - 1);
+  removeItem(i:any) {
+    this.ListaActivos.removeAt(this.ListaActivos[i]);
  }
 
   async guardarAsignacion(){

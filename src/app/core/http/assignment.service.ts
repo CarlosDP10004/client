@@ -54,4 +54,11 @@ export class AssignmentService {
     return this.clienteHttp.put(`${API_URL}removerAsignacion/${id}`, comments, { headers: headers});    
   }
 
+  validateAssignment(id: any, statement: any){    
+    const headers = new HttpHeaders().set('Authorization', `bearer ${this.userService.getToken()}`)
+    return this.clienteHttp.put(`${API_URL}validarAsignacion/${id}`, statement, { headers: headers});
+  }
+
+  
+
 }

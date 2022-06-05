@@ -26,7 +26,7 @@
               <option *ngFor="let item of filterClasification" [value]="item.IdClasificacion">{{item.Descripcion}}</option>
             </select>          
           </div>
-          <div class="col-sm-3"><label class="col-sm-6 control-label texto">Código Activo Fijo:</label>
+          <div class="col-sm-5"><label class="col-sm-8 control-label texto">Código Activo Fijo:</label>
             <select class="form-control" formControlName="IdActivoFijo">
               <option value="" hidden>Selecciona el activo fijo</option>
               <option *ngFor="let item of filterAsset" [value]="item.IdActivoFijo">{{item.CodigoAF}}</option>
@@ -36,34 +36,79 @@
       </div> 
     </div>
   
+    <div class="row top">
       <button type="submit" class="espacio3 btn btn-primary btn-lg" style="float: right">Generar reporte</button>        
       <span routerLink="/Assets" class="btn btn-default btn-lg" style="float: right">Cancelar</span>
+    </div>
+      
   
   </form>
-  <br>
-  <br>
-  <br>
-  <br>
-  
-  
   
   <div *ngIf="showReport"> 
     <div class="EncabezadoForm2 shadow-X"><b>&nbsp;Previsualizacion:</b></div>
         <div class="EstiloForm1">   
       <div class="row">
-        <div id="htmlData">       
-          <br>
-  
+        <div id="htmlData">      
           <div id="Titulo">
-            <div [innerHtml]="Titulo" class="centrar"></div>
-            <br/>        
-            <h2 class="ali">ADMINISTRACIÓN DE BIENES INSTITUCIONALES</h2>
-            <h3 class="ali3">HOJA DE REGISTRO Y CONTROL DE ACTIVO FIJO </h3>        
+            <div [innerHtml]="Titulo" class="centrar"></div>                   
+            <h3 class="ali">ADMINISTRACIÓN DE BIENES INSTITUCIONALES</h3>
+            <h4 class="ali3">HOJA DE REGISTRO Y CONTROL DE ACTIVO FIJO </h4>        
             <br/>            
           </div> 
 
           <div id="General">
-            
+            <table 00000class="table mt-4 ">  
+
+              <tr class="table-primary estiloCabecera">
+                <th style="text-align: center" bgcolor="#c9a892">&nbsp;N de inventario</th>
+                <th style="text-align: center" bgcolor="#c9a892">&nbsp;Descripcion</th>
+                <th style="text-align: center" bgcolor="#c9a892">&nbsp;Marca</th>
+              </tr>
+              <tr >
+                <td>&nbsp;564654564</td>
+                <td>&nbsp;Silla</td>
+                <td>&nbsp;LG</td>
+
+                
+                  <tr class="table-primary estiloCabecera">
+                    <th style="text-align: center" bgcolor="#c9a892">&nbsp;Modelo</th>
+                    <th style="text-align: center" bgcolor="#c9a892">&nbsp;Serie</th>
+                    <th style="text-align: center" bgcolor="#c9a892">&nbsp;Proveedor</th>
+                  </tr>
+                  <tr >
+                    <td>&nbsp;t-200</td>
+                    <td>&nbsp;45645665</td>
+                    <td>&nbsp;Office</td>
+
+
+                    <tr class="table-primary estiloCabecera">
+                      <th style="text-align: center" bgcolor="#c9a892">&nbsp;Origen</th>
+                      <th style="text-align: center" bgcolor="#c9a892">&nbsp;Fecha de adquisicion</th>
+                      <th style="text-align: center" bgcolor="#c9a892">&nbsp;Estado</th>
+                    </tr>
+                    <tr >
+                      <td>&nbsp;Donativo</td>
+                      <td>&nbsp;02/05/2022</td>
+                      <td>&nbsp;Bodega</td>
+
+
+                      <tr class="table-primary estiloCabecera">
+                        <th style="text-align: center" bgcolor="#c9a892">&nbsp;N de libre gestion</th>
+                        <th style="text-align: center" bgcolor="#c9a892">&nbsp;Valor de adquisicion</th>
+                        <th style="text-align: center" bgcolor="#c9a892">&nbsp;Valor actual a la fecha</th>
+                      </tr>
+                      <tr >
+                        <td>&nbsp;465456456564564564564</td>
+                        <td>&nbsp;$300</td>
+                        <td>&nbsp;$275.55</td>
+
+
+                        <tr class="table-primary estiloCabecera">
+                          <th colspan=3 style="text-align: center" bgcolor="#c9a892">&nbsp;Comentario</th>                          
+                        </tr>
+                        <tr >
+                          <td colspan=3>&nbsp;465456456564564564564</td>
+            </table>
           </div>
           
           <table id="Reporte" class="table mt-4 ">          

@@ -14,14 +14,14 @@
         <div class="EstiloForm1">
           <div class="row Espacio">
           <div class="margen col-sm-3"><label class="col-sm-6 control-label texto">Fecha inicio:</label>
-            <input type="date" class="form-control"  formControlName="Desde">          
+            <input type="date" class="form-control tam"  formControlName="Desde">          
           </div>
   
           <div class="col-sm-3"><label class="col-sm-6 control-label texto">Fecha final:</label>
-            <input type="date" class="form-control"  formControlName="Hasta">          
+            <input type="date" class="form-control tam"  formControlName="Hasta">          
           </div>
 
-          <div class="col-sm-3"><label class="col-sm-6 control-label texto">Estados:</label>
+          <div class="col-sm-5"><label class="col-sm-6 control-label texto">Estados:</label>
             <ng-select                                 
                 formControlName="IdEstado" 
                 multiple="true"
@@ -34,16 +34,15 @@
         
       </div> 
     </div>
-  
+
+    <div class="row top">
       <button type="submit" class="espacio3 btn btn-primary btn-lg" style="float: right">Generar reporte</button>        
       <span routerLink="/Assets" class="btn btn-default btn-lg" style="float: right">Cancelar</span>
   
-  </form>
-  <br>
-  <br>
-  <br>
-  <br>
+    </div>
   
+      
+  </form>
   
   
   <div *ngIf="showReport"> 
@@ -54,14 +53,14 @@
           <br>
   
           <div id="Titulo">
-            <div [innerHtml]="Titulo" class="centrar"></div>
-            <br/>        
-            <h2 class="ali">ADMINISTRACIÓN DE BIENES INSTITUCIONALES</h2>
-            <h3 class="ali3">REPORTE DE ACTIVO FIJO POR ESTADO</h3>        
-            <br/>
-            <h5 class="ali2" *ngIf="desde != ''"> Desde: {{desde | date:'dd/MM/yyyy'}}</h5>
-            <h5 class="ali2" *ngIf="hasta != ''"> Hasta: {{hasta | date:'dd/MM/yyyy'}}</h5>
-            <h5 class="ali2" *ngIf="estados != ''"> Estados solicitados: {{estados}}</h5>
+            <div [innerHtml]="Titulo" class="centrar"></div>                  
+            <h3 class="ali">ADMINISTRACIÓN DE BIENES INSTITUCIONALES</h3>
+            <h4 class="ali3">REPORTE DE ACTIVO FIJO POR ESTADO</h4> 
+            <h4 class="ali3" *ngIf="estados != ''"> Estados solicitados: {{estados}}</h4>
+            <div style="text-align: center;">
+            <span class="ali2" *ngIf="desde != ''"> Desde: {{desde | date:'dd/MM/yyyy'}}</span>
+            <span class="ali2" *ngIf="hasta != ''"> Hasta: {{hasta | date:'dd/MM/yyyy'}}</span>
+            </div>
             <br/>
           </div> 
           
@@ -84,7 +83,7 @@
               <td style="text-align: center">{{item.Serie}}</td>
               <td style="text-align: center">${{item.ValorCompra}}</td>
               <td style="text-align: center">{{item.FechaCompra | date:'dd/MM/yyyy'}}</td>
-              <td style="text-align: center">{{item.NombreEstado}}</td>       
+              <th style="text-align: center">{{item.NombreEstado}}</th>       
           </table>
         </div>
       </div>

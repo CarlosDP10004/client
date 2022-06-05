@@ -14,14 +14,14 @@
         <div class="EstiloForm1">
           <div class="row Espacio">
           <div class="margen col-sm-3"><label class="col-sm-6 control-label texto">Fecha inicio:</label>
-            <input type="date" class="form-control"  formControlName="Desde">          
+            <input type="date" class="form-control tam"  formControlName="Desde">          
           </div>
   
           <div class="col-sm-3"><label class="col-sm-6 control-label texto">Fecha final:</label>
-            <input type="date" class="form-control"  formControlName="Hasta">          
+            <input type="date" class="form-control tam"  formControlName="Hasta">          
           </div>
 
-          <div class="col-sm-3"><label class="col-sm-6 control-label texto">Departamentos:</label>
+          <div class="col-sm-5"><label class="col-sm-4 control-label texto">Departamentos:</label>
             <ng-select                                 
                 formControlName="IdUnidad" 
                 multiple="true"
@@ -34,15 +34,15 @@
         
       </div> 
     </div>
-  
-      <button type="submit" class="espacio3 btn btn-primary btn-lg" style="float: right">Generar reporte</button>        
+    
+  <div class="row top">    
+    <button type="submit" class="espacio3 btn btn-primary btn-lg" style="float: right">Generar reporte</button>        
       <span routerLink="/Assets" class="btn btn-default btn-lg" style="float: right">Cancelar</span>
   
+  </div>
+      
   </form>
-  <br>
-  <br>
-  <br>
-  <br>
+  
   
   
   
@@ -50,18 +50,16 @@
     <div class="EncabezadoForm2 shadow-X"><b>&nbsp;Previsualizacion:</b></div>
         <div class="EstiloForm1">   
       <div class="row">
-        <div id="htmlData">       
-          <br>
-  
+        <div id="htmlData">  
           <div id="Titulo">
-            <div [innerHtml]="Titulo" class="centrar"></div>
-            <br/>        
-            <h2 class="ali">ADMINISTRACIÓN DE BIENES INSTITUCIONALES</h2>
-            <h3 class="ali3">REPORTE DE ACTIVO FIJO POR DEPARTAMENTO</h3>        
-            <br/>
-            <h5 class="ali2" *ngIf="desde != ''"> Desde: {{desde | date:'dd/MM/yyyy'}}</h5>
-            <h5 class="ali2" *ngIf="hasta != ''"> Hasta: {{hasta | date:'dd/MM/yyyy'}}</h5>
-            <h5 class="ali2" *ngIf="unidades != ''"> Departamentos solicitados: {{unidades}}</h5>
+            <div [innerHtml]="Titulo" class="centrar"></div>                
+            <h3 class="ali">ADMINISTRACIÓN DE BIENES INSTITUCIONALES</h3>
+            <h4 class="ali3">REPORTE DE ACTIVO FIJO POR DEPARTAMENTO</h4> 
+            <h4 class="ali3" *ngIf="unidades != ''"> Departamentos solicitados: {{unidades}}</h4>
+            <div style="text-align: center;">        
+            <span style="text-align: right;"  class="ali2" *ngIf="desde != ''"> Desde: {{desde | date:'dd/MM/yyyy'}}</span>
+            <span class="ali2" *ngIf="hasta != ''"> Hasta: {{hasta | date:'dd/MM/yyyy'}}</span>
+          </div> 
             <br/>
           </div> 
           

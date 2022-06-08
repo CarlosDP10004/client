@@ -31,10 +31,12 @@ export class ProfileComponent implements OnInit {
     });
 
     this.authService.me().subscribe(data => {
+
+      let profileData = data;
         if (this.profileForm!=null && data!=null) {
-          this.profileForm.controls['empleado'].setValue(data[0]['empleado']);
-          this.profileForm.controls['nombrePlazaNominal'].setValue(data[0]['nombrePlazaNominal']);
-          this.profileForm.controls['nombreUnidad'].setValue(data[0]['nombreUnidad']);
+          this.profileForm.controls['empleado'].setValue(profileData['givenname']);
+          this.profileForm.controls['nombrePlazaNominal'].setValue(profileData['sn']);
+          this.profileForm.controls['nombreUnidad'].setValue(profileData['userprincipalname']);
           this.profileForm.controls['nombrePlaza'].setValue(data[0]['nombrePlaza']);
           this.profileForm.controls['nombreEstadoLaboral'].setValue(data[0]['nombreEstadoLaboral']);
         }        

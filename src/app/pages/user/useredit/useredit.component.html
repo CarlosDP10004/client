@@ -9,22 +9,9 @@
           <div class="form-group">
             <label class="col-sm-2 control-label texto">Nombre</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" formControlName="NombreUsuario" disabled />
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-2 control-label texto">Contraseña</label>
-            <div class="col-sm-9">
-              <input type="password" class="form-control tamanio" formControlName="Contrasenna"/>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="col-sm-2 control-label texto">Empleado</label>
-            <div class="col-sm-9">
-              <select formControlName="IdEmpleado" class="form-control tamanio2">
-                <option [value]="null" disabled selected>Selecciona el empleado</option>
-                <option *ngFor="let item of employees" [value]="item.idEmpleado">{{item.empleado}}</option>
+              <select formControlName="NombreUsuario" class="form-control tamanio2">
+                <option value="">Selecciona el empleado</option>
+                <option *ngFor="let item of usersAD" [value]="item.userprincipalname">{{item.displayname}}</option>
               </select>
             </div>
           </div>

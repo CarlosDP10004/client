@@ -25,9 +25,9 @@
           <div class="form-group">
             <label class="col-sm-2 control-label texto">Empleado</label>
             <div class="col-sm-9">
-              <select formControlName="IdEmpleado" class="form-control tamanio2">
-                <option value="" hidden>Selecciona el empleado</option>
-                <option *ngFor="let item of employees" [value]="item.idEmpleado">{{item.empleado}}</option>
+              <select formControlName="Empleado" class="form-control tamanio2">
+                <option value="">Selecciona el empleado</option>
+                <option *ngFor="let item of usersAD" [value]="item.userprincipalname">{{item.displayname}}</option>
               </select>
             </div>
           </div>

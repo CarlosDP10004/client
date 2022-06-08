@@ -62,6 +62,7 @@ export class ReportHistoryComponent implements OnInit {
       this.showReport = true;      
       Object.assign(this.response, data);
       this.historial = this.response['historial'];
+      console.log("hola");
     });
     
   }
@@ -125,7 +126,7 @@ export class ReportHistoryComponent implements OnInit {
   }
 
   downloadPDF(): void {
-    this.reportService.downloadPDF();
+    this.reportService.downloadPDF2();
   }
 
 }

@@ -81,4 +81,10 @@ export class UserService {
   }
 
 
+  getUsersFromAD(){
+    const headers = new HttpHeaders().set('Authorization', `bearer ${this.userService.getToken()}`)
+    return this.clienteHttp.get(`${API_URL}usuariosAD`, { headers: headers})
+  }
+
+
 }

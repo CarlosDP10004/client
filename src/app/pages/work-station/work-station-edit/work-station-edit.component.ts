@@ -22,6 +22,8 @@ export class WorkStationEditComponent implements OnInit {
   id: number;
   workStationData: any;
 
+  usersAD: any[] = [];
+
   constructor(
     private builder: FormBuilder, 
     private workStationService: WorkStationService, 
@@ -34,7 +36,7 @@ export class WorkStationEditComponent implements OnInit {
     this.editWorkStation = this.builder.group({
       IdUnidad: new FormControl(null, []),
       NombrePlaza: new FormControl('', []),
-      IdEmpleado: new FormControl('', [])
+      Empleado: new FormControl('', [])
     });
     this.departamentService.showAll().subscribe(data => {
       Object.assign(this.units, data);
@@ -48,8 +50,8 @@ export class WorkStationEditComponent implements OnInit {
       }) 
     });
 
-    this.userService.getEmployees().subscribe(data => {
-      Object.assign(this.employees, data);
+    this.userService.getUsersFromAD().subscribe(data => {
+      Object.assign(this.usersAD, data);
     }, error => { 
       Swal.fire({
         icon: 'error',
@@ -69,7 +71,7 @@ export class WorkStationEditComponent implements OnInit {
           if (this.editWorkStation!=null && this.workStationData!=null) {
             this.editWorkStation.controls['NombrePlaza'].setValue(this.workStationData.NombrePlaza);
             this.editWorkStation.controls['IdUnidad'].setValue(this.workStationData.IdUnidad);
-            this.editWorkStation.controls['IdEmpleado'].setValue(this.workStationData.IdEmpleado);
+            this.editWorkStation.controls['Empleado'].setValue(this.workStationData.Empleado);
           }
         }, error => { 
           Swal.fire({
@@ -91,7 +93,7 @@ export class WorkStationEditComponent implements OnInit {
     let workStationData = {
       'NombrePlaza': this.editWorkStation.get('NombrePlaza').value,
       'IdUnidad': this.editWorkStation.get('IdUnidad').value,
-      'IdEmpleado': this.editWorkStation.get('IdEmpleado').value,
+      'Empleado': this.editWorkStation.get('Empleado').value,
     };
     this.workStationService.editWorkStation(this.id, workStationData).subscribe(data => {       
       if(data!=null){

@@ -24,6 +24,8 @@ export class UsereditComponent implements OnInit {
   options = [{id:1, name: 'Roles'},{id:2, name:'Permisos'}];
   selected: number;
 
+  usersAD: any[] = [];
+
   event: EventEmitter<any> = new EventEmitter();
 
   constructor(
@@ -72,8 +74,8 @@ export class UsereditComponent implements OnInit {
       }) 
     });
 
-    this.userService.getEmployees().subscribe(data => {
-      Object.assign(this.employees, data);
+    this.userService.getUsersFromAD().subscribe(data => {
+      Object.assign(this.usersAD, data);
     }, error => { 
       Swal.fire({
         icon: 'error',

@@ -19,6 +19,8 @@ export class WorkStationAddComponent implements OnInit {
   employees: any[] = [];
   event: EventEmitter<any>=new EventEmitter();
 
+  usersAD: any[] = [];
+
   constructor(
     private bsModalRef: BsModalRef,
     private builder: FormBuilder,
@@ -31,7 +33,7 @@ export class WorkStationAddComponent implements OnInit {
     this.addWorkStation = this.builder.group({      
       NombrePlaza: new FormControl('', []),
       IdUnidad: new FormControl('', []),
-      IdEmpleado: new FormControl('', [])
+      Empleado: new FormControl('', [])
     });
     this.departamentService.showAll().subscribe(data => {
       Object.assign(this.units, data);
@@ -45,8 +47,8 @@ export class WorkStationAddComponent implements OnInit {
       }) 
     });
 
-    this.userService.getEmployees().subscribe(data => {
-      Object.assign(this.employees, data);
+    this.userService.getUsersFromAD().subscribe(data => {
+      Object.assign(this.usersAD, data);
     }, error => { 
       Swal.fire({
         icon: 'error',
@@ -65,7 +67,7 @@ export class WorkStationAddComponent implements OnInit {
     let postData = {
       'NombrePlaza': this.addWorkStation.get('NombrePlaza').value,
       'IdUnidad': this.addWorkStation.get('IdUnidad').value,
-      'IdEmpleado': this.addWorkStation.get('IdEmpleado').value,
+      'Empleado': this.addWorkStation.get('Empleado').value,
     };
     this.workStationService.addWorkStation(postData).subscribe(data=>{
       if(data!=null){

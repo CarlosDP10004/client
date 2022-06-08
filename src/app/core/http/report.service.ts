@@ -89,5 +89,42 @@ export class ReportService {
       docResult.save(`${new Date().toISOString()}_report.pdf`);
     });    
   }
+
+  downloadPDF2(): void { 
+    const DATA = document.getElementById('Generalidades');
+    const doc = new jsPDF('p', 'pt', 'a4');
+    const options = {
+      background: 'white',
+      scale: 3
+    };
+    html2canvas(DATA, options).then((canvas) => {
+      const img = canvas.toDataURL('image/PNG');
+      const bufferX = 15;
+      const bufferY = 15;
+      const imgProps = (doc as any).getImageProperties(img);
+      const pdfWidth = doc.internal.pageSize.getWidth() - 2 * bufferX;
+      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+      autoTable(doc, {
+        styles: {
+          overflow: 'linebreak',
+          fontSize: 8,
+          valign: 'middle'
+        },
+        margin:{top: pdfHeight + 15},
+        html: '#Reporte'
+      });
+      const pageCount = (doc as any).internal.getNumberOfPages();
+      doc.addImage(img, 'PNG', bufferX, bufferY, pdfWidth, pdfHeight, undefined, 'FAST');
+      for (let i = 1; i <= pageCount; i++ ) {        
+        doc.setPage(i);
+        doc.setFontSize(10);
+        doc.setTextColor(150);
+        doc.text('Pagina ' + i + ' de ' + pageCount, (doc.internal.pageSize.getWidth()/2.25), (doc.internal.pageSize.getHeight()-8));      
+      } 
+      return doc;
+    }).then((docResult) => {
+      docResult.save(`${new Date().toISOString()}_report.pdf`);
+    });    
+  }
   
 }

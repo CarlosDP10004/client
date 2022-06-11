@@ -18,35 +18,35 @@
         </a>
 
       </nav>
-      <nav class="navbar navbar-default"> 
-        <ul class="nav navbar-nav">          
+      <nav class="navbar navbar-default" *ngIf="asset"> 
+        <ul  class="nav navbar-nav">          
             <a class="dropdown-toggle shadow-X" data-toggle="dropdown" href="" >
               <img src="../../../assets/images/activo-fijo.png" alt="Logo de la DNM" class="Icono">&nbsp;&nbsp;&nbsp;<b>Activo fijo</b>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </a>
             <ul class="dropdown-menu">
-              <li><a routerLink="/Assets/Supplies" >Registro de activos
+              <li *ngIf="registerAsset"><a routerLink="/Assets/Supplies" >Registro de activos
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             &nbsp;&nbsp;&nbsp;                           
               </a></li> 
-              <li><a routerLink="/Assets/Assignments" >Asignación de activos
+              <li *ngIf="assignmentAsset"><a routerLink="/Assets/Assignments" >Asignación de activos
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             &nbsp;&nbsp;&nbsp;                           
               </a></li> 
-              <li><a routerLink="/Assets/Discharges" >Descargo de activo fijo
+              <li *ngIf="dischargeAsset"><a routerLink="/Assets/Discharges" >Descargo de activo fijo
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             &nbsp;&nbsp;&nbsp;                           
               </a></li> 
-              <li><a routerLink="/Assets/Departures" >Salida de activo fijo
+              <li *ngIf="departureAsset"><a routerLink="/Assets/Departures" >Salida de activo fijo
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             &nbsp;&nbsp;&nbsp;                           
               </a></li> 
-              <li><a routerLink="/Assets/External-Loans" >Préstamos externos
+              <li *ngIf="extLoanAsset"><a routerLink="/Assets/External-Loans" >Préstamos externos
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             &nbsp;&nbsp;&nbsp;                           
               </a></li> 
-              <li><a routerLink="/Assets/Internal-Loans" >Préstamos entre unidades
+              <li *ngIf="intLoanAsset"><a routerLink="/Assets/Internal-Loans" >Préstamos entre unidades
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             &nbsp;&nbsp;&nbsp;                           
               </a></li> 
@@ -54,7 +54,7 @@
         </ul>
     </nav>
 
-  <nav class="navbar navbar-default"> 
+  <nav class="navbar navbar-default" *ngIf="report"> 
     <ul class="nav navbar-nav">          
         <a class="dropdown-toggle shadow-X" data-toggle="dropdown" href="" >
           <img src="../../../assets/images/inventario.png" alt="Logo de la DNM" class="Icono">&nbsp;&nbsp;&nbsp;<b>Reportes</b>
@@ -62,27 +62,27 @@
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </a>
         <ul class="dropdown-menu">
-          <li><a routerLink="/Assets/Reports/General" >Reporte general
+          <li *ngIf="reportGeneral"><a routerLink="/Assets/Reports/General" >Reporte general
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         &nbsp;&nbsp;&nbsp;                           
           </a></li> 
-          <li><a routerLink="/Assets/Reports/Depreciation" >Reporte de depreciación
+          <li *ngIf="reportDepreciation"><a routerLink="/Assets/Reports/Depreciation" >Reporte de depreciación
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         &nbsp;&nbsp;&nbsp;                           
           </a></li> 
-          <li><a routerLink="/Assets/Reports/Amortization" >Reporte de amortización
+          <li *ngIf="reportAmortization"><a routerLink="/Assets/Reports/Amortization" >Reporte de amortización
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         &nbsp;&nbsp;&nbsp;                           
           </a></li> 
-          <li><a routerLink="/Assets/Reports/By-Units" >Reporte por unidades
+          <li *ngIf="reportUnits"><a routerLink="/Assets/Reports/By-Units" >Reporte por unidades
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         &nbsp;&nbsp;&nbsp;                           
           </a></li> 
-          <li><a routerLink="/Assets/Reports/By-Status" >Reporte por estados
+          <li *ngIf="reportStatus"><a routerLink="/Assets/Reports/By-Status" >Reporte por estados
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         &nbsp;&nbsp;&nbsp;                           
           </a></li> 
-          <li><a routerLink="/Assets/Reports/History-of-assignments" >Reporte histórico de asignaciones
+          <li *ngIf="reportHistorical"><a routerLink="/Assets/Reports/History-of-assignments" >Reporte histórico de asignaciones
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         &nbsp;&nbsp;&nbsp;                           
           </a></li> 
@@ -90,7 +90,7 @@
     </ul>
 </nav>
 
-  <nav class="navbar navbar-default"> 
+  <nav class="navbar navbar-default" *ngIf="catalogue"> 
     <ul class="nav navbar-nav">          
         <a class="dropdown-toggle shadow-X" data-toggle="dropdown" href="" >
           <img src="../../../assets/images/catalogo.png" alt="Logo de la DNM" class="Icono">&nbsp;&nbsp;&nbsp;<b>Catálogos</b>
@@ -98,17 +98,17 @@
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </a>
         <ul class="dropdown-menu">
-          <li><a routerLink="/Assets/Accounts" >Cuentas contables             
+          <li *ngIf="account"><a routerLink="/Assets/Accounts" >Cuentas contables             
           </a></li>
-          <li><a routerLink="/Assets/Classifications">Clasificación de activos                        
+          <li *ngIf="clasification"><a routerLink="/Assets/Classifications">Clasificación de activos                        
           </a></li>  
-          <li><a routerLink="/Assets/Departaments">Departamentos                        
+          <li *ngIf="departament"><a routerLink="/Assets/Departaments">Departamentos                        
           </a></li>
-          <li><a routerLink="/Assets/Work-Stations">Plazas                         
+          <li *ngIf="workStation"><a routerLink="/Assets/Work-Stations">Plazas                         
           </a></li> 
-          <li><a routerLink="/Assets/Brands">Marcas                        
+          <li *ngIf="brand"><a routerLink="/Assets/Brands">Marcas                        
           </a></li> 
-          <li><a routerLink="/Assets/Providers">Proveedores
+          <li *ngIf="provider"><a routerLink="/Assets/Providers">Proveedores
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;              
           </a></li>           
@@ -116,7 +116,7 @@
     </ul>
 </nav>
 
-  <nav class="navbar navbar-default"> 
+  <nav class="navbar navbar-default" *ngIf="segurity"> 
       <ul class="nav navbar-nav">          
           <a class="dropdown-toggle shadow-X" data-toggle="dropdown" href="" >
             <img src="../../../assets/images/cifrado.png" alt="Logo de la DNM" class="Icono">&nbsp;&nbsp;&nbsp;<b>Seguridad</b>
@@ -124,9 +124,9 @@
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           </a>
           <ul class="dropdown-menu">
-            <li><a routerLink="/Assets/Users" >Usuarios                        
+            <li *ngIf="user"><a routerLink="/Assets/Users" >Usuarios                        
             </a></li>
-            <li><a routerLink="/Assets/Roles">Roles
+            <li *ngIf="role"><a routerLink="/Assets/Roles">Roles
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                   
@@ -135,7 +135,7 @@
       </ul>
   </nav>
 
-  <nav class="navbar navbar-default">    
+  <nav class="navbar navbar-default" *ngIf="setting">    
         <a class="dropdown-toggle shadow-X" data-toggle="dropdown" routerLink="/Assets/Settings" >
           <img src="../../../assets/images/configuracion.png" alt="Logo de la DNM" class="Icono">&nbsp;&nbsp;&nbsp;<b>Configuración</b>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;          

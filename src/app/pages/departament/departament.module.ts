@@ -9,6 +9,7 @@ import { DepartamentEditComponent } from './departament-edit/departament-edit.co
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { TemplateModule } from 'src/app/shared/template/template.module';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { TemplateModule } from 'src/app/shared/template/template.module';
     FormsModule,
     NgxPaginationModule,
     ReactiveFormsModule,
-    TemplateModule
+    TemplateModule,
+    NgSelectModule
   ]
 })
 export class DepartamentModule { }

@@ -79,7 +79,7 @@
 
           <div class="row Espacio">
             <div class="margen col-sm-4"><label class="col-sm-2 control-label texto">Estado</label>
-              <select class="form-control" formControlName="IdEstado">
+              <select class="form-control" formControlName="IdEstado" disabled>
                 <option value="" hidden>Selecciona la clasificacion</option>
                 <option *ngFor="let item of status" [value]="item.IdEstado">{{item.NombreEstado}}</option>
               </select>

@@ -9,20 +9,27 @@
           <div class="form-group">
             <label class="col-sm-2 control-label texto">Nombre</label>
             <div class="col-sm-10">
-              <select formControlName="NombreUsuario" class="form-control tamanio2">
-                <option value="">Selecciona el empleado</option>
-                <option *ngFor="let item of usersAD" [value]="item.userprincipalname">{{item.displayname}}</option>
-              </select>
+              <ng-select 
+                formControlName="NombreUsuario" 
+                class="tamanio2" 
+                [searchable]="true"
+                placeholder="Selecciona el empleado">
+                <ng-option *ngFor="let item of usersAD" [value]="item.userprincipalname">{{item.displayname}}</ng-option>
+              </ng-select>
             </div>
           </div>
 
           <div class="form-group">
             <label class="col-sm-2 control-label texto">Método</label>
             <div class="col-sm-9">
-              <select class="form-control tamanio2" formControlName="Tipo" [(ngModel)]="selected" >
-                <option value="" >Selecciona la opción</option>     
-                <option *ngFor="let item of options" [value]="item.id">{{item.name}}</option>          
-              </select>
+              <ng-select 
+                formControlName="Tipo" 
+                class="tamanio2" 
+                [(ngModel)]="selected"
+                [searchable]="true"
+                placeholder="Selecciona la opción">
+                <ng-option *ngFor="let item of options" [value]="item.id">{{item.name}}</ng-option>
+              </ng-select>
             </div>
           </div>
 

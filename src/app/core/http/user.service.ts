@@ -86,5 +86,10 @@ export class UserService {
     return this.clienteHttp.get(`${API_URL}usuariosAD`, { headers: headers})
   }
 
+  getPermissionsOnApp(){
+    const headers = new HttpHeaders().set('Authorization', `bearer ${this.userService.getToken()}`)
+    return this.clienteHttp.get(`${API_URL}getPermission`, { headers: headers})
+  }
+
 
 }

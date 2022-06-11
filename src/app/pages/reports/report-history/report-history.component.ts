@@ -62,7 +62,7 @@ export class ReportHistoryComponent implements OnInit {
       this.showReport = true;      
       Object.assign(this.response, data);
       this.historial = this.response['historial'];
-      console.log("hola");
+      console.log(data);
     });
     
   }

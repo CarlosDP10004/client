@@ -5,14 +5,12 @@ import { LoginComponent } from './login.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { ProfileComponent } from '../profile/profile.component';
 import { TemplateModule } from 'src/app/shared/template/template.module';
 
 
 @NgModule({
   declarations: [
-    LoginComponent,
-    ProfileComponent 
+    LoginComponent
   ],
   imports: [
     CommonModule,

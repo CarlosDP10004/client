@@ -36,7 +36,7 @@ import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
     SeleccPipe,
     SalidaPipe,  
     PrestamoexPipe,
-    PrestamouniPipe,  
+    PrestamouniPipe
   ],
   imports: [
     CommonModule,

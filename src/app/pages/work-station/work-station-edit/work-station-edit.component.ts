@@ -93,7 +93,7 @@ export class WorkStationEditComponent implements OnInit {
     let workStationData = {
       'NombrePlaza': this.editWorkStation.get('NombrePlaza').value,
       'IdUnidad': this.editWorkStation.get('IdUnidad').value,
-      'Empleado': this.editWorkStation.get('Empleado').value,
+      'Empleado': this.editWorkStation.get('Empleado').value[0],
     };
     this.workStationService.editWorkStation(this.id, workStationData).subscribe(data => {       
       if(data!=null){

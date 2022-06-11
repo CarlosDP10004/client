@@ -10,12 +10,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgSelectModule } from "@ng-select/ng-select";
 import { TemplateModule } from 'src/app/shared/template/template.module';
+import { ProfileComponent } from '../profile/profile.component';
 
 @NgModule({
   declarations: [
     UserListComponent,
     UseraddComponent,    
     UsereditComponent,
+    ProfileComponent
   ],
   imports: [
     CommonModule,

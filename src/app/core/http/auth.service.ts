@@ -18,6 +18,7 @@ export class AuthService {
 
   IdProfileSource = new  BehaviorSubject<number>(0);
   IdProfile: any;
+  clearTimeout: any;
 
   constructor(
     private http: HttpClient
@@ -33,7 +34,7 @@ export class AuthService {
     return this.http.post<UserResponse>(API_URL + 'login', user)
     .pipe(
       map((res: UserResponse) =>{
-          this.saveToken(res.access_token);
+          this.saveToken(res);
           this.logged.next(true);
           return res;
         }),
@@ -41,8 +42,12 @@ export class AuthService {
     );
   }
 
-  private saveToken(access_token: string):void{
-    localStorage.setItem('access_token', access_token)
+  saveToken(res: any):void{ 
+    let expireDate = new Date(
+      new Date().getTime() + + res.expires_in * 1000
+    );
+    localStorage.setItem('access_token', res.access_token);    
+    localStorage.setItem('expires_in', expireDate.toString());
   }
 
   getToken(){
@@ -66,9 +71,9 @@ export class AuthService {
 
   logout():Observable<any>{
     localStorage.removeItem('access_token');
+    localStorage.removeItem('expires_in');
     this.logged.next(false);
-    return this.http.post(API_URL + 'logout', localStorage.getItem);
-    
+    return this.http.post(API_URL + 'logout', localStorage.getItem);    
   } 
 
   me(){
@@ -79,6 +84,19 @@ export class AuthService {
   profile($id){
     const headers = new HttpHeaders().set('Authorization', `bearer ${this.getToken()}`)
     return this.http.get(`${API_URL}empleados/${$id}`, { headers: headers});
+  }
+
+
+  autoLogout(expirationDate: number) {
+    console.log(expirationDate);
+    this.clearTimeout = setTimeout(() => {
+      this.logout();
+    }, expirationDate);
+  }
+
+  refreshToken(){
+    const headers = new HttpHeaders().set('Authorization', `bearer ${this.getToken()}`)
+    return this.http.post(`${API_URL}refresh`, { headers: headers});
   }
 
 

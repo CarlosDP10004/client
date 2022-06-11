@@ -91,7 +91,7 @@ export class ReportService {
   }
 
   downloadPDF2(): void { 
-    const DATA = document.getElementById('Generalidades');
+    const DATA = document.getElementById('htmlData');
     const doc = new jsPDF('p', 'pt', 'a4');
     const options = {
       background: 'white',
@@ -104,17 +104,10 @@ export class ReportService {
       const imgProps = (doc as any).getImageProperties(img);
       const pdfWidth = doc.internal.pageSize.getWidth() - 2 * bufferX;
       const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-      autoTable(doc, {
-        styles: {
-          overflow: 'linebreak',
-          fontSize: 8,
-          valign: 'middle'
-        },
-        margin:{top: pdfHeight + 15},
-        html: '#Reporte'
-      });
+
+      doc.addImage(img, 'PNG', bufferX, bufferY, pdfWidth, pdfHeight, undefined, 'FAST');      
       const pageCount = (doc as any).internal.getNumberOfPages();
-      doc.addImage(img, 'PNG', bufferX, bufferY, pdfWidth, pdfHeight, undefined, 'FAST');
+      
       for (let i = 1; i <= pageCount; i++ ) {        
         doc.setPage(i);
         doc.setFontSize(10);

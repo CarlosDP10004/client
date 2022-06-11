@@ -2,7 +2,7 @@
     <div class="TituloIndex">
       <h1 class="EstiloIndex col-sm-12">
         <hr>
-          <b>Reportes.</b>
+          <b>Reportes de historial de asignaciones.</b>
           <hr>
       </h1>  
   </div>
@@ -58,7 +58,7 @@
             </div> 
   
             <div id="General">
-              <table 00000class="table mt-4 ">  
+              <table class="table mt-4 ">  
   
                 <tr class="table-primary estiloCabecera">
                   <th style="text-align: center" bgcolor="#c9a892">&nbsp;N de inventario</th>
@@ -66,9 +66,9 @@
                   <th style="text-align: center" bgcolor="#c9a892">&nbsp;Marca</th>
                 </tr>
                 <tr >
-                  <td>&nbsp;564654564</td>
-                  <td>&nbsp;Silla</td>
-                  <td>&nbsp;LG</td>
+                  <td>&nbsp;{{response.CodigoAF}}</td>
+                  <td>&nbsp;{{response.clasificacion.Descripcion}}</td>
+                  <td>&nbsp;{{response.marca.NombreMarca}}</td>
   
                   
                     <tr class="table-primary estiloCabecera">
@@ -77,9 +77,9 @@
                       <th style="text-align: center" bgcolor="#c9a892">&nbsp;Proveedor</th>
                     </tr>
                     <tr >
-                      <td>&nbsp;t-200</td>
-                      <td>&nbsp;45645665</td>
-                      <td>&nbsp;Office</td>
+                      <td>&nbsp;{{response.Modelo}}</td>
+                      <td>&nbsp;{{response.Serie}}</td>
+                      <td>&nbsp;{{response.proveedor.NombreProveedor}}</td>
   
   
                       <tr class="table-primary estiloCabecera">
@@ -88,9 +88,9 @@
                         <th style="text-align: center" bgcolor="#c9a892">&nbsp;Estado</th>
                       </tr>
                       <tr >
-                        <td>&nbsp;Donativo</td>
-                        <td>&nbsp;02/05/2022</td>
-                        <td>&nbsp;Bodega</td>
+                        <td>&nbsp;{{response.origen.NombreOrigen}}</td>
+                        <td>&nbsp;{{response.FechaCompra}}</td>
+                        <td>&nbsp;{{response.estado.NombreEstado}}</td>
   
   
                         <tr class="table-primary estiloCabecera">
@@ -99,16 +99,16 @@
                           <th style="text-align: center" bgcolor="#c9a892">&nbsp;Valor actual a la fecha</th>
                         </tr>
                         <tr >
-                          <td>&nbsp;465456456564564564564</td>
-                          <td>&nbsp;$300</td>
-                          <td>&nbsp;$275.55</td>
+                          <td>&nbsp;{{response.LibreGestion}}</td>
+                          <td>&nbsp;{{response.ValorCompra}}</td>
+                          <td>&nbsp;{{response.ValorCompra}}</td>
   
   
                           <tr class="table-primary estiloCabecera">
                             <th colspan=3 style="text-align: center" bgcolor="#c9a892">&nbsp;Comentario</th>                          
                           </tr>
                           <tr >
-                            <td colspan=3>&nbsp;465456456564564564564</td>
+                            <td colspan=3>&nbsp;{{response.Descripcion}}</td>
               </table>
             </div>
           </div>     

@@ -85,7 +85,7 @@ export class UseraddComponent implements OnInit {
   guardarUsuario(){
     if(this.addUser.get('Tipo').value == 2){
       let withPermission = {
-        'NombreUsuario': this.addUser.get('NombreUsuario').value,
+        'NombreUsuario': this.addUser.get('NombreUsuario').value[0],
         'Contrasenna': this.addUser.get('Contrasenna').value,
         'IdEmpleado': this.addUser.get('IdEmpleado').value,
         'Permisos': this.addUser.get('Permisos').value,
@@ -103,7 +103,7 @@ export class UseraddComponent implements OnInit {
 
     if(this.addUser.get('Tipo').value == 1){
       let withRole = {
-        'NombreUsuario': this.addUser.get('NombreUsuario').value,
+        'NombreUsuario': this.addUser.get('NombreUsuario').value[0],
         'Contrasenna': this.addUser.get('Contrasenna').value,
         'IdEmpleado': this.addUser.get('IdEmpleado').value,
         'Roles': this.addUser.get('Roles').value,

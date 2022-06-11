@@ -114,7 +114,7 @@ export class UsereditComponent implements OnInit {
   editarUsuario(){
     if(this.editUser.get('Tipo').value == 1){
       let withRole = {
-        'NombreUsuario': this.editUser.get('NombreUsuario').value,
+        'NombreUsuario': this.editUser.get('NombreUsuario').value[0],
         'Contrasenna': this.editUser.get('Contrasenna').value,
         'IdEmpleado': this.editUser.get('IdEmpleado').value,
         'Roles': this.editUser.get('Roles').value,
@@ -130,7 +130,7 @@ export class UsereditComponent implements OnInit {
     }
     if(this.editUser.get('Tipo').value == 2){
       let withPermission = {
-        'NombreUsuario': this.editUser.get('NombreUsuario').value,
+        'NombreUsuario': this.editUser.get('NombreUsuario').value[0],
         'Contrasenna': this.editUser.get('Contrasenna').value,
         'IdEmpleado': this.editUser.get('IdEmpleado').value,
         'Permisos': this.editUser.get('Permisos').value,

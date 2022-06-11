@@ -67,7 +67,7 @@ export class WorkStationAddComponent implements OnInit {
     let postData = {
       'NombrePlaza': this.addWorkStation.get('NombrePlaza').value,
       'IdUnidad': this.addWorkStation.get('IdUnidad').value,
-      'Empleado': this.addWorkStation.get('Empleado').value,
+      'Empleado': this.addWorkStation.get('Empleado').value[0],
     };
     this.workStationService.addWorkStation(postData).subscribe(data=>{
       if(data!=null){

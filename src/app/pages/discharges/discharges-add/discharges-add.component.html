@@ -110,7 +110,7 @@
         <h5 class="encabezado">Lista de activos disponibles:</h5>
         <div class="borde2 tam">
           <p></p>
-          <p class="cursor-pointer tablaSeleccion" (click)="addItem(i, item)" *ngFor="let item of filterAsset | selecc: filter6 ; let i=index;">
+          <p class="cursor-pointer tablaSeleccion" (click)="addItem(i, item)" *ngFor="let item of assets | selecc: filter6 ; let i=index;">
             <th>{{item.CodigoAF}}&nbsp;
             <a class="cursor-pointer green">
               <img class="cursor-pointer green icono" src="../../../assets/images/flecha-correcta.png" width="20" height="20">
@@ -122,7 +122,7 @@
             <p class="pie">Total de activos disponibles:</p>
           </div>
           <div class="col-sm-5 cont">
-            <th class="num">{{filterAsset ? filterAsset.length : ''}}</th>
+            <th class="num">{{assets? assets.length : ''}}</th>
           </div>
         </div>
         <br>

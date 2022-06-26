@@ -165,7 +165,14 @@ export class AssetsAddComponent implements OnInit {
     let postData = await aux.getAsset(this.addAsset, fotografia['IdFotografia'], archivo['IdArchivo']);
     this.assetService.addAsset(postData).subscribe(data=>{
       if(data!=null){
-          this.toastr.success(data.toString());
+          //this.toastr.success(data.toString());
+          Swal.fire({
+            icon: 'success',
+            title: 'Éxito',
+            text: data.toString(),
+            confirmButtonColor: '#c9a892',
+            confirmButtonText: 'Aceptar'
+          })
           this.router.navigate(['/Assets/Supplies']);
         }
       }, (error)=>{

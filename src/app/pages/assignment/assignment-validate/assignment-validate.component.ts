@@ -41,6 +41,8 @@ export class AssignmentValidateComponent implements OnInit {
 
   edit: boolean = false;
 
+  currentStatus: boolean = false;
+
   constructor(
     private formBuilder:FormBuilder,   
     private assignmentService: AssignmentService,
@@ -149,7 +151,8 @@ export class AssignmentValidateComponent implements OnInit {
       if(this.validateAssignment!=null && this.assignmentData!=null){
         this.validateAssignment.controls['IdUnidad'].setValue(this.assignmentData.IdUnidad);
         this.validateAssignment.controls['IdPlaza'].setValue(this.assignmentData.IdPlaza);
-        this.validateAssignment.controls['IdEstado'].setValue(this.assignmentData.IdEstado);        
+        this.validateAssignment.controls['IdEstado'].setValue(this.assignmentData.IdEstado);
+        this.currentStatus =  this.assignmentData.estado.NombreEstado == 'Pendiente' ? true : false;
         this.assignmentData.asignacion.forEach((obj) => {
           let asset = this.formBuilder.group({
             IdCuenta: new FormControl(obj['IdCuenta']),

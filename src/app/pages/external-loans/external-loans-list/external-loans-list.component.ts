@@ -40,7 +40,11 @@ export class ExternalLoansListComponent implements OnInit {
   }
 
   validateRequest(IdRequest:number){
-    this.router.navigate(['/Assets/External-Loans/Edit/', IdRequest]);
+    this.router.navigate(['/Assets/External-Loans/Validate/', IdRequest]);
+  }
+
+  detailsRequest(IdRequest:number){
+    this.router.navigate(['/Assets/External-Loans/Details/', IdRequest]);
   }
 
 }

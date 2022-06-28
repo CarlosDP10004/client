@@ -39,8 +39,13 @@ export class InternalLoansListComponent implements OnInit {
     });
   }
 
+
   validateRequest(IdRequest:number){
-    this.router.navigate(['/Assets/Internal-Loans/Edit/', IdRequest]);
+    this.router.navigate(['/Assets/Internal-Loans/Validate/', IdRequest]);
+  }
+
+  detailsRequest(IdRequest:number){
+    this.router.navigate(['/Assets/Internal-Loans/Details/', IdRequest]);
   }
 
 }

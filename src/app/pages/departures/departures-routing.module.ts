@@ -16,6 +16,10 @@ const routes: Routes = [
   {
     path: "Edit/:id", 
     component: DeparturesValidateComponent
+  },
+  {
+    path: "Details/:id", 
+    component: DeparturesValidateComponent
   }
 ];
 

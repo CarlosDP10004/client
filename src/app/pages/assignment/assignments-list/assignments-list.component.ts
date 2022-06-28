@@ -47,4 +47,12 @@ export class AssignmentsListComponent implements OnInit {
     this.router.navigate(['/Assets/Assignments/Validate/', IdAssignment]);
   }
 
+  detailsAssignment(IdAssignment:number){
+    this.router.navigate(['/Assets/Assignments/Details/', IdAssignment]);
+  }
+
+  reAssignment(IdAssignment:number){
+    this.router.navigate(['/Assets/Assignments/Reasign/', IdAssignment]);
+  }
+
 }

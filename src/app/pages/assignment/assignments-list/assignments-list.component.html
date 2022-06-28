@@ -41,9 +41,15 @@
                 <td>{{assignment.FechaAsignacion | date:'dd/MM/yyyy'}}</td>
                 <td>{{assignment.NombreEstado}}</td>
                 <td>
-                  <span class="btn btn-primary glyphicon glyphicon-pencil" title="Editar" (click)="editAssignment(assignment.IdAsignacion)"></span>
+                  <span *ngIf="assignment.NombreEstado == 'Pendiente'; else bloqueado" class="btn btn-primary glyphicon glyphicon-pencil" title="Editar" (click)="editAssignment(assignment.IdAsignacion)"></span>
                   &nbsp;&nbsp;
-                  <span class="btn btn-info glyphicon glyphicon-refresh" title="Cambiar estado" (click)="validateAssignment(assignment.IdAsignacion)"></span>
+                  <span *ngIf="assignment.NombreEstado == 'Pendiente'" class="btn btn-info glyphicon glyphicon-refresh" title="Cambiar estado" (click)="validateAssignment(assignment.IdAsignacion)"></span>
+                  <ng-template #bloqueado>
+                    <span class="btn btn-warning glyphicon glyphicon-eye-open" title="Ver detalles" (click)="detailsAssignment(assignment.IdAsignacion)"></span>
+                    &nbsp;&nbsp;
+                    <span *ngIf="assignment.NombreEstado == 'Aprobada'" class="btn btn-success glyphicon glyphicon-wrench" title="Reasignar" (click)="reAssignment(assignment.IdAsignacion)"></span>
+                  </ng-template>
+                  
                 </td>
               </tr>             
             </tbody>            

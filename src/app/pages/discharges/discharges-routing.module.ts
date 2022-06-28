@@ -14,7 +14,11 @@ const routes: Routes = [
     component: DischargesAddComponent
   },
   {
-    path: "Edit/:id", 
+    path: "Validate/:id", 
+    component: DischargesValidateComponent
+  },
+  {
+    path: "Details/:id", 
     component: DischargesValidateComponent
   }
 ];

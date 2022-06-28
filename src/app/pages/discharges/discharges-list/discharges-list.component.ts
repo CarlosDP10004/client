@@ -39,7 +39,11 @@ export class DischargesListComponent implements OnInit {
   }
 
   validateRequest(IdRequest:number){
-    this.router.navigate(['/Assets/Discharges/Edit/', IdRequest]);
+    this.router.navigate(['/Assets/Discharges/Validate/', IdRequest]);
+  }
+
+  detailsRequest(IdRequest:number){
+    this.router.navigate(['/Assets/Discharges/Details/', IdRequest]);
   }
 
 }

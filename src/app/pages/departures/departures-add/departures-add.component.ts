@@ -111,7 +111,7 @@ export class DeparturesAddComponent implements OnInit {
 
   getStatusByDefault(){    
     this.status.forEach(element => {
-      if(element.Modulo == 'Activo Fijo'){         
+      if(element.Modulo == 'Activo Fijo' && (element.NombreEstado == 'Donado' || element.NombreEstado == 'Vendido')){         
         this.statusRequest.push(element);          
       }
     });
@@ -130,8 +130,9 @@ export class DeparturesAddComponent implements OnInit {
 
   chargeAssets(){
     this.filterAsset = [];
+    console.log(this.assets);
     this.assets.forEach(element => {      
-      if(element.NombreEstado == 'Asignado'){
+      if(element.NombreEstado == 'En Bodega'){
         this.filterAsset.push(element);     
       }
     });

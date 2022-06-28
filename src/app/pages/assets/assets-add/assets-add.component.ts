@@ -94,7 +94,7 @@ export class AssetsAddComponent implements OnInit {
       Editorial:['',[]],
       Tomo:['',[]],
       Edicion:['',[]],
-      Placa:['',[Validators.required]],
+      Placa:['',[]],
       Color:['',[]],
       NoMotor:['',[]],
       NoVIN:['',[]],
@@ -240,6 +240,5 @@ export class AssetsAddComponent implements OnInit {
   get Fotografia():AbstractControl{return this.addAsset.get('Fotografia');}
   get LibreGestion():AbstractControl{return this.addAsset.get('LibreGestion');}
   get FechaRegistro():AbstractControl{return this.addAsset.get('FechaRegistro');}
-  get Placa():AbstractControl{return this.addAsset.get('Placa');}
   
 }

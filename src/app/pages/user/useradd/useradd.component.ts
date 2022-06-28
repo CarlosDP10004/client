@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { ErrorService } from 'src/app/core/http/error.service';
@@ -33,7 +33,7 @@ export class UseraddComponent implements OnInit {
     private errorService: ErrorService
   ) { 
     this.addUser = this.builder.group({      
-      NombreUsuario: new FormControl('', []),
+      NombreUsuario: new FormControl('', [Validators.required, Validators.email]),
       Contrasenna: new FormControl('', []),
       IdEmpleado: new FormControl('', []),
       Tipo: new FormControl('', []),

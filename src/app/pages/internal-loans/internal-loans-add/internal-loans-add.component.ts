@@ -146,7 +146,7 @@ export class InternalLoansAddComponent implements OnInit {
     this.requestService.addRequest(post).subscribe(data => {
       if(data!=null){
         this.toastr.success(data.toString());
-        this.router.navigate(['/Assets/Discharges']);
+        this.router.navigate(['/Assets/Internal-Loans']);
       }
     }, error => {
       this.toastr.error(this.errorService.getErrorMessage(error.error));

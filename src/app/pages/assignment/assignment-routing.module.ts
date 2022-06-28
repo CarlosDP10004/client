@@ -21,7 +21,16 @@ const routes: Routes = [
   {
     path: "Validate/:id", 
     component: AssignmentValidateComponent
+  },
+  {
+    path: "Details/:id", 
+    component: AssignmentValidateComponent
+  },
+  {
+    path: "Reasign/:id", 
+    component: AssignmentEditComponent
   }
+
 ];
 
 @NgModule({

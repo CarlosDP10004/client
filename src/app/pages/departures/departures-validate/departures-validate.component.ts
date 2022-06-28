@@ -169,7 +169,7 @@ export class DeparturesValidateComponent implements OnInit {
     this.requestService.validateRequest(IdAssignment, postData).subscribe(data => {
       if(data!=null){
         this.toastr.success(data.toString());
-        this.router.navigate(['/Assets/Discharges']);
+        this.router.navigate(['/Assets/Departures']);
       }
     }, error => {
       this.toastr.error(this.errorService.getErrorMessage(error.error));

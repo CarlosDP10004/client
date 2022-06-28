@@ -189,6 +189,7 @@ export class AssignmentEditComponent implements OnInit {
  }
 
   async editarAsignacion(){
+    
     let IdAssignment = this.route.snapshot.paramMap.get("id");
     let aux = new AssignmentModel();
     let archivo: any = this.thereIsChange(this.flagFile) ? await this.uploadFile(1, IdAssignment) : 0;
@@ -271,7 +272,7 @@ export class AssignmentEditComponent implements OnInit {
 
   getStatusByDefault(){    
     this.status.forEach(element => {
-      if(element.Modulo == 'Asignacion'){         
+      if(element.Modulo == 'Solicitud'){         
         this.statusAssignments.push(element);          
       }
     });

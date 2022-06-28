@@ -14,7 +14,11 @@ const routes: Routes = [
     component: InternalLoansAddComponent
   },
   {
-    path: "Edit/:id", 
+    path: "Validate/:id", 
+    component: InternalLoansValidateComponent
+  },
+  {
+    path: "Details/:id", 
     component: InternalLoansValidateComponent
   }
 ];

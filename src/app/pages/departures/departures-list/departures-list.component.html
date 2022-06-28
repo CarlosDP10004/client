@@ -39,9 +39,9 @@
                 <td>{{request.FechaSolicitud | date:'dd/MM/yyyy'}}</td>
                 <td>{{request.NombreEstado}}</td>
                 <td>
-                  <span class="btn btn-primary glyphicon glyphicon-pencil" title="Editar" (click)="validateRequest(request.IdSolicitud)"></span>
+                  <span *ngIf="request.NombreEstado == 'Pendiente'" class="btn btn-primary glyphicon glyphicon-check" title="Validar Solicitud" (click)="validateRequest(request.IdSolicitud)"></span>
                   &nbsp;&nbsp;
-                  <span class="btn btn-info glyphicon glyphicon-refresh" title="Cambiar estado"></span>
+                  <span *ngIf="request.NombreEstado != 'Pendiente'" class="btn btn-warning glyphicon glyphicon-eye-open" title="Detalles" (click)="detailsRequest(request.IdSolicitud)"></span>
                 </td>
               </tr>             
             </tbody>            

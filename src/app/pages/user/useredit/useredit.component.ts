@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { ErrorService } from 'src/app/core/http/error.service';
@@ -45,7 +45,7 @@ export class UsereditComponent implements OnInit {
     this.editUser = this.builder.group({
       Roles: new FormControl(this.builder.array([])),
       Permisos: new FormControl(this.builder.array([])),
-      NombreUsuario: new FormControl('', []),
+      NombreUsuario: new FormControl('', [Validators.required, Validators.email]),
       Tipo: new FormControl('', []),
       IdEmpleado: new FormControl('', []),
       Contrasenna: new FormControl('', [])

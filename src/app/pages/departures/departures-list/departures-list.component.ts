@@ -40,7 +40,10 @@ export class DeparturesListComponent implements OnInit {
   }
 
   validateRequest(IdRequest:number){
-    this.router.navigate(['/Assets/Departures/Edit/', IdRequest]);
+    this.router.navigate(['/Assets/Departures/Validate/', IdRequest]);
   }
 
+  detailsRequest(IdRequest:number){
+    this.router.navigate(['/Assets/Departures/Details/', IdRequest]);
+  }
 }

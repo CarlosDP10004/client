@@ -110,7 +110,7 @@ export class DischargesAddComponent implements OnInit {
 
   getStatusByDefault(){    
     this.status.forEach(element => {
-      if(element.Modulo == 'Activo Fijo'){         
+      if(element.Modulo == 'Activo Fijo' && element.NombreEstado == 'En Bodega'){         
         this.statusRequest.push(element);          
       }
     });
@@ -118,7 +118,7 @@ export class DischargesAddComponent implements OnInit {
 
   chargeAssets(){
     this.filterAsset = [];
-    this.assets.forEach(element => {      
+    this.assets.forEach(element => {  
       if(element.NombreEstado == 'Asignado'){
         this.filterAsset.push(element);     
       }

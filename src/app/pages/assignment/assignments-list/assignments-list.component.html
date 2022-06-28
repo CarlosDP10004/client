@@ -45,9 +45,9 @@
                   &nbsp;&nbsp;
                   <span *ngIf="assignment.NombreEstado == 'Pendiente'" class="btn btn-info glyphicon glyphicon-refresh" title="Cambiar estado" (click)="validateAssignment(assignment.IdAsignacion)"></span>
                   <ng-template #bloqueado>
-                    <span class="btn btn-warning glyphicon glyphicon-eye-open" title="Ver detalles" (click)="detailsAssignment(assignment.IdAsignacion)"></span>
+                    <span class="btn btn-primary glyphicon glyphicon-eye-open" title="Ver detalles" (click)="detailsAssignment(assignment.IdAsignacion)"></span>
                     &nbsp;&nbsp;
-                    <span *ngIf="assignment.NombreEstado == 'Aprobada'" class="btn btn-success glyphicon glyphicon-wrench" title="Reasignar" (click)="reAssignment(assignment.IdAsignacion)"></span>
+                    <span *ngIf="assignment.NombreEstado == 'Aprobada'" class="btn btn-info glyphicon glyphicon-wrench" title="Reasignar" (click)="reAssignment(assignment.IdAsignacion)"></span>
                   </ng-template>
                   
                 </td>

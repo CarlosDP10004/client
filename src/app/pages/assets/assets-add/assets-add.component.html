@@ -210,15 +210,30 @@
           <div class="row Espacio">
             <div class="col-sm-4">
               <label class="col-sm-4 control-label texto">Placa</label>
-              <input class="form-control" placeholder="Placa" formControlName="Placa">              
+              <input class="form-control" placeholder="Placa" formControlName="Placa">  
+              <FONT COLOR="red">
+                <small *ngIf="Placa.invalid && Placa.touched">
+                  Complete el campo
+                </small>
+              </FONT>            
             </div>
             <div class="col-sm-3">
               <label class="col-sm-2 control-label texto">Color</label>
               <input class="form-control" placeholder="Color" formControlName="Color">
+              <FONT COLOR="red">
+                <small *ngIf="Color.invalid && Color.touched">
+                  Complete el campo
+                </small>
+              </FONT>
             </div>
             <div class="col-sm-5">
               <label class="col-sm-4 control-label texto">Nº de Motor</label>
               <input class="form-control" placeholder="Nº de Motor" formControlName="NoMotor">
+              <FONT COLOR="red">
+                <small *ngIf="NoMotor.invalid && NoMotor.touched">
+                  Complete el campo
+                </small>
+              </FONT>
             </div>
           </div>
 
@@ -226,18 +241,38 @@
             <div class="col-sm-4">
               <label class="col-sm-4 control-label texto">Nº de VIN</label>
               <input class="form-control" placeholder="Nº de VIN" formControlName="NoVIN">
+              <FONT COLOR="red">
+                <small *ngIf="NoVIN.invalid && NoVIN.touched">
+                  Complete el campo
+                </small>
+              </FONT>
             </div>
             <div class="col-sm-3">
               <label class="col-sm-6 control-label texto">Nº de Chasis</label>
               <input class="form-control" placeholder="Nº de Chasis" formControlName="NoChasis">
+              <FONT COLOR="red">
+                <small *ngIf="NoChasis.invalid && NoChasis.touched">
+                  Complete el campo
+                </small>
+              </FONT>
             </div>
             <div class="col-sm-3">
               <label class="col-sm-6 control-label texto">Nº de asientos</label>
               <input class="form-control" placeholder="Nº de Motor" formControlName="NoAsientos">
+              <FONT COLOR="red">
+                <small *ngIf="NoAsientos.invalid && NoAsientos.touched">
+                  Complete el campo
+                </small>
+              </FONT>
             </div>
             <div class="col-sm-2">
               <label class="col-sm-4 control-label texto">Año</label>
               <input class="form-control" placeholder="Año" formControlName="Anno">
+              <FONT COLOR="red">
+                <small *ngIf="Anno.invalid && Anno.touched">
+                  Complete el campo
+                </small>
+              </FONT>
             </div>
           </div>          
         </div>
@@ -256,10 +291,20 @@
             <div class="col-sm-6">
               <label class="col-sm-4 control-label texto">Autor</label>
               <input class="form-control" placeholder="Autor" formControlName="Autor">
+              <FONT COLOR="red">
+                <small *ngIf="Autor.invalid && Autor.touched">
+                  Complete el campo
+                </small>
+              </FONT>
             </div>
             <div class="col-sm-6">
               <label class="col-sm-2 control-label texto">Título</label>
               <input class="form-control" placeholder="Título" formControlName="Titulo">
+              <FONT COLOR="red">
+                <small *ngIf="Titulo.invalid && Titulo.touched">
+                  Complete el campo
+                </small>
+              </FONT>
             </div>
           </div> 
 
@@ -267,14 +312,29 @@
             <div class="col-sm-4">
               <label class="col-sm-4 control-label texto">Editorial</label>
               <input class="form-control" placeholder="Editorial" formControlName="Editorial">
+              <FONT COLOR="red">
+                <small *ngIf="Editorial.invalid && Editorial.touched">
+                  Complete el campo
+                </small>
+              </FONT>
             </div>
             <div class="col-sm-4">
               <label class="col-sm-2 control-label texto">Tomo</label>
               <input class="form-control" placeholder="Tomo" formControlName="Tomo">
+              <FONT COLOR="red">
+                <small *ngIf="Tomo.invalid && Tomo.touched">
+                  Complete el campo
+                </small>
+              </FONT>
             </div>
             <div class="col-sm-4">
               <label class="col-sm-2 control-label texto">Edición</label>
               <input class="form-control" placeholder="Edición" formControlName="Edicion">
+              <FONT COLOR="red">
+                <small *ngIf="Edicion.invalid && Edicion.touched">
+                  Complete el campo
+                </small>
+              </FONT>
             </div>
           </div>     
         </div>

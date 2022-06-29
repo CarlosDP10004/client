@@ -94,7 +94,7 @@ export class AssetsAddComponent implements OnInit {
       Editorial:['',[]],
       Tomo:['',[]],
       Edicion:['',[]],
-      Placa:['',[]],
+      Placa:['', []],
       Color:['',[]],
       NoMotor:['',[]],
       NoVIN:['',[]],
@@ -208,6 +208,8 @@ export class AssetsAddComponent implements OnInit {
   chargeClasification(){
     let IdCuenta = this.addAsset.get('IdCuenta').value;
     this.selected = IdCuenta;
+    this.setValidations(this.selected);
+
     this.clasifications = [];
     this.clasificationService.getClasificacionByAccount(IdCuenta).subscribe(data => {
       Object.assign(this.clasifications, data);
@@ -226,6 +228,91 @@ export class AssetsAddComponent implements OnInit {
     this.value = value;
   }
 
+  
+
+  setValidations(value){
+    switch(value){
+      case 2:
+        this.addAsset.get('Autor').setValidators(this.dinamicValidator);
+        this.addAsset.get('Titulo').setValidators(this.dinamicValidator);
+        this.addAsset.get('Editorial').setValidators(this.dinamicValidator);
+        this.addAsset.get('Tomo').setValidators(this.dinamicValidator);
+        this.addAsset.get('Edicion').setValidators(this.dinamicValidator);
+        this.addAsset.controls['Placa'].clearValidators();
+        this.addAsset.controls['Placa'].updateValueAndValidity();
+        this.addAsset.controls['Color'].clearValidators();
+        this.addAsset.controls['Color'].updateValueAndValidity();
+        this.addAsset.controls['NoMotor'].clearValidators();
+        this.addAsset.controls['NoMotor'].updateValueAndValidity();
+        this.addAsset.controls['NoVIN'].clearValidators();
+        this.addAsset.controls['NoVIN'].updateValueAndValidity();
+        this.addAsset.controls['NoChasis'].clearValidators();
+        this.addAsset.controls['NoChasis'].updateValueAndValidity();
+        this.addAsset.controls['NoAsientos'].clearValidators();
+        this.addAsset.controls['NoAsientos'].updateValueAndValidity();
+        this.addAsset.controls['Anno'].clearValidators();
+        this.addAsset.controls['Anno'].updateValueAndValidity();
+        break;
+      case 4:
+        this.addAsset.get('Placa').setValidators(this.dinamicValidator);
+        this.addAsset.get('Color').setValidators(this.dinamicValidator);
+        this.addAsset.get('NoMotor').setValidators(this.dinamicValidator);
+        this.addAsset.get('NoVIN').setValidators(this.dinamicValidator);
+        this.addAsset.get('NoChasis').setValidators(this.dinamicValidator);
+        this.addAsset.get('NoAsientos').setValidators(this.dinamicValidator);
+        this.addAsset.get('Anno').setValidators(this.dinamicValidator);
+        this.addAsset.controls['Autor'].clearValidators();
+        this.addAsset.controls['Autor'].updateValueAndValidity();
+        this.addAsset.controls['Titulo'].clearValidators();
+        this.addAsset.controls['Titulo'].updateValueAndValidity();
+        this.addAsset.controls['Editorial'].clearValidators();
+        this.addAsset.controls['Editorial'].updateValueAndValidity();
+        this.addAsset.controls['Tomo'].clearValidators();
+        this.addAsset.controls['Tomo'].updateValueAndValidity();
+        this.addAsset.controls['Edicion'].clearValidators();
+        this.addAsset.controls['Edicion'].updateValueAndValidity();
+        break;
+      case 1:
+      case 3:
+      case 5:
+      case 6:
+        this.addAsset.controls['Autor'].clearValidators();
+        this.addAsset.controls['Autor'].updateValueAndValidity();
+        this.addAsset.controls['Titulo'].clearValidators();
+        this.addAsset.controls['Titulo'].updateValueAndValidity();
+        this.addAsset.controls['Editorial'].clearValidators();
+        this.addAsset.controls['Editorial'].updateValueAndValidity();
+        this.addAsset.controls['Tomo'].clearValidators();
+        this.addAsset.controls['Tomo'].updateValueAndValidity();
+        this.addAsset.controls['Edicion'].clearValidators();
+        this.addAsset.controls['Edicion'].updateValueAndValidity();
+        this.addAsset.controls['Placa'].clearValidators();
+        this.addAsset.controls['Placa'].updateValueAndValidity();
+        this.addAsset.controls['Color'].clearValidators();
+        this.addAsset.controls['Color'].updateValueAndValidity();
+        this.addAsset.controls['NoMotor'].clearValidators();
+        this.addAsset.controls['NoMotor'].updateValueAndValidity();
+        this.addAsset.controls['NoVIN'].clearValidators();
+        this.addAsset.controls['NoVIN'].updateValueAndValidity();
+        this.addAsset.controls['NoChasis'].clearValidators();
+        this.addAsset.controls['NoChasis'].updateValueAndValidity();
+        this.addAsset.controls['NoAsientos'].clearValidators();
+        this.addAsset.controls['NoAsientos'].updateValueAndValidity();
+        this.addAsset.controls['Anno'].clearValidators();
+        this.addAsset.controls['Anno'].updateValueAndValidity();
+        break;
+    }
+    return;
+  }
+
+  dinamicValidator(field) {
+    let valid = (field.value != null && field.value != "") ? true : false;    
+    if(valid){
+      return null;
+    }
+    return {"invalid":true};
+  }
+
   get IdCuenta():AbstractControl{return this.addAsset.get('IdCuenta');}
   get IdMarca():AbstractControl{return this.addAsset.get('IdMarca');}
   get Modelo():AbstractControl{return this.addAsset.get('Modelo');}
@@ -240,5 +327,17 @@ export class AssetsAddComponent implements OnInit {
   get Fotografia():AbstractControl{return this.addAsset.get('Fotografia');}
   get LibreGestion():AbstractControl{return this.addAsset.get('LibreGestion');}
   get FechaRegistro():AbstractControl{return this.addAsset.get('FechaRegistro');}
+  get Placa():AbstractControl{return this.addAsset.get('Placa');}
+  get Color():AbstractControl{return this.addAsset.get('Color');}
+  get NoMotor():AbstractControl{return this.addAsset.get('NoMotor');}
+  get NoVIN():AbstractControl{return this.addAsset.get('NoVIN');}
+  get NoChasis():AbstractControl{return this.addAsset.get('NoChasis');}
+  get NoAsientos():AbstractControl{return this.addAsset.get('NoAsientos');}
+  get Anno():AbstractControl{return this.addAsset.get('Anno');}
+  get Autor():AbstractControl{return this.addAsset.get('Autor');}
+  get Titulo():AbstractControl{return this.addAsset.get('Titulo');}
+  get Editorial():AbstractControl{return this.addAsset.get('Editorial');}
+  get Tomo():AbstractControl{return this.addAsset.get('Tomo');}
+  get Edicion():AbstractControl{return this.addAsset.get('Edicion');}
   
 }

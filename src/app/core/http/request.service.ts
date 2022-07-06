@@ -43,4 +43,9 @@ export class RequestService {
     const headers = new HttpHeaders().set('Authorization', `bearer ${this.userService.getToken()}`)
     return this.clienteHttp.get(`${API_URL}solicitud/${IdRequest}`,{ headers: headers})
   }
+
+  getUnitBoss(IdUnit: any){
+    const headers = new HttpHeaders().set('Authorization', `bearer ${this.userService.getToken()}`)
+    return this.clienteHttp.get(`${API_URL}unidades/getUnitBoss/${IdUnit}`,{ headers: headers})
+  }
 }

@@ -78,5 +78,20 @@ export class AssetsService {
     const headers = new HttpHeaders().set('Authorization', `bearer ${this.userService.getToken()}`)
     return this.clienteHttp.get(`${API_URL}listaActivosSolicitud`, { headers: headers});    
   }
+
+  getAssetToDischarge(){
+    const headers = new HttpHeaders().set('Authorization', `bearer ${this.userService.getToken()}`)
+    return this.clienteHttp.get(`${API_URL}listaActivosPDescargo`, { headers: headers});
+  }
+
+  getAssetToDeparture(){
+    const headers = new HttpHeaders().set('Authorization', `bearer ${this.userService.getToken()}`)
+    return this.clienteHttp.get(`${API_URL}listaActivosPSalida`, { headers: headers});
+  }
+
+  getAssetToLoan(idUnit: any){
+    const headers = new HttpHeaders().set('Authorization', `bearer ${this.userService.getToken()}`)
+    return this.clienteHttp.get(`${API_URL}listaActivosPPrestamo/${idUnit}`, { headers: headers});
+  }
   
 }

@@ -2,6 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { borderTopRightRadius } from 'html2canvas/dist/types/css/property-descriptors/border-radius';
 import { ToastrService } from 'ngx-toastr';
 import { AssetsService } from 'src/app/core/http/assets.service';
 import { AttachmentService } from 'src/app/core/http/attachment.service';
@@ -31,10 +32,10 @@ export class ExternalLoansAddComponent implements OnInit {
   files: any = [];
 
   filterClasification: any[] = [];
-  filterAsset: any[] = [];
 
   
   seleccion: any;
+  aux: any;
 
   constructor(
     private formBuilder:FormBuilder,   
@@ -59,7 +60,7 @@ export class ExternalLoansAddComponent implements OnInit {
 
   createNewForm() {
     this.addRequest = this.formBuilder.group({
-      Tipo:['Préstamo Externo',[Validators.required]],
+      Tipo:['Externo',[Validators.required]],
       FechaActual:[this.datepipe.transform(Date.now(), 'yyyy-MM-dd'),[Validators.required]],
       IdEstado:['Pendiente',[Validators.required]],
       IdUnidad:['',[Validators.required]],
@@ -68,6 +69,15 @@ export class ExternalLoansAddComponent implements OnInit {
       Motivo:['',[Validators.required]],
       FechaSolicitud:['',[Validators.required]], 
       IdArchivo:['',[Validators.required]],
+      IdUnidadActual:['',[Validators.required]],
+      JefeUnidadActual:['',[Validators.required]],
+      FechaRetorno:['',[Validators.required]],
+      IdUnidadDestino:['',[Validators.required]],
+      JefeUnidadDestino:['',[Validators.required]],
+      DUI:['',[Validators.required]],
+      Direccion:['',[Validators.required]],
+      Telefono:['',[Validators.required]],
+      Correo:['',[Validators.required]],
       ListaActivos: this.formBuilder.array([])
     });
 
@@ -93,19 +103,6 @@ export class ExternalLoansAddComponent implements OnInit {
         confirmButtonColor: '#c9a892',
         confirmButtonText: 'Aceptar'
       }) 
-    });
-
-    this.assetService.getAssetToRequest().subscribe(data => {
-      Object.assign(this.assets, data)
-      this.chargeAssets();
-    }, error => {
-      Swal.fire({
-        icon: 'error',
-        title: 'Error',
-        text: this.errorService.getErrorMessage(error.error),
-        confirmButtonColor: '#c9a892',
-        confirmButtonText: 'Aceptar'
-      }) 
     });    
   }
 
@@ -115,16 +112,6 @@ export class ExternalLoansAddComponent implements OnInit {
         this.statusRequest.push(element);          
       }
     });
-  }
-
-  chargeAssets(){
-    this.filterAsset = [];
-    this.assets.forEach(element => {      
-      if(element.NombreEstado == 'Asignado'){
-        this.filterAsset.push(element);     
-      }
-    });
-    return this.filterAsset;
   }
 
   uploadFile(tipo): any{ 
@@ -153,7 +140,21 @@ export class ExternalLoansAddComponent implements OnInit {
     });
   }  
 
-  
+  chargeBoss(){
+    let IdUnit = this.addRequest.get('IdUnidadActual').value;
+    this.requestService.getUnitBoss(IdUnit).subscribe(data => {
+      this.aux = data;
+      this.addRequest.controls['JefeUnidadActual'].setValue(this.aux.displayname[0]);
+      this.assetService.getAssetToLoan(IdUnit).subscribe(data => {
+        Object.assign(this.assets, data)
+      }, error => {
+        console.log("ocurrió un error al procesar los datos: "+ error); 
+      }); 
+    }, error => { 
+      console.log("ocurrió un error al procesar los datos: "+ error);
+    });
+    
+  }  
 
   get ListaActivos(): any { return this.addRequest.get('ListaActivos') as any; }
 

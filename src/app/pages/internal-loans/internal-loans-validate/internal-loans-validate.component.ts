@@ -69,6 +69,15 @@ export class InternalLoansValidateComponent implements OnInit {
       Motivo:['',[Validators.required]],
       FechaSolicitud:['',[Validators.required]], 
       IdArchivo:['',[Validators.required]],
+      IdUnidadActual:['',[Validators.required]],
+      JefeUnidadActual:['',[Validators.required]],
+      FechaRetorno:['',[Validators.required]],
+      IdUnidadDestino:['',[Validators.required]],
+      JefeUnidadDestino:['',[Validators.required]],
+      DUI:['',[Validators.required]],
+      Direccion:['',[Validators.required]],
+      Telefono:['',[Validators.required]],
+      Correo:['',[Validators.required]],
       ListaActivos: this.formBuilder.array([])
     });
     
@@ -76,16 +85,28 @@ export class InternalLoansValidateComponent implements OnInit {
     let IdRequest = this.route.snapshot.paramMap.get("id");
     this.requestService.getRequest(IdRequest).subscribe(data => {
       this.requestData = data;
+      console.log(this.requestData);
       this.setStatus(this.requestData.IdEstado);
       if(this.validateRequest!=null && this.requestData!=null){
         this.validateRequest.controls['Tipo'].setValue(this.requestData.Tipo);
         this.validateRequest.controls['IdUnidad'].setValue(this.requestData.IdUnidad);
         this.validateRequest.controls['FechaRegistro'].setValue(this.datepipe.transform(this.requestData.FechaRegistro, 'yyyy-MM-dd'));
         this.validateRequest.controls['IdEstado'].setValue(this.requestData.IdEstado);        
-        this.validateRequest.controls['Solicitante'].setValue(this.requestData.Solicitante); 
+        this.validateRequest.controls['Solicitante'].setValue(this.requestData.prestamo.Solicitante); 
         this.validateRequest.controls['IdEstadoSolicitado'].setValue(this.requestData.IdEstadoSolicitado); 
         this.validateRequest.controls['FechaSolicitud'].setValue(this.datepipe.transform(this.requestData.FechaSolicitud, 'yyyy-MM-dd'));               
         this.validateRequest.controls['Motivo'].setValue(this.requestData.Motivo); 
+
+        this.validateRequest.controls['IdUnidadActual'].setValue(this.requestData.prestamo.IdUnidadActual);
+        this.validateRequest.controls['JefeUnidadActual'].setValue(this.requestData.prestamo.JefeUnidadActual);
+        this.validateRequest.controls['FechaRetorno'].setValue(this.datepipe.transform(this.requestData.prestamo.FechaRetorno, 'yyyy-MM-dd'));
+        this.validateRequest.controls['IdUnidadDestino'].setValue(this.requestData.prestamo.IdUnidadDestino);
+        this.validateRequest.controls['JefeUnidadDestino'].setValue(this.requestData.prestamo.JefeUnidadDestino);
+        this.validateRequest.controls['DUI'].setValue(this.requestData.prestamo.DUI);
+        this.validateRequest.controls['Direccion'].setValue(this.requestData.prestamo.Direccion);
+        this.validateRequest.controls['Telefono'].setValue(this.requestData.prestamo.Telefono);
+        this.validateRequest.controls['Correo'].setValue(this.requestData.prestamo.Correo);
+
         this.assets.forEach(element => {
           this.requestData.activos.forEach(obj => {
             if(element.IdActivoFijo == obj.IdActivoFijo){
@@ -154,7 +175,7 @@ export class InternalLoansValidateComponent implements OnInit {
     this.requestService.validateRequest(IdAssignment, postData).subscribe(data => {
       if(data!=null){
         this.toastr.success(data.toString());
-        this.router.navigate(['/Assets/Discharges']);
+        this.router.navigate(['/Assets/Internal-Loans']);
       }
     }, error => {
       this.toastr.error(this.errorService.getErrorMessage(error.error));

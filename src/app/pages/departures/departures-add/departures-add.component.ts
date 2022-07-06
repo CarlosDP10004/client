@@ -68,6 +68,15 @@ export class DeparturesAddComponent implements OnInit {
       Motivo:['',[Validators.required]],
       FechaSolicitud:['',[Validators.required]], 
       IdArchivo:['',[Validators.required]],
+      IdUnidadActual:['',[Validators.required]],
+      JefeUnidadActual:['',[Validators.required]],
+      FechaRetorno:['',[Validators.required]],
+      IdUnidadDestino:['',[Validators.required]],
+      JefeUnidadDestino:['',[Validators.required]],
+      DUI:['',[Validators.required]],
+      Direccion:['',[Validators.required]],
+      Telefono:['',[Validators.required]],
+      Correo:['',[Validators.required]],
       ListaActivos: this.formBuilder.array([])
     });
 
@@ -95,9 +104,8 @@ export class DeparturesAddComponent implements OnInit {
       }) 
     });
 
-    this.assetService.getAssetToRequest().subscribe(data => {
+    this.assetService.getAssetToDeparture().subscribe(data => {
       Object.assign(this.assets, data)
-      this.chargeAssets();
     }, error => {
       Swal.fire({
         icon: 'error',
@@ -127,18 +135,6 @@ export class DeparturesAddComponent implements OnInit {
   removeItem() {
     this.ListaActivos.removeAt(this.ListaActivos.length - 1);
  }
-
-  chargeAssets(){
-    this.filterAsset = [];
-    console.log(this.assets);
-    this.assets.forEach(element => {      
-      if(element.NombreEstado == 'En Bodega'){
-        this.filterAsset.push(element);     
-      }
-    });
-    console.log(this.filterAsset);
-    return this.filterAsset;
-  }
 
   uploadFile(tipo): any{ 
     return new Promise((resolved, reject) => {

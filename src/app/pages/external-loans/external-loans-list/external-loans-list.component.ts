@@ -26,8 +26,9 @@ export class ExternalLoansListComponent implements OnInit {
   }
 
   showAll(){
-    this.requestService.showAll('Préstamo Externo').subscribe(data => {      
+    this.requestService.showAll('Externo').subscribe(data => {      
       Object.assign(this.requests, data);
+      console.log(this.requests);
     }, error => {
       Swal.fire({
         icon: 'error',

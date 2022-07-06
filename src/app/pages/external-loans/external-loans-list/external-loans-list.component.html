@@ -26,7 +26,7 @@
             <thead>
               <tr class="estiloCabecera">
                 <th scope="col" width="13%" bgcolor="#c9a892">Correlativo</th>
-                <th scope="col"  bgcolor="#c9a892">Departamento</th>
+                <th scope="col"  bgcolor="#c9a892">Solicitante</th>
                 <th scope="col"  bgcolor="#c9a892">Fecha de solicitud</th>
                 <th scope="col"  bgcolor="#c9a892">Estado</th>
                 <th scope="col"  bgcolor="#c9a892">Acciones</th>
@@ -35,7 +35,7 @@
             <tbody>
               <tr *ngFor="let request of requests | descargo: filter5 | paginate: { itemsPerPage: 10, currentPage: page }">
                 <th>{{request.IdSolicitud}}</th>
-                <td>{{request.NombreUnidad}}</td>               
+                <td>{{request.Solicitante}}</td>               
                 <td>{{request.FechaSolicitud | date:'dd/MM/yyyy'}}</td>
                 <td>{{request.NombreEstado}}</td>
                 <td>

@@ -27,6 +27,7 @@ export class DischargesListComponent implements OnInit {
   showAll(){
     this.requestService.showAll('Descargo').subscribe(data => {      
       Object.assign(this.requests, data);
+      console.log(this.requests);
     }, error => {
       Swal.fire({
         icon: 'error',

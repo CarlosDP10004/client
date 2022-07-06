@@ -30,7 +30,6 @@ export class DischargesAddComponent implements OnInit {
   files: any = [];
 
   filterClasification: any[] = [];
-  filterAsset: any[] = [];
 
   
   seleccion: any;
@@ -67,6 +66,15 @@ export class DischargesAddComponent implements OnInit {
       Motivo:['',[Validators.required]],
       FechaSolicitud:['',[Validators.required]], 
       IdArchivo:['',[Validators.required]],
+      IdUnidadActual:['',[Validators.required]],
+      JefeUnidadActual:['',[Validators.required]],
+      FechaRetorno:['',[Validators.required]],
+      IdUnidadDestino:['',[Validators.required]],
+      JefeUnidadDestino:['',[Validators.required]],
+      DUI:['',[Validators.required]],
+      Direccion:['',[Validators.required]],
+      Telefono:['',[Validators.required]],
+      Correo:['',[Validators.required]],
       ListaActivos: this.formBuilder.array([])
     });
 
@@ -94,9 +102,8 @@ export class DischargesAddComponent implements OnInit {
       }) 
     });
 
-    this.assetService.getAssetToRequest().subscribe(data => {
+    this.assetService.getAssetToDischarge().subscribe(data => {
       Object.assign(this.assets, data)
-      this.chargeAssets();
     }, error => {
       Swal.fire({
         icon: 'error',
@@ -114,16 +121,6 @@ export class DischargesAddComponent implements OnInit {
         this.statusRequest.push(element);          
       }
     });
-  }
-
-  chargeAssets(){
-    this.filterAsset = [];
-    this.assets.forEach(element => {  
-      if(element.NombreEstado == 'Asignado'){
-        this.filterAsset.push(element);     
-      }
-    });
-    return this.filterAsset;
   }
 
   uploadFile(tipo): any{ 

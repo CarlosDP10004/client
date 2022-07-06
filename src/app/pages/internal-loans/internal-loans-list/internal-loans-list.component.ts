@@ -26,7 +26,7 @@ export class InternalLoansListComponent implements OnInit {
   }
 
   showAll(){
-    this.requestService.showAll('Préstamo Interno').subscribe(data => {      
+    this.requestService.showAll('Interno').subscribe(data => {      
       Object.assign(this.requests, data);
     }, error => {
       Swal.fire({

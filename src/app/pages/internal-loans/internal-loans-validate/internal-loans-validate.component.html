@@ -48,31 +48,47 @@
       </div>
 
         <div class="col-sm-4">
-          <label class="col-sm-3 control-label texto">Unidad</label><br />
-          <select class="form-control" formControlName="IdUnidad" disabled>
+          <label class="col-sm-10 control-label texto">Estado destino</label><br />  
+          <select class="form-control" formControlName="IdEstadoSolicitado" disabled>
             <option value="" hidden>Selecciona el estado</option>
-            <option *ngFor="let item of departaments" [value]="item.IdUnidad">{{item.NombreUnidad}}</option>
-          </select>
+            <option *ngFor="let item of status" [value]="item.IdEstado">{{item.NombreEstado}}</option>
+          </select>  
         </div>  
         <div class="col-sm-4">
         </div> 
       </div>
 
         <div class="row Espacio">
+          <div class="col-sm-4">
+            <label class="col-sm-10 control-label texto">Unidad que aprueba préstamo</label>
+            <select class="form-control" formControlName="IdUnidadActual" disabled>
+              <option value="" hidden>Selecciona el estado</option>
+              <option *ngFor="let item of departaments" [value]="item.IdUnidad">{{item.NombreUnidad}}</option>
+            </select>
+          </div>     
+          <div class="col-sm-4">
+            <label class="col-sm-10 control-label texto">Jefe de la unidad que aprueba</label><br />
+            <input class="form-control" formControlName="JefeUnidadActual" disabled/>          
+          </div> 
+      </div>
+      <div class="row Espacio">
         <div class="col-sm-4">
-          <label class="col-sm-4 control-label texto">Solicitante</label><br />
-          <input class="form-control" formControlName="Solicitante" disabled/>          
+          <label class="col-sm-10 control-label texto">Unidad que recibirá el préstamo</label><br />
+          <select class="form-control" formControlName="IdUnidadDestino" disabled>
+            <option value="" hidden>Selecciona el estado</option>
+            <option *ngFor="let item of departaments" [value]="item.IdUnidad">{{item.NombreUnidad}}</option>
+          </select>         
       </div>
 
       <div class="col-sm-4">
-        <label class="col-sm-2 control-label texto">Destino</label>
-        <select class="form-control" formControlName="IdEstadoSolicitado" disabled>
-          <option value="" hidden>Selecciona el estado</option>
-          <option *ngFor="let item of status" [value]="item.IdEstado">{{item.NombreEstado}}</option>
-        </select>
+        <label class="col-sm-10 control-label texto">Jefe de la unidad destino</label>
+        <input class="form-control" formControlName="JefeUnidadDestino" disabled/>  
       </div>     
-      
-        
+
+      <div class="col-sm-4">
+        <label class="col-sm-10 control-label texto">Nombre del solicitante</label>
+        <input class="form-control" formControlName="Solicitante" disabled/>  
+      </div>
       </div>
 
       <div class="row Espacio">
@@ -80,7 +96,11 @@
           <label class="col-sm-10 control-label texto2">Fecha para hacer la préstamo</label>
           <input type="date" class="form-control" placeholder="Fecha de compra" formControlName="FechaSolicitud" disabled>          
         </div> 
-        <div class="col-sm-8">
+        <div class="col-sm-4">
+          <label class="col-sm-10 control-label texto2">Fecha de retorno</label>
+          <input type="date" class="form-control" placeholder="Fecha de compra" formControlName="FechaRetorno" disabled>          
+        </div> 
+        <div class="col-sm-4">
           <label class="col-sm-10 control-label texto">Descargar solicitud de préstamo</label>
             <div class="col-sm-3">
               <a class="btn botonInputFile2" (click)="downloadPDF()"  download="">                

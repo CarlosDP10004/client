@@ -38,48 +38,77 @@
             <input class="form-control" formControlName="IdEstado" disabled/>            
         </div>
         <div class="col-sm-4">
-          <label class="col-sm-3 control-label texto">Unidad</label><br />         
+          <label class="col-sm-10 control-label texto">Estado destino</label><br />   
           <ng-select                                 
-                formControlName="IdUnidad" 
-                class="" 
+                formControlName="IdEstadoSolicitado"                  
                 [searchable]="true"                
                 placeholder="Selecciona la unidad"
-                size="10">
-                  <ng-option *ngFor="let item of departaments" [value]="item.IdUnidad">{{item.NombreUnidad}}</ng-option>
-          </ng-select>
+                size="10"
+                disabled>
+                  <ng-option *ngFor="let item of statusRequest" [value]="item.IdEstado">{{item.NombreEstado}}</ng-option>
+          </ng-select>         
+          
         </div> 
         <div class="col-sm-4">
         </div> 
       </div>
       
-      <div class="row Espacio">   
-      <div class="col-sm-4">
-          <label class="col-sm-2 control-label texto">Solicitante</label><br />
-          <input class="form-control" formControlName="Solicitante"/>          
-      </div>
-
-      <div class="col-sm-4">
-        <label class="col-sm-4 control-label texto">Estado</label>
-        <ng-select                                 
-                formControlName="IdEstadoSolicitado" 
-                class="" 
-                [searchable]="true"                
-                placeholder="Selecciona la unidad"
-                size="10">
-                  <ng-option *ngFor="let item of statusRequest" [value]="item.IdEstado">{{item.NombreEstado}}</ng-option>
-          </ng-select>
-      </div>     
-      
+      <div class="row Espacio"> 
+        <div class="col-sm-4">
+          <label class="col-sm-10 control-label texto">Unidad que aprueba préstamo</label>
+          <ng-select                                 
+                  formControlName="IdUnidadActual"                    
+                  [searchable]="true"    
+                  (change)="chargeBoss()"            
+                  placeholder="Selecciona la unidad"
+                  size="10">
+                    <ng-option *ngFor="let item of departaments" [value]="item.IdUnidad">{{item.NombreUnidad}}</ng-option>
+            </ng-select>
+        </div>     
+        <div class="col-sm-4">
+          <label class="col-sm-10 control-label texto">Jefe de la unidad que aprueba</label><br />
+          <input class="form-control" formControlName="JefeUnidadActual" disabled/>          
+        </div>
       </div>
 
       <div class="row Espacio">
-        <div class="col-sm-4">
-          <label class="col-sm-10 control-label texto2">Fecha para hacer descargo</label>
+        <div class="col-sm-3">
+          <label class="col-sm-10 control-label texto2">Fecha de despacho</label>
           <input type="date" class="form-control" placeholder="Fecha de compra" formControlName="FechaSolicitud">          
         </div> 
+        <div class="col-sm-3">
+          <label class="col-sm-10 control-label texto2">Fecha de retorno</label>
+          <input type="date" class="form-control" placeholder="Fecha de retorno" formControlName="FechaRetorno">          
+        </div>
 
+        <div class="col-sm-6">
+          <label class="col-sm-10 control-label texto">Nombre del solicitante</label>
+          <input class="form-control" placeholder="Nombre del solicitante" formControlName="Solicitante">          
+        </div> 
+      </div>
+      <div class="row Espacio"> 
+        <div class="col-sm-4">
+          <label class="col-sm-4 control-label texto">DUI</label>
+          <input class="form-control" placeholder="DUI" formControlName="DUI"/>
+        </div>     
+        <div class="col-sm-4">
+          <label class="col-sm-2 control-label texto">Telefono</label><br />
+          <input class="form-control" placeholder="Telefono" formControlName="Telefono" ui-br-cep-mask />          
+        </div>
+        <div class="col-sm-4">
+          <label class="col-sm-2 control-label texto">Correo</label><br />
+          <input class="form-control" placeholder="Correo" formControlName="Correo" />          
+        </div>
+      </div>
+      <div class="row Espacio"> 
+        <div class="col-sm-12">
+          <label class="col-sm-4 control-label texto">Dirección</label>
+          <textarea class="form-control" placeholder="Dirección" formControlName="Direccion" cols="10" rows="10"></textarea>          
+        </div>
+      </div>
+      <div class="row Espacio"> 
         <div class="col-sm-8">
-          <label class="col-sm-10 control-label texto">Descargar solicitud de descargo</label>
+          <label class="col-sm-10 control-label texto">Adjunto solicitud de préstamo</label>
           <label class="botonInputFile file">
           <div class="row bordeCompra">
             <div class="col-sm-2 posicionIcono1">
@@ -88,10 +117,13 @@
             <div class="col-sm-6 posicionInput">
               <input type="file" class="ubicacion custom-file-input" id="customFile" formControlName="IdArchivo" (change)="getFile($event)">              
           </div>            
-        </div>      
+        </div> 
         </label>
-        </div>   
+        </div>
       </div>
+
+
+
       <br>
       <br>
 

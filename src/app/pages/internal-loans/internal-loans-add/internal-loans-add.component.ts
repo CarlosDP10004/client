@@ -35,6 +35,7 @@ export class InternalLoansAddComponent implements OnInit {
 
   
   seleccion: any;
+  aux: any;
 
   constructor(
     private formBuilder:FormBuilder,   
@@ -59,7 +60,7 @@ export class InternalLoansAddComponent implements OnInit {
 
   createNewForm() {
     this.addRequest = this.formBuilder.group({
-      Tipo:['Préstamo Interno',[Validators.required]],
+      Tipo:['Interno',[Validators.required]],
       FechaActual:[this.datepipe.transform(Date.now(), 'yyyy-MM-dd'),[Validators.required]],
       IdEstado:['Pendiente',[Validators.required]],
       IdUnidad:['',[Validators.required]],
@@ -68,6 +69,15 @@ export class InternalLoansAddComponent implements OnInit {
       Motivo:['',[Validators.required]],
       FechaSolicitud:['',[Validators.required]], 
       IdArchivo:['',[Validators.required]],
+      IdUnidadActual:['',[Validators.required]],
+      JefeUnidadActual:['',[Validators.required]],
+      FechaRetorno:['',[Validators.required]],
+      IdUnidadDestino:['',[Validators.required]],
+      JefeUnidadDestino:['',[Validators.required]],
+      DUI:['',[Validators.required]],
+      Direccion:['',[Validators.required]],
+      Telefono:['',[Validators.required]],
+      Correo:['',[Validators.required]],
       ListaActivos: this.formBuilder.array([])
     });
 
@@ -93,19 +103,31 @@ export class InternalLoansAddComponent implements OnInit {
         confirmButtonColor: '#c9a892',
         confirmButtonText: 'Aceptar'
       }) 
-    });
+    });   
+  }
 
-    this.assetService.getAssetToRequest().subscribe(data => {
-      Object.assign(this.assets, data)
-      this.chargeAssets();
-    }, error => {
-      Swal.fire({
-        icon: 'error',
-        title: 'Error',
-        text: this.errorService.getErrorMessage(error.error),
-        confirmButtonColor: '#c9a892',
-        confirmButtonText: 'Aceptar'
-      }) 
+  chargeCurrentBoss(){
+    let IdUnit = this.addRequest.get('IdUnidadActual').value;
+    this.requestService.getUnitBoss(IdUnit).subscribe(data => {
+      this.aux = data;
+      this.addRequest.controls['JefeUnidadActual'].setValue(this.aux.displayname[0]);
+      this.assetService.getAssetToLoan(IdUnit).subscribe(data => {
+        Object.assign(this.assets, data)
+      }, error => {
+        console.log("ocurrió un error al procesar los datos: "+ error); 
+      }); 
+    }, error => { 
+      console.log("ocurrió un error al procesar los datos: "+ error);
+    });    
+  }
+
+  chargeDestinyBoss(){
+    let IdUnit = this.addRequest.get('IdUnidadDestino').value;
+    this.requestService.getUnitBoss(IdUnit).subscribe(data => {
+      this.aux = data;
+      this.addRequest.controls['JefeUnidadDestino'].setValue(this.aux.displayname[0]);      
+    }, error => { 
+      console.log("ocurrió un error al procesar los datos: "+ error);
     });    
   }
 

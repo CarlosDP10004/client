@@ -224,9 +224,20 @@ export class AssetsEditComponent implements OnInit {
           this.editAsset.controls['NoAsientos'].setValue(this.assetData.vehiculo.NoAsientos);
           this.editAsset.controls['Anno'].setValue(this.assetData.vehiculo.Anno);
         }
-        if(this.assetData.mantenimiento != []){
+        console.log(this.assetData);
+        if(this.assetData.mantenimiento.length === 0){
+          console.log("No tiene mantenimientos");
+          let values = {
+            'VidaUtil': this.assetData.VidaUtil,
+            'FechaCompra': this.assetData.FechaCompra,
+            'ValorCompra': this.assetData.ValorCompra,
+          }
+          this._calculateValues(values);
+        }else{
+          let thereIsLast = false;
           this.assetData.mantenimiento.forEach(element => {
             if(element.Ultimo){
+              thereIsLast = true;
               let values = {
                 'VidaUtil': element.VidaUtil,
                 'FechaCompra': element.FechaFin,
@@ -234,14 +245,16 @@ export class AssetsEditComponent implements OnInit {
               } 
               this._calculateValues(values);
             }
+            console.log("Recorriendo el array");
           });
-        }else{
-          let values = {
-            'VidaUtil': this.assetData.VidaUtil,
-            'FechaCompra': this.assetData.FechaCompra,
-            'ValorCompra': this.assetData.ValorCompra,
+          if(!thereIsLast){
+            let values = {
+              'VidaUtil': this.assetData.VidaUtil,
+              'FechaCompra': this.assetData.FechaCompra,
+              'ValorCompra': this.assetData.ValorCompra,
+            }
+            this._calculateValues(values);
           }
-          this._calculateValues(values);
         }
 
       }

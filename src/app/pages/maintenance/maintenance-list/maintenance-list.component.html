@@ -1,0 +1,70 @@
+<div class="container">
+    <div class="row">
+      <div class="TituloIndex">
+        <h1 class="EstiloIndex col-sm-12">
+          <hr>
+            <b>Mantenimiento de revalorización de activos fijos.</b>
+            <br>
+            <b>Código de activo fijo: {{code}}.</b>
+            <hr>
+        </h1>       
+    </div>
+    </div>
+    <br>
+
+    <div class="=row">
+      <div class="col-md-8">
+        <span (click)="addMaintenance()" class="btn btn-primary btn-lg">Nuevo Mantenimiento</span>             
+        </div>&nbsp;
+      <div class="col-md-4 input-icono">  
+        <input type="text" class="forms-control tamanio" placeholder="Buscar..." [(ngModel)]="filter4" name="filter4">      
+      </div>     
+    </div>  
+
+    <div class="row">
+      <div class="col-md-12">        
+        <div class="table-responsive">
+          <table id="mytable" class="table table-bordred table-striped">
+            <thead>
+              <tr class="estiloCabecera">
+                <th scope="col" width="13%" bgcolor="#c9a892">Correlativo</th>
+                <th scope="col"  bgcolor="#c9a892">Código Activo Fijo</th>
+                <th scope="col"  bgcolor="#c9a892">Ingreso a taller</th>
+                <th scope="col"  bgcolor="#c9a892">Fecha de reingreso</th>
+                <th scope="col"  bgcolor="#c9a892">Estado</th>
+                <th scope="col"  bgcolor="#c9a892">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let maintenance of maintenances | asig :filter4">
+                <th>{{maintenance.IdMantenimiento}}</th>
+                <td>{{maintenance.CodigoAF}}</td>                    
+                <td>{{maintenance.FechaInicio | date:'dd/MM/yyyy'}}</td>
+                <td>
+                  <p *ngIf="maintenance.FechaFin != null; else noAplica">{{maintenance.FechaFin | date:'dd/MM/yyyy'}}</p>
+                  <ng-template #noAplica>N/A</ng-template>
+                </td>                 
+                <td>{{maintenance.NombreEstado}}</td>
+                <td>
+                  <span *ngIf="maintenance.NombreEstado == 'Iniciado'" class="btn btn-primary glyphicon glyphicon-pencil" title="Editar" (click)="editMaintenance(maintenance.IdMantenimiento)"></span>
+                  &nbsp;&nbsp;
+                  <span *ngIf="maintenance.NombreEstado == 'Finalizado'" class="btn btn-default glyphicon glyphicon-eye-open" title="Detalles" (click)="detailsMaintenance(maintenance.IdMantenimiento)"></span>
+                  
+                  
+                </td>
+              </tr>             
+            </tbody>            
+          </table>  
+          <pagination-controls class="paginacion"
+                                 (pageChange)="page = $event"                                 
+                                 maxSize="6"
+                                 autoHide="true"
+                                 nextLabel="Siguiente"
+                                 previousLabel="Anterior"
+                                 responsive="true"
+                                 screenReaderPaginationLabel="Paginacion" >
+            </pagination-controls>                          
+        </div>
+      </div>
+    </div>
+  </div>

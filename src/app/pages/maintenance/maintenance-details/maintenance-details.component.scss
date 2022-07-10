@@ -1,0 +1,217 @@
+.tamanio{    
+    width:400px;
+}
+
+.tamanio2{    
+    width:400px;
+    margin-left: 5px;
+}
+
+.espacio{
+    padding-top: 6px;
+}
+
+.texto{
+    text-align: left;
+    padding-bottom: 5px;
+}
+
+.fondo{
+    color: white;
+    background-color: #313945;
+}
+
+.Icono{
+    width: 30px;
+    height: 30px;
+}
+
+.EstiloIndex{
+    color: white;
+    font-family:sans-serif;
+    text-align: center;
+    font-size: xx-large;
+}
+
+.EncabezadoForm{
+    background-color: #e2d0c4;
+    border-left: 15px solid #cc9774;
+    border-top-right-radius: 10px;
+    width: 180px;
+    height: 30px;
+    font-size: larger;
+    line-height: 30px;
+}
+
+.EstiloForm1{
+    border: 2px solid #313945;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    padding-left:20px;
+    padding-right: 20px;
+    margin-bottom: -65px;
+}
+
+.Espacio{
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+.texto2{
+    text-align: left;
+    padding-bottom: 5px;
+}
+
+.Espacio2{
+    margin-top: -100px;  
+    padding-top: 0px; 
+    z-index: 2; 
+}
+
+.Archivo{
+    margin-left: 30px;
+    margin-top: -35px;
+}
+
+.Fecha{    
+    margin-top: -35px;
+}
+
+textarea:focus, input:focus, input[type]:focus, select:focus {
+    border-color: 3px solid #3bb2ee;
+    box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075) inset, 0 0 8px #3bb2ee;
+    outline: 0 none;
+}
+
+.EncabezadoForm2{
+    background-color: #e2d0c4;
+    border-left: 15px solid #cc9774;
+    border-top-right-radius: 10px;
+    width: 180px;
+    height: 30px;
+    font-size: larger;
+    line-height: 15px;
+}
+
+.EspacioDiv{
+    margin-top: 30px;    
+}
+
+.image{
+        input[type="file"] {
+        display: none;
+        }
+        margin-top: 5px;
+        margin-left: 18px;
+}
+
+.botonInputImage {
+    background-color: #313945;
+    border-radius: 5px;
+    color: white;
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding-left: 20px;
+    padding-top: 5px;
+    cursor: pointer;
+    width: 160px;
+    height: 40px;
+}
+
+.botonInputFile {
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    color: black;    
+    display: inline-block;
+    padding-left: 20px;
+    padding-top: 13px;
+    cursor: pointer;
+    width: 400px;
+    height: 50px;
+}
+.botonInputFile2 {
+    background-color: #313945;
+    border-radius: 5px;
+    border: 1px solid #ccc;      
+    cursor: pointer;
+    margin-top: 1px;    
+    margin-left: 60px;
+}
+
+.posicion{
+    margin-top: 1.5pt;
+}
+
+.posicionIcono1{
+   margin-right: -20px;
+   margin-top: 4px;
+}
+
+.posicionIcono2{
+    margin-right: 5px;
+ }
+
+ .posicionIcono3{
+    margin-right: -105px;
+ }
+
+ .bordeCompra{
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    height: 50px;
+    width: 850px;
+    margin-top: -10px;
+ }
+
+ .posicionInput{
+    margin-right: -20px;
+    margin-top: 12px;
+ }
+
+ .dimensiones{    
+    width: 194px;
+    height: 185px;
+    border: solid 2px black;
+ }
+
+ .esp{
+     margin-top: 10px;
+     margin-left: 900px;
+ }
+
+ .esp1{
+     margin-top: 20px;
+     margin-bottom: 50px;
+ }
+
+ .esp2{
+    margin-top: 60px;
+    margin-bottom: 10px;
+}
+ .ajuste{
+     margin-top: -185px;
+ }
+
+ .margen{
+     margin-right: 15px;
+ }
+
+ input[type=file] {
+    width: 600px;    
+    }
+
+.boton{
+    margin-left: 120px;
+    background-color: #313945;
+    border-radius: 5px;
+    color: white;
+}
+
+.espacio3{
+    margin-left: 10px;
+}
+
+.ubicacion{
+    margin-left: -70px;
+}

@@ -12,6 +12,8 @@ import { ProviderService } from 'src/app/core/http/provider.service';
 import Swal from 'sweetalert2';
 import {finalize} from 'rxjs/operators';
 import { AssetModel } from 'src/app/models/asset';
+import { CalculationService } from 'src/app/core/http/calculation.service';
+import { formatCurrency, getCurrencySymbol } from '@angular/common';
 
 @Component({
   selector: 'app-assets-add',
@@ -36,6 +38,7 @@ export class AssetsAddComponent implements OnInit {
   event: EventEmitter<any>=new EventEmitter();
   value:any = {};
   seleccion: any;  
+  _isTangible: boolean = false;
 
   constructor(
     private formBuilder:FormBuilder,     
@@ -47,6 +50,7 @@ export class AssetsAddComponent implements OnInit {
     private providerService: ProviderService,
     private clasificationService: ClasificationService,
     private errorService: ErrorService,
+    private calculateService: CalculationService,
     private attachmentService: AttachmentService
   ) { }
 
@@ -76,17 +80,21 @@ export class AssetsAddComponent implements OnInit {
 
   init(){
     this.addAsset = this.formBuilder.group({
-      IdCuenta:['',[Validators.required]],
-      IdClasificacion:['',[Validators.required]],
-      IdMarca:['',[Validators.required]],
+      IdCuenta:[null,[Validators.required]],
+      IdClasificacion:[null,[Validators.required]],
+      IdMarca:[null,[Validators.required]],
       Modelo:['',[Validators.required]],
       Descripcion:['',[Validators.required]],
       IdOrigen:['',[Validators.required]],
       ValorCompra:['',[Validators.required]],
       FechaCompra:['',[Validators.required]],
+      VidaUtil:['',[Validators.required]],
+      Amortizacion:['',[Validators.required]],
+      Depreciacion:['',[Validators.required]],
+      ValorActual:['',[Validators.required]],
       DocumentoCompra:['',[Validators.required]],
       Serie:['',[Validators.required]],
-      IdProveedor:['',[Validators.required]],
+      IdProveedor:[null,[Validators.required]],
       LibreGestion:['',[Validators.required]],
       Fotografia:['',[Validators.required]],
       Autor:['',[]],
@@ -165,7 +173,6 @@ export class AssetsAddComponent implements OnInit {
     let postData = await aux.getAsset(this.addAsset, fotografia['IdFotografia'], archivo['IdArchivo']);
     this.assetService.addAsset(postData).subscribe(data=>{
       if(data!=null){
-          //this.toastr.success(data.toString());
           Swal.fire({
             icon: 'success',
             title: 'Éxito',
@@ -209,7 +216,7 @@ export class AssetsAddComponent implements OnInit {
     let IdCuenta = this.addAsset.get('IdCuenta').value;
     this.selected = IdCuenta;
     this.setValidations(this.selected);
-
+    this._isTangible = this.isTangible(IdCuenta);
     this.clasifications = [];
     this.clasificationService.getClasificacionByAccount(IdCuenta).subscribe(data => {
       Object.assign(this.clasifications, data);
@@ -228,7 +235,26 @@ export class AssetsAddComponent implements OnInit {
     this.value = value;
   }
 
-  
+  isTangible(id:any): boolean{
+    let aux = false;
+    this.accounts.forEach(element => {
+      if(element.IdCuenta == id){
+        aux = element.EsTangible;        
+      }
+    });
+    return aux
+  }
+
+  calculateValues(){
+    let values = {
+      'VidaUtil': this.addAsset.get('VidaUtil').value,
+      'FechaCompra': this.addAsset.get('FechaCompra').value,
+      'ValorCompra': this.addAsset.get('ValorCompra').value,
+    }  
+    this.addAsset.controls['Depreciacion'].setValue(this.calculateService.calculateDepreciation(this._isTangible, values));
+    this.addAsset.controls['Amortizacion'].setValue(this.calculateService.calculateAmortization(this._isTangible, values));
+    this.addAsset.controls['ValorActual'].setValue(this.calculateService.calculateCurrentValue(this._isTangible, values));
+  }
 
   setValidations(value){
     switch(value){

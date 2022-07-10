@@ -7,6 +7,7 @@ import { AccountService } from 'src/app/core/http/account.service';
 import { AssetsService } from 'src/app/core/http/assets.service';
 import { AttachmentService } from 'src/app/core/http/attachment.service';
 import { BrandService } from 'src/app/core/http/brand.service';
+import { CalculationService } from 'src/app/core/http/calculation.service';
 import { ClasificationService } from 'src/app/core/http/clasification.service';
 import { ErrorService } from 'src/app/core/http/error.service';
 import { ProviderService } from 'src/app/core/http/provider.service';
@@ -44,6 +45,8 @@ export class AssetsEditComponent implements OnInit {
   flagFile: number = 0;
   event: EventEmitter<any>=new EventEmitter();
 
+  _isTangible: boolean = false;
+
   constructor(
     private formBuilder:FormBuilder,     
     private toastr: ToastrService,
@@ -56,6 +59,7 @@ export class AssetsEditComponent implements OnInit {
     private errorService: ErrorService,
     private attachmentService: AttachmentService,
     private route: ActivatedRoute,
+    private calculateService: CalculationService,
     public datepipe: DatePipe
   ) { }
 
@@ -99,6 +103,10 @@ export class AssetsEditComponent implements OnInit {
       IdOrigen:['',[Validators.required]],
       ValorCompra:['',[Validators.required]],
       FechaCompra:['',[Validators.required]],
+      VidaUtil:['',[Validators.required]],
+      Amortizacion:['',[Validators.required]],
+      Depreciacion:['',[Validators.required]],
+      ValorActual:['',[Validators.required]],
       DocumentoCompra:['',[Validators.required]],
       Serie:['',[Validators.required]],
       IdProveedor:['',[Validators.required]],
@@ -183,6 +191,7 @@ export class AssetsEditComponent implements OnInit {
       this.chargeClasification(this.assetData.IdCuenta);
       
       if(this.editAsset!=null && this.assetData!=null){
+        this._isTangible = this.isTangible(this.assetData.IdCuenta);
         this.editAsset.controls['CodigoAF'].setValue(this.assetData.CodigoAF);
         this.editAsset.controls['IdEstado'].setValue(this.assetData.IdEstado);
         this.editAsset.controls['FechaRegistro'].setValue(this.datepipe.transform(this.assetData.FechaRegistro, 'yyyy-MM-dd'));
@@ -195,6 +204,7 @@ export class AssetsEditComponent implements OnInit {
         this.editAsset.controls['IdProveedor'].setValue(this.assetData.IdProveedor);
         this.editAsset.controls['ValorCompra'].setValue(this.assetData.ValorCompra);
         this.editAsset.controls['FechaCompra'].setValue(this.datepipe.transform(this.assetData.FechaCompra, 'yyyy-MM-dd'));
+        this.editAsset.controls['VidaUtil'].setValue(this.assetData.VidaUtil);
         this.editAsset.controls['Descripcion'].setValue(this.assetData.Descripcion);
         this.editAsset.controls['LibreGestion'].setValue(this.assetData.LibreGestion);
         this.origen = this.attachmentService.getPathImage(this.assetData.fotografia.Ubicacion);
@@ -213,6 +223,25 @@ export class AssetsEditComponent implements OnInit {
           this.editAsset.controls['NoChasis'].setValue(this.assetData.vehiculo.NoChasis);
           this.editAsset.controls['NoAsientos'].setValue(this.assetData.vehiculo.NoAsientos);
           this.editAsset.controls['Anno'].setValue(this.assetData.vehiculo.Anno);
+        }
+        if(this.assetData.mantenimiento != []){
+          this.assetData.mantenimiento.forEach(element => {
+            if(element.Ultimo){
+              let values = {
+                'VidaUtil': element.VidaUtil,
+                'FechaCompra': element.FechaFin,
+                'ValorCompra': element.Revalorizacion,
+              } 
+              this._calculateValues(values);
+            }
+          });
+        }else{
+          let values = {
+            'VidaUtil': this.assetData.VidaUtil,
+            'FechaCompra': this.assetData.FechaCompra,
+            'ValorCompra': this.assetData.ValorCompra,
+          }
+          this._calculateValues(values);
         }
 
       }
@@ -291,8 +320,7 @@ export class AssetsEditComponent implements OnInit {
       this.toastr.error(this.errorService.getErrorMessage(error.error));
     });
   }
-
-
+  
   manageFile(response: any, filename: string): void{
     const dataType = response.type;
     const binaryData = [];
@@ -319,8 +347,34 @@ export class AssetsEditComponent implements OnInit {
             confirmButtonText: 'Aceptar'
           }) 
       });  
-      });
-    
+      });    
+  }
+
+  calculateValues(){
+    let values = {
+      'VidaUtil': this.editAsset.get('VidaUtil').value,
+      'FechaCompra': this.editAsset.get('FechaCompra').value,
+      'ValorCompra': this.editAsset.get('ValorCompra').value,
+    } 
+    this.editAsset.controls['Depreciacion'].setValue(this.calculateService.calculateDepreciation(this._isTangible, values));
+    this.editAsset.controls['Amortizacion'].setValue(this.calculateService.calculateAmortization(this._isTangible, values));
+    this.editAsset.controls['ValorActual'].setValue(this.calculateService.calculateCurrentValue(this._isTangible, values));
+  }
+
+  _calculateValues(values: any){
+    this.editAsset.controls['Depreciacion'].setValue(this.calculateService.calculateDepreciation(this._isTangible, values));
+    this.editAsset.controls['Amortizacion'].setValue(this.calculateService.calculateAmortization(this._isTangible, values));
+    this.editAsset.controls['ValorActual'].setValue(this.calculateService.calculateCurrentValue(this._isTangible, values));
+  }
+
+  isTangible(id:any): boolean{
+    let aux = false;
+    this.accounts.forEach(element => {
+      if(element.IdCuenta == id){
+        aux = element.EsTangible;        
+      }
+    });
+    return aux
   }
 
   get CodigoAF():AbstractControl{return this.editAsset.get('CodigoAF');}

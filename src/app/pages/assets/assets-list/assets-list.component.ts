@@ -18,6 +18,7 @@ export class AssetsListComponent {
     private assetService: AssetsService,
     private errorService: ErrorService,
     private router: Router
+
   ) { 
     this.showAll();
   }
@@ -50,6 +51,11 @@ export class AssetsListComponent {
 
   watchTrace(IdAsset:number){
     this.router.navigate(['/Assets/Supplies/Timeline/', IdAsset]);
+  }
+
+  maintenance(IdAsset:number){
+    this.router.navigate(['/Assets/Supplies/Maintenance'], {queryParams: {id: IdAsset}});
+    //this.router.navigate(['/Assets/Supplies/Maintenance']);
   }
 
 }

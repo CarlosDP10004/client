@@ -50,6 +50,8 @@
                   <!--<span class="btn btn-info glyphicon glyphicon-refresh" title="Cambiar estado" (click)="changeStatus()"></span>
                   &nbsp;&nbsp;-->
                   <span class="btn btn-info glyphicon glyphicon-list" title="Ver histórico" (click)="watchTrace(asset.IdActivoFijo)"></span>
+                  &nbsp;&nbsp;
+                  <span *ngIf="asset.NombreEstado == 'En Bodega' || asset.NombreEstado == 'En Mantenimiento'" class="btn btn-default glyphicon glyphicon-cog" title="Mantenimiento" (click)="maintenance(asset.IdActivoFijo)"></span>
                 </td>
               </tr>             
             </tbody>            

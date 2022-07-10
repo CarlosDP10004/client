@@ -31,6 +31,11 @@ export class AccountService {
     return this.clienteHttp.get(API_URL + "cuentas", { headers: headers});
   }
 
+  addAccount(account: Account){
+    const headers = new HttpHeaders().set('Authorization', `bearer ${this.userService.getToken()}`)
+    return this.clienteHttp.post(`${API_URL}cuentas`, account, { headers: headers});
+  }
+
   changeAccountId(IdCuenta: number){
     this.IdAccountSource.next(IdCuenta);
   }

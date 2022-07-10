@@ -22,6 +22,11 @@ const routes: Routes = [
     path: "Timeline/:id", 
     component: AssetsTimelineComponent
   },
+  {
+    path: "Maintenance", 
+    loadChildren: () =>
+    import('../../pages/maintenance/maintenance.module').then(m => m.MaintenanceModule)
+  }
 ];
 
 @NgModule({

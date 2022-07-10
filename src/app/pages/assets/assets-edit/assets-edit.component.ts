@@ -47,6 +47,8 @@ export class AssetsEditComponent implements OnInit {
 
   _isTangible: boolean = false;
 
+  warning: boolean = false;
+
   constructor(
     private formBuilder:FormBuilder,     
     private toastr: ToastrService,
@@ -224,9 +226,7 @@ export class AssetsEditComponent implements OnInit {
           this.editAsset.controls['NoAsientos'].setValue(this.assetData.vehiculo.NoAsientos);
           this.editAsset.controls['Anno'].setValue(this.assetData.vehiculo.Anno);
         }
-        console.log(this.assetData);
         if(this.assetData.mantenimiento.length === 0){
-          console.log("No tiene mantenimientos");
           let values = {
             'VidaUtil': this.assetData.VidaUtil,
             'FechaCompra': this.assetData.FechaCompra,
@@ -238,6 +238,7 @@ export class AssetsEditComponent implements OnInit {
           this.assetData.mantenimiento.forEach(element => {
             if(element.Ultimo){
               thereIsLast = true;
+              this.warning = true;
               let values = {
                 'VidaUtil': element.VidaUtil,
                 'FechaCompra': element.FechaFin,
@@ -245,7 +246,6 @@ export class AssetsEditComponent implements OnInit {
               } 
               this._calculateValues(values);
             }
-            console.log("Recorriendo el array");
           });
           if(!thereIsLast){
             let values = {

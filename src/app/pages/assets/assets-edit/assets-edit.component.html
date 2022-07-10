@@ -169,7 +169,7 @@
             </div>
                      
             <div class="margen col-sm-2"><label class="col-sm-10 control-label texto">Valor de compra</label>
-              <input class="form-control" placeholder="$$$$" formControlName="ValorCompra">
+              <input class="form-control" placeholder="$$$$" formControlName="ValorCompra" (keyup)="calculateValues()">
               <FONT COLOR="red">
                 <small *ngIf="ValorCompra.invalid && ValorCompra.touched">
                   Complete el campo
@@ -177,7 +177,7 @@
               </FONT>
             </div>            
             <div class="col-sm-2"><label class="col-sm-12 control-label texto2">Fecha de compra</label>
-              <input type="date" class="form-control" placeholder="Fecha de compra" formControlName="FechaCompra">
+              <input type="date" class="form-control" placeholder="Fecha de compra" formControlName="FechaCompra" (keyup)="calculateValues()">
               <FONT COLOR="red">
                 <small *ngIf="FechaCompra.invalid && FechaCompra.touched">
                   Complete el campo
@@ -185,6 +185,25 @@
               </FONT>
             </div>
           </div> 
+          <div class="row Espacio">
+            <div class="col-sm-3"><label class="col-sm-12 control-label texto2">Vida útil</label>
+              <input type="number" class="form-control" placeholder="Vida útil" formControlName="VidaUtil" (keyup)="calculateValues()">
+              <FONT COLOR="red">
+                <small *ngIf="FechaCompra.invalid && FechaCompra.touched">
+                  Complete el campo
+                </small>
+              </FONT>
+            </div>
+            <div class="col-sm-3"><label class="col-sm-12 control-label texto2">Depreciación</label>
+              <input class="form-control" formControlName="Depreciacion" disabled >
+            </div>
+            <div class="col-sm-3"><label class="col-sm-12 control-label texto2">Amortización</label>
+              <input class="form-control" formControlName="Amortizacion" disabled >
+            </div>
+            <div class="col-sm-3"><label class="col-sm-12 control-label texto2">Valor actual</label>
+              <input class="form-control" formControlName="ValorActual" disabled >
+            </div>
+          </div>
           
           <div class="row Espacio">
             <div class="col-sm-12">

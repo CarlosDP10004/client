@@ -8,6 +8,7 @@ export interface Asset {
     IdOrigen: number;
     ValorCompra: number;
     FechaCompra: Date;
+    VidaUtil: number;
     IdArchivo: number;
     Serie: string;
     IdProveedor: number;
@@ -39,6 +40,7 @@ export class AssetModel implements Asset{
     IdOrigen: number;
     ValorCompra: number;
     FechaCompra: Date;
+    VidaUtil: number;
     IdArchivo: number;
     Serie: string;
     IdProveedor: number;
@@ -71,6 +73,7 @@ export class AssetModel implements Asset{
         asset.IdOrigen = form.get('IdOrigen').value;
         asset.ValorCompra = form.get('ValorCompra').value;
         asset.FechaCompra = form.get('FechaCompra').value;
+        asset.VidaUtil = form.get('VidaUtil').value;
         asset.IdArchivo = file;
         asset.Serie = form.get('Serie').value;
         asset.IdProveedor = form.get('IdProveedor').value;

@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { AccountService } from 'src/app/core/http/account.service';
 import { ErrorService } from 'src/app/core/http/error.service';
 import Swal from 'sweetalert2';
+import { AccountAddComponent } from '../account-add/account-add.component';
 import { AccountEditComponent } from '../account-edit/account-edit.component';
 
 @Component({
@@ -37,6 +38,15 @@ export class AccountListComponent {
         confirmButtonText: 'Aceptar'
       })
     });
+  }
+
+  addAccount(){
+    this.bsModalRef = this.bsModalService.show(AccountAddComponent);
+    this.bsModalRef.content.event.subscribe(result => {
+      if (result == 'OK') {
+        this.showAll();
+      }
+    }); 
   }
 
   editAccount(IdCuenta:number){

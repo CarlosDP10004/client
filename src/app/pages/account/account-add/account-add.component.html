@@ -3,7 +3,7 @@
       <form class="form-horizontal" [formGroup]="addAccount" (ngSubmit)="guardarCuenta()">
         <div class="modal-header fondo">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="onClose()"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="add-modal-label"><img src="../../../assets/images/marca.png" alt="Logo de la DNM" class="Icono">&nbsp;&nbsp;Agregar marca</h4>
+          <h4 class="modal-title" id="add-modal-label"><img src="../../../assets/images/cuenta.png" alt="Logo de la DNM" class="Icono">&nbsp;&nbsp;Agregar Cuenta Contable</h4>
         </div>
         <div class="modal-body">          
           <div class="form-group">
@@ -19,8 +19,8 @@
             </div>
           </div>
           <div class="form-group">
-            <label class="col-sm-2 control-label texto">Tangible?</label>
-            <div class="col-sm-1">
+            <label class="col-sm-6 control-label texto posicion">¿Es un bien Tangible?</label>
+            <div class="col-sm-1 posicion2">
                 <input type="checkbox" class="form-control" formControlName="EsTangible" />
             </div>
           </div> 

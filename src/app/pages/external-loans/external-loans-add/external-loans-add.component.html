@@ -39,14 +39,19 @@
         </div>
         <div class="col-sm-4">
           <label class="col-sm-10 control-label texto">Estado destino</label><br />   
-          <ng-select                                 
+          <select class="form-control" formControlName="IdEstadoSolicitado" disabled>
+            <option value="" hidden>Selecciona el estado</option>
+            <option *ngFor="let item of statusRequest" [value]="item.IdEstado">{{item.NombreEstado}}</option>
+          </select>
+         
+          <!--<ng-select                                 
                 formControlName="IdEstadoSolicitado"                  
                 [searchable]="true"                
                 placeholder="Selecciona la unidad"
-                size="10"
+                size="10"                
                 disabled>
                   <ng-option *ngFor="let item of statusRequest" [value]="item.IdEstado">{{item.NombreEstado}}</ng-option>
-          </ng-select>         
+          </ng-select>    -->     
           
         </div> 
         <div class="col-sm-4">
@@ -56,14 +61,16 @@
       <div class="row Espacio"> 
         <div class="col-sm-4">
           <label class="col-sm-10 control-label texto">Unidad que aprueba préstamo</label>
-          <ng-select                                 
+          <ng-select                      
+          notFoundText="Selecciona la unidad"        
                   formControlName="IdUnidadActual"                    
                   [searchable]="true"    
                   (change)="chargeBoss()"            
                   placeholder="Selecciona la unidad"
                   size="10">
-                    <ng-option *ngFor="let item of departaments" [value]="item.IdUnidad">{{item.NombreUnidad}}</ng-option>
+                  <ng-option *ngFor="let item of departaments" [value]="item.IdUnidad">{{item.NombreUnidad}}</ng-option>
             </ng-select>
+            
         </div>     
         <div class="col-sm-4">
           <label class="col-sm-10 control-label texto">Jefe de la unidad que aprueba</label><br />
@@ -103,7 +110,7 @@
       <div class="row Espacio"> 
         <div class="col-sm-12">
           <label class="col-sm-4 control-label texto">Dirección</label>
-          <textarea class="form-control" placeholder="Dirección" formControlName="Direccion" cols="10" rows="10"></textarea>          
+          <textarea class="form-control" placeholder="Dirección" formControlName="Direccion" cols="10" rows="5"></textarea>          
         </div>
       </div>
       <div class="row Espacio"> 

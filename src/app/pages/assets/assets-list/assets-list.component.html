@@ -25,14 +25,14 @@
           <table id="mytable" class="table table-bordered table-striped">
             <thead>
               <tr class="estiloCabecera">
-                <th scope="col" width="13%" bgcolor="#c9a892">Código</th>
+                <th scope="col" width="11%" bgcolor="#c9a892">Código</th>
                 <th scope="col"  bgcolor="#c9a892">Clasificación</th>
                 <th scope="col"  bgcolor="#c9a892">Marca</th>
                 <th scope="col"  bgcolor="#c9a892">Modelo</th>
                 <th scope="col"  bgcolor="#c9a892">Valor compra</th>
                 <th scope="col"  bgcolor="#c9a892">Fecha compra</th>
-                <th scope="col"  bgcolor="#c9a892">Estado</th>
-                <th scope="col"  bgcolor="#c9a892">Acciones</th>
+                <th scope="col" width="8%" bgcolor="#c9a892">Estado</th>
+                <th scope="col" width="12%" bgcolor="#c9a892">Acciones</th>
               </tr>
             </thead>
             <tbody>
@@ -45,13 +45,9 @@
                 <td>{{asset.FechaCompra | date:'dd/MM/yyyy'}}</td>
                 <td>{{asset.NombreEstado}}</td>
                 <td>
-                  <span class="btn btn-primary glyphicon glyphicon-pencil" title="Editar" (click)="editAsset(asset.IdActivoFijo)"></span>
-                  &nbsp;&nbsp;
-                  <!--<span class="btn btn-info glyphicon glyphicon-refresh" title="Cambiar estado" (click)="changeStatus()"></span>
-                  &nbsp;&nbsp;-->
-                  <span class="btn btn-info glyphicon glyphicon-list" title="Ver histórico" (click)="watchTrace(asset.IdActivoFijo)"></span>
-                  &nbsp;&nbsp;
-                  <span *ngIf="asset.NombreEstado == 'En Bodega' || asset.NombreEstado == 'En Mantenimiento'" class="btn btn-default glyphicon glyphicon-cog" title="Mantenimiento" (click)="maintenance(asset.IdActivoFijo)"></span>
+                  <span class="btnEspacio btn btn-primary btn-sm glyphicon glyphicon-pencil" title="Editar" (click)="editAsset(asset.IdActivoFijo)"></span>            
+                  <span class="btnEspacio btn btn-info btn-sm glyphicon glyphicon-list" title="Ver histórico" (click)="watchTrace(asset.IdActivoFijo)"></span>                 
+                  <span *ngIf="asset.NombreEstado == 'En Bodega' || asset.NombreEstado == 'En Mantenimiento'" class="btn btn-default btn-sm glyphicon glyphicon-cog" title="Mantenimiento" (click)="maintenance(asset.IdActivoFijo)"></span>
                 </td>
               </tr>             
             </tbody>            

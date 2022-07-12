@@ -38,15 +38,8 @@
             <input class="form-control" formControlName="IdEstado" disabled/>            
         </div>
         <div class="col-sm-4">
-          <label class="col-sm-10 control-label texto">Estado destino</label><br />         
-          <ng-select                                 
-                formControlName="IdEstadoSolicitado" 
-                class="" 
-                [searchable]="true"                
-                placeholder="Selecciona la unidad"
-                size="10">
-                  <ng-option *ngFor="let item of statusRequest" [value]="item.IdEstado">{{item.NombreEstado}}</ng-option>
-          </ng-select>
+          <label class="col-sm-10 control-label texto">Estado destino</label><br />        
+          <input class="form-control" formControlName="IdEstadoSolicitado" disabled/>          
         </div> 
         <div class="col-sm-4">
         </div> 
@@ -192,7 +185,7 @@
       
     <div class="botones">
       <button type="submit" class="espacio3 btn btn-primary btn-lg" style="float: right">Guardar</button>        
-      <span routerLink="/Assets/Discharges" class="btn btn-default btn-lg" style="float: right">Cancelar</span>
+      <span routerLink="/Assets/Internal-Loans" class="btn btn-default btn-lg" style="float: right">Cancelar</span>
     </div>
     </div>
         

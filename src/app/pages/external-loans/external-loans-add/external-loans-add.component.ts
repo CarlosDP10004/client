@@ -9,6 +9,7 @@ import { AttachmentService } from 'src/app/core/http/attachment.service';
 import { DepartamentsService } from 'src/app/core/http/departaments.service';
 import { ErrorService } from 'src/app/core/http/error.service';
 import { RequestService } from 'src/app/core/http/request.service';
+import { ValidatorService } from 'src/app/core/http/validator.service';
 import { RequestModel } from 'src/app/models/request';
 import Swal from 'sweetalert2';
 
@@ -46,7 +47,8 @@ export class ExternalLoansAddComponent implements OnInit {
     private errorService: ErrorService,
     private attachmentService: AttachmentService,       
     private toastr: ToastrService,
-    public datepipe: DatePipe
+    public datepipe: DatePipe,
+    public val: ValidatorService
   ) { }
 
   getFile(event): any{  
@@ -63,22 +65,24 @@ export class ExternalLoansAddComponent implements OnInit {
       Tipo:['Externo',[Validators.required]],
       FechaActual:[this.datepipe.transform(Date.now(), 'yyyy-MM-dd'),[Validators.required]],
       IdEstado:['Pendiente',[Validators.required]],
-      IdUnidad:['',[Validators.required]],
+      IdUnidad:[null,[Validators.required]],
       Solicitante:['',[Validators.required]],
-      IdEstadoSolicitado:['',[Validators.required]],
+      IdEstadoSolicitado:['Prestado externamente',[Validators.required]],
       Motivo:['',[Validators.required]],
       FechaSolicitud:['',[Validators.required]], 
       IdArchivo:['',[Validators.required]],
-      IdUnidadActual:['',[Validators.required]],
+      IdUnidadActual:[null,[Validators.required]],
       JefeUnidadActual:['',[Validators.required]],
       FechaRetorno:['',[Validators.required]],
-      IdUnidadDestino:['',[Validators.required]],
+      IdUnidadDestino:[null,[Validators.required]],
       JefeUnidadDestino:['',[Validators.required]],
       DUI:['',[Validators.required]],
       Direccion:['',[Validators.required]],
       Telefono:['',[Validators.required]],
       Correo:['',[Validators.required]],
       ListaActivos: this.formBuilder.array([])
+    }, {
+      validators: this.val.validEmail('Correo')
     });
 
     this.departamentService.getDepartamentList().subscribe(data => {
@@ -126,7 +130,7 @@ export class ExternalLoansAddComponent implements OnInit {
     }); 
   }
 
-  async guardarSolicitud(){
+  async guardarSolicitud(){     
     let aux = new RequestModel();
     let archivo = await this.uploadFile(1);
     let post = aux._getRequest(this.addRequest, archivo['IdArchivo'], this.selectedAssets);

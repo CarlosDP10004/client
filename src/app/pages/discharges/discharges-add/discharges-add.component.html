@@ -37,38 +37,32 @@
             <label class="col-sm-4 control-label texto">Estado</label><br />
             <input class="form-control" formControlName="IdEstado" disabled/>            
         </div>
-        <div class="col-sm-4">
-          <label class="col-sm-3 control-label texto">Unidad</label><br />         
-          <ng-select                                 
-                formControlName="IdUnidad" 
-                class="" 
-                [searchable]="true"                
-                placeholder="Selecciona la unidad"
-                size="10">
-                  <ng-option *ngFor="let item of departaments" [value]="item.IdUnidad">{{item.NombreUnidad}}</ng-option>
-          </ng-select>
-        </div> 
+        
+          <div class="col-sm-4">
+            <label class="col-sm-4 control-label texto">Estado</label>
+            <input class="form-control" formControlName="IdEstadoSolicitado" disabled/>             
+          </div> 
+          
         <div class="col-sm-4">
         </div> 
       </div>
       
       <div class="row Espacio">   
-      <div class="col-sm-4">
-          <label class="col-sm-2 control-label texto">Solicitante</label><br />
-          <input class="form-control" formControlName="Solicitante"/>          
-      </div>
-
-      <div class="col-sm-4">
-        <label class="col-sm-4 control-label texto">Estado</label>
-        <ng-select                                 
-                formControlName="IdEstadoSolicitado" 
-                class="" 
-                [searchable]="true"                
-                placeholder="Selecciona la el destino"
-                size="10">
-                  <ng-option *ngFor="let item of statusRequest" [value]="item.IdEstado">{{item.NombreEstado}}</ng-option>
-          </ng-select>
-      </div>     
+        <div class="col-sm-4">
+          <label class="col-sm-3 control-label texto">Unidad</label><br />         
+            <ng-select                                 
+                  formControlName="IdUnidad" 
+                  class="" 
+                  [searchable]="true"                
+                  placeholder="Selecciona la unidad"
+                  size="10">
+                    <ng-option *ngFor="let item of departaments" [value]="item.IdUnidad">{{item.NombreUnidad}}</ng-option>
+            </ng-select>
+        </div> 
+        <div class="col-sm-4">
+            <label class="col-sm-2 control-label texto">Solicitante</label><br />
+            <input class="form-control" formControlName="Solicitante"/>          
+        </div>         
       
       </div>
 

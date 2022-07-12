@@ -62,7 +62,7 @@ export class DischargesAddComponent implements OnInit {
       IdEstado:['Pendiente',[Validators.required]],
       IdUnidad:['',[Validators.required]],
       Solicitante:['',[Validators.required]],
-      IdEstadoSolicitado:['',[Validators.required]],
+      IdEstadoSolicitado:['En Bodega',[Validators.required]],
       Motivo:['',[Validators.required]],
       FechaSolicitud:['',[Validators.required]], 
       IdArchivo:['',[Validators.required]],

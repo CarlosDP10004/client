@@ -14,7 +14,7 @@ const routes: Routes = [
     component: DeparturesAddComponent
   },
   {
-    path: "Edit/:id", 
+    path: "Validate/:id", 
     component: DeparturesValidateComponent
   },
   {

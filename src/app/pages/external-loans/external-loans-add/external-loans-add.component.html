@@ -39,19 +39,7 @@
         </div>
         <div class="col-sm-4">
           <label class="col-sm-10 control-label texto">Estado destino</label><br />   
-          <select class="form-control" formControlName="IdEstadoSolicitado" disabled>
-            <option value="" hidden>Selecciona el estado</option>
-            <option *ngFor="let item of statusRequest" [value]="item.IdEstado">{{item.NombreEstado}}</option>
-          </select>
-         
-          <!--<ng-select                                 
-                formControlName="IdEstadoSolicitado"                  
-                [searchable]="true"                
-                placeholder="Selecciona la unidad"
-                size="10"                
-                disabled>
-                  <ng-option *ngFor="let item of statusRequest" [value]="item.IdEstado">{{item.NombreEstado}}</ng-option>
-          </ng-select>    -->     
+          <input class="form-control" formControlName="IdEstadoSolicitado" disabled/> 
           
         </div> 
         <div class="col-sm-4">
@@ -104,7 +92,12 @@
         </div>
         <div class="col-sm-4">
           <label class="col-sm-2 control-label texto">Correo</label><br />
-          <input class="form-control" placeholder="Correo" formControlName="Correo" />          
+          <input class="form-control" placeholder="Correo" formControlName="Correo" /> 
+          <FONT COLOR="red">
+            <small *ngIf="addRequest.errors?.valueNotValid">
+              El correo no tiene un formato válido
+            </small>
+          </FONT>         
         </div>
       </div>
       <div class="row Espacio"> 
@@ -198,7 +191,7 @@
       
     <div class="botones">
       <button type="submit" class="espacio3 btn btn-primary btn-lg" style="float: right">Guardar</button>        
-      <span routerLink="/Assets/Discharges" class="btn btn-default btn-lg" style="float: right">Cancelar</span>
+      <span routerLink="/Assets/External-Loans" class="btn btn-default btn-lg" style="float: right">Cancelar</span>
     </div>
     </div>
         

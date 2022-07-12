@@ -62,7 +62,7 @@ export class ReportByUnitsComponent implements OnInit {
     this.unidades = "";
     this.response = []; 
     this.setRange();    
-    this.reportService.getGeneral(filter).subscribe(data => {
+    this.reportService.getReportByUnits(filter).subscribe(data => {
       this.showReport = true;
       
       Object.assign(this.response, data);

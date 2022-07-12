@@ -47,32 +47,31 @@
           </select>
       </div>
 
-        <div class="col-sm-4">
-          <label class="col-sm-3 control-label texto">Unidad</label><br />
-          <select class="form-control" formControlName="IdUnidad" disabled>
-            <option value="" hidden>Selecciona el estado</option>
-            <option *ngFor="let item of departaments" [value]="item.IdUnidad">{{item.NombreUnidad}}</option>
-          </select>
-        </div>  
-        <div class="col-sm-4">
-        </div> 
-      </div>
-
-        <div class="row Espacio">
-        <div class="col-sm-4">
-          <label class="col-sm-4 control-label texto">Solicitante</label><br />
-          <input class="form-control" formControlName="Solicitante" disabled/>          
-      </div>
-
       <div class="col-sm-4">
         <label class="col-sm-2 control-label texto">Destino</label>
         <select class="form-control" formControlName="IdEstadoSolicitado" disabled>
           <option value="" hidden>Selecciona el estado</option>
           <option *ngFor="let item of status" [value]="item.IdEstado">{{item.NombreEstado}}</option>
         </select>
-      </div>     
-      
-        
+      </div> 
+
+          
+        <div class="col-sm-4">
+        </div> 
+      </div>
+
+        <div class="row Espacio">
+          <div class="col-sm-4">
+            <label class="col-sm-3 control-label texto">Unidad</label><br />
+            <select class="form-control" formControlName="IdUnidad" disabled>
+              <option value="" hidden>Selecciona el estado</option>
+              <option *ngFor="let item of departaments" [value]="item.IdUnidad">{{item.NombreUnidad}}</option>
+            </select>
+          </div>
+          <div class="col-sm-4">
+            <label class="col-sm-4 control-label texto">Solicitante</label><br />
+            <input class="form-control" formControlName="Solicitante" disabled/>          
+          </div>
       </div>
 
       <div class="row Espacio">

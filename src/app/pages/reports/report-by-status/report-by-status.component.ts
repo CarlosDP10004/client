@@ -58,7 +58,7 @@ export class ReportByStatusComponent implements OnInit {
     let filter = {
       'Desde': this.filters.get('Desde').value,      
       'Hasta': this.filters.get('Hasta').value,
-      'IdEstado': this.filters.get('IdEstado').value,
+      'IdEstado': this.filters.get('IdEstado').value != [] ? this.filters.get('IdEstado').value : '',
     }
     this.estados = "";
     this.response = []; 

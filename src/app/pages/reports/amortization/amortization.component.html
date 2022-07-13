@@ -20,6 +20,17 @@
           <div class="col-sm-3"><label class="col-sm-6 control-label texto">Fecha final:</label>
             <input type="date" class="form-control"  formControlName="Hasta">          
           </div>
+
+          <div class="col-sm-5"><label class="col-sm-6 control-label texto">Cuentas:</label>
+            <ng-select                                 
+                formControlName="IdCuenta" 
+                multiple="true"
+                [searchable]="true"                
+                placeholder="Selecciona las cuentas"
+                size="10">
+                  <ng-option *ngFor="let item of accounts" [value]="item.IdCuenta">{{item.NombreCuenta}}</ng-option>
+            </ng-select>          
+          </div>
         
       </div> 
     </div>
@@ -45,7 +56,11 @@
             <h3 class="ali">ADMINISTRACIÓN DE BIENES INSTITUCIONALES</h3>
             <h4 class="ali3">REPORTE DE REGISTRO DE AMORTIZACIÓN</h4>        
             <h4 class="ali3">MAQUINARIA, EQUIPO Y MOBILIARIO DIVERSO</h4> 
-            <h4 class="ali3">Desde: {{desde | date:'dd/MM/yyyy'}}  Hasta: {{hasta | date:'dd/MM/yyyy'}}</h4>       
+            <h4 class="ali3">
+              <span class="ali2" *ngIf="desde != ''"> Desde: {{desde | date:'dd/MM/yyyy'}}</span>
+              <span class="ali2" *ngIf="hasta != ''"> Hasta: {{hasta | date:'dd/MM/yyyy'}}</span>
+            </h4>
+            
             <br/>
           </div>     
           
@@ -71,7 +86,7 @@
               <td style="text-align: center">{{item.ValorCompra | currency: 'USD'}}</td>
               <td style="text-align: center">{{item.VidaUtil}}</td>
               <td style="text-align: center">{{item.Importe  | currency: 'USD'}}</td>
-              <td style="text-align: center">{{item.Restante  | currency: 'USD'}}</td>         
+              <td style="text-align: center">{{item.ValorResidual  | currency: 'USD'}}</td>         
           </table>
         </div>
       </div>

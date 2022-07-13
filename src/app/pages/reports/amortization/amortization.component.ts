@@ -64,8 +64,9 @@ export class AmortizationComponent implements OnInit {
     let filter = {
       'Desde': this.filters.get('Desde').value,      
       'Hasta': this.filters.get('Hasta').value,
-      'IdCuenta': this.filters.get('IdCuenta').value,
+      'IdCuenta': this.filters.get('IdCuenta').value.length > 0 ? this.filters.get('IdCuenta').value : []
     }
+    this.response = [];
     this.setRange();    
     this.reportService.getAmortization(filter).subscribe(data => {
       this.showReport = true;      

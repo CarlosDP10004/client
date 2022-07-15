@@ -21,6 +21,7 @@ import { formatCurrency, getCurrencySymbol } from '@angular/common';
   styleUrls: ['./assets-add.component.scss']
 })
 export class AssetsAddComponent implements OnInit {
+  
   @Output() onChange: EventEmitter<File> = new EventEmitter<File>();
   addAsset:FormGroup;
   accounts: any[] = [];
@@ -365,5 +366,7 @@ export class AssetsAddComponent implements OnInit {
   get Editorial():AbstractControl{return this.addAsset.get('Editorial');}
   get Tomo():AbstractControl{return this.addAsset.get('Tomo');}
   get Edicion():AbstractControl{return this.addAsset.get('Edicion');}
+
+  public placa = { '0': { pattern: new RegExp('\[A-Z0-9\]')} };
   
 }

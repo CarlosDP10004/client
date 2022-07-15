@@ -8,6 +8,7 @@ import { AssetsAddComponent } from './assets-add/assets-add.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { NgxMaskModule, IConfig } from 'ngx-mask'
 import { NgSelectModule } from "@ng-select/ng-select";
 import { TemplateModule } from 'src/app/shared/template/template.module';
 import { AssetsTimelineComponent } from './assets-timeline/assets-timeline.component';
@@ -27,6 +28,7 @@ import { AssetsTimelineComponent } from './assets-timeline/assets-timeline.compo
     NgxPaginationModule,
     ReactiveFormsModule,
     TemplateModule,
+    NgxMaskModule.forRoot(),
     NgSelectModule
   ]
 })

@@ -84,11 +84,11 @@
       <div class="row Espacio"> 
         <div class="col-sm-4">
           <label class="col-sm-4 control-label texto">DUI</label>
-          <input class="form-control" placeholder="DUI" formControlName="DUI"/>
+          <input class="form-control" placeholder="DUI" formControlName="DUI" mask="00000000-0"/>
         </div>     
         <div class="col-sm-4">
           <label class="col-sm-2 control-label texto">Telefono</label><br />
-          <input class="form-control" placeholder="Telefono" formControlName="Telefono" ui-br-cep-mask />          
+          <input class="form-control" placeholder="Telefono" formControlName="Telefono" mask="0000-0000" prefix="+503 "/>          
         </div>
         <div class="col-sm-4">
           <label class="col-sm-2 control-label texto">Correo</label><br />

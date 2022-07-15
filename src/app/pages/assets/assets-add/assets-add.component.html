@@ -133,7 +133,7 @@
             </FONT>
           </div>
           <div class="col-sm-3"><label class="col-sm-8 control-label texto2">Valor de compra</label>
-            <input class="form-control" placeholder="$$$$" formControlName="ValorCompra" (keyup)="calculateValues()">
+            <input class="form-control" placeholder="$$$$" formControlName="ValorCompra" (keyup)="calculateValues()" mask="separator.2" thousandSeparator=",">
             <FONT COLOR="red">
               <small *ngIf="ValorCompra.invalid && ValorCompra.touched ">
                 Complete el campo o ingrese solo números
@@ -227,7 +227,7 @@
           <div class="row Espacio">
             <div class="col-sm-4">
               <label class="col-sm-4 control-label texto">Placa</label>
-              <input class="form-control" placeholder="Placa" formControlName="Placa">  
+              <input class="form-control" placeholder="Placa" formControlName="Placa" >  
               <FONT COLOR="red">
                 <small *ngIf="Placa.invalid && Placa.touched">
                   Complete el campo

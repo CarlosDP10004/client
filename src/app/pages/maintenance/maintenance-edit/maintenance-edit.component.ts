@@ -5,6 +5,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AssetsService } from 'src/app/core/http/assets.service';
 import { AttachmentService } from 'src/app/core/http/attachment.service';
+import { CalculationService } from 'src/app/core/http/calculation.service';
 import { ErrorService } from 'src/app/core/http/error.service';
 import { MaintenanceService } from 'src/app/core/http/maintenance.service';
 import { MaintenanceModel } from 'src/app/models/maintenance';
@@ -26,6 +27,8 @@ export class MaintenanceEditComponent implements OnInit {
 
   maintenanceData: any;
 
+  assetData: any;
+
   constructor(
     private formBuilder:FormBuilder,   
     private router:Router,
@@ -34,6 +37,7 @@ export class MaintenanceEditComponent implements OnInit {
     private assetService: AssetsService,
     private maintenanceService: MaintenanceService,
     private errorService: ErrorService,
+    private calculateService: CalculationService,
     private attachmentService: AttachmentService,       
     private toastr: ToastrService,
   ) { }
@@ -42,6 +46,9 @@ export class MaintenanceEditComponent implements OnInit {
     this.route.queryParams.subscribe((params: Params) => {
       this.IdMaintenance = params['id'];
       this.IdAsset = params['asset'];
+    });
+    this.assetService.getAsset(this.IdAsset).subscribe(data => {
+      this.assetData = data;
     });
     this.createNewForm();
   }
@@ -54,6 +61,7 @@ export class MaintenanceEditComponent implements OnInit {
       IdEstado: new FormControl(null, []),
       Motivo: new FormControl('', []),
       VidaUtil: new FormControl('', []),
+      EsRevalorizable: new FormControl(null, []),
       Revalorizacion: new FormControl('', []),
       Costo: new FormControl('', []),
       Observaciones: new FormControl('', []),
@@ -89,6 +97,7 @@ export class MaintenanceEditComponent implements OnInit {
         this.editMaintenance.controls['IdEstado'].setValue(this.maintenanceData.IdEstado); 
         this.editMaintenance.controls['Motivo'].setValue(this.maintenanceData.Motivo); 
         this.editMaintenance.controls['VidaUtil'].setValue(this.maintenanceData.VidaUtil); 
+        this.editMaintenance.controls['EsRevalorizable'].setValue(this.maintenanceData.EsRevalorizable);
         this.editMaintenance.controls['Revalorizacion'].setValue(this.maintenanceData.Revalorizacion); 
         this.editMaintenance.controls['Costo'].setValue(this.maintenanceData.Costo); 
         this.editMaintenance.controls['Observaciones'].setValue(this.maintenanceData.Observaciones); 
@@ -140,6 +149,15 @@ export class MaintenanceEditComponent implements OnInit {
 
   cancel(){
     this.router.navigate(['/Assets/Supplies/Maintenance'], {queryParams: {id: this.IdAsset}});
+  }
+
+  calculateValues(){
+    let values = {
+      'VidaUtil': this.editMaintenance.get('VidaUtil').value,
+      'FechaFin': this.editMaintenance.get('FechaFin').value,
+      'Costo': this.editMaintenance.get('Costo').value,
+    }  
+    this.editMaintenance.controls['Revalorizacion'].setValue(this.calculateService.calculateRevaluation(this.assetData, values));    
   }
 
 }

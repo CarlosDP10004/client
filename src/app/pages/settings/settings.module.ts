@@ -9,6 +9,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { TemplateModule } from 'src/app/shared/template/template.module';
 import { CKEditorModule } from 'ng2-ckeditor';
+import { NgxMaskModule, IConfig } from 'ngx-mask'
 //import { CKEditorModule } from 'ng2-ckeditor';
 
 //import { CKEditorModule } from '@ckeditor/ckeditor5-build-classic';
@@ -28,6 +29,7 @@ import { CKEditorModule } from 'ng2-ckeditor';
     NgxPaginationModule,
     ReactiveFormsModule,
     NgSelectModule,
+    NgxMaskModule.forRoot(),
     TemplateModule,
     CKEditorModule
   ]

@@ -71,7 +71,6 @@ export class SidebarComponent implements OnInit {
     this.authService.getPermission().subscribe(async data => {
       this.app = await aux.setPermission(data);
       await this.setApp(this.app);
-      console.log(this.app);
     }, error =>{
       console.log(error);
     });

@@ -41,6 +41,15 @@
           
         </div>  
 
+        <div class="row Espacio">    
+
+          <div class="card esp2 col-sm-4" *ngIf="tipo == 'Punto flotante'">
+            <label class="col-sm-2 control-label texto2">Valor</label>
+            <input type="text" class="color form-control" placeholder="Valor flotante" formControlName="ValorDecimal" mask="separator.2" thousandSeparator=",">
+          </div>
+          
+        </div> 
+
           <div class="card esp2" *ngIf="tipo == 'Imagen'">
             <!--<input type="text" class="form-control" placeholder="Valor entero" formControlName="ValorImagen">            -->
             <div class="row Espacio">

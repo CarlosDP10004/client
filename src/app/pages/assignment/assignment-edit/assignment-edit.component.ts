@@ -42,6 +42,8 @@ export class AssignmentEditComponent implements OnInit {
 
   edit: boolean = false;
 
+  warning: boolean = false;
+
   constructor(
     private formBuilder:FormBuilder,   
     private assignmentService: AssignmentService,
@@ -152,7 +154,8 @@ export class AssignmentEditComponent implements OnInit {
       if(this.editAssignment!=null && this.assignmentData!=null){
         this.editAssignment.controls['IdUnidad'].setValue(this.assignmentData.IdUnidad);
         this.editAssignment.controls['IdPlaza'].setValue(this.assignmentData.IdPlaza);
-        this.editAssignment.controls['IdEstado'].setValue(this.assignmentData.IdEstado);        
+        this.editAssignment.controls['IdEstado'].setValue(this.assignmentData.IdEstado); 
+        this.warning = this.assignmentData.estado.NombreEstado == 'Aprobada' ? true : false;
         this.assignmentData.asignacion.forEach((obj) => {
           let asset = this.formBuilder.group({
             IdCuenta: new FormControl(obj['IdCuenta']),

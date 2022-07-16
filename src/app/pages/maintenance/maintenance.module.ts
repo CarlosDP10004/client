@@ -6,6 +6,7 @@ import { MaintenanceListComponent } from './maintenance-list/maintenance-list.co
 import { MaintenanceAddComponent } from './maintenance-add/maintenance-add.component';
 import { MaintenanceEditComponent } from './maintenance-edit/maintenance-edit.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { NgxMaskModule, IConfig } from 'ngx-mask'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TemplateModule } from 'src/app/shared/template/template.module';
 import { MaintenanceDetailsComponent } from './maintenance-details/maintenance-details.component';
@@ -19,6 +20,7 @@ import { MaintenanceDetailsComponent } from './maintenance-details/maintenance-d
     FormsModule,
     NgxPaginationModule,
     ReactiveFormsModule,
+    NgxMaskModule.forRoot(),
     TemplateModule
   ]
 })

@@ -29,7 +29,7 @@ export class AssetsAddComponent implements OnInit {
   origens: any[] = [];
   brands: any[] = [];
   clasifications: any[] = [];
-  selected: number;
+  selected: any;
   origen:string = '';
 
   files: any = [];
@@ -40,6 +40,7 @@ export class AssetsAddComponent implements OnInit {
   value:any = {};
   seleccion: any;  
   _isTangible: boolean = false;
+  _isDepreciable: boolean = true;
 
   constructor(
     private formBuilder:FormBuilder,     
@@ -86,7 +87,7 @@ export class AssetsAddComponent implements OnInit {
       IdMarca:[null,[Validators.required]],
       Modelo:['',[Validators.required]],
       Descripcion:['',[Validators.required]],
-      IdOrigen:['',[Validators.required]],
+      IdOrigen:[null,[Validators.required]],
       ValorCompra:['',[Validators.required]],
       FechaCompra:['',[Validators.required]],
       VidaUtil:['',[Validators.required]],
@@ -214,8 +215,17 @@ export class AssetsAddComponent implements OnInit {
   }
 
   chargeClasification(){
+    this.selected = '';
     let IdCuenta = this.addAsset.get('IdCuenta').value;
-    this.selected = IdCuenta;
+    this.accountService.getAccount(IdCuenta).subscribe(data => {
+      let accountData: any = data;
+      if(!accountData.EsDepreciable){
+        this.addAsset.controls['VidaUtil'].clearValidators();
+        this.addAsset.controls['VidaUtil'].updateValueAndValidity();
+      }
+      this.selected = accountData.Codigo;
+      this._isDepreciable = accountData.EsDepreciable;
+    });    
     this.setValidations(this.selected);
     this._isTangible = this.isTangible(IdCuenta);
     this.clasifications = [];
@@ -259,7 +269,7 @@ export class AssetsAddComponent implements OnInit {
 
   setValidations(value){
     switch(value){
-      case 2:
+      case '22615003':
         this.addAsset.get('Autor').setValidators(this.dinamicValidator);
         this.addAsset.get('Titulo').setValidators(this.dinamicValidator);
         this.addAsset.get('Editorial').setValidators(this.dinamicValidator);
@@ -280,7 +290,7 @@ export class AssetsAddComponent implements OnInit {
         this.addAsset.controls['Anno'].clearValidators();
         this.addAsset.controls['Anno'].updateValueAndValidity();
         break;
-      case 4:
+      case '24117001':
         this.addAsset.get('Placa').setValidators(this.dinamicValidator);
         this.addAsset.get('Color').setValidators(this.dinamicValidator);
         this.addAsset.get('NoMotor').setValidators(this.dinamicValidator);
@@ -299,10 +309,7 @@ export class AssetsAddComponent implements OnInit {
         this.addAsset.controls['Edicion'].clearValidators();
         this.addAsset.controls['Edicion'].updateValueAndValidity();
         break;
-      case 1:
-      case 3:
-      case 5:
-      case 6:
+      default:
         this.addAsset.controls['Autor'].clearValidators();
         this.addAsset.controls['Autor'].updateValueAndValidity();
         this.addAsset.controls['Titulo'].clearValidators();

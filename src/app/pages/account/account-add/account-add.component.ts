@@ -24,7 +24,8 @@ export class AccountAddComponent implements OnInit {
     this.addAccount = this.builder.group({      
       Codigo: new FormControl('', []),
       NombreCuenta: new FormControl('', []),
-      EsTangible: new FormControl(false, [])
+      EsTangible: new FormControl(false, []),
+      EsDepreciable: new FormControl(false, []),
     });
    }
 
@@ -37,6 +38,7 @@ export class AccountAddComponent implements OnInit {
       'Codigo': this.addAccount.get('Codigo').value,
       'NombreCuenta': this.addAccount.get('NombreCuenta').value,
       'EsTangible': this.addAccount.get('EsTangible').value,
+      'EsDepreciable': this.addAccount.get('EsDepreciable').value,
     };
     this.accountService.addAccount(postData).subscribe(data=>{
       if(data!=null){

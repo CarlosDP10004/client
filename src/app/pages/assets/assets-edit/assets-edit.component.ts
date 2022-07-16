@@ -31,7 +31,7 @@ export class AssetsEditComponent implements OnInit {
   status: any[] = [];
   brands: any[] = [];
   clasifications: any[] = [];
-  selected: number;
+  selected: string;
   origen:string = '';
   adjunto:any;
 
@@ -46,8 +46,12 @@ export class AssetsEditComponent implements OnInit {
   event: EventEmitter<any>=new EventEmitter();
 
   _isTangible: boolean = false;
+  _isDepreciable: boolean = true;
 
   warning: boolean = false;
+
+  vehicle: boolean = false;
+  patente: boolean = false;
 
   constructor(
     private formBuilder:FormBuilder,     
@@ -188,12 +192,17 @@ export class AssetsEditComponent implements OnInit {
       }) 
     });
 
-    this.assetService.getAsset(IdAsset).subscribe(data => {
+    this.assetService.getAsset(IdAsset).subscribe(async data => {
       this.assetData = data;
+      this.vehicle = await this.assetData.cuenta.Codigo == '24117001' ? true : false;
+      this.patente = await this.assetData.cuenta.Codigo == '22615003' ? true : false;
+
+      this._isDepreciable = this.assetData.cuenta.EsDepreciable;
+      this._isTangible = this.assetData.cuenta.EsTangible;      
+      
       this.chargeClasification(this.assetData.IdCuenta);
       
-      if(this.editAsset!=null && this.assetData!=null){
-        this._isTangible = this.isTangible(this.assetData.IdCuenta);
+      if(this.editAsset!=null && this.assetData!=null){        
         this.editAsset.controls['CodigoAF'].setValue(this.assetData.CodigoAF);
         this.editAsset.controls['IdEstado'].setValue(this.assetData.IdEstado);
         this.editAsset.controls['FechaRegistro'].setValue(this.datepipe.transform(this.assetData.FechaRegistro, 'yyyy-MM-dd'));
@@ -210,14 +219,14 @@ export class AssetsEditComponent implements OnInit {
         this.editAsset.controls['Descripcion'].setValue(this.assetData.Descripcion);
         this.editAsset.controls['LibreGestion'].setValue(this.assetData.LibreGestion);
         this.origen = this.attachmentService.getPathImage(this.assetData.fotografia.Ubicacion);
-        if(this.assetData.IdCuenta == 2){
+        if(this.patente){
           this.editAsset.controls['Autor'].setValue(this.assetData.patente.Autor);
           this.editAsset.controls['Titulo'].setValue(this.assetData.patente.Titulo);
           this.editAsset.controls['Editorial'].setValue(this.assetData.patente.Editorial);
           this.editAsset.controls['Tomo'].setValue(this.assetData.patente.Tomo);
           this.editAsset.controls['Edicion'].setValue(this.assetData.patente.Edicion);
         }
-        if(this.assetData.IdCuenta == 4){
+        if(this.vehicle){
           this.editAsset.controls['Placa'].setValue(this.assetData.vehiculo.Placa);
           this.editAsset.controls['Color'].setValue(this.assetData.vehiculo.Color);
           this.editAsset.controls['NoMotor'].setValue(this.assetData.vehiculo.NoMotor);
@@ -378,17 +387,7 @@ export class AssetsEditComponent implements OnInit {
     this.editAsset.controls['Depreciacion'].setValue(this.calculateService.calculateDepreciation(this._isTangible, values));
     this.editAsset.controls['Amortizacion'].setValue(this.calculateService.calculateAmortization(this._isTangible, values));
     this.editAsset.controls['ValorActual'].setValue(this.calculateService.calculateCurrentValue(this._isTangible, values));
-  }
-
-  isTangible(id:any): boolean{
-    let aux = false;
-    this.accounts.forEach(element => {
-      if(element.IdCuenta == id){
-        aux = element.EsTangible;        
-      }
-    });
-    return aux
-  }
+  } 
 
   get CodigoAF():AbstractControl{return this.editAsset.get('CodigoAF');}
   get FechaRegistro():AbstractControl{return this.editAsset.get('FechaRegistro');}
@@ -407,4 +406,5 @@ export class AssetsEditComponent implements OnInit {
   get Fotografia():AbstractControl{return this.editAsset.get('Fotografia');}
   get LibreGestion():AbstractControl{return this.editAsset.get('LibreGestion');}
 
+  public placa = { '0': { pattern: new RegExp('\[A-Z0-9\]')} };
 }

@@ -90,11 +90,14 @@
               </FONT>
             </div>
 
-              <div class="col-sm-4 "><label class="col-sm-7 control-label texto">Origen</label>
-                <select class="form-control" formControlName="IdOrigen">
-                  <option value="" hidden>Selecciona el Origen</option>
-                  <option *ngFor="let item of origens" [value]="item.IdOrigen">{{item.NombreOrigen}}</option>
-                </select>
+              <div class="col-sm-4 "><label class="col-sm-7 control-label texto">Financiamiento</label>
+                <ng-select                                 
+                  formControlName="IdOrigen" 
+                  [searchable]="true"                
+                  placeholder="Selecciona el financiamiento"
+                  size="10">
+                    <ng-option *ngFor="let item of origens" [value]="item.IdOrigen">{{item.NombreOrigen}}</ng-option>
+                </ng-select>
                 <FONT COLOR="red">
                   <small *ngIf="IdOrigen.invalid && IdOrigen.touched">
                     Complete el campo
@@ -169,7 +172,7 @@
             </div>
                      
             <div class="margen col-sm-2"><label class="col-sm-10 control-label texto">Valor de compra</label>
-              <input class="form-control" placeholder="$$$$" formControlName="ValorCompra" (keyup)="calculateValues()">
+              <input class="form-control" placeholder="$$$$" formControlName="ValorCompra" (keyup)="calculateValues()" mask="separator.2" thousandSeparator=",">
               <FONT COLOR="red">
                 <small *ngIf="ValorCompra.invalid && ValorCompra.touched">
                   Complete el campo
@@ -185,7 +188,7 @@
               </FONT>
             </div>
           </div> 
-          <div class="row Espacio">
+          <div class="row Espacio" *ngIf="_isDepreciable">
             <div class="col-sm-3"><label class="col-sm-12 control-label texto2">Vida útil</label>
               <input type="number" class="form-control" placeholder="Vida útil" formControlName="VidaUtil" (keyup)="calculateValues()">
               <FONT COLOR="red">
@@ -259,14 +262,14 @@
   
   <!-- Datos de Vehiculo -->
         <br>
-        <div class="card esp2" *ngIf="selected == 4">
+        <div class="card esp2" *ngIf="vehicle">
           <div class="EncabezadoForm shadow-X"><b>&nbsp;Vehículo:</b></div>
           <div class="card-body EstiloForm1">
             
             <div class="row Espacio">
               <div class="col-sm-4">
                 <label class="col-sm-4 control-label texto">Placa</label>
-                <input class="form-control" placeholder="Placa" formControlName="Placa">
+                <input class="form-control" placeholder="Placa" formControlName="Placa" [patterns]="placa" mask="0-000-000">
               </div>
               <div class="col-sm-3">
                 <label class="col-sm-2 control-label texto">Color</label>
@@ -293,7 +296,7 @@
               </div>
               <div class="col-sm-2">
                 <label class="col-sm-4 control-label texto">Año</label>
-                <input class="form-control" placeholder="Año" formControlName="Anno">
+                <input class="form-control" placeholder="Año" formControlName="Anno" mask="0000">
               </div>
             </div>            
           </div>
@@ -304,7 +307,7 @@
   
   <!-- Datos Patentes -->
         <br>
-        <div class="card esp1" *ngIf="selected == 2">
+        <div class="card esp1" *ngIf="patente">
           <div class="EncabezadoForm shadow-X"><b>&nbsp;Patentes:</b></div>
           <div class="card-body EstiloForm1">
             

@@ -30,6 +30,7 @@ export class AccountEditComponent implements OnInit {
       Codigo: new FormControl(null, []),
       NombreCuenta: new FormControl('', []),
       EsTangible: new FormControl(null, []),
+      EsDepreciable: new FormControl(false, []),
     });
 
     this.accountService.IdCuenta.subscribe(data => {
@@ -42,6 +43,7 @@ export class AccountEditComponent implements OnInit {
             this.editAccount.controls['Codigo'].setValue(this.accountData.Codigo);
             this.editAccount.controls['NombreCuenta'].setValue(this.accountData.NombreCuenta);
             this.editAccount.controls['EsTangible'].setValue(this.accountData.EsTangible);
+            this.editAccount.controls['EsDepreciable'].setValue(this.accountData.EsDepreciable);
           }
         }, error => { 
           Swal.fire({
@@ -63,7 +65,8 @@ export class AccountEditComponent implements OnInit {
     let accountData = {
       'Codigo': this.editAccount.get('Codigo').value,
       'NombreCuenta': this.editAccount.get('NombreCuenta').value,
-      'EsTangible': this.editAccount.get('EsTangible').value
+      'EsTangible': this.editAccount.get('EsTangible').value,
+      'EsDepreciable': this.editAccount.get('EsDepreciable').value,
     };
     this.accountService.editAccount(this.id, accountData).subscribe(data => {       
       if(data!=null){

@@ -55,7 +55,8 @@ export class SettingsEditComponent implements OnInit {
       Descripcion: new FormControl('', []),
       ValorEntero: new FormControl('', []),
       ValorImagen: new FormControl('', []),
-      ValorCadena: new FormControl('<p>Some html</p>')
+      ValorCadena: new FormControl('<p>Some html</p>'),
+      ValorDecimal: new FormControl('', []),
     });
 
     this.settingService.getSetting(IdSetting).subscribe(data => {
@@ -74,6 +75,9 @@ export class SettingsEditComponent implements OnInit {
         if(this.settingData.Tipo == 'Texto'){
           this.editSetting.controls['ValorCadena'].setValue(this.settingData.ValorCadena);
           this.Texto = this.settingData.ValorCadena;
+        }
+        if(this.settingData.Tipo == 'Punto flotante'){
+          this.editSetting.controls['ValorDecimal'].setValue(this.settingData.ValorDecimal);
         }
       }
     });

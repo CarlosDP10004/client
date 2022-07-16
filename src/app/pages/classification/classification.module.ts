@@ -8,6 +8,7 @@ import { ClassificationAddComponent } from './classification-add/classification-
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { NgSelectModule } from "@ng-select/ng-select";
 import { TemplateModule } from 'src/app/shared/template/template.module';
 
 @NgModule({
@@ -22,6 +23,7 @@ import { TemplateModule } from 'src/app/shared/template/template.module';
     FormsModule,
     NgxPaginationModule,
     ReactiveFormsModule,
+    NgSelectModule,
     TemplateModule
   ]
 })

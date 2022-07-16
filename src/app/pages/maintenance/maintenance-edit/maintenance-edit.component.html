@@ -34,8 +34,17 @@
         <div class="row Espacio">
             <div class="col-sm-12">
             <label class="col-sm-10 control-label texto">Motivo del mantenimiento</label><br />
-            <textarea class="form-control" formControlName="Motivo" cols="30" rows="10"></textarea>
+            <textarea class="form-control" formControlName="Motivo" cols="30" rows="10" disabled></textarea>
             </div>
+        </div>
+        <div class="row Espacio">
+            <div class="col-sm-10">
+                <label class="col-sm-10 control-label texto">¿El activo se ha revalorizado con este mantenimiento?</label><br />
+                <div class="col-sm-1">
+                    <input type="checkbox" class="form-control" formControlName="EsRevalorizable" />
+                </div>
+                
+            </div> 
         </div>
 
         <div class="row Espacio">
@@ -45,16 +54,17 @@
             </div>  
             <div class="col-sm-3">
                 <label class="col-sm-10 control-label texto">Costo</label><br />        
-                <input  class="form-control" formControlName="Costo" />
+                <input  class="form-control" formControlName="Costo" mask="separator.2" thousandSeparator="," (keyup)="calculateValues()"/>
             </div>   
-            <div class="col-sm-3">
-                <label class="col-sm-10 control-label texto">Revalorizacion</label><br />        
-                <input  class="form-control" formControlName="Revalorizacion" />
-            </div>    
-            <div class="col-sm-3">
-                <label class="col-sm-10 control-label texto">Vida útil:</label><br />
-                <input  class="form-control" formControlName="VidaUtil" />                
+            <div class="col-sm-3" *ngIf="editMaintenance.controls['EsRevalorizable']?.value">
+                <label class="col-sm-10 control-label texto">Nueva vida útil:</label><br />
+                <input  class="form-control" formControlName="VidaUtil" (keyup)="calculateValues()"/>                
             </div>
+            <div class="col-sm-3" *ngIf="editMaintenance.controls['EsRevalorizable']?.value">
+                <label class="col-sm-10 control-label texto">Revalorizacion</label><br />        
+                <input  class="form-control" formControlName="Revalorizacion" mask="separator.2" thousandSeparator="," disabled/>
+            </div>    
+            
         </div>
 
         <div class="row Espacio">

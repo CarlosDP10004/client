@@ -24,6 +24,12 @@
                 <input type="checkbox" class="form-control" formControlName="EsTangible" />
             </div>
           </div>
+          <div class="form-group" *ngIf="editAccount.controls['EsTangible']?.value">
+            <label class="col-sm-6 control-label texto posicion">¿Es un bien Depreciable?</label>
+            <div class="col-sm-1 posicion2">
+                <input type="checkbox" class="form-control" formControlName="EsDepreciable" />
+            </div>
+          </div> 
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal" (click)="onClose()">Cancelar</button>

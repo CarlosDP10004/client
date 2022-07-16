@@ -56,6 +56,11 @@ export class SettingsService {
     return this.clienteHttp.get(`${API_URL}mostrarLogo`, { headers: headers});
   }
 
+  getBase(){
+    const headers = new HttpHeaders().set('Authorization', `bearer ${this.userService.getToken()}`)
+    return this.clienteHttp.get(`${API_URL}showBase`, { headers: headers});
+  }
+
   
   
 }

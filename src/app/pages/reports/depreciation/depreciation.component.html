@@ -20,23 +20,24 @@
           <div class="col-sm-3"><label class="col-sm-6 control-label texto">Fecha final:</label>
             <input type="date" class="form-control"  formControlName="Hasta">          
           </div>
-          <div class="col-sm-5"><label class="col-sm-6 control-label texto">Cuentas:</label>
+          <div class="col-sm-5"><label class="col-sm-2 control-label texto">Cuentas:</label>
             <ng-select                                 
                 formControlName="IdCuenta" 
                 multiple="true"
                 [searchable]="true"                
                 placeholder="Selecciona las cuentas"
-                size="10">
-                  <ng-option *ngFor="let item of accounts" [value]="item.IdCuenta">{{item.NombreCuenta}}</ng-option>
+                size="10"                
+                >
+                  <ng-option  *ngFor="let item of accounts" [value]="item.IdCuenta">{{item.NombreCuenta}}</ng-option>
             </ng-select>          
           </div>
         
       </div> 
     </div>
-  
+    <div  class="ajuste">
       <button type="submit" class="espacio3 btn btn-primary btn-lg" style="float: right">Generar reporte</button>        
       <span routerLink="/Assets" class="btn btn-default btn-lg" style="float: right">Cancelar</span>
-  
+    </div>
   </form>
   <br>
   <br>

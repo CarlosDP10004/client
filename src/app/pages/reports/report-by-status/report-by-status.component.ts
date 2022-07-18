@@ -23,6 +23,8 @@ export class ReportByStatusComponent implements OnInit {
   hasta: any;
   estados: string = "";
 
+  statusFiltered: any[] = [];
+
   constructor(
     private formBuilder:FormBuilder,
     private reportService: ReportService,
@@ -43,6 +45,7 @@ export class ReportByStatusComponent implements OnInit {
 
     this.assetService.getEstados().subscribe(data => {
       Object.assign(this.status, data);
+      this.statusAssets();
     }, error => { 
       Swal.fire({
         icon: 'error',
@@ -58,7 +61,7 @@ export class ReportByStatusComponent implements OnInit {
     let filter = {
       'Desde': this.filters.get('Desde').value,      
       'Hasta': this.filters.get('Hasta').value,
-      'IdEstado': this.filters.get('IdEstado').value != [] ? this.filters.get('IdEstado').value : '',
+      'IdEstado': this.filters.get('IdEstado').value.length > 0 ? this.filters.get('IdEstado').value : []
     }
     this.estados = "";
     this.response = []; 
@@ -95,6 +98,14 @@ export class ReportByStatusComponent implements OnInit {
 
   downloadPDF(): void {
     this.reportService.downloadPDF();
+  }
+
+  statusAssets(){
+    this.status.forEach(element => {
+      if(element.Modulo == 'Activo Fijo'){
+        this.statusFiltered.push(element);
+      }
+    });
   }
 
 }

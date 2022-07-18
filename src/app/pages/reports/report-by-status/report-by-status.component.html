@@ -28,7 +28,7 @@
                 [searchable]="true"                
                 placeholder="Selecciona los estados"
                 size="10">
-                  <ng-option *ngFor="let item of status" [value]="item.IdEstado">{{item.NombreEstado}}</ng-option>
+                  <ng-option *ngFor="let item of statusFiltered" [value]="item.IdEstado">{{item.NombreEstado}}</ng-option>
             </ng-select>          
           </div>
         

@@ -61,7 +61,7 @@ export class MaintenanceEditComponent implements OnInit {
       IdEstado: new FormControl(null, []),
       Motivo: new FormControl('', []),
       VidaUtil: new FormControl('', []),
-      EsRevalorizable: new FormControl(null, []),
+      EsRevalorizable: new FormControl(false, []),
       Revalorizacion: new FormControl('', []),
       Costo: new FormControl('', []),
       Observaciones: new FormControl('', []),

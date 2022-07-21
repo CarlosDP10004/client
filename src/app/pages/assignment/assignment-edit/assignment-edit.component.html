@@ -53,19 +53,21 @@
       </div> 
 
       <div class="row Espacio">
+        <p class="nota">Nota:</p>
         <FONT COLOR="red">
-          <small *ngIf="warning">
-            Esta solicitud actualmente está Aprobada, si edita la información se colocará en estado Pendiente, y deberá ser aprobada nuevamente por el área encargada.
-          </small>
+          <P style="text-align: center;"><small *ngIf="warning" class="texto5">
+           ***Esta solicitud actualmente está Aprobada, si edita la información se colocará en estado Pendiente, y deberá ser aprobada nuevamente por el área encargada***
+          </small></P>
         </FONT>
       </div> 
   
   </div>
   <br>   
+  
       
      <div class="row">
       <div class="col-sm-4 Espacio4">
-      <a class="Link" (click)="addAsset()" style="cursor:pointer;" type="button">
+      <a class="Link" (click)="addAsset()" style="cursor:pointer;" type="button" style="margin-top:23px;">
         &nbsp; + Añadir activo
       </a>
     </div>

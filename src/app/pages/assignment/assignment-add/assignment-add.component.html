@@ -11,7 +11,7 @@
   <div class="EncabezadoForm shadow-X"><b>&nbsp;Datos Generales:</b></div>
   <div class="EstiloForm1">
     <div class="row Espacio">
-      <div class="col-sm-4">
+      <div class="col-sm-6">
         <label class="col-sm-4 control-label texto">Unidad:</label><br />
         <ng-select                                 
         formControlName="IdUnidad"            
@@ -24,19 +24,26 @@
         
     </div>
 
-    <div class="col-sm-4">
+    <div class="col-sm-6">
         <label class="col-sm-4 control-label texto">Plaza:</label><br />        
         <select class="form-control" formControlName="IdPlaza">
           <option value="" hidden>Selecciona la plaza</option>
           <option *ngFor="let item of workStations" [value]="item.IdPlaza">{{item.NombrePlaza}}</option>
         </select>
     </div>
-    
-    <div class="col-sm-4 Espacio5">
-        <label class="col-sm-4 control-label texto3">Estado:</label><br />
-        <input type="text" class="form-control bor" disabled formControlName="IdEstado"/>
-    </div>
   </div>
+    
+    <div class="row Espacio">
+      <div class="col-sm-6">
+        <label class="col-sm-4 control-label texto3">Estado:</label><br />
+        <input type="text" class="form-control bor tam" disabled formControlName="IdEstado"/>
+    </div>
+    <div class="col-sm-6">
+      <label class="col-sm-4 control-label texto3">Empleado:</label><br />
+      <input type="text" class="form-control bor tam" disabled formControlName=""/>
+  </div>
+  </div>
+  
   
     <div class="row Espacio">
       <div class="col-sm-6"><label class="col-sm-4 control-label texto3">Solicitud de asignación</label></div>

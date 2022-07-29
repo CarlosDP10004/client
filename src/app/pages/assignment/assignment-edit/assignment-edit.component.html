@@ -11,7 +11,7 @@
     <div class="EncabezadoForm shadow-X"><b>&nbsp;Datos Generales:</b></div>
     <div class="EstiloForm1">
       <div class="row Espacio">
-        <div class="col-sm-4">
+        <div class="col-sm-6">
           <label class="col-sm-4 control-label texto">Unidad:</label><br />
           <ng-select                                 
           formControlName="IdUnidad" 
@@ -23,7 +23,7 @@
              </ng-select>          
       </div>
   
-      <div class="col-sm-4">
+      <div class="col-sm-6">
           <label class="col-sm-4 control-label texto">Plaza:</label><br />  
           <ng-select                                 
           formControlName="IdPlaza" 
@@ -34,13 +34,23 @@
              </ng-select>  
       </div>
       
-      <div class="col-sm-4">
-          <label class="col-sm-4 control-label texto">Estado:</label><br />
-          <select class="form-control" formControlName="IdEstado" disabled>
-            <option value="" hidden>Selecciona el Estado</option>
-            <option *ngFor="let item of statusAssignments" [value]="item.IdEstado">{{item.NombreEstado}}</option>
-          </select>
-      </div>
+      
+    </div>
+    <div class="row Espacio">
+      <div class="col-sm-6">
+        <label class="col-sm-4 control-label texto">Estado:</label><br />
+        <select class="form-control bor tam" formControlName="IdEstado" disabled>
+          <option value="" hidden>Selecciona el Estado</option>
+          <option *ngFor="let item of statusAssignments" [value]="item.IdEstado">{{item.NombreEstado}}</option>
+        </select>
+    </div>
+    <div class="col-sm-6">
+      <label class="col-sm-4 control-label texto">Empleado:</label><br />
+      <select class="form-control bor tam" formControlName="" disabled>
+        <option value="" hidden>Empleado</option>
+        <option *ngFor="" [value]=""></option>
+      </select>
+  </div>
     </div>
     
       <div class="row Espacio">

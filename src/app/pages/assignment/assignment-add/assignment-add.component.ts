@@ -146,8 +146,8 @@ export class AssignmentAddComponent implements OnInit {
     this.ListaActivos.push(aux);
   }
 
-  removeItem(i:any) {
-    this.ListaActivos.removeAt(this.ListaActivos[i]);
+  removeItem(index: number) {
+    this.ListaActivos.removeAt(index);
  }
 
   async guardarAsignacion(){

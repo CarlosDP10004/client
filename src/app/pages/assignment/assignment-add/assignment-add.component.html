@@ -13,10 +13,15 @@
     <div class="row Espacio">
       <div class="col-sm-4">
         <label class="col-sm-4 control-label texto">Unidad:</label><br />
-        <select class="form-control" formControlName="IdUnidad" (change)="chargeWorkStation($event.target.value)">
-          <option value="" hidden>Selecciona la unidad</option>
-          <option *ngFor="let item of departaments" [value]="item.IdUnidad">{{item.NombreUnidad}}</option>
-        </select>
+        <ng-select                                 
+        formControlName="IdUnidad"            
+        (change)="chargeWorkStation($event.target.value)"
+        [searchable]="true"                
+        placeholder="Selecciona la unidad"
+        size="10" >
+          <ng-option *ngFor="let item of departaments" [value]="item.IdUnidad">{{item.NombreUnidad}}</ng-option>
+    </ng-select>
+        
     </div>
 
     <div class="col-sm-4">
@@ -71,24 +76,33 @@
           <div class="row Espacio">            
           <div class="col-sm-4">
             <label class="col-sm-4 control-label texto">Cuenta:</label><br />
-            <select class="form-control" formControlName="IdCuenta">
-              <option value="" hidden>Selecciona la cuenta</option>
-              <option *ngFor="let item of accounts" [value]="item.IdCuenta">{{item.NombreCuenta}}</option>
-            </select>
+            <ng-select                                 
+            formControlName="IdCuenta" 
+              [searchable]="true"                
+              placeholder="Selecciona la cuenta"
+              size="10">
+                <ng-option *ngFor="let item of accounts" [value]="item.IdCuenta">{{item.NombreCuenta}}</ng-option>
+             </ng-select> 
         </div>
         <div class="col-sm-4">
           <label class="col-sm3 control-label texto">Clasificación:</label><br />
-            <select class="form-control" formControlName="IdClasificacion">
-              <option value="" hidden>Selecciona la clasificación</option>
-              <option *ngFor="let item of chargeClasification(addAssignment.controls['ListaActivos']?.value[i]?.IdCuenta)" [value]="item.IdClasificacion">{{item.Descripcion}}</option>
-            </select>
+          <ng-select                                 
+          formControlName="IdClasificacion" 
+              [searchable]="true"                
+              placeholder="Selecciona la clasificación"
+              size="10">
+                <ng-option *ngFor="let item of chargeClasification(addAssignment.controls['ListaActivos']?.value[i]?.IdCuenta)" [value]="item.IdClasificacion">{{item.Descripcion}}</ng-option>
+             </ng-select>           
         </div>
         <div class="col-sm-3">
           <label class="col-sm-4 control-label texto">Activo:</label><br />
-            <select class="form-control" formControlName="IdActivoFijo">
-              <option value="" hidden>Selecciona el código del activo</option>
-              <option *ngFor="let item of chargeAssets(addAssignment.controls['ListaActivos']?.value[i]?.IdClasificacion)" [value]="item.IdActivoFijo">{{item.CodigoAF}}</option>
-            </select>
+          <ng-select                                 
+          formControlName="IdActivoFijo" 
+              [searchable]="true"                
+              placeholder="Selecciona el código del activo"
+              size="10">
+                <ng-option *ngFor="let item of chargeAssets(addAssignment.controls['ListaActivos']?.value[i]?.IdClasificacion)" [value]="item.IdActivoFijo">{{item.CodigoAF}}</ng-option>
+             </ng-select>             
         </div>
         <div class="col-sm-1">
           <a type="submit" class="btn alinear" style="float: right" (click)="removeItem(i)">                

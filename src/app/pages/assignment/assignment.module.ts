@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { TemplateModule } from 'src/app/shared/template/template.module';
 import { AssignmentValidateComponent } from './assignment-validate/assignment-validate.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 
@@ -28,7 +29,8 @@ import { AssignmentValidateComponent } from './assignment-validate/assignment-va
     FormsModule,
     NgxPaginationModule,
     ReactiveFormsModule,
-    TemplateModule
+    TemplateModule,
+    NgSelectModule, 
   ]
 })
 export class AssignmentModule { }

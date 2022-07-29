@@ -187,8 +187,8 @@ export class AssignmentEditComponent implements OnInit {
     this.ListaActivos.push(aux);
   }
 
-  removeItem() {
-    this.ListaActivos.removeAt(this.ListaActivos.length - 1);
+  removeItem(index:number) {
+    this.ListaActivos.removeAt(index);
  }
 
   async editarAsignacion(){
@@ -269,6 +269,7 @@ export class AssignmentEditComponent implements OnInit {
     this.bsModalRef.content.event.subscribe(result => {
       if (result == 'OK') {
         this.ListaActivosAsignados.removeAt(this.ListaActivos[i]);
+        this.createNewForm();
       }
     });
   }

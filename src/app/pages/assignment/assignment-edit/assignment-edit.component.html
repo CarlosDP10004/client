@@ -13,45 +13,32 @@
       <div class="row Espacio">
         <div class="col-sm-6">
           <label class="col-sm-4 control-label texto">Unidad:</label><br />
-          <ng-select                                 
-          formControlName="IdUnidad" 
-              [searchable]="true"                
-              placeholder="Selecciona la cuenta"
-              size="10"
-              (change)="chargeWorkStation($event.target.value)">
-                <ng-option *ngFor="let item of departaments" [value]="item.IdUnidad">{{item.NombreUnidad}}</ng-option>
-             </ng-select>          
-      </div>
+          <select class="form-control bor tam" formControlName="IdUnidad" disabled>        
+            <option *ngFor="let item of departaments" [value]="item.IdUnidad">{{item.NombreUnidad}}</option>
+          </select>        
+        </div>
   
-      <div class="col-sm-6">
-          <label class="col-sm-4 control-label texto">Plaza:</label><br />  
-          <ng-select                                 
-          formControlName="IdPlaza" 
-              [searchable]="true"                
-              placeholder="Selecciona la cuenta"
-              size="10">
-                <ng-option *ngFor="let item of workStations" [value]="item.IdPlaza">{{item.NombrePlaza}}</ng-option>
-             </ng-select>  
+        <div class="col-sm-6">
+            <label class="col-sm-4 control-label texto">Plaza:</label><br />  
+            <select class="form-control bor tam" formControlName="IdPlaza" disabled>        
+              <option *ngFor="let item of workStations" [value]="item.IdPlaza">{{item.NombrePlaza}}</option>
+            </select> 
+        </div>
       </div>
-      
-      
-    </div>
-    <div class="row Espacio">
-      <div class="col-sm-6">
-        <label class="col-sm-4 control-label texto">Estado:</label><br />
-        <select class="form-control bor tam" formControlName="IdEstado" disabled>
-          <option value="" hidden>Selecciona el Estado</option>
-          <option *ngFor="let item of statusAssignments" [value]="item.IdEstado">{{item.NombreEstado}}</option>
-        </select>
-    </div>
-    <div class="col-sm-6">
-      <label class="col-sm-4 control-label texto">Empleado:</label><br />
-      <select class="form-control bor tam" formControlName="" disabled>
-        <option value="" hidden>Empleado</option>
-        <option *ngFor="" [value]=""></option>
-      </select>
-  </div>
-    </div>
+
+      <div class="row Espacio">
+        <div class="col-sm-6">
+          <label class="col-sm-4 control-label texto">Estado:</label><br />
+          <select class="form-control bor tam" formControlName="IdEstado" disabled>
+            <option value="" hidden>Selecciona el Estado</option>
+            <option *ngFor="let item of statusAssignments" [value]="item.IdEstado">{{item.NombreEstado}}</option>
+          </select>
+        </div>
+        <div class="col-sm-6">
+          <label class="col-sm-4 control-label texto">Empleado:</label><br />
+          <input type="text" class="form-control bor tam" disabled formControlName="Empleado"/>
+        </div>
+      </div>
     
       <div class="row Espacio">
         <div class="col-sm-6"><label class="col-sm-4 control-label texto3">Solicitud de asignación</label></div>

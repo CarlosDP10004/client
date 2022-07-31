@@ -15,7 +15,7 @@
         <label class="col-sm-4 control-label texto">Unidad:</label><br />
         <ng-select                                 
         formControlName="IdUnidad"            
-        (change)="chargeWorkStation($event.target.value)"
+        (change)="chargeWorkStation()"
         [searchable]="true"                
         placeholder="Selecciona la unidad"
         size="10" >
@@ -25,11 +25,16 @@
     </div>
 
     <div class="col-sm-6">
-        <label class="col-sm-4 control-label texto">Plaza:</label><br />        
-        <select class="form-control" formControlName="IdPlaza">
-          <option value="" hidden>Selecciona la plaza</option>
-          <option *ngFor="let item of workStations" [value]="item.IdPlaza">{{item.NombrePlaza}}</option>
-        </select>
+        <label class="col-sm-4 control-label texto">Plaza:</label><br /> 
+        
+        <ng-select                                 
+          formControlName="IdPlaza"            
+          (change)="chargeEmployeeName()"
+          [searchable]="true"                
+          placeholder="Selecciona la plaza"
+          size="10" >
+          <ng-option *ngFor="let item of workStations" [value]="item.IdPlaza">{{item.NombrePlaza}}</ng-option>
+        </ng-select>
     </div>
   </div>
     
@@ -40,7 +45,7 @@
     </div>
     <div class="col-sm-6">
       <label class="col-sm-4 control-label texto3">Empleado:</label><br />
-      <input type="text" class="form-control bor tam" disabled formControlName=""/>
+      <input type="text" class="form-control bor tam" disabled formControlName="Empleado"/>
   </div>
   </div>
   

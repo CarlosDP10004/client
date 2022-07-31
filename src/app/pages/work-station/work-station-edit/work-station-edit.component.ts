@@ -36,7 +36,8 @@ export class WorkStationEditComponent implements OnInit {
     this.editWorkStation = this.builder.group({
       IdUnidad: new FormControl(null, []),
       NombrePlaza: new FormControl('', []),
-      Empleado: new FormControl('', [])
+      Empleado: new FormControl(null, []),
+      NombreEmpleado: new FormControl('', []),
     });
     this.departamentService.showAll().subscribe(data => {
       Object.assign(this.units, data);
@@ -72,6 +73,7 @@ export class WorkStationEditComponent implements OnInit {
             this.editWorkStation.controls['NombrePlaza'].setValue(this.workStationData.NombrePlaza);
             this.editWorkStation.controls['IdUnidad'].setValue(this.workStationData.IdUnidad);
             this.editWorkStation.controls['Empleado'].setValue(this.workStationData.Empleado);
+            this.editWorkStation.controls['NombreEmpleado'].setValue(this.workStationData.NombreEmpleado);
           }
         }, error => { 
           Swal.fire({
@@ -94,6 +96,7 @@ export class WorkStationEditComponent implements OnInit {
       'NombrePlaza': this.editWorkStation.get('NombrePlaza').value,
       'IdUnidad': this.editWorkStation.get('IdUnidad').value,
       'Empleado': this.editWorkStation.get('Empleado').value[0],
+      'NombreEmpleado': this.editWorkStation.get('NombreEmpleado').value,
     };
     this.workStationService.editWorkStation(this.id, workStationData).subscribe(data => {       
       if(data!=null){
@@ -108,6 +111,16 @@ export class WorkStationEditComponent implements OnInit {
 
   onClose(){
     this.bsModalRef.hide();
+  }
+
+  chargeEmployeeName(){
+    let user = this.editWorkStation.get('Empleado').value;
+    this.editWorkStation.controls['NombreEmpleado'].setValue(null);
+    this.usersAD.forEach(element => {
+      if(element.userprincipalname == user){
+        this.editWorkStation.controls['NombreEmpleado'].setValue(element.cn[0]);
+      }
+    });
   }
 
 }

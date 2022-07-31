@@ -80,6 +80,7 @@ export class AssignmentValidateComponent implements OnInit {
     this.validateAssignment = this.formBuilder.group({
       IdUnidad:['',[Validators.required]],
       IdPlaza:['',[Validators.required]],
+      Empleado:['',[Validators.required]],
       IdEstado:['',[Validators.required]],
       IdArchivo:['',[Validators.required]],
       ListaActivosAsignados: this.formBuilder.array([]),
@@ -147,7 +148,8 @@ export class AssignmentValidateComponent implements OnInit {
 
     this.assignmentService.getAssignment(IdAssignment).subscribe(data => {
       this.assignmentData = data;
-      this.chargeWorkStation(this.assignmentData.IdUnidad);
+      this.chargeWorkStation(this.assignmentData.IdUnidad, this.assignmentData.IdPlaza);
+      console.log(this.assignmentData);
       if(this.validateAssignment!=null && this.assignmentData!=null){
         this.validateAssignment.controls['IdUnidad'].setValue(this.assignmentData.IdUnidad);
         this.validateAssignment.controls['IdPlaza'].setValue(this.assignmentData.IdPlaza);
@@ -206,9 +208,10 @@ rechazarAsignacion(){
   });
 }
 
-  chargeWorkStation(value){
-    this.workStationService.getWorkStationAssigned(value).subscribe(data =>{
+  chargeWorkStation(unidad, plaza){
+    this.workStationService.getWorkStationAssigned(unidad).subscribe(data =>{
       Object.assign(this.workStations, data);
+      this.chargeEmployeeName(plaza);
     }, error =>{
       Swal.fire({
         icon: 'error',
@@ -288,6 +291,15 @@ rechazarAsignacion(){
     downloadLink.setAttribute('download', filename);
     document.body.appendChild(downloadLink);
     downloadLink.click();
+  }
+
+  chargeEmployeeName(value){
+    this.validateAssignment.controls['Empleado'].setValue(null);
+    this.workStations.forEach(element => {
+      if(element.IdPlaza == value){
+        this.validateAssignment.controls['Empleado'].setValue(element.NombreEmpleado);
+      }
+    });
   }
 
 

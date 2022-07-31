@@ -88,6 +88,12 @@ const routes: Routes = [
         loadChildren: () =>
         import('../../pages/internal-loans/internal-loans.module').then(m => m.InternalLoansModule)
       },
+
+      {
+        path: "Assets/Readmisions", 
+        loadChildren: () =>
+        import('../../pages/readmission/readmission.module').then(m => m.ReadmissionModule)
+      },
       
       {
         path: "Assets/Reports", 

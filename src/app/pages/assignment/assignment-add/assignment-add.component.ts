@@ -60,8 +60,9 @@ export class AssignmentAddComponent implements OnInit {
 
   createNewForm() {
     this.addAssignment = this.formBuilder.group({
-      IdUnidad:['',[Validators.required]],
-      IdPlaza:['',[Validators.required]],
+      IdUnidad:[null,[Validators.required]],
+      IdPlaza:[null,[Validators.required]],
+      Empleado:[null,[Validators.required]],
       IdEstado:['Pendiente',[]],
       IdArchivo:['',[Validators.required]],
       ListaActivos: this.formBuilder.array([])
@@ -139,9 +140,9 @@ export class AssignmentAddComponent implements OnInit {
 
   addAsset() {
     const aux = this.formBuilder.group({
-      IdCuenta: new FormControl(''),
-      IdClasificacion: new FormControl(''),
-      IdActivoFijo: new FormControl(''),
+      IdCuenta: new FormControl(null),
+      IdClasificacion: new FormControl(null),
+      IdActivoFijo: new FormControl(null),
     });  
     this.ListaActivos.push(aux);
   }
@@ -164,8 +165,9 @@ export class AssignmentAddComponent implements OnInit {
     });
   }
 
-  chargeWorkStation(value){
-    this.workStationService.getWorkStationByUnit(value).subscribe(data =>{
+  chargeWorkStation(){
+    let IdUnidad = this.addAssignment.get('IdUnidad').value;
+    this.workStationService.getWorkStationByUnit(IdUnidad).subscribe(data =>{
       Object.assign(this.workStations, data);
     }, error =>{
       Swal.fire({
@@ -208,6 +210,16 @@ export class AssignmentAddComponent implements OnInit {
       this.attachmentService.uploadFiles(fileData).subscribe(data=>{
       resolved(data);});
     }); 
+  }
+
+  chargeEmployeeName(){
+    let workStation = this.addAssignment.get('IdPlaza').value;
+    this.addAssignment.controls['Empleado'].setValue(null);
+    this.workStations.forEach(element => {
+      if(element.IdPlaza == workStation){
+        this.addAssignment.controls['Empleado'].setValue(element.NombreEmpleado);
+      }
+    });
   }
 
   

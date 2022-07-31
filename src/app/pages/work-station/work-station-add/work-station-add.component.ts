@@ -32,8 +32,9 @@ export class WorkStationAddComponent implements OnInit {
   ) { 
     this.addWorkStation = this.builder.group({      
       NombrePlaza: new FormControl('', []),
-      IdUnidad: new FormControl('', []),
-      Empleado: new FormControl('', [])
+      IdUnidad: new FormControl(null, []),
+      Empleado: new FormControl(null, []),
+      NombreEmpleado: new FormControl('', []),
     });
     this.departamentService.showAll().subscribe(data => {
       Object.assign(this.units, data);
@@ -68,6 +69,7 @@ export class WorkStationAddComponent implements OnInit {
       'NombrePlaza': this.addWorkStation.get('NombrePlaza').value,
       'IdUnidad': this.addWorkStation.get('IdUnidad').value,
       'Empleado': this.addWorkStation.get('Empleado').value[0],
+      'NombreEmpleado': this.addWorkStation.get('NombreEmpleado').value,
     };
     this.workStationService.addWorkStation(postData).subscribe(data=>{
       if(data!=null){
@@ -82,6 +84,16 @@ export class WorkStationAddComponent implements OnInit {
 
   onClose(){
     this.bsModalRef.hide();
+  }
+
+  chargeEmployeeName(){
+    let user = this.addWorkStation.get('Empleado').value;
+    this.addWorkStation.controls['NombreEmpleado'].setValue(null);
+    this.usersAD.forEach(element => {
+      if(element.userprincipalname == user){
+        this.addWorkStation.controls['NombreEmpleado'].setValue(element.cn[0]);
+      }
+    });
   }
 
 }

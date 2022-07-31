@@ -6,6 +6,7 @@ export interface Permission {
     departureAsset: boolean;
     extLoanAsset: boolean;
     intLoanAsset: boolean;
+    readmision: boolean;
     report: boolean;
     reportGeneral: boolean;
     reportDepreciation: boolean;
@@ -40,6 +41,7 @@ export class PermissionModel implements Permission{
     departureAsset: boolean;
     extLoanAsset: boolean;
     intLoanAsset: boolean;
+    readmision: boolean;
     report: boolean;
     reportGeneral: boolean;
     reportDepreciation: boolean;
@@ -74,6 +76,7 @@ export class PermissionModel implements Permission{
         permission.departureAsset = this.validateList(list, ['Salidas.Lista', 'Salidas.Agregar', 'Salidas.Editar']) ? true : false;
         permission.extLoanAsset = this.validateList(list, ['PréstamosExt.Lista', 'PréstamosExt.Agregar', 'PréstamosExt.Editar']) ? true : false;
         permission.intLoanAsset = this.validateList(list, ['PréstamosInt.Lista', 'PréstamosInt.Agregar', 'PréstamosInt.Editar']) ? true : false;
+        permission.readmision = this.validateList(list, ['Reingresos.Lista', 'Reingresos.Editar']) ? true : false;
 
         permission.report = this.validateList(list, reportes) ? true : false;
         permission.reportGeneral = this.validateList(list, ['Reportes.General']) ? true : false;

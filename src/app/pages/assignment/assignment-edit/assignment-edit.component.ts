@@ -82,6 +82,7 @@ export class AssignmentEditComponent implements OnInit {
     this.editAssignment = this.formBuilder.group({
       IdUnidad:['',[Validators.required]],
       IdPlaza:['',[Validators.required]],
+      Empleado:['',[Validators.required]],
       IdEstado:['',[Validators.required]],
       IdArchivo:['',[Validators.required]],
       ListaActivosAsignados: this.formBuilder.array([]),
@@ -150,11 +151,12 @@ export class AssignmentEditComponent implements OnInit {
 
     this.assignmentService.getAssignment(IdAssignment).subscribe(data => {
       this.assignmentData = data;
-      this.chargeWorkStation(this.assignmentData.IdUnidad);
+      this.chargeWorkStation(this.assignmentData.IdUnidad, this.assignmentData.IdPlaza);
+      
       if(this.editAssignment!=null && this.assignmentData!=null){
         this.editAssignment.controls['IdUnidad'].setValue(this.assignmentData.IdUnidad);
         this.editAssignment.controls['IdPlaza'].setValue(this.assignmentData.IdPlaza);
-        this.editAssignment.controls['IdEstado'].setValue(this.assignmentData.IdEstado); 
+        this.editAssignment.controls['IdEstado'].setValue(this.assignmentData.IdEstado);         
         this.warning = this.assignmentData.estado.NombreEstado == 'Aprobada' ? true : false;
         this.assignmentData.asignacion.forEach((obj) => {
           let asset = this.formBuilder.group({
@@ -207,9 +209,10 @@ export class AssignmentEditComponent implements OnInit {
     });
   }
 
-  chargeWorkStation(value){
-    this.workStationService.getWorkStationAssigned(value).subscribe(data =>{
+  chargeWorkStation(unidad, plaza){
+    this.workStationService.getWorkStationAssigned(unidad).subscribe(data =>{
       Object.assign(this.workStations, data);
+      this.chargeEmployeeName(plaza);
     }, error =>{
       Swal.fire({
         icon: 'error',
@@ -278,6 +281,15 @@ export class AssignmentEditComponent implements OnInit {
     this.status.forEach(element => {
       if(element.Modulo == 'Solicitud'){         
         this.statusAssignments.push(element);          
+      }
+    });
+  }
+
+  chargeEmployeeName(value){
+    this.editAssignment.controls['Empleado'].setValue(null);
+    this.workStations.forEach(element => {
+      if(element.IdPlaza == value){
+        this.editAssignment.controls['Empleado'].setValue(element.NombreEmpleado);
       }
     });
   }

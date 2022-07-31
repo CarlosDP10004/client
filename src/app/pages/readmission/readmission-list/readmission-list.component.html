@@ -1,0 +1,55 @@
+<div class="container">
+    <div class="row">
+      <div class="TituloIndex">
+       <h1 class="EstiloIndex col-sm-12">
+          <hr>
+            <b>Gestión de activo fijo en préstamo.</b>
+            <hr>
+        </h1>         
+    </div>
+    </div>
+    <br>
+    
+    <div class="=row">
+      <div class="col-md-8">
+        
+        </div>&nbsp;
+      <div class="col-md-4 input-icono">  
+        <input type="text" class="forms-control tamanio" placeholder="Buscar..." [(ngModel)]="filterpost" name="filterpost">      
+      </div>     
+    </div>   
+
+    <div class="row">
+      <div class="col-md-12">   
+        <div class="table-responsive">
+          <table id="mytable" class="table table-bordered table-striped">
+            <thead>
+              <tr class="estiloCabecera">
+                <th scope="col" width="10%" bgcolor="#c9a892">Código</th>
+                <th scope="col"  bgcolor="#c9a892">Fecha de préstamo</th>
+                <th scope="col"  bgcolor="#c9a892">Fecha de retorno</th>
+                <th scope="col"  bgcolor="#c9a892">Jefe responsable del bien</th>
+                <th scope="col"  bgcolor="#c9a892">Solicitante</th>
+                <th scope="col"  bgcolor="#c9a892">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let asset of assets ">
+                <th >{{asset.CodigoAF}}</th>
+                <td>{{asset.FechaSolicitud  | date:'dd/MM/yyyy'}}</td>               
+                <td>{{asset.FechaRetorno  | date:'dd/MM/yyyy'}}</td>
+                <td>{{asset.JefeUnidadActual}}</td>
+                <td>{{asset.Solicitante}}</td>
+                
+                <td>
+                  <span class="btn btn-primary glyphicon glyphicon-pencil" title="Editar" (click)="editAdmision(asset.IdActivoFijo)"></span>
+                  
+                </td>
+              </tr>             
+            </tbody>            
+          </table>  
+                                   
+        </div>
+      </div>
+    </div>
+  </div>

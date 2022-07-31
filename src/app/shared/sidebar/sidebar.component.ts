@@ -25,6 +25,7 @@ export class SidebarComponent implements OnInit {
   departureAsset: boolean;
   extLoanAsset: boolean;
   intLoanAsset: boolean;
+  readmision: boolean;
   report: boolean;
   reportGeneral: boolean;
   reportDepreciation: boolean;
@@ -84,6 +85,7 @@ export class SidebarComponent implements OnInit {
     this.departureAsset = app.departureAsset;
     this.extLoanAsset = app.extLoanAsset;
     this.intLoanAsset = app.intLoanAsset;
+    this.readmision = app.readmision;
     this.report = app.report;
     this.reportGeneral = app.reportGeneral;
     this.reportDepreciation = app.reportDepreciation;

@@ -7,7 +7,7 @@
         </div>
         <div class="modal-body">          
           <div class="form-group">
-            <label class="col-sm-2 control-label texto">Nombre</label>
+            <label class="col-sm-2 control-label texto">Plaza</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" formControlName="NombrePlaza" />
             </div>
@@ -32,11 +32,19 @@
                 formControlName="Empleado" 
                 class="tamanio2" 
                 [searchable]="true"
+                (change)="chargeEmployeeName()"
                 placeholder="Selecciona el empleado">
-                <ng-option *ngFor="let item of usersAD" [value]="item.userprincipalname">{{item.displayname}}</ng-option>
+                <ng-option *ngFor="let item of usersAD" [value]="item.userprincipalname">{{item.userprincipalname}}</ng-option>
               </ng-select>
             </div>
           </div>
+
+          <div class="form-group">
+            <label class="col-sm-2 control-label texto">Nombre</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" formControlName="NombreEmpleado" disabled/>
+            </div>
+          </div> 
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal" (click)="onClose()">Cancelar</button>

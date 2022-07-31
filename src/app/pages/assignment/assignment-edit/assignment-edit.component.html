@@ -11,29 +11,46 @@
     <div class="EncabezadoForm shadow-X"><b>&nbsp;Datos Generales:</b></div>
     <div class="EstiloForm1">
       <div class="row Espacio">
-        <div class="col-sm-4">
+        <div class="col-sm-6">
           <label class="col-sm-4 control-label texto">Unidad:</label><br />
-          <select class="form-control" formControlName="IdUnidad" (change)="chargeWorkStation($event.target.value)">
-            <option value="" hidden>Selecciona la unidad</option>
-            <option *ngFor="let item of departaments" [value]="item.IdUnidad">{{item.NombreUnidad}}</option>
-          </select>
+          <ng-select                                 
+          formControlName="IdUnidad" 
+              [searchable]="true"                
+              placeholder="Selecciona la cuenta"
+              size="10"
+              (change)="chargeWorkStation($event.target.value)">
+                <ng-option *ngFor="let item of departaments" [value]="item.IdUnidad">{{item.NombreUnidad}}</ng-option>
+             </ng-select>          
       </div>
   
-      <div class="col-sm-4">
-          <label class="col-sm-4 control-label texto">Plaza:</label><br />        
-          <select class="form-control" formControlName="IdPlaza">
-            <option value="" hidden>Selecciona la plaza</option>
-            <option *ngFor="let item of workStations" [value]="item.IdPlaza">{{item.NombrePlaza}}</option>
-          </select>
+      <div class="col-sm-6">
+          <label class="col-sm-4 control-label texto">Plaza:</label><br />  
+          <ng-select                                 
+          formControlName="IdPlaza" 
+              [searchable]="true"                
+              placeholder="Selecciona la cuenta"
+              size="10">
+                <ng-option *ngFor="let item of workStations" [value]="item.IdPlaza">{{item.NombrePlaza}}</ng-option>
+             </ng-select>  
       </div>
       
-      <div class="col-sm-4">
-          <label class="col-sm-4 control-label texto">Estado:</label><br />
-          <select class="form-control" formControlName="IdEstado" disabled>
-            <option value="" hidden>Selecciona el Estado</option>
-            <option *ngFor="let item of statusAssignments" [value]="item.IdEstado">{{item.NombreEstado}}</option>
-          </select>
-      </div>
+      
+    </div>
+    <div class="row Espacio">
+      <div class="col-sm-6">
+        <label class="col-sm-4 control-label texto">Estado:</label><br />
+        <select class="form-control bor tam" formControlName="IdEstado" disabled>
+          <option value="" hidden>Selecciona el Estado</option>
+          <option *ngFor="let item of statusAssignments" [value]="item.IdEstado">{{item.NombreEstado}}</option>
+        </select>
+    </div>
+    <div class="col-sm-6">
+      <label class="col-sm-4 control-label texto">Empleado:</label><br />
+      <select class="form-control bor tam" formControlName="" disabled>
+        <option value="" hidden>Empleado</option>
+        <option *ngFor="" [value]=""></option>
+      </select>
+  </div>
     </div>
     
       <div class="row Espacio">
@@ -55,12 +72,12 @@
       <div class="row Espacio">
         <p class="nota">Nota:</p>
         <FONT COLOR="red">
-          <P style="text-align: center;"><small *ngIf="warning" class="texto5">
+          <P style="text-align: center;"><small *ngIf="warning; else nota2 " class="texto5">
            ***Esta solicitud actualmente está Aprobada, si edita la información se colocará en estado Pendiente, y deberá ser aprobada nuevamente por el área encargada***
           </small></P>
         </FONT>
       </div> 
-  
+  <ng-template #nota2>***Actualmente la solicitud no ha sido <STRONG>APROBADA</STRONG> por lo que aun se puede modificar el formulario***</ng-template>
   </div>
   <br>   
   
@@ -120,27 +137,40 @@
             <div class="row Espacio">            
             <div class="col-sm-4">
               <label class="col-sm-4 control-label texto">Cuenta:</label><br />
-              <select class="form-control" formControlName="IdCuenta">
-                <option value="" hidden>Selecciona la cuenta</option>
-                <option *ngFor="let item of accounts" [value]="item.IdCuenta">{{item.NombreCuenta}}</option>
-              </select>
-          </div>
-          <div class="col-sm-4">
-            <label class="col-sm3 control-label texto">Clasificación:</label><br />
-              <select class="form-control" formControlName="IdClasificacion">
-                <option value="" hidden>Selecciona la clasificación</option>
-                <option *ngFor="let item of chargeClasification(editAssignment.controls['ListaActivos']?.value[i]?.IdCuenta)" [value]="item.IdClasificacion">{{item.Descripcion}}</option>
-              </select>
-          </div>
+
+              <ng-select                                 
+              formControlName="IdCuenta" 
+              [searchable]="true"                
+              placeholder="Selecciona la cuenta"
+              size="10">
+                <ng-option *ngFor="let item of accounts" [value]="item.IdCuenta">{{item.NombreCuenta}}</ng-option>
+             </ng-select>
+
+            </div>
+
+            <div class="col-sm-4">
+              <label class="col-sm3 control-label texto">Clasificación:</label><br />
+             <ng-select                                 
+             formControlName="IdClasificacion" 
+             [searchable]="true"                
+             placeholder="Selecciona la clasificación"
+             size="10">
+               <ng-option *ngFor="let item of chargeClasification(editAssignment.controls['ListaActivos']?.value[i]?.IdCuenta)" [value]="item.IdClasificacion">{{item.Descripcion}}</ng-option>
+            </ng-select>
+          </div>              
+          
           <div class="col-sm-3">
             <label class="col-sm-4 control-label texto">Activo:</label><br />
-              <select class="form-control" formControlName="IdActivoFijo">
-                <option value="" hidden>Selecciona el código del activo</option>
-                <option *ngFor="let item of chargeAssets(editAssignment.controls['ListaActivos']?.value[i]?.IdClasificacion)" [value]="item.IdActivoFijo">{{item.CodigoAF}}</option>
-              </select>
+            <ng-select                                 
+            formControlName="IdActivoFijo" 
+             [searchable]="true"                
+             placeholder="Selecciona el código del activo"
+             size="10">
+               <ng-option *ngFor="let item of chargeAssets(editAssignment.controls['ListaActivos']?.value[i]?.IdClasificacion)" [value]="item.IdActivoFijo">{{item.CodigoAF}}</ng-option>
+            </ng-select>             
           </div>
           <div class="col-sm-1">
-            <a type="submit" class="btn alinear" style="float: right" (click)="removeItem(editAssignment.controls['ListaActivos']?.value[i]?.IdActivoFijo)">                
+            <a type="submit" class="btn alinear" style="float: right" (click)="removeItem(i)">                
               <img src="..\assets\images\trash.png" width="23" height="23">
             </a>
           </div>

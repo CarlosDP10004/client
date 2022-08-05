@@ -180,8 +180,17 @@ export class InternalLoansAddComponent implements OnInit {
   get ListaActivos(): any { return this.addRequest.get('ListaActivos') as any; }
 
   addItem(index:number, item:any){
-    this.selectedAssets.unshift(item);    
-    this.assets.splice(index, 1);
+    this.selectedAssets.unshift(item);
+    let cont = 0; 
+    this.assets.forEach(element => {       
+      if(item.CodigoAF == element.CodigoAF)
+      {
+        this.assets.splice(cont,1);
+        this.filter9= '';
+      }
+      cont ++;
+    });  
+         
   }
   removeItem2(index:number, item:string) {
     this.assets.unshift(item);

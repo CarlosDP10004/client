@@ -5,6 +5,7 @@ import { ErrorService } from 'src/app/core/http/error.service';
 import { ReportService } from 'src/app/core/http/report.service';
 import { SettingsService } from 'src/app/core/http/settings.service';
 import Swal from 'sweetalert2';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-report-by-units',
@@ -22,6 +23,12 @@ export class ReportByUnitsComponent implements OnInit {
   desde: any;
   hasta: any;
   unidades: string = "";
+
+  dateDay = new Date();
+  d = this.getDia(this.dateDay.getDay());
+  today: Date = new Date();
+  pipe = new DatePipe('en-US');
+  todayWithPipe = null;
 
   constructor(
     private formBuilder:FormBuilder,
@@ -51,7 +58,22 @@ export class ReportByUnitsComponent implements OnInit {
         confirmButtonText: 'Aceptar'
       }) 
     });
+
+    this.todayWithPipe = this.pipe.transform(Date.now(), ' dd/MM/yyyy, h:mm a');
   }
+
+  getDia(index){
+    var dia = new Array(7);
+    dia[0] = "Domingo";
+    dia[1] = "Lunes";
+    dia[2] = "Martes";
+    dia[3] = "Miércoles";
+    dia[4] = "Jueves";
+    dia[5] = "Viernes";
+    dia[6] = "Sábado";
+  return dia[index];
+
+} 
 
   getReport(){
     let filter = {

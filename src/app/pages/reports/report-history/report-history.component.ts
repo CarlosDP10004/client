@@ -7,6 +7,7 @@ import { ErrorService } from 'src/app/core/http/error.service';
 import { ReportService } from 'src/app/core/http/report.service';
 import { SettingsService } from 'src/app/core/http/settings.service';
 import Swal from 'sweetalert2';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-report-history',
@@ -29,6 +30,13 @@ export class ReportHistoryComponent implements OnInit {
   filterClasification: any[] = [];
   filterAsset: any[] = [];
 
+  
+  dateDay = new Date();
+  d = this.getDia(this.dateDay.getDay());
+  today: Date = new Date();
+  pipe = new DatePipe('en-US');
+  todayWithPipe = null;
+
   constructor(
     private formBuilder:FormBuilder,
     private reportService: ReportService,
@@ -49,7 +57,22 @@ export class ReportHistoryComponent implements OnInit {
       this.Titulo = data['ValorCadena'];
     });
     this.chargeLists();
+
+    this.todayWithPipe = this.pipe.transform(Date.now(), ' dd/MM/yyyy, h:mm a');
   }
+
+  getDia(index){
+    var dia = new Array(7);
+    dia[0] = "Domingo";
+    dia[1] = "Lunes";
+    dia[2] = "Martes";
+    dia[3] = "Miércoles";
+    dia[4] = "Jueves";
+    dia[5] = "Viernes";
+    dia[6] = "Sábado";
+  return dia[index];
+
+} 
 
   getReport(){
     let filter = {

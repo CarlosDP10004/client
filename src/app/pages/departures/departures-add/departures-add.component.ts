@@ -164,8 +164,17 @@ export class DeparturesAddComponent implements OnInit {
 
 
   addItem(index:number, item:any){
-    this.selectedAssets.unshift(item);    
-    this.assets.splice(index, 1);
+    this.selectedAssets.unshift(item);
+    let cont = 0; 
+    this.assets.forEach(element => {       
+      if(item.CodigoAF == element.CodigoAF)
+      {
+        this.assets.splice(cont,1);
+        this.filter6= '';
+      }
+      cont ++;
+    });  
+         
   }
   removeItem2(index:number, item:string) {
     this.assets.unshift(item);

@@ -10,10 +10,11 @@ export class SeleccPipe implements PipeTransform {
     if (!args)return value;    
     const resultPosts = [];   
     for(const item of value){
-      if(item.CodigoAF.toLowerCase().includes(args.toLowerCase())      
+      if(item.CodigoAF.includes(args)      
        )
       {
-        resultPosts.push(item);      };
+        resultPosts.push(item);        
+             };
       };
     return resultPosts;    
   }

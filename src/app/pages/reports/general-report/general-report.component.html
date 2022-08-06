@@ -47,8 +47,11 @@
           <div [innerHtml]="Titulo" class="centrar"></div>        
           <h3 class="ali">ADMINISTRACIÓN DE BIENES INSTITUCIONALES</h3>
           <h4 class="ali3">REPORTE GENERAL DE ACTIVO FIJO INSTITUCIONAL</h4>        
-          <h4 class="ali2"> Desde: {{desde | date:'dd/MM/yyyy'}}&nbsp;&nbsp;&nbsp;&nbsp; Hasta: {{hasta | date:'dd/MM/yyyy'}}</h4>          
-          <div style="text-align: center;">Fecha de creacion: {{d}} {{todayWithPipe}}</div>          
+          <h4 class="ali2"> 
+            <span class="ali2" *ngIf="desde != ''"> Desde: {{desde | date:'dd/MM/yyyy'}}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="ali2" *ngIf="hasta != ''"> Hasta: {{hasta | date:'dd/MM/yyyy'}}</span>
+          </h4>          
+          <div style="text-align: center;">Fecha de creación: {{d}} {{todayWithPipe}} Usuario de creación: {{user}}</div>          
           <br/>
         </div> 
         

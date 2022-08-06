@@ -15,7 +15,7 @@ export class ActivoPipe implements PipeTransform {
       || asset.NombreMarca.toString().toLowerCase().includes(args.toLowerCase())
       || asset.Modelo.toLowerCase().includes(args.toLowerCase())
       || asset.ValorCompra.toLowerCase().includes(args.toLowerCase())     
-      || asset.FechaCompra.toString().toLowerCase().includes(args.toLowerCase())
+      || asset.Fecha_Compra.toString().toLowerCase().includes(args.toLowerCase())
       || asset.NombreEstado.toLowerCase().includes(args.toLowerCase())
        )
       {

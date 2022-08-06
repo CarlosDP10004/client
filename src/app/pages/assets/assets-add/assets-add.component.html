@@ -230,7 +230,7 @@
           <div class="row Espacio">
             <div class="col-sm-4">
               <label class="col-sm-4 control-label texto">Placa</label>
-              <input class="form-control" placeholder="Placa" formControlName="Placa" [patterns]="placa" mask="0-000-000">  
+              <input class="form-control" placeholder="Placa" formControlName="Placa" maxlength="9">  
               <FONT COLOR="red">
                 <small *ngIf="Placa.invalid && Placa.touched">
                   Complete el campo

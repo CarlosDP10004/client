@@ -58,12 +58,12 @@
               <div [innerHtml]="Titulo" class="centrar"></div>                   
               <h3 class="ali">ADMINISTRACIÓN DE BIENES INSTITUCIONALES</h3>
               <h4 class="ali3">HOJA DE REGISTRO Y CONTROL DE ACTIVO FIJO </h4>   
-              <div style="text-align: center;">Fecha de creacion: {{d}} {{todayWithPipe}}</div>               
+              <div style="text-align: center;">Fecha de creacion: {{d}} {{todayWithPipe}} Usuario de creación: {{user}}</div>               
               <br/>            
             </div> 
   
-            <div id="Reporte">
-              <table class="table mt-4 ">  
+            <div >
+              <table  id="Reporte" class="table mt-4 ">  
   
                 <tr class="table-primary estiloCabecera">
                   <th style="text-align: center" bgcolor="#c9a892">&nbsp;N de inventario</th>
@@ -94,7 +94,7 @@
                       </tr>
                       <tr >
                         <td>&nbsp;{{response.origen.NombreOrigen}}</td>
-                        <td>&nbsp;{{response.FechaCompra}}</td>
+                        <td>&nbsp;{{response.FechaCompra | date:'dd/MM/yyyy'}}</td>
                         <td>&nbsp;{{response.estado.NombreEstado}}</td>
   
   

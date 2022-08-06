@@ -7,6 +7,7 @@ import { SettingsService } from 'src/app/core/http/settings.service';
 import Swal from 'sweetalert2';
 
 import { DatePipe } from '@angular/common';
+import { AuthService } from 'src/app/core/http/auth.service';
 
 @Component({
   selector: 'app-report-by-status',
@@ -20,6 +21,7 @@ export class ReportByStatusComponent implements OnInit {
   response: any[] = [];
   status: any[] = [];
   showReport: boolean = false;
+  user: any;
 
   desde: any;
   hasta: any;
@@ -36,6 +38,7 @@ export class ReportByStatusComponent implements OnInit {
   constructor(
     private formBuilder:FormBuilder,
     private reportService: ReportService,
+    private authService: AuthService,
     private settingService: SettingsService,
     private errorService: ErrorService,
     private assetService: AssetsService
@@ -52,7 +55,9 @@ export class ReportByStatusComponent implements OnInit {
     this.settingService.getTitle().subscribe(data => {
       this.Titulo = data['ValorCadena'];
     });
-
+    this.authService.me().subscribe(data => {
+      this.user = data['givenname'] + ' ' + data['sn'];
+    });
     this.assetService.getEstados().subscribe(data => {
       Object.assign(this.status, data);
       this.statusAssets();

@@ -5,6 +5,7 @@ import { ErrorService } from 'src/app/core/http/error.service';
 import { ReportService } from 'src/app/core/http/report.service';
 import { SettingsService } from 'src/app/core/http/settings.service';
 import Swal from 'sweetalert2';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-depreciation',
@@ -24,6 +25,12 @@ export class DepreciationComponent implements OnInit {
   
   accounts: any[] = [];
 
+  dateDay = new Date();
+  d = this.getDia(this.dateDay.getDay());
+  today: Date = new Date();
+  pipe = new DatePipe('en-US');
+  todayWithPipe = null;
+
   constructor(
     private formBuilder:FormBuilder,
     private reportService: ReportService,
@@ -33,6 +40,8 @@ export class DepreciationComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.todayWithPipe = this.pipe.transform(Date.now(), ' dd/MM/yyyy, h:mm a');
+
     this.filters = this.formBuilder.group({
       Desde:['',[Validators.required]],
       Hasta:['',[Validators.required]],
@@ -55,6 +64,19 @@ export class DepreciationComponent implements OnInit {
     let date: Date = new Date();
     this.year = date.getFullYear();
   }
+
+  getDia(index){
+    var dia = new Array(7);
+    dia[0] = "Domingo";
+    dia[1] = "Lunes";
+    dia[2] = "Martes";
+    dia[3] = "Miércoles";
+    dia[4] = "Jueves";
+    dia[5] = "Viernes";
+    dia[6] = "Sábado";
+  return dia[index];
+
+} 
 
   getReport(){
     

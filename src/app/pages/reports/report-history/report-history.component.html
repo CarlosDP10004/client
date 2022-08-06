@@ -46,6 +46,9 @@
   </form>
   
   <div *ngIf="showReport"> 
+    <button class="btn btn-primary btn-lg" style="float: right; margin-right: -275px; margin-top: 20px;" (click)="downloadPDF()">Descargar PDF</button>
+  <br>
+  <br>
     <div class="EncabezadoForm2 shadow-X"><b>&nbsp;Previsualizacion:</b></div>
         <div class="EstiloForm1">   
       <div class="row">
@@ -54,11 +57,12 @@
             <div id="Titulo">
               <div [innerHtml]="Titulo" class="centrar"></div>                   
               <h3 class="ali">ADMINISTRACIÓN DE BIENES INSTITUCIONALES</h3>
-              <h4 class="ali3">HOJA DE REGISTRO Y CONTROL DE ACTIVO FIJO </h4>        
+              <h4 class="ali3">HOJA DE REGISTRO Y CONTROL DE ACTIVO FIJO </h4>   
+              <div style="text-align: center;">Fecha de creacion: {{d}} {{todayWithPipe}}</div>               
               <br/>            
             </div> 
   
-            <div id="General">
+            <div id="Reporte">
               <table class="table mt-4 ">  
   
                 <tr class="table-primary estiloCabecera">
@@ -101,8 +105,8 @@
                         </tr>
                         <tr >
                           <td>&nbsp;{{response.LibreGestion}}</td>
-                          <td>&nbsp;{{response.ValorCompra}}</td>
-                          <td>&nbsp;{{response.ValorCompra}}</td>
+                          <td>&nbsp;$ {{response.ValorCompra| thousand}}</td>
+                          <td>&nbsp;$ {{response.ValorCompra| thousand}}</td>
   
   
                           <tr class="table-primary estiloCabecera">
@@ -110,26 +114,19 @@
                           </tr>
                           <tr >
                             <td colspan=3>&nbsp;{{response.Descripcion}}</td>
+
+                            <tr class="table-primary estiloCabecera">
+                              <th style="text-align: center" bgcolor="#c9a892">&nbsp;Fecha</th>
+                              <th colspan=2 style="text-align: center" bgcolor="#c9a892">&nbsp;Comentarios</th>
+                            </tr>        
+                          <tr *ngFor="let item of historial">
+                            <th style="text-align: center">{{item.FechaAccion | date:'dd/MM/yyyy'}}</th>
+                            <td colspan=2 style="text-align: center">{{item.Comentarios}}</td>  
               </table>
             </div>
-          </div>     
-          
-          
-          <table id="Reporte" class="table mt-4 ">          
-            <tr class="table-primary estiloCabecera">
-              <th style="text-align: center" bgcolor="#c9a892">&nbsp;Fecha</th>
-              <th style="text-align: center" bgcolor="#c9a892">&nbsp;Comentarios</th>
-            </tr>        
-            <tr *ngFor="let item of historial">
-              <th style="text-align: center">{{item.FechaAccion | date:'dd/MM/yyyy'}}</th>
-              <td style="text-align: center">{{item.Comentarios}}</td>         
-          </table>
-        </div>
+          </div> 
       </div>
       <div>
-          <button class="btn btn-primary btn-lg" (click)="downloadPDF()">Descargar PDF</button>
-          <br>
-    <br>
       </div>
     </div>
     </div>

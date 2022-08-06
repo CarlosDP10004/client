@@ -14,7 +14,7 @@ import { ReadmissionEditComponent } from '../readmission-edit/readmission-edit.c
 })
 export class ReadmissionListComponent {
 
-  filterpost :'';
+  filterpost :any;
   page: number = 1;
   assets: any[] = [];
   bsModalRef: BsModalRef;

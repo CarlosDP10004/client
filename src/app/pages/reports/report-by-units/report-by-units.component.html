@@ -49,7 +49,10 @@
   
   
   
-  <div *ngIf="showReport"> 
+  <div *ngIf="showReport">
+    <button class="btn btn-primary btn-lg" style="float: right; margin-right: -275px; margin-top: 20px;" (click)="downloadPDF()">Descargar PDF</button>
+  <br>
+  <br> 
     <div class="EncabezadoForm2 shadow-X"><b>&nbsp;Previsualizacion:</b></div>
         <div class="EstiloForm1">   
       <div class="row">
@@ -60,9 +63,10 @@
             <h4 class="ali3">REPORTE DE ACTIVO FIJO POR DEPARTAMENTO</h4> 
             <h4 class="ali3" *ngIf="unidades != ''"> Departamentos solicitados: {{unidades}}</h4>
             <div style="text-align: center;">        
-            <span style="text-align: right;"  class="ali2" *ngIf="desde != ''"> Desde: {{desde | date:'dd/MM/yyyy'}}</span>
+            <span style="text-align: right;"  class="ali2" *ngIf="desde != ''"> Desde: {{desde | date:'dd/MM/yyyy'}}</span>&nbsp;&nbsp;&nbsp;&nbsp;
             <span class="ali2" *ngIf="hasta != ''"> Hasta: {{hasta | date:'dd/MM/yyyy'}}</span>
           </div> 
+          <div style="text-align: center;">Fecha de creacion: {{d}} {{todayWithPipe}}</div>          
             <br/>
           </div> 
           
@@ -86,15 +90,12 @@
               <td style="text-align: center">{{item.Serie}}</td>
               <td style="text-align: center">{{item.NombreUnidad}}</td>
               <td style="text-align: center">{{item.NombreUsuario}}</td>
-              <td style="text-align: center">${{item.ValorCompra}}</td>
+              <td style="text-align: center">${{item.ValorCompra | thousand}}</td>
               <td style="text-align: center">{{item.FechaCompra | date:'dd/MM/yyyy'}}</td>          
           </table>
         </div>
       </div>
       <div>
-          <button class="btn btn-primary btn-lg" (click)="downloadPDF()">Descargar PDF</button>
-          <br>
-    <br>
       </div>
     </div>
     </div>

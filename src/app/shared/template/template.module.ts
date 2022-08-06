@@ -20,6 +20,7 @@ import { SalidaPipe } from '../../pipes/salida.pipe';
 import { PrestamoexPipe } from '../../pipes/prestamoex.pipe';
 import { PrestamouniPipe } from '../../pipes/prestamouni.pipe';
 import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
+import { GestionPipe } from '../../pipes/gestion.pipe';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
     SeleccPipe,
     SalidaPipe,  
     PrestamoexPipe,
-    PrestamouniPipe
+    PrestamouniPipe,
+    GestionPipe,
   ],
   imports: [
     CommonModule,
@@ -57,7 +59,8 @@ import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
     SeleccPipe,
     SalidaPipe, 
     PrestamoexPipe,
-    PrestamouniPipe,    
+    PrestamouniPipe, 
+    GestionPipe,   
   ],
   bootstrap: [TemplateComponent]
 })

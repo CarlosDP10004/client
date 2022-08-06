@@ -6,6 +6,7 @@ import { ReportService } from 'src/app/core/http/report.service';
 import { SettingsService } from 'src/app/core/http/settings.service';
 import Swal from 'sweetalert2';
 import { DatePipe } from '@angular/common';
+import { AuthService } from 'src/app/core/http/auth.service';
 
 @Component({
   selector: 'app-depreciation',
@@ -18,6 +19,7 @@ export class DepreciationComponent implements OnInit {
   Titulo: string;
   response: any[] = [];
   showReport: boolean = false;
+  user: any;
 
   desde: any;
   hasta: any;
@@ -34,6 +36,7 @@ export class DepreciationComponent implements OnInit {
   constructor(
     private formBuilder:FormBuilder,
     private reportService: ReportService,
+    private authService: AuthService,
     private accountService: AccountService,
     private errorService: ErrorService,
     private settingService: SettingsService
@@ -49,6 +52,9 @@ export class DepreciationComponent implements OnInit {
     });
     this.settingService.getTitle().subscribe(data => {
       this.Titulo = data['ValorCadena'];
+    });
+    this.authService.me().subscribe(data => {
+      this.user = data['givenname'] + ' ' + data['sn'];
     });
     this.accountService.getAccountList().subscribe(data => {
       Object.assign(this.accounts, data);

@@ -6,6 +6,7 @@ import { ReportService } from 'src/app/core/http/report.service';
 import { SettingsService } from 'src/app/core/http/settings.service';
 import Swal from 'sweetalert2';
 import { DatePipe } from '@angular/common';
+import { AuthService } from 'src/app/core/http/auth.service';
 
 @Component({
   selector: 'app-report-by-units',
@@ -19,6 +20,7 @@ export class ReportByUnitsComponent implements OnInit {
   response: any[] = [];
   units: any[] = [];
   showReport: boolean = false;
+  user: any;
 
   desde: any;
   hasta: any;
@@ -33,6 +35,7 @@ export class ReportByUnitsComponent implements OnInit {
   constructor(
     private formBuilder:FormBuilder,
     private reportService: ReportService,
+    private authService: AuthService,
     private settingService: SettingsService,
     private errorService: ErrorService,
     private departamentService: DepartamentsService
@@ -46,6 +49,9 @@ export class ReportByUnitsComponent implements OnInit {
     });
     this.settingService.getTitle().subscribe(data => {
       this.Titulo = data['ValorCadena'];
+    });
+    this.authService.me().subscribe(data => {
+      this.user = data['givenname'] + ' ' + data['sn'];
     });
     this.departamentService.getDepartamentList().subscribe(data => {
       Object.assign(this.units, data);

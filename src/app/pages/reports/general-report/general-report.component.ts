@@ -4,6 +4,7 @@ import { ReportService } from 'src/app/core/http/report.service';
 import { SettingsService } from 'src/app/core/http/settings.service';
 
 import { DatePipe } from '@angular/common';
+import { AuthService } from 'src/app/core/http/auth.service';
 
 @Component({
   selector: 'app-general-report',
@@ -17,6 +18,8 @@ export class GeneralReportComponent implements OnInit {
   response: any[] = [];
   showReport: boolean = false;
 
+  user: any;
+
   desde: any;
   hasta: any;  
 
@@ -28,6 +31,7 @@ export class GeneralReportComponent implements OnInit {
 
   constructor(
     private formBuilder:FormBuilder,
+    private authService: AuthService,
     private reportService: ReportService,
     private settingService: SettingsService
   ) { }
@@ -39,6 +43,9 @@ export class GeneralReportComponent implements OnInit {
     });
     this.settingService.getTitle().subscribe(data => {
       this.Titulo = data['ValorCadena'];
+    });
+    this.authService.me().subscribe(data => {
+      this.user = data['givenname'] + ' ' + data['sn'];
     });
     
     this.todayWithPipe = this.pipe.transform(Date.now(), ' dd/MM/yyyy, h:mm a');

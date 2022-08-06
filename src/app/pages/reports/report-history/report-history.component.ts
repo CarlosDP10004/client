@@ -8,6 +8,7 @@ import { ReportService } from 'src/app/core/http/report.service';
 import { SettingsService } from 'src/app/core/http/settings.service';
 import Swal from 'sweetalert2';
 import { DatePipe } from '@angular/common';
+import { AuthService } from 'src/app/core/http/auth.service';
 
 @Component({
   selector: 'app-report-history',
@@ -22,6 +23,7 @@ export class ReportHistoryComponent implements OnInit {
   historial: any[] = [];
 
   showReport: boolean = false;
+  user: any;
 
   accounts: any[] = [];
   clasifications: any[] = [];
@@ -41,6 +43,7 @@ export class ReportHistoryComponent implements OnInit {
     private formBuilder:FormBuilder,
     private reportService: ReportService,
     private settingService: SettingsService,
+    private authService: AuthService,
     private accountService: AccountService,
     private clasificationService: ClasificationService,
     private assetService: AssetsService,
@@ -55,6 +58,9 @@ export class ReportHistoryComponent implements OnInit {
     });
     this.settingService.getTitle().subscribe(data => {
       this.Titulo = data['ValorCadena'];
+    });
+    this.authService.me().subscribe(data => {
+      this.user = data['givenname'] + ' ' + data['sn'];
     });
     this.chargeLists();
 

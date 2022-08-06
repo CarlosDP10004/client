@@ -64,7 +64,7 @@
             <h4 class="ali3">REPORTE DE ACTIVO FIJO POR ESTADO</h4> 
             <h4 class="ali3" *ngIf="estados != ''"> Estados solicitados: {{estados}}</h4>
             <div style="text-align: center;">
-            <span class="ali2" *ngIf="desde != ''"> Desde: {{desde | date:'dd/MM/yyyy'}}</span>
+            <span class="ali2" *ngIf="desde != ''"> Desde: {{desde | date:'dd/MM/yyyy'}}</span>&nbsp;&nbsp;&nbsp;&nbsp;
             <span class="ali2" *ngIf="hasta != ''"> Hasta: {{hasta | date:'dd/MM/yyyy'}}</span>
             </div>
             <div style="text-align: center;">Fecha de creacion: {{d}} {{todayWithPipe}}</div>          
@@ -88,7 +88,7 @@
               <td style="text-align: center">{{item.NombreMarca}}</td> 
               <td style="text-align: center">{{item.Modelo}}</td>
               <td style="text-align: center">{{item.Serie}}</td>
-              <td style="text-align: center">${{item.ValorCompra}}</td>
+              <td style="text-align: center">$ {{item.ValorCompra| thousand}}</td>
               <td style="text-align: center">{{item.FechaCompra | date:'dd/MM/yyyy'}}</td>
               <th style="text-align: center">{{item.NombreEstado}}</th>       
           </table>

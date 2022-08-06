@@ -47,7 +47,7 @@
           <div [innerHtml]="Titulo" class="centrar"></div>        
           <h3 class="ali">ADMINISTRACIÓN DE BIENES INSTITUCIONALES</h3>
           <h4 class="ali3">REPORTE GENERAL DE ACTIVO FIJO INSTITUCIONAL</h4>        
-          <h4 class="ali2"> Desde: {{desde | date:'dd/MM/yyyy'}}  Hasta: {{hasta | date:'dd/MM/yyyy'}}</h4>          
+          <h4 class="ali2"> Desde: {{desde | date:'dd/MM/yyyy'}}&nbsp;&nbsp;&nbsp;&nbsp; Hasta: {{hasta | date:'dd/MM/yyyy'}}</h4>          
           <div style="text-align: center;">Fecha de creacion: {{d}} {{todayWithPipe}}</div>          
           <br/>
         </div> 
@@ -72,7 +72,7 @@
             <td style="text-align: center">{{item.Serie}}</td>
             <td style="text-align: center">{{item.NombreUnidad}}</td>
             <td style="text-align: center">{{item.NombreUsuario}}</td>
-            <td style="text-align: center">${{item.ValorCompra}}</td>
+            <td style="text-align: center">$ {{item.ValorCompra | thousand}}</td>
             <td style="text-align: center">{{item.FechaCompra | date:'dd/MM/yyyy'}}</td>          
         </table>
       </div>

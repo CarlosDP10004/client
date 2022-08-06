@@ -60,7 +60,7 @@
             <h4 class="ali3">REPORTE DE REGISTRO DE AMORTIZACIÓN</h4>        
             <h4 class="ali3">MAQUINARIA, EQUIPO Y MOBILIARIO DIVERSO</h4> 
             <h4 class="ali3">
-              <span class="ali2" *ngIf="desde != ''"> Desde: {{desde | date:'dd/MM/yyyy'}}</span>
+              <span class="ali2" *ngIf="desde != ''"> Desde: {{desde | date:'dd/MM/yyyy'}}</span>&nbsp;&nbsp;&nbsp;&nbsp;
               <span class="ali2" *ngIf="hasta != ''"> Hasta: {{hasta | date:'dd/MM/yyyy'}}</span>
             </h4>
             <div style="text-align: center;">Fecha de creacion: {{d}} {{todayWithPipe}}</div>                      
@@ -86,10 +86,10 @@
               <td style="text-align: center">{{item.NombreCuenta}}</td>
               <td style="text-align: center">{{item.Descripcion}}</td> 
               <td style="text-align: center">{{item.FechaCompra | date:'dd/MM/yyyy'}}</td>
-              <td style="text-align: center">{{item.ValorCompra | currency: 'USD'}}</td>
+              <td style="text-align: center">{{item.ValorCompra | currency: 'USD'| thousand}}</td>
               <td style="text-align: center">{{item.VidaUtil}}</td>
-              <td style="text-align: center">{{item.Importe  | currency: 'USD'}}</td>
-              <td style="text-align: center">{{item.ValorResidual  | currency: 'USD'}}</td>         
+              <td style="text-align: center">{{item.Importe  | currency: 'USD'| thousand}}</td>
+              <td style="text-align: center">{{item.ValorResidual  | currency: 'USD'| thousand}}</td>         
           </table>
         </div>
       </div>

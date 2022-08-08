@@ -40,13 +40,15 @@
       <button type="submit" class="espacio3 btn btn-primary btn-lg" style="float: right">Generar reporte</button>        
       <span routerLink="/Assets" class="btn btn-default btn-lg" style="float: right">Cancelar</span>
     </div>
-    <br>
-    <br>    
-  
   </form>
-  
+  <br>
+  <br>
+  <br>
+  <br>  
   <div *ngIf="showReport"> 
-    <button class="btn btn-primary btn-lg" style="float: right; margin-right: -275px; margin-top: 20px;" (click)="downloadPDF()">Descargar PDF</button>
+    <button class="btn btn-primary btn-sm" style="float: right; margin-right: 10px; margin-top: 25px; background-color: #313945; border-radius: 5px;" (click)="downloadPDF()">
+      <img src="../../../assets/images/pdf.png" alt="Subir/Archivo" style="background-color: #313945;" width="30" height="30">
+      Descargar PDF</button>
   <br>
   <br>
     <div class="EncabezadoForm2 shadow-X"><b>&nbsp;Previsualizacion:</b></div>
@@ -58,7 +60,19 @@
               <div [innerHtml]="Titulo" class="centrar"></div>                   
               <h3 class="ali">ADMINISTRACIÓN DE BIENES INSTITUCIONALES</h3>
               <h4 class="ali3">HOJA DE REGISTRO Y CONTROL DE ACTIVO FIJO </h4>   
-              <div style="text-align: center;">Fecha de creacion: {{d}} {{todayWithPipe}} Usuario de creación: {{user}}</div>               
+                
+              <div class="row">
+                <div class="col-sm-4" style="text-align: center;font-size: 13px;">
+                  <strong>Fecha de creación:</strong> {{d}} {{todayWithPipe}}
+                </div>
+                <div class="col-sm-4" style="text-align: center;font-size: 13px;">
+                  <strong>Usuario de creación:</strong> {{user}}
+                </div>
+                <div class="col-sm-4" style="text-align: center;font-size: 13px;">
+                  <strong>Correo:</strong> {{correo}}
+                </div>
+              </div>  
+              <br/> 
               <br/>            
             </div> 
   

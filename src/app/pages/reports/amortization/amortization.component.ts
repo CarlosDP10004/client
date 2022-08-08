@@ -20,6 +20,7 @@ export class AmortizationComponent implements OnInit {
   response: any[] = [];
   showReport: boolean = false;
   user: any;
+  correo: any;
 
   desde: any;
   hasta: any;
@@ -47,6 +48,9 @@ export class AmortizationComponent implements OnInit {
 
   ngOnInit(): void {
     this.todayWithPipe = this.pipe.transform(Date.now(), 'dd/MM/yyyy, h:mm a');
+    this.authService.me().subscribe(data => {
+      this.correo = data['userprincipalname'];
+    });
 
     this.filters = this.formBuilder.group({
       Desde:['',[Validators.required]],

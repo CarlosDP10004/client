@@ -36,7 +36,9 @@
 
 
 <div *ngIf="showReport"> 
-  <button class="btn btn-primary btn-lg" style="float: right; margin-right: 10px; margin-top: 20px;" (click)="downloadPDF()">Descargar PDF</button>
+  <button class="btn btn-primary btn-sm" style="float: right; margin-right: 10px; margin-top: 25px; background-color: #313945; border-radius: 5px;" (click)="downloadPDF()">
+    <img src="../../../assets/images/pdf.png" alt="Subir/Archivo" style="background-color: #313945;" width="30" height="30">
+    Descargar PDF</button>
   <br>
   <br>
   <div class="EncabezadoForm2 shadow-X"><b>&nbsp;Previsualizacion:</b></div>
@@ -50,9 +52,22 @@
           <h4 class="ali2"> 
             <span class="ali2" *ngIf="desde != ''"> Desde: {{desde | date:'dd/MM/yyyy'}}</span>&nbsp;&nbsp;&nbsp;&nbsp;
             <span class="ali2" *ngIf="hasta != ''"> Hasta: {{hasta | date:'dd/MM/yyyy'}}</span>
-          </h4>          
-          <div style="text-align: center;">Fecha de creación: {{d}} {{todayWithPipe}} Usuario de creación: {{user}}</div>          
+          </h4>   
+
+          <div class="row">
+            <div class="col-sm-4" style="text-align: center;font-size: 13px;">
+              <strong>Fecha de creación:</strong> {{d}} {{todayWithPipe}}
+            </div>
+            <div class="col-sm-4" style="text-align: center;font-size: 13px;">
+              <strong>Usuario de creación:</strong> {{user}}
+            </div>
+            <div class="col-sm-4" style="text-align: center;font-size: 13px;">
+              <strong>Correo:</strong> {{correo}}
+            </div>
+          </div>  
+          <br/> 
           <br/>
+          
         </div> 
         
         <table id="Reporte" class="table mt-4 ">          
@@ -63,7 +78,7 @@
             <th style="text-align: center" bgcolor="#c9a892">&nbsp;Modelo</th>
             <th style="text-align: center" bgcolor="#c9a892">&nbsp;Serie</th>
             <th style="text-align: center" bgcolor="#c9a892">&nbsp;Unidad</th>
-            <th style="text-align: center" bgcolor="#c9a892">&nbsp;Responsable</th>
+            <th style="text-align: center" bgcolor="#c9a892">&nbsp;Responsable del Departamento</th>
             <th style="text-align: center" bgcolor="#c9a892">&nbsp;Precio Adquisición</th>
             <th style="text-align: center" bgcolor="#c9a892">&nbsp;Fecha Adquisición</th>
           </tr>        

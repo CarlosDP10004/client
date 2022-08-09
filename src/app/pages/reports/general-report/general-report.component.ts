@@ -19,6 +19,7 @@ export class GeneralReportComponent implements OnInit {
   showReport: boolean = false;
 
   user: any;
+  correo: any;
 
   desde: any;
   hasta: any;  
@@ -47,6 +48,10 @@ export class GeneralReportComponent implements OnInit {
     this.authService.me().subscribe(data => {
       this.user = data['givenname'] + ' ' + data['sn'];
     });
+    this.authService.me().subscribe(data => {
+      this.correo = data['userprincipalname'];
+    });
+    
     
     this.todayWithPipe = this.pipe.transform(Date.now(), ' dd/MM/yyyy, h:mm a');
   }

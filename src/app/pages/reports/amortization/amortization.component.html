@@ -47,7 +47,9 @@
   
   
   <div *ngIf="showReport"> 
-    <button class="btn btn-primary btn-lg" style="float: right; margin-right: 10px; margin-top: 20px;" (click)="downloadPDF()">Descargar PDF</button>
+    <button class="btn btn-primary btn-sm" style="float: right; margin-right: 10px; margin-top: 25px; background-color: #313945; border-radius: 5px;" (click)="downloadPDF()">
+      <img src="../../../assets/images/pdf.png" alt="Subir/Archivo" style="background-color: #313945;" width="30" height="30">
+      Descargar PDF</button>
   <br>
   <br>
     <div class="EncabezadoForm2 shadow-X"><b>&nbsp;Previsualizacion:</b></div>    
@@ -63,23 +65,38 @@
               <span class="ali2" *ngIf="desde != ''"> Desde: {{desde | date:'dd/MM/yyyy'}}</span>&nbsp;&nbsp;&nbsp;&nbsp;
               <span class="ali2" *ngIf="hasta != ''"> Hasta: {{hasta | date:'dd/MM/yyyy'}}</span>
             </h4>
-            <div style="text-align: center;">Fecha de creacion: {{d}} {{todayWithPipe}} Usuario de creación: {{user}}</div>                      
+                                 
+            <div class="row">
+              <div class="col-sm-4" style="text-align: center;font-size: 13px;">
+                <strong>Fecha de creación:</strong> {{d}} {{todayWithPipe}}
+              </div>
+              <div class="col-sm-4" style="text-align: center;font-size: 13px;">
+                <strong>Usuario de creación:</strong> {{user}}
+              </div>
+              <div class="col-sm-4" style="text-align: center;font-size: 13px;">
+                <strong>Correo:</strong> {{correo}}
+              </div>
+            </div>  
+            <br/> 
             <br/>
           </div>     
           
           
-          <table id="Reporte" class="table mt-4 ">          
-            <tr class="table-primary estiloCabecera">
-              <th style="text-align: center" bgcolor="#c9a892">&nbsp;N° Inventario</th>
-              <th style="text-align: center" bgcolor="#c9a892">&nbsp;Código CC</th>
-              <th style="text-align: center" bgcolor="#c9a892">&nbsp;Cuenta Contable</th>
-              <th style="text-align: center" bgcolor="#c9a892">&nbsp;Descripción</th>
-              <th style="text-align: center" bgcolor="#c9a892">&nbsp;Fecha de compra</th>
-              <th style="text-align: center" bgcolor="#c9a892">&nbsp;Valor de compra</th>
-              <th style="text-align: center" bgcolor="#c9a892">&nbsp;Vida Útil</th>
-              <th style="text-align: center" bgcolor="#c9a892">&nbsp;Cantidad a Amortizar</th>
-              <th style="text-align: center" bgcolor="#c9a892">&nbsp;Importe restante</th>
-            </tr>        
+          <table id="Reporte" class="table mt-4 ">  
+            <thead>        
+            <tr>
+              <th style="text-align: center" bgcolor="#c9a892">N° Inventario</th>
+              <th style="text-align: center" bgcolor="#c9a892">Código CC</th>
+              <th style="text-align: center" bgcolor="#c9a892">Cuenta Contable</th>
+              <th style="text-align: center" bgcolor="#c9a892">Descripción</th>
+              <th style="text-align: center" bgcolor="#c9a892">Fecha de compra</th>
+              <th style="text-align: center" bgcolor="#c9a892">Valor de compra</th>
+              <th style="text-align: center" bgcolor="#c9a892">Vida Útil</th>
+              <th style="text-align: center" bgcolor="#c9a892">Cantidad a Amortizar</th>
+              <th style="text-align: center" bgcolor="#c9a892">Importe restante</th>
+            </tr>
+          </thead>    
+          <tbody>    
             <tr *ngFor="let item of response">
               <th style="text-align: center">{{item.CodigoAF}}</th>
               <td style="text-align: center">{{item.Codigo}}</td>
@@ -90,7 +107,8 @@
               <td style="text-align: center">{{item.VidaUtil}}</td>
               <td style="text-align: center">{{item.Importe  | currency: 'USD'| thousand}}</td>
               <td style="text-align: center">{{item.ValorResidual  | currency: 'USD'| thousand}}</td>         
-          </table>
+            </tbody>
+            </table>
         </div>
       </div>
       <div>

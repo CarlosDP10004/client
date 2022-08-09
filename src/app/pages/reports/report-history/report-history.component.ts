@@ -24,6 +24,7 @@ export class ReportHistoryComponent implements OnInit {
 
   showReport: boolean = false;
   user: any;
+  correo:any;
 
   accounts: any[] = [];
   clasifications: any[] = [];
@@ -65,6 +66,9 @@ export class ReportHistoryComponent implements OnInit {
     this.chargeLists();
 
     this.todayWithPipe = this.pipe.transform(Date.now(), ' dd/MM/yyyy, h:mm a');
+    this.authService.me().subscribe(data => {
+      this.correo = data['userprincipalname'];
+    });
   }
 
   getDia(index){
@@ -155,7 +159,7 @@ export class ReportHistoryComponent implements OnInit {
   }
 
   downloadPDF(): void {
-    this.reportService.downloadPDF2();
+    this.reportService.downloadPDF();
   }
 
 }

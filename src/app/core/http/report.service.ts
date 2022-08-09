@@ -58,7 +58,7 @@ export class ReportService {
     const doc = new jsPDF('l', 'pt', 'a4');
     const options = {
       background: 'white',
-      scale: 3
+      scale: 3,           
     };
     html2canvas(DATA, options).then((canvas) => {
       const img = canvas.toDataURL('image/PNG');
@@ -71,10 +71,26 @@ export class ReportService {
         styles: {
           overflow: 'linebreak',
           fontSize: 8,
-          valign: 'middle'
-        },
+          valign: 'middle',
+          font: 'helvetica',
+          fillColor: [255, 255, 255], //Color de fondo de tabla
+          halign: 'left', //alineacion de los elementos de la tabla
+          lineColor: [168, 168, 168], //color interno de las lineas
+          
+        }, 
+        tableLineWidth: 0.1, //grosor de la linea externa de la tabla
+        tableLineColor: [0,0,0], //color externo de la tabla          
+        theme: 'striped',    //tema de cuadricula si se le quita toma por defecto el striped    
         margin:{top: pdfHeight + 15},
-        html: '#Reporte'
+        html: '#Reporte',
+        useCss: true, //Sustituye el Style defaultpor el implementado propio
+        headStyles : { //Estilo de los encabezados
+                       halign: 'center', 
+                       textColor: [255, 255, 255], 
+                       fillColor:[49, 57, 69 ], 
+                       lineWidth: 0.3, 
+                       lineColor:[0, 0, 0]
+                      }          
       });
       const pageCount = (doc as any).internal.getNumberOfPages();
       for (let i = 1; i <= pageCount; i++ ) {

@@ -21,6 +21,7 @@ export class ReportByUnitsComponent implements OnInit {
   units: any[] = [];
   showReport: boolean = false;
   user: any;
+  correo:any;
 
   desde: any;
   hasta: any;
@@ -63,6 +64,9 @@ export class ReportByUnitsComponent implements OnInit {
         confirmButtonColor: '#c9a892',
         confirmButtonText: 'Aceptar'
       }) 
+    });
+    this.authService.me().subscribe(data => {
+      this.correo = data['userprincipalname'];
     });
 
     this.todayWithPipe = this.pipe.transform(Date.now(), ' dd/MM/yyyy, h:mm a');

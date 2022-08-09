@@ -47,7 +47,9 @@
   
   
   <div *ngIf="showReport"> 
-    <button class="btn btn-primary btn-lg" style="float: right; margin-right: 10px; margin-top: 20px;" (click)="downloadPDF()">Descargar PDF</button>
+    <button class="btn btn-primary btn-sm" style="float: right; margin-right: 10px; margin-top: 25px; background-color: #313945; border-radius: 5px;" (click)="downloadPDF()">
+      <img src="../../../assets/images/pdf.png" alt="Subir/Archivo" style="background-color: #313945;" width="30" height="30">
+      Descargar PDF</button>
   <br>
   <br>
     <div class="EncabezadoForm2 shadow-X"><b>&nbsp;Previsualizacion:</b></div>
@@ -64,24 +66,39 @@
               <span class="ali2" *ngIf="desde != ''"> Desde: {{desde | date:'dd/MM/yyyy'}}</span>&nbsp;&nbsp;&nbsp;&nbsp;
               <span class="ali2" *ngIf="hasta != ''"> Hasta: {{hasta | date:'dd/MM/yyyy'}}</span>
             </h4>
-            <div style="text-align: center;">Fecha de creacion: {{d}} {{todayWithPipe}} Usuario de creación: {{user}}</div>          
+                    
+            <div class="row">
+              <div class="col-sm-4" style="text-align: center;font-size: 13px;">
+                <strong>Fecha de creación:</strong> {{d}} {{todayWithPipe}}
+              </div>
+              <div class="col-sm-4" style="text-align: center;font-size: 13px;">
+                <strong>Usuario de creación:</strong> {{user}}
+              </div>
+              <div class="col-sm-4" style="text-align: center;font-size: 13px;">
+                <strong>Correo:</strong> {{correo}}
+              </div>
+            </div>  
+            <br/> 
             <br/>
           </div>     
           
           
-          <table id="Reporte" class="table mt-4 ">          
-            <tr class="table-primary estiloCabecera">
-              <th style="text-align: center" bgcolor="#c9a892">&nbsp;N° Inventario</th>
-              <th style="text-align: center" bgcolor="#c9a892">&nbsp;Cuenta</th>
-              <th style="text-align: center" bgcolor="#c9a892">&nbsp;Descripción</th>
-              <th style="text-align: center" bgcolor="#c9a892">&nbsp;Fecha de compra</th>
-              <th style="text-align: center" bgcolor="#c9a892">&nbsp;Valor de compra</th>
-              <th style="text-align: center" bgcolor="#c9a892">&nbsp;Valor residual</th>
-              <th style="text-align: center" bgcolor="#c9a892">&nbsp;Valor depreciar</th>
-              <th style="text-align: center" bgcolor="#c9a892">&nbsp;Dep. acumulada</th>
-              <th style="text-align: center" bgcolor="#c9a892">&nbsp;Valor actual</th>
-              <th style="text-align: center" bgcolor="#c9a892">&nbsp;Dep. Anual</th>
-            </tr>        
+          <table id="Reporte" class="table"> 
+            <thead>         
+            <tr>
+              <th style="text-align: center" bgcolor="#c9a892">N° Inventario</th>
+              <th style="text-align: center" bgcolor="#c9a892">Cuenta</th>
+              <th style="text-align: center" bgcolor="#c9a892">Descripción</th>
+              <th style="text-align: center" bgcolor="#c9a892">Fecha de compra</th>
+              <th style="text-align: center" bgcolor="#c9a892">Valor de compra</th>
+              <th style="text-align: center" bgcolor="#c9a892">Valor residual</th>
+              <th style="text-align: center" bgcolor="#c9a892">Valor depreciar</th>
+              <th style="text-align: center" bgcolor="#c9a892">Dep. acumulada</th>
+              <th style="text-align: center" bgcolor="#c9a892">Valor actual</th>
+              <th style="text-align: center" bgcolor="#c9a892">Dep. Anual</th>
+            </tr> 
+          </thead>
+          <tbody>      
             <tr *ngFor="let item of response">
               <th style="text-align: center">{{item.CodigoAF}}</th>
               <td style="text-align: center">{{item.NombreCuenta}}</td>
@@ -93,7 +110,8 @@
               <td style="text-align: center">{{item.DepreciacionAcumulada  | currency: 'USD'| thousand}}</td>
               <td style="text-align: center">{{item.ValorResidual  | currency: 'USD'| thousand}}</td>          
               <td style="text-align: center">{{item.DepreciacionAnual  | currency: 'USD'| thousand}}</td>          
-          </table>
+            </tbody> 
+            </table>
         </div>
       </div>
       <div>

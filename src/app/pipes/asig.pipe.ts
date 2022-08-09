@@ -13,7 +13,7 @@ export class AsigPipe implements PipeTransform {
       if(assignment.IdAsignacion.toString().toLowerCase().includes(args.toLowerCase())
       || assignment.NombreUnidad.toLowerCase().includes(args.toLowerCase()) 
       || assignment.NombrePlaza.toString().toLowerCase().includes(args.toLowerCase())      
-      || assignment.FechaAsignacion.toString().toLowerCase().includes(args.toLowerCase())      
+      || assignment.Fecha_Asignacion.toString().toLowerCase().includes(args.toLowerCase())      
        )
       {
         resultPosts.push(assignment);      };

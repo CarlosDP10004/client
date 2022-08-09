@@ -19,9 +19,9 @@
         </div>
   
         <div class="col-sm-6">
-            <label class="col-sm-4 control-label texto">Plaza:</label><br />  
+            <label class="col-sm-4 control-label texto">Empleado:</label><br />  
             <select class="form-control bor tam" formControlName="IdPlaza" disabled>        
-              <option *ngFor="let item of workStations" [value]="item.IdPlaza">{{item.NombrePlaza}}</option>
+              <option *ngFor="let item of workStations" [value]="item.IdPlaza">{{item.NombreEmpleado}}</option>
             </select> 
         </div>
       </div>
@@ -35,7 +35,7 @@
           </select>
         </div>
         <div class="col-sm-6">
-          <label class="col-sm-4 control-label texto">Empleado:</label><br />
+          <label class="col-sm-4 control-label texto">Plaza:</label><br />
           <input type="text" class="form-control bor tam" disabled formControlName="Empleado"/>
         </div>
       </div>

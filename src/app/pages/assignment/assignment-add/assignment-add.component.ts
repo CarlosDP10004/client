@@ -224,7 +224,7 @@ export class AssignmentAddComponent implements OnInit {
     this.addAssignment.controls['Empleado'].setValue(null);
     this.workStations.forEach(element => {
       if(element.IdPlaza == workStation){
-        this.addAssignment.controls['Empleado'].setValue(element.NombreEmpleado);
+        this.addAssignment.controls['Empleado'].setValue(element.NombrePlaza);
       }
     });
   }

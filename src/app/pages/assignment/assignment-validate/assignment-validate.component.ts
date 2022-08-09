@@ -297,7 +297,7 @@ rechazarAsignacion(){
     this.validateAssignment.controls['Empleado'].setValue(null);
     this.workStations.forEach(element => {
       if(element.IdPlaza == value){
-        this.validateAssignment.controls['Empleado'].setValue(element.NombreEmpleado);
+        this.validateAssignment.controls['Empleado'].setValue(element.NombrePlaza);
       }
     });
   }

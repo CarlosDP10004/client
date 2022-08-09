@@ -224,7 +224,7 @@ export class AssetsAddComponent implements OnInit {
         this.addAsset.controls['VidaUtil'].updateValueAndValidity();
       }
       this.selected = accountData.Codigo;
-      this._isDepreciable = accountData.EsDepreciable;
+      this._isDepreciable = accountData.EsDepreciable || !accountData.EsTangible ? true : false;
     });    
     this.setValidations(this.selected);
     this._isTangible = this.isTangible(IdCuenta);

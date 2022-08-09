@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { borderTopRightRadius } from 'html2canvas/dist/types/css/property-descriptors/border-radius';
 import { ToastrService } from 'ngx-toastr';
@@ -65,7 +65,7 @@ export class ExternalLoansAddComponent implements OnInit {
       Tipo:['Externo',[Validators.required]],
       FechaActual:[this.datepipe.transform(Date.now(), 'yyyy-MM-dd'),[Validators.required]],
       IdEstado:['Pendiente',[Validators.required]],
-      IdUnidad:[null,[Validators.required]],
+      IdUnidad:[null],
       Solicitante:['',[Validators.required]],
       IdEstadoSolicitado:['Prestado externamente',[Validators.required]],
       Motivo:['',[Validators.required]],
@@ -74,8 +74,8 @@ export class ExternalLoansAddComponent implements OnInit {
       IdUnidadActual:[null,[Validators.required]],
       JefeUnidadActual:['',[Validators.required]],
       FechaRetorno:['',[Validators.required]],
-      IdUnidadDestino:[null,[Validators.required]],
-      JefeUnidadDestino:['',[Validators.required]],
+      IdUnidadDestino:[null],
+      JefeUnidadDestino:[''],
       DUI:['',[Validators.required]],
       Direccion:['',[Validators.required]],
       Telefono:['',[Validators.required]],
@@ -130,7 +130,12 @@ export class ExternalLoansAddComponent implements OnInit {
     }); 
   }
 
-  async guardarSolicitud(){     
+  async guardarSolicitud(){   
+    if(this.addRequest.invalid){
+      return Object.values(this.addRequest.controls).forEach(control=>{
+        control.markAllAsTouched();
+      })
+    }  
     let aux = new RequestModel();
     let archivo = await this.uploadFile(1);
     let post = aux._getRequest(this.addRequest, archivo['IdArchivo'], this.selectedAssets);
@@ -161,6 +166,21 @@ export class ExternalLoansAddComponent implements OnInit {
   }  
 
   get ListaActivos(): any { return this.addRequest.get('ListaActivos') as any; }
+  get IdUnidadActual():AbstractControl{return this.addRequest.get('IdUnidadActual');}
+  get JefeUnidadActual():AbstractControl{return this.addRequest.get('JefeUnidadActual');}
+  get Tipo():AbstractControl{return this.addRequest.get('Tipo');}
+  get FechaActual():AbstractControl{return this.addRequest.get('FechaActual');}
+  get IdEstado():AbstractControl{return this.addRequest.get('IdEstado');}
+  get Solicitante():AbstractControl{return this.addRequest.get('Solicitante');}
+  get IdEstadoSolicitado():AbstractControl{return this.addRequest.get('IdEstadoSolicitado');}
+  get Motivo():AbstractControl{return this.addRequest.get('Motivo');}
+  get FechaSolicitud():AbstractControl{return this.addRequest.get('FechaSolicitud');}
+  get IdArchivo():AbstractControl{return this.addRequest.get('IdArchivo');}
+  get FechaRetorno():AbstractControl{return this.addRequest.get('FechaRetorno');}
+  get DUI():AbstractControl{return this.addRequest.get('DUI');}
+  get Direccion():AbstractControl{return this.addRequest.get('Direccion');}
+  get Telefono():AbstractControl{return this.addRequest.get('Telefono');}
+  get Correo():AbstractControl{return this.addRequest.get('Correo');}
 
   addItem(index:number, item:any){
     this.selectedAssets.unshift(item);

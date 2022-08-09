@@ -28,6 +28,11 @@
         <div class="texta">
           <label class=" control-label texto">Motivo</label>         
             <textarea class="texta" type="text" rows="10" class="form-control" placeholder="Motivo" formControlName="Motivo"></textarea>         
+            <FONT COLOR="red">
+              <small *ngIf="Motivo.invalid && Motivo.touched">
+                Complete el campo
+              </small>
+            </FONT>
           </div>
       </div>
     </div>
@@ -47,6 +52,11 @@
                 size="10">
                   <ng-option *ngFor="let item of statusRequest" [value]="item.IdEstado">{{item.NombreEstado}}</ng-option>
           </ng-select>
+          <FONT COLOR="red">
+            <small *ngIf="IdEstadoSolicitado.invalid && IdEstadoSolicitado.touched">
+              Complete el campo
+            </small>
+          </FONT>
       </div> 
       
       <div class="col-sm-4">
@@ -64,17 +74,32 @@
               size="10">
                 <ng-option *ngFor="let item of departaments" [value]="item.IdUnidad">{{item.NombreUnidad}}</ng-option>
         </ng-select>
+        <FONT COLOR="red">
+          <small *ngIf="IdUnidad.invalid && IdUnidad.touched">
+            Complete el campo
+          </small>
+        </FONT>
       </div>  
       <div class="col-sm-4">
           <label class="col-sm-2 control-label texto">Solicitante</label><br />
-          <input class="form-control" formControlName="Solicitante"/>          
+          <input class="form-control" formControlName="Solicitante"/> 
+          <FONT COLOR="red">
+            <small *ngIf="Solicitante.invalid && Solicitante.touched">
+              Complete el campo
+            </small>
+          </FONT>         
       </div>
     </div>
 
     <div class="row Espacio">
       <div class="col-sm-4">
         <label class="col-sm-10 control-label texto2">Fecha para la salida</label>
-        <input type="date" class="form-control" placeholder="Fecha de compra" formControlName="FechaSolicitud">          
+        <input type="date" class="form-control" placeholder="Fecha de compra" formControlName="FechaSolicitud">
+        <FONT COLOR="red">
+          <small *ngIf="FechaSolicitud.invalid && FechaSolicitud.touched">
+            Complete el campo
+          </small>
+        </FONT>          
       </div> 
 
       <div class="col-sm-8">
@@ -87,7 +112,12 @@
           <div class="col-sm-6 posicionInput">
             <input type="file" class="ubicacion custom-file-input" id="customFile" formControlName="IdArchivo" (change)="getFile($event)">              
         </div>            
-      </div>      
+      </div>  
+      <FONT COLOR="red">
+        <small *ngIf="IdArchivo.invalid && IdArchivo.touched">
+          Complete el campo
+        </small>
+      </FONT>      
       </label>
       </div>   
     </div>

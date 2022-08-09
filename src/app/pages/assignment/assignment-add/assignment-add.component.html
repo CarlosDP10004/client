@@ -21,6 +21,11 @@
         size="10" >
           <ng-option *ngFor="let item of departaments" [value]="item.IdUnidad">{{item.NombreUnidad}}</ng-option>
     </ng-select>
+    <FONT COLOR="red">
+      <small *ngIf="IdUnidad.invalid && IdUnidad.touched">
+        Complete el campo
+      </small>
+    </FONT>
         
     </div>
 
@@ -35,6 +40,11 @@
           size="10" >
           <ng-option *ngFor="let item of workStations" [value]="item.IdPlaza">{{item.NombrePlaza}}</ng-option>
         </ng-select>
+        <FONT COLOR="red">
+          <small *ngIf="IdPlaza.invalid && IdPlaza.touched">
+            Complete el campo
+          </small>
+        </FONT>
     </div>
   </div>
     
@@ -60,10 +70,16 @@
           </div>
           <div class="col-sm-6 posicionInput">
             <input type="file" class="ubicacion custom-file-input" id="customFile" formControlName="IdArchivo" (change)="getFile($event)">              
-        </div>            
-      </div>      
-      </label>
+          </div>            
+      </div>   
+      <FONT COLOR="red">
+        <small *ngIf="IdArchivo.invalid && IdArchivo.touched">
+          Complete el campo
+        </small>
+      </FONT>   
+      </label>      
       </div>
+      
     </div> 
 
 </div>
@@ -79,11 +95,17 @@
     <button type="submit" class="espacio3 btn btn-primary btn-lg" style="float: right">Guardar</button>        
     <span routerLink="/Assets/Assignments" class="btn btn-default btn-lg" style="float: right">Cancelar</span>
   </div>
+  <FONT COLOR="red">
+    <small *ngIf="ListaActivos.invalid && ListaActivos.touched">
+      Complete el campo
+    </small>
+  </FONT> 
   </div>
       
     <!-- Inicio de arreglo de activos -->
     <br>
-    <div formArrayName="ListaActivos" class="card">      
+    <div formArrayName="ListaActivos" class="card">  
+         
         <div  *ngFor="let asset of addAssignment.get('ListaActivos')['controls'];  let i=index " [formGroupName]="i" [formGroup]="asset" class="card-body EstiloFor2">
           <div class="row Espacio">            
           <div class="col-sm-4">

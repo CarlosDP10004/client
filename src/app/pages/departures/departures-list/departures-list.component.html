@@ -36,7 +36,7 @@
               <tr *ngFor="let request of requests | descargo: filter7 | paginate: { itemsPerPage: 10, currentPage: page }">
                 <th>{{request.IdSolicitud}}</th>
                 <td>{{request.NombreUnidad}}</td>               
-                <td>{{request.FechaSolicitud | date:'dd/MM/yyyy'}}</td>
+                <td>{{request.Fecha_Solicitud}}</td>
                 <td>{{request.NombreEstado}}</td>
                 <td>
                   <span *ngIf="request.NombreEstado == 'Pendiente'" class="btn btn-info glyphicon glyphicon-check" title="Validar Solicitud" (click)="validateRequest(request.IdSolicitud)"></span>

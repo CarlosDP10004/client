@@ -198,6 +198,7 @@ export class AssetsEditComponent implements OnInit {
       this.patente = await this.assetData.cuenta.Codigo == '22615003' ? true : false;
 
       this._isDepreciable = this.assetData.cuenta.EsDepreciable;
+      this._isDepreciable = this.assetData.cuenta.EsDepreciable || !this.assetData.cuenta.EsTangible ? true : false;
       this._isTangible = this.assetData.cuenta.EsTangible;      
       
       this.chargeClasification(this.assetData.IdCuenta);

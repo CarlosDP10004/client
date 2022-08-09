@@ -39,7 +39,7 @@
                 <th>{{assignment.IdAsignacion}}</th>
                 <td>{{assignment.NombreUnidad}}</td>  
                 <td>{{assignment.NombreEmpleado}}</td>  
-                <td>{{assignment.FechaRegistro | date:'dd/MM/yyyy'}}</td> 
+                <td>{{assignment.Fecha_Registro}}</td> 
                 <td>
                   <p *ngIf="assignment.FechaAsignacion != null; else noAplica">{{assignment.FechaAsignacion | date:'dd/MM/yyyy'}}</p>
                   <ng-template #noAplica>N/A</ng-template>

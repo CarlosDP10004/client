@@ -28,6 +28,11 @@
           <div class="texta">
             <label class=" control-label texto">Motivo</label>         
               <textarea class="texta" type="text" rows="10" class="form-control" placeholder="Motivo" formControlName="Motivo"></textarea>         
+              <FONT COLOR="red">
+                <small *ngIf="Motivo.invalid && Motivo.touched">
+                  Complete el campo
+                </small>
+              </FONT>
             </div>
         </div>
       </div>
@@ -58,6 +63,11 @@
                   size="10">
                   <ng-option *ngFor="let item of departaments" [value]="item.IdUnidad">{{item.NombreUnidad}}</ng-option>
             </ng-select>
+            <FONT COLOR="red">
+              <small *ngIf="IdUnidadActual.invalid && IdUnidadActual.touched">
+                Complete el campo
+              </small>
+            </FONT>
             
         </div>     
         <div class="col-sm-4">
@@ -70,29 +80,59 @@
         <div class="col-sm-3">
           <label class="col-sm-10 control-label texto2">Fecha de despacho</label>
           <input type="date" class="form-control" placeholder="Fecha de compra" formControlName="FechaSolicitud">          
+          <FONT COLOR="red">
+            <small *ngIf="FechaSolicitud.invalid && FechaSolicitud.touched">
+              Complete el campo
+            </small>
+          </FONT>
         </div> 
         <div class="col-sm-3">
           <label class="col-sm-10 control-label texto2">Fecha de retorno</label>
           <input type="date" class="form-control" placeholder="Fecha de retorno" formControlName="FechaRetorno">          
+          <FONT COLOR="red">
+            <small *ngIf="FechaRetorno.invalid && FechaRetorno.touched">
+              Complete el campo
+            </small>
+          </FONT>
         </div>
 
         <div class="col-sm-6">
           <label class="col-sm-10 control-label texto">Nombre del solicitante</label>
-          <input class="form-control" placeholder="Nombre del solicitante" formControlName="Solicitante">          
+          <input class="form-control" placeholder="Nombre del solicitante" formControlName="Solicitante">  
+          <FONT COLOR="red">
+            <small *ngIf="Solicitante.invalid && Solicitante.touched">
+              Complete el campo
+            </small>
+          </FONT>        
         </div> 
       </div>
       <div class="row Espacio"> 
         <div class="col-sm-4">
           <label class="col-sm-4 control-label texto">DUI</label>
           <input class="form-control" placeholder="DUI" formControlName="DUI" mask="00000000-0"/>
+          <FONT COLOR="red">
+            <small *ngIf="DUI.invalid && DUI.touched">
+              Complete el campo
+            </small>
+          </FONT> 
         </div>     
         <div class="col-sm-4">
           <label class="col-sm-2 control-label texto">Telefono</label><br />
           <input class="form-control" placeholder="Telefono" formControlName="Telefono" mask="0000-0000" prefix="+503 "/>          
+          <FONT COLOR="red">
+            <small *ngIf="Telefono.invalid && Telefono.touched">
+              Complete el campo
+            </small>
+          </FONT> 
         </div>
         <div class="col-sm-4">
           <label class="col-sm-2 control-label texto">Correo</label><br />
           <input class="form-control" placeholder="Correo" formControlName="Correo" /> 
+          <FONT COLOR="red">
+            <small *ngIf="Correo.invalid && Correo.touched">
+              Complete el campo
+            </small>
+          </FONT> 
           <FONT COLOR="red">
             <small *ngIf="addRequest.errors?.valueNotValid">
               El correo no tiene un formato válido
@@ -103,7 +143,12 @@
       <div class="row Espacio"> 
         <div class="col-sm-12">
           <label class="col-sm-4 control-label texto">Dirección</label>
-          <textarea class="form-control" placeholder="Dirección" formControlName="Direccion" cols="10" rows="5"></textarea>          
+          <textarea class="form-control" placeholder="Dirección" formControlName="Direccion" cols="10" rows="5"></textarea> 
+          <FONT COLOR="red">
+            <small *ngIf="Direccion.invalid && Direccion.touched">
+              Complete el campo
+            </small>
+          </FONT>          
         </div>
       </div>
       <div class="row Espacio"> 
@@ -118,6 +163,11 @@
               <input type="file" class="ubicacion custom-file-input" id="customFile" formControlName="IdArchivo" (change)="getFile($event)">              
           </div>            
         </div> 
+        <FONT COLOR="red">
+          <small *ngIf="IdArchivo.invalid && IdArchivo.touched">
+            Complete el campo
+          </small>
+        </FONT> 
         </label>
         </div>
       </div>

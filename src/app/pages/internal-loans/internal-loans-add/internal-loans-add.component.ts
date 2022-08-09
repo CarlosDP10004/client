@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AssetsService } from 'src/app/core/http/assets.service';
@@ -63,7 +63,7 @@ export class InternalLoansAddComponent implements OnInit {
       Tipo:['Interno',[Validators.required]],
       FechaActual:[this.datepipe.transform(Date.now(), 'yyyy-MM-dd'),[Validators.required]],
       IdEstado:['Pendiente',[Validators.required]],
-      IdUnidad:[null,[Validators.required]],
+      IdUnidad:[null],
       Solicitante:['',[Validators.required]],
       IdEstadoSolicitado:['Prestado internamente',[Validators.required]],
       Motivo:['',[Validators.required]],
@@ -74,10 +74,10 @@ export class InternalLoansAddComponent implements OnInit {
       FechaRetorno:['',[Validators.required]],
       IdUnidadDestino:[null,[Validators.required]],
       JefeUnidadDestino:['',[Validators.required]],
-      DUI:['',[Validators.required]],
-      Direccion:['',[Validators.required]],
-      Telefono:['',[Validators.required]],
-      Correo:['',[Validators.required]],
+      DUI:[''],
+      Direccion:[''],
+      Telefono:[''],
+      Correo:[''],
       ListaActivos: this.formBuilder.array([])
     });
 
@@ -162,6 +162,11 @@ export class InternalLoansAddComponent implements OnInit {
   }
 
   async guardarSolicitud(){
+    if(this.addRequest.invalid){
+      return Object.values(this.addRequest.controls).forEach(control=>{
+        control.markAllAsTouched();
+      })
+    }
     let aux = new RequestModel();
     let archivo = await this.uploadFile(1);
     let post = aux._getRequest(this.addRequest, archivo['IdArchivo'], this.selectedAssets);
@@ -176,7 +181,19 @@ export class InternalLoansAddComponent implements OnInit {
   }  
 
   
-
+  get Tipo():AbstractControl{return this.addRequest.get('Tipo');}
+  get FechaActual():AbstractControl{return this.addRequest.get('FechaActual');}
+  get IdEstado():AbstractControl{return this.addRequest.get('IdEstado');}
+  get Solicitante():AbstractControl{return this.addRequest.get('Solicitante');}
+  get IdEstadoSolicitado():AbstractControl{return this.addRequest.get('IdEstadoSolicitado');}
+  get Motivo():AbstractControl{return this.addRequest.get('Motivo');}
+  get FechaSolicitud():AbstractControl{return this.addRequest.get('FechaSolicitud');}
+  get IdArchivo():AbstractControl{return this.addRequest.get('IdArchivo');}
+  get FechaRetorno():AbstractControl{return this.addRequest.get('FechaRetorno');}
+  get IdUnidadActual():AbstractControl{return this.addRequest.get('IdUnidadActual');}
+  get JefeUnidadActual():AbstractControl{return this.addRequest.get('JefeUnidadActual');}
+  get IdUnidadDestino():AbstractControl{return this.addRequest.get('IdUnidadDestino');}
+  get JefeUnidadDestino():AbstractControl{return this.addRequest.get('JefeUnidadDestino');}
   get ListaActivos(): any { return this.addRequest.get('ListaActivos') as any; }
 
   addItem(index:number, item:any){

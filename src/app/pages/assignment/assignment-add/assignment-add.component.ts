@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AccountService } from 'src/app/core/http/account.service';
@@ -12,6 +12,7 @@ import { ErrorService } from 'src/app/core/http/error.service';
 import { WorkStationService } from 'src/app/core/http/work-station.service';
 import { AssignmentModel } from 'src/app/models/assignment';
 import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-assignment-add',
@@ -65,7 +66,7 @@ export class AssignmentAddComponent implements OnInit {
       Empleado:[null,[Validators.required]],
       IdEstado:['Pendiente',[]],
       IdArchivo:['',[Validators.required]],
-      ListaActivos: this.formBuilder.array([])
+      ListaActivos: this.formBuilder.array([], Validators.minLength(1))
     });
 
     this.departamentService.getDepartamentList().subscribe(data => {
@@ -152,6 +153,12 @@ export class AssignmentAddComponent implements OnInit {
  }
 
   async guardarAsignacion(){
+    if(this.addAssignment.invalid){
+      return Object.values(this.addAssignment.controls).forEach(control=>{
+        control.markAllAsTouched();
+      })
+    } 
+
     let aux = new AssignmentModel();
     let archivo = await this.uploadFile(1);
     let post = aux.getAssignment(this.addAssignment, archivo['IdArchivo']);
@@ -222,7 +229,9 @@ export class AssignmentAddComponent implements OnInit {
     });
   }
 
-  
+  get IdUnidad():AbstractControl{return this.addAssignment.get('IdUnidad');}
+  get IdPlaza():AbstractControl{return this.addAssignment.get('IdPlaza');}
+  get IdArchivo():AbstractControl{return this.addAssignment.get('IdArchivo');}
 
   get ListaActivos(): any { return this.addAssignment.get('ListaActivos') as any; }
 

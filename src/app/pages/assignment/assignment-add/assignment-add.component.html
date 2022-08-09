@@ -30,7 +30,7 @@
     </div>
 
     <div class="col-sm-6">
-        <label class="col-sm-4 control-label texto">Plaza:</label><br /> 
+        <label class="col-sm-4 control-label texto">Empleado:</label><br /> 
         
         <ng-select                                 
           formControlName="IdPlaza"            
@@ -38,7 +38,7 @@
           [searchable]="true"                
           placeholder="Selecciona la plaza"
           size="10" >
-          <ng-option *ngFor="let item of workStations" [value]="item.IdPlaza">{{item.NombrePlaza}}</ng-option>
+          <ng-option *ngFor="let item of workStations" [value]="item.IdPlaza">{{item.NombreEmpleado}}</ng-option>
         </ng-select>
         <FONT COLOR="red">
           <small *ngIf="IdPlaza.invalid && IdPlaza.touched">
@@ -54,7 +54,7 @@
         <input type="text" class="form-control bor tam" disabled formControlName="IdEstado"/>
     </div>
     <div class="col-sm-6">
-      <label class="col-sm-4 control-label texto3">Empleado:</label><br />
+      <label class="col-sm-4 control-label texto3">Plaza:</label><br />
       <input type="text" class="form-control bor tam" disabled formControlName="Empleado"/>
   </div>
   </div>

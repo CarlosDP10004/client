@@ -289,7 +289,7 @@ export class AssignmentEditComponent implements OnInit {
     this.editAssignment.controls['Empleado'].setValue(null);
     this.workStations.forEach(element => {
       if(element.IdPlaza == value){
-        this.editAssignment.controls['Empleado'].setValue(element.NombreEmpleado);
+        this.editAssignment.controls['Empleado'].setValue(element.NombrePlaza);
       }
     });
   }

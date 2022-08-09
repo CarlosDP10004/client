@@ -159,7 +159,7 @@ export class ReportHistoryComponent implements OnInit {
   }
 
   downloadPDF(): void {
-    this.reportService.downloadPDF2();
+    this.reportService.downloadPDF();
   }
 
 }

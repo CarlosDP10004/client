@@ -35,7 +35,7 @@
             <tbody>
               <tr *ngFor="let user of users | usuario:filter3 | paginate: { itemsPerPage: 10, currentPage: page }">
                 <th>{{user.IdUsuario}}</th>
-                <td>{{user.NombreUsuario}}</td>
+                <td>{{user.NombreUsuario}}</td>                
                 <td>
                   <p *ngIf="user.Estado; else bloqueado">Activo</p>
                   <ng-template #bloqueado>Bloqueado</ng-template>

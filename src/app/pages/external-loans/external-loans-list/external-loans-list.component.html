@@ -33,7 +33,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let request of requests | descargo: filter5 | paginate: { itemsPerPage: 10, currentPage: page }">
+              <tr *ngFor="let request of requests | prestamoex: filter5 | paginate: { itemsPerPage: 10, currentPage: page }">
                 <th>{{request.IdSolicitud}}</th>
                 <td>{{request.Solicitante}}</td>               
                 <td>{{request.Fecha_Solicitud}}</td>

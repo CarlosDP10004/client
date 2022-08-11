@@ -80,7 +80,8 @@ export class ExternalLoansAddComponent implements OnInit {
       Direccion:['',[Validators.required]],
       Telefono:['',[Validators.required]],
       Correo:['',[Validators.required]],
-      ListaActivos: this.formBuilder.array([])
+      ListaActivos: this.formBuilder.array([]),
+      IdFilter: ['']
     }, {
       validators: this.val.validEmail('Correo')
     });

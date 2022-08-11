@@ -78,7 +78,8 @@ export class InternalLoansAddComponent implements OnInit {
       Direccion:[''],
       Telefono:[''],
       Correo:[''],
-      ListaActivos: this.formBuilder.array([])
+      ListaActivos: this.formBuilder.array([]),
+      IdFilter: ['']
     });
 
     this.departamentService.getDepartamentList().subscribe(data => {

@@ -14,6 +14,7 @@ import { ProviderEditComponent } from '../provider-edit/provider-edit.component'
 export class ProviderListComponent {
 
   page: number = 1;
+  proveedor: any;
   providers: any[] = [];
   bsModalRef: BsModalRef;
 

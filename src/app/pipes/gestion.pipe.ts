@@ -11,8 +11,8 @@ export class GestionPipe implements PipeTransform {
     const resultPosts = [];   
     for(const asset of value){
       if(asset.CodigoAF.toLowerCase().includes(args.toLowerCase())
-      || asset.Fecha_Solicitud.toString().toLowerCase().includes(args.toLowerCase()) 
-      || asset.Fecha_Retorno.toString().toLowerCase().includes(args.toLowerCase())
+      || asset.FechaSolicitud.toString().toLowerCase().includes(args.toLowerCase()) 
+      || asset.FechaRetorno.toString().toLowerCase().includes(args.toLowerCase())
       || asset.JefeUnidadActual.toLowerCase().includes(args.toLowerCase())
       || asset.Solicitante.toLowerCase().includes(args.toLowerCase())
        )

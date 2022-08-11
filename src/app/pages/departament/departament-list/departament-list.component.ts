@@ -15,6 +15,7 @@ import { DepartamentEditComponent } from '../departament-edit/departament-edit.c
 export class DepartamentListComponent {
 
   page: number = 1;
+  departamento: any;
   departaments: any[] = [];
   bsModalRef: BsModalRef;
 

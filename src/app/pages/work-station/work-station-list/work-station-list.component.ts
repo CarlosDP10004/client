@@ -14,6 +14,7 @@ import { WorkStationEditComponent } from '../work-station-edit/work-station-edit
 export class WorkStationListComponent {
 
   page: number = 1;
+  plaza: any;
   workStations: any[] = [];
   bsModalRef: BsModalRef;
 

@@ -14,6 +14,7 @@ import { BrandsEditComponent } from '../brands-edit/brands-edit.component';
 export class BrandsListComponent implements OnInit {
 
   page: number = 1;
+  marca: any;
   brands: any[] = [];
   bsModalRef: BsModalRef;
 

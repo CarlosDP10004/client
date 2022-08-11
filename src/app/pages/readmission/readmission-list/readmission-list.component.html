@@ -36,8 +36,8 @@
             <tbody>
               <tr *ngFor="let asset of assets | gestion : filterpost  | paginate: { itemsPerPage: 10, currentPage: page }">
                 <th >{{asset.CodigoAF}}</th>
-                <td>{{asset.FechaSolicitud  | date:'dd/MM/yyyy'}}</td>               
-                <td>{{asset.FechaRetorno  | date:'dd/MM/yyyy'}}</td>
+                <td>{{asset.FechaSolicitud}}</td>               
+                <td>{{asset.FechaRetorno}}</td>
                 <td>{{asset.JefeUnidadActual}}</td>
                 <td>{{asset.Solicitante}}</td>                
                 <td>

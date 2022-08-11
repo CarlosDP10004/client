@@ -77,7 +77,8 @@ export class DeparturesAddComponent implements OnInit {
       Direccion:[''],
       Telefono:[''],
       Correo:[''],
-      ListaActivos: this.formBuilder.array([])
+      ListaActivos: this.formBuilder.array([]),
+      IdFilter:['']
     });
 
     this.departamentService.getDepartamentList().subscribe(data => {
@@ -174,8 +175,8 @@ export class DeparturesAddComponent implements OnInit {
     this.assets.forEach(element => {       
       if(item.CodigoAF == element.CodigoAF)
       {
-        this.assets.splice(cont,1);
-        this.filter6= '';
+        this.assets.splice(cont,1);  
+        this.filter6 = '';      
       }
       cont ++;
     });  

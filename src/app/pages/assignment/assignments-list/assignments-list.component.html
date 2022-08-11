@@ -9,7 +9,6 @@
     </div>
     </div>
     <br>
-
     <div class="=row">
       <div class="col-md-8">
         <span routerLink="/Assets/Assignments/Add" class="btn btn-primary btn-lg">Nueva asignación</span>             
@@ -39,11 +38,8 @@
                 <th>{{assignment.IdAsignacion}}</th>
                 <td>{{assignment.NombreUnidad}}</td>  
                 <td>{{assignment.NombreEmpleado}}</td>  
-                <td>{{assignment.Fecha_Registro}}</td> 
-                <td>
-                  <p *ngIf="assignment.FechaAsignacion != null; else noAplica">{{assignment.FechaAsignacion | date:'dd/MM/yyyy'}}</p>
-                  <ng-template #noAplica>N/A</ng-template>
-                </td>
+                <td>{{assignment.Fecha_Registro}}</td>
+                <td>{{assignment.Fecha_Asignacion || 'N/A' }}</td>
                 <td>{{assignment.NombreEstado}}</td>
                 <td>
                   <span *ngIf="assignment.NombreEstado == 'Pendiente'; else bloqueado" class="btn btn-primary glyphicon glyphicon-pencil" title="Editar" (click)="editAssignment(assignment.IdAsignacion)"></span>

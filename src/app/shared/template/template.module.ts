@@ -21,6 +21,12 @@ import { PrestamoexPipe } from '../../pipes/prestamoex.pipe';
 import { PrestamouniPipe } from '../../pipes/prestamouni.pipe';
 import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
 import { GestionPipe } from '../../pipes/gestion.pipe';
+import { CuentacontPipe } from '../../pipes/cuentacont.pipe';
+import { DepartamentoPipe } from '../../pipes/departamento.pipe';
+import { PlazaPipe } from '../../pipes/plaza.pipe';
+import { MarcaPipe } from '../../pipes/marca.pipe';
+import { ProveedorPipe } from '../../pipes/proveedor.pipe';
+
 
 @NgModule({
   declarations: [
@@ -39,6 +45,11 @@ import { GestionPipe } from '../../pipes/gestion.pipe';
     PrestamoexPipe,
     PrestamouniPipe,
     GestionPipe,
+    CuentacontPipe,
+    DepartamentoPipe,
+    PlazaPipe,
+    MarcaPipe,
+    ProveedorPipe,   
   ],
   imports: [
     CommonModule,
@@ -60,7 +71,12 @@ import { GestionPipe } from '../../pipes/gestion.pipe';
     SalidaPipe, 
     PrestamoexPipe,
     PrestamouniPipe, 
-    GestionPipe,   
+    GestionPipe,
+    CuentacontPipe,
+    DepartamentoPipe,
+    PlazaPipe,
+    MarcaPipe,
+    ProveedorPipe,     
   ],
   bootstrap: [TemplateComponent]
 })

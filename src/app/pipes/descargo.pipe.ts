@@ -13,6 +13,7 @@ export class DescargoPipe implements PipeTransform {
       if(request.IdSolicitud.toString().toLowerCase().includes(args.toLowerCase())
       || request.NombreUnidad.toLowerCase().includes(args.toLowerCase())       
       || request.Fecha_Solicitud.toString().toLowerCase().includes(args.toLowerCase())      
+      || request.NombreEstado.toLowerCase().includes(args.toLowerCase())      
        )
       {
         resultPosts.push(request);      };

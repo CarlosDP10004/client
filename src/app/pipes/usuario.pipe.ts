@@ -10,10 +10,11 @@ export class UsuarioPipe implements PipeTransform {
     if (!args)return value;        
     const resultPosts = [];   
     for(const user of value){
-      if(user.IdUsuario.toString().includes(args)
-      || user.NombreUsuario.toLowerCase().includes(args.toLowerCase())
-      || user.Intento.toString().includes(args) 
-      || user.Estado.toString().includes(args))
+      if(user.IdUsuario.toString().toLowerCase().includes(args.toLowerCase())
+      || user.NombreUsuario.toLowerCase().includes(args.toLowerCase()) 
+      || user.Estado.toLowerCase().includes(args.toLowerCase())
+      || user.Intento.toString().toLowerCase().includes(args.toLowerCase())
+      )
       {
         resultPosts.push(user);      };
       };

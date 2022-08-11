@@ -15,12 +15,11 @@ import { UnauthorizedComponent } from './shared/unauthorized/unauthorized.compon
 import { NotfoundComponent } from './shared/notfound/notfound.component';
 
 
-
 @NgModule({
   declarations: [
     AppComponent, 
     UnauthorizedComponent,
-    NotfoundComponent,           
+    NotfoundComponent,                
   ],
   imports: [
     BrowserModule,

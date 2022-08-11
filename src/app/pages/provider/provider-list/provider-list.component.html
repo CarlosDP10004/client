@@ -8,11 +8,17 @@
         </h1>           
     </div>
     </div>
-    <div class="row">
-      <div class="col-md-12">
-        <p></p>
+    <br>
+    <div class="=row">
+      <div class="col-md-8">
         <span (click)="addProvider()" class="btn btn-primary btn-lg">Nuevo proveedor</span>
-        <br /><br />
+      </div>&nbsp;
+      <div class="col-md-4 input-icono">  
+        <input type="text" class="forms-control tamanio" placeholder="Buscar..." [(ngModel)]="proveedor" name="proveedor">      
+      </div>     
+    </div>  
+        <div class="row">
+          <div class="col-md-12">  
         <div class="table-responsive">
           <table id="mytable" class="table table-bordred table-striped">
             <thead>
@@ -24,7 +30,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let provider of providers | paginate: { itemsPerPage: 10, currentPage: page }">
+              <tr *ngFor="let provider of providers | proveedor: proveedor| paginate: { itemsPerPage: 10, currentPage: page }">
                 <th >{{provider.IdProveedor}}</th>
                 <td>{{provider.NombreProveedor}}</td>
                 <td>

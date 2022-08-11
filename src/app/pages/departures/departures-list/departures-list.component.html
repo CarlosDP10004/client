@@ -33,7 +33,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let request of requests | descargo: filter7 | paginate: { itemsPerPage: 10, currentPage: page }">
+              <tr *ngFor="let request of requests | salida: filter7 | paginate: { itemsPerPage: 10, currentPage: page }">
                 <th>{{request.IdSolicitud}}</th>
                 <td>{{request.NombreUnidad}}</td>               
                 <td>{{request.Fecha_Solicitud}}</td>

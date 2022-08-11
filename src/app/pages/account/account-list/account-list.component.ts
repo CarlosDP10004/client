@@ -14,6 +14,7 @@ import { AccountEditComponent } from '../account-edit/account-edit.component';
 })
 export class AccountListComponent {
   page: number = 1;
+  cuenta: any;
   accounts: any[] = [];
   bsModalRef: BsModalRef;
 

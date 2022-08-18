@@ -12,6 +12,7 @@
               <ng-select 
                 formControlName="NombreUsuario" 
                 class="tamanio2" 
+                (change)="wasThereChange()"
                 [searchable]="true"
                 placeholder="Selecciona el empleado">
                 <ng-option *ngFor="let item of usersAD" [value]="item.userprincipalname">{{item.displayname}}</ng-option>

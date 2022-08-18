@@ -24,6 +24,8 @@ export class UsereditComponent implements OnInit {
   options = [{id:1, name: 'Roles'},{id:2, name:'Permisos'}];
   selected: number;
 
+  userChange: boolean = false;
+
   usersAD: any[] = [];
 
   event: EventEmitter<any> = new EventEmitter();
@@ -114,7 +116,7 @@ export class UsereditComponent implements OnInit {
   editarUsuario(){
     if(this.editUser.get('Tipo').value == 1){
       let withRole = {
-        'NombreUsuario': this.editUser.get('NombreUsuario').value[0],
+        'NombreUsuario': this.userChange ?  this.editUser.get('NombreUsuario').value[0]: this.editUser.get('NombreUsuario').value,
         'Contrasenna': this.editUser.get('Contrasenna').value,
         'IdEmpleado': this.editUser.get('IdEmpleado').value,
         'Roles': this.editUser.get('Roles').value,
@@ -130,7 +132,7 @@ export class UsereditComponent implements OnInit {
     }
     if(this.editUser.get('Tipo').value == 2){
       let withPermission = {
-        'NombreUsuario': this.editUser.get('NombreUsuario').value[0],
+        'NombreUsuario': this.userChange ?  this.editUser.get('NombreUsuario').value[0]: this.editUser.get('NombreUsuario').value,
         'Contrasenna': this.editUser.get('Contrasenna').value,
         'IdEmpleado': this.editUser.get('IdEmpleado').value,
         'Permisos': this.editUser.get('Permisos').value,
@@ -149,6 +151,10 @@ export class UsereditComponent implements OnInit {
 
   onClose() {
     this.bsModalRef.hide();
+  }
+
+  wasThereChange(){
+    this.userChange = true;
   }
 
 

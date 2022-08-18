@@ -11,8 +11,8 @@ export class UsuarioPipe implements PipeTransform {
     const resultPosts = [];   
     for(const user of value){
       if(user.IdUsuario.toString().toLowerCase().includes(args.toLowerCase())
-      || user.NombreUsuario.toLowerCase().includes(args.toLowerCase()) 
-      || user.Estado.toLowerCase().includes(args.toLowerCase())
+      || user.NombreUsuario.toLowerCase().includes(args.toLowerCase())       
+      || user.Estado.toString().toLowerCase().includes(args.toLowerCase())
       || user.Intento.toString().toLowerCase().includes(args.toLowerCase())
       )
       {

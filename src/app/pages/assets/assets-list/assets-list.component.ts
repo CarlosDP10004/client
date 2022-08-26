@@ -28,8 +28,8 @@ export class AssetsListComponent {
       Object.assign(this.assets, data);
     }, error => {
       Swal.fire({
-        icon: 'error',
-        title: 'Error',
+        icon: [401, 403].indexOf(error.status) ? 'info' : 'error',
+        title: [401, 403].indexOf(error.status) ? 'Información' : 'Error',
         text: this.errorService.getErrorMessage(error.error),
         confirmButtonColor: '#c9a892',
         confirmButtonText: 'Aceptar'

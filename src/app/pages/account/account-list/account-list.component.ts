@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { AccountService } from 'src/app/core/http/account.service';
+import { AuthService } from 'src/app/core/http/auth.service';
 import { ErrorService } from 'src/app/core/http/error.service';
+import { PermissionModel } from 'src/app/models/permission';
 import Swal from 'sweetalert2';
 import { AccountAddComponent } from '../account-add/account-add.component';
 import { AccountEditComponent } from '../account-edit/account-edit.component';
@@ -18,13 +20,18 @@ export class AccountListComponent {
   accounts: any[] = [];
   bsModalRef: BsModalRef;
 
+  global: any[] = [];
+  permissions: any[] = [];
+
   constructor(
     private accountService: AccountService,
     private bsModalService: BsModalService,
     private toastr: ToastrService,
+    private authService: AuthService,
     private errorService: ErrorService
   ) { 
     this.showAll();
+    this.getPermissions();
   }
 
   showAll(){
@@ -32,8 +39,8 @@ export class AccountListComponent {
       Object.assign(this.accounts, data);
     }, error => {
       Swal.fire({
-        icon: 'error',
-        title: 'Error',
+        icon: [401, 403].indexOf(error.status) ? 'info' : 'error',
+        title: [401, 403].indexOf(error.status) ? 'Información' : 'Error',
         text: this.errorService.getErrorMessage(error.error),
         confirmButtonColor: '#c9a892',
         confirmButtonText: 'Aceptar'
@@ -83,5 +90,31 @@ export class AccountListComponent {
       }
     })
   }
+
+  getPermissions(){
+    let aux = new PermissionModel();
+    this.authService.getPermission().subscribe(async data => {
+      Object.assign(this.global, data);
+      this.permissions = aux.validatePermission(this.global, 'Cuentas');
+    }, error =>{
+      console.log(error);
+    });
+  }
+
+
+validate(permission: string){
+    let authorized = false;
+    this.permissions.forEach(x => {       
+      if(x.name.includes(permission)){
+        authorized = true;
+      }
+    });
+    return authorized;
+  }
+
+
+get agregar() { return this.validate('Agregar'); }
+get editar() { return this.validate('Editar'); }
+
 
 }

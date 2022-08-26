@@ -28,7 +28,9 @@ export interface Permission {
 
     setPermission(list: any);
 
-    validateList(list: any[], aux: any[])
+    validateList(list: any[], aux: any[]);
+
+    validatePermission(list: any[], modulo: string);
 }
 
 export class PermissionModel implements Permission{
@@ -113,6 +115,18 @@ export class PermissionModel implements Permission{
             });
         });
         return enabled;
+    }
+
+
+
+    validatePermission(list: any[], modulo: string): any{
+        let newList: any[] = [];        
+        list.forEach(obj => {
+            if(obj.name.includes(modulo)){
+                newList.push(obj);
+            }
+        });
+        return newList;
     }
     
 }

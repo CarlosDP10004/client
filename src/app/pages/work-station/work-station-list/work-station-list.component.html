@@ -11,7 +11,7 @@
     <br>
     <div class="=row">
       <div class="col-md-8">
-        <span (click)="addWorkStation()" class="btn btn-primary btn-lg">Nueva plaza</span>
+        <span *ngIf="agregar" (click)="addWorkStation()" class="btn btn-primary btn-lg">Nueva plaza</span>
       </div>&nbsp;
       <div class="col-md-4 input-icono">  
         <input type="text" class="forms-control tamanio" placeholder="Buscar..." [(ngModel)]="plaza" name="plaza">      
@@ -40,9 +40,9 @@
                   <ng-template #desactivado>Desactivado</ng-template>
                 </td>
                 <td>
-                  <span class="btn btn-primary glyphicon glyphicon-pencil" title="Editar" (click)="editWorkStation(workStation.IdPlaza)"></span>
+                  <span *ngIf="editar" class="btn btn-primary glyphicon glyphicon-pencil" title="Editar" (click)="editWorkStation(workStation.IdPlaza)"></span>
                   &nbsp;&nbsp;
-                  <span class="btn btn-info glyphicon glyphicon-refresh" title="Cambiar estado" (click)="changeStatus(workStation.IdPlaza)"></span>
+                  <span *ngIf="editar" class="btn btn-info glyphicon glyphicon-refresh" title="Cambiar estado" (click)="changeStatus(workStation.IdPlaza)"></span>
                 </td>
               </tr>             
             </tbody>            

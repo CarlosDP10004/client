@@ -12,7 +12,7 @@
     
     <div class="=row">
       <div class="col-md-8">
-        <span (click)="addUser()" class="btn btn-primary btn-lg">Nuevo usuario</span>             
+        <span *ngIf="agregar" (click)="addUser()" class="btn btn-primary btn-lg">Nuevo usuario</span>             
         </div>&nbsp;
       <div class="col-md-4 input-icono">  
         <input type="text" class="forms-control tamanio" placeholder="Buscar..." [(ngModel)]="filter3" name="filter3">      
@@ -42,9 +42,9 @@
                 </td>  
                 <td>{{user.Intento}}</td>
                 <td>
-                  <span class="btn btn-primary glyphicon glyphicon-pencil" title="Editar" (click)="editUser(user.IdUsuario)"></span>
+                  <span *ngIf="editar" class="btn btn-primary glyphicon glyphicon-pencil" title="Editar" (click)="editUser(user.IdUsuario)"></span>
                   &nbsp;&nbsp;
-                  <span class="btn btn-info glyphicon glyphicon-refresh" (click)="changeStatus(user.IdUsuario)" title="Cambiar estado"></span>
+                  <span *ngIf="editar" class="btn btn-info glyphicon glyphicon-refresh" (click)="changeStatus(user.IdUsuario)" title="Cambiar estado"></span>
                 </td>
               </tr>             
             </tbody>            

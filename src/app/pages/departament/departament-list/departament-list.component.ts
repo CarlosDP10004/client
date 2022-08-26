@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from 'src/app/core/http/auth.service';
 import { DepartamentsService } from 'src/app/core/http/departaments.service';
 import { ErrorService } from 'src/app/core/http/error.service';
+import { PermissionModel } from 'src/app/models/permission';
 import Swal from 'sweetalert2';
 import { DepartamentAddComponent } from '../departament-add/departament-add.component';
 import { DepartamentEditComponent } from '../departament-edit/departament-edit.component';
@@ -19,13 +21,19 @@ export class DepartamentListComponent {
   departaments: any[] = [];
   bsModalRef: BsModalRef;
 
+
+  global: any[] = [];
+  permissions: any[] = [];
+
   constructor(
     private bsModalService: BsModalService,
     private toastr: ToastrService,
     private errorService: ErrorService,
+    private authService: AuthService,
     private departamentService: DepartamentsService
   ) {
     this.showAll();
+    this.getPermissions();
    }
 
 
@@ -34,8 +42,8 @@ export class DepartamentListComponent {
       Object.assign(this.departaments, data);
     }, error => {
       Swal.fire({
-        icon: 'error',
-        title: 'Error',
+        icon: [401, 403].indexOf(error.status) ? 'info' : 'error',
+        title: [401, 403].indexOf(error.status) ? 'Información' : 'Error',
         text: this.errorService.getErrorMessage(error.error),
         confirmButtonColor: '#c9a892',
         confirmButtonText: 'Aceptar'
@@ -85,5 +93,30 @@ export class DepartamentListComponent {
       }
     })
   }
+
+getPermissions(){
+    let aux = new PermissionModel();
+    this.authService.getPermission().subscribe(async data => {
+      Object.assign(this.global, data);
+      this.permissions = aux.validatePermission(this.global, 'Unidades');
+    }, error =>{
+      console.log(error);
+    });
+  }
+
+
+validate(permission: string){
+    let authorized = false;
+    this.permissions.forEach(x => {       
+      if(x.name.includes(permission)){
+        authorized = true;
+      }
+    });
+    return authorized;
+  }
+
+
+get agregar() { return this.validate('Agregar'); }
+get editar() { return this.validate('Editar'); }
 
 }

@@ -12,7 +12,7 @@
     
     <div class="=row">
       <div class="col-md-8">
-        <span (click)="addClasification()" class="btn btn-primary btn-lg">Nueva clasificación</span>             
+        <span *ngIf="agregar" (click)="addClasification()" class="btn btn-primary btn-lg">Nueva clasificación</span>             
         </div>&nbsp;
       <div class="col-md-4 input-icono">  
         <input type="text" class="forms-control tamanio" placeholder="Buscar..." [(ngModel)]="filterpost" name="filterpost">      
@@ -42,9 +42,9 @@
                   <ng-template #desactivado>Desactivado</ng-template>
                 </td>
                 <td>
-                  <span class="btn btn-primary glyphicon glyphicon-pencil" title="Editar" (click)="editClasification(clasification.IdClasificacion)"></span>
+                  <span *ngIf="editar" class="btn btn-primary glyphicon glyphicon-pencil" title="Editar" (click)="editClasification(clasification.IdClasificacion)"></span>
                   &nbsp;&nbsp;
-                  <span class="btn btn-info glyphicon glyphicon-refresh" title="Cambiar estado" (click)="changeStatus(clasification.IdClasificacion)"></span>
+                  <span *ngIf="editar" class="btn btn-info glyphicon glyphicon-refresh" title="Cambiar estado" (click)="changeStatus(clasification.IdClasificacion)"></span>
                 </td>
               </tr>             
             </tbody>            

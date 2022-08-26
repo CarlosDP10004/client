@@ -11,7 +11,7 @@
     <br>
     <div class="=row">
       <div class="col-md-8">
-        <span (click)="addProvider()" class="btn btn-primary btn-lg">Nueva marca</span>
+        <span *ngIf="agregar" (click)="addProvider()" class="btn btn-primary btn-lg">Nueva marca</span>
       </div>&nbsp;
       <div class="col-md-4 input-icono">  
         <input type="text" class="forms-control tamanio" placeholder="Buscar..." [(ngModel)]="marca" name="marca">      
@@ -38,9 +38,9 @@
                   <ng-template #desactivado>Desactivado</ng-template>
                 </td>
                 <td>
-                  <span class="btn btn-primary glyphicon glyphicon-pencil" title="Editar" (click)="editBrand(brand.IdMarca)"></span>
+                  <span *ngIf="editar" class="btn btn-primary glyphicon glyphicon-pencil" title="Editar" (click)="editBrand(brand.IdMarca)"></span>
                   &nbsp;&nbsp;
-                  <span class="btn btn-info glyphicon glyphicon-refresh" title="Cambiar estado" (click)="changeStatus(brand.IdMarca)"></span>
+                  <span *ngIf="editar" class="btn btn-info glyphicon glyphicon-refresh" title="Cambiar estado" (click)="changeStatus(brand.IdMarca)"></span>
                 </td>
               </tr>             
             </tbody>            

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { AuthService } from 'src/app/core/http/auth.service';
 import { RolesService } from 'src/app/core/http/roles.service';
+import { PermissionModel } from 'src/app/models/permission';
 import { RoleAddComponent } from '../role-add/role-add.component';
 import { RoleEditComponent } from '../role-edit/role-edit.component';
 
@@ -13,11 +15,17 @@ export class RoleListComponent {
 
   roles: any[] = [];
   bsModalRef: BsModalRef;
+
+  global: any[] = [];
+  permissions: any[] = [];
+
   constructor(
     private rolService: RolesService,
+    private authService: AuthService,
     private bsModalService: BsModalService
   ) {
     this.showAll();
+    this.getPermissions();
    }
 
 
@@ -50,5 +58,30 @@ export class RoleListComponent {
       }
     });
   }
+
+  getPermissions(){
+    let aux = new PermissionModel();
+    this.authService.getPermission().subscribe(async data => {
+      Object.assign(this.global, data);
+      this.permissions = aux.validatePermission(this.global, 'Roles');
+    }, error =>{
+      console.log(error);
+    });
+}
+
+
+validate(permission: string){
+    let authorized = false;
+    this.permissions.forEach(x => {       
+      if(x.name.includes(permission)){
+        authorized = true;
+      }
+    });
+    return authorized;
+}
+
+
+get agregar() { return this.validate('Agregar'); }
+get editar() { return this.validate('Editar'); }
 
 }

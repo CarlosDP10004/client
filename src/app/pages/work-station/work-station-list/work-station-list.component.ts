@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from 'src/app/core/http/auth.service';
 import { WorkStationService } from 'src/app/core/http/work-station.service';
+import { PermissionModel } from 'src/app/models/permission';
 import Swal from 'sweetalert2';
 import { WorkStationAddComponent } from '../work-station-add/work-station-add.component';
 import { WorkStationEditComponent } from '../work-station-edit/work-station-edit.component';
@@ -18,12 +20,17 @@ export class WorkStationListComponent {
   workStations: any[] = [];
   bsModalRef: BsModalRef;
 
+  global: any[] = [];
+  permissions: any[] = [];
+
   constructor(
     private bsModalService: BsModalService,
     private workStationService: WorkStationService,
+    private authService: AuthService,
     private toastr: ToastrService
   ) {
     this.showAll();
+    this.getPermissions();
    }
 
 
@@ -32,8 +39,8 @@ export class WorkStationListComponent {
       Object.assign(this.workStations, data);
     }, error => {
       Swal.fire({
-        icon: 'error',
-        title: 'Error',
+        icon: [401, 403].indexOf(error.status) ? 'info' : 'error',
+        title: [401, 403].indexOf(error.status) ? 'Información' : 'Error',
         text: error,
         confirmButtonColor: '#c9a892',
         confirmButtonText: 'Aceptar'
@@ -81,5 +88,30 @@ export class WorkStationListComponent {
       }
     })
   }
+
+  getPermissions(){
+    let aux = new PermissionModel();
+    this.authService.getPermission().subscribe(async data => {
+      Object.assign(this.global, data);
+      this.permissions = aux.validatePermission(this.global, 'Plazas');
+    }, error =>{
+      console.log(error);
+    });
+}
+
+
+validate(permission: string){
+    let authorized = false;
+    this.permissions.forEach(x => {       
+      if(x.name.includes(permission)){
+        authorized = true;
+      }
+    });
+    return authorized;
+}
+
+
+get agregar() { return this.validate('Agregar'); }
+get editar() { return this.validate('Editar'); }
 
 }

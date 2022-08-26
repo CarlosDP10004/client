@@ -11,7 +11,7 @@
     <br>
     <div class="=row">
       <div class="col-md-8">
-        <span (click)="addAccount()" class="btn btn-primary btn-lg">Nueva Cuenta</span>
+        <span *ngIf="agregar" (click)="addAccount()" class="btn btn-primary btn-lg">Nueva Cuenta</span>
       </div>&nbsp;
       <div class="col-md-4 input-icono">  
           <input type="text" class="forms-control tamanio" placeholder="Buscar..." [(ngModel)]="cuenta" name="cuenta">      
@@ -41,9 +41,9 @@
                   <ng-template #desactivado>Desactivado</ng-template>
                 </td>
                 <td>
-                  <span class="btn btn-primary glyphicon glyphicon-pencil" title="Editar" (click)="editAccount(account.IdCuenta)"></span>
+                  <span *ngIf="editar" class="btn btn-primary glyphicon glyphicon-pencil" title="Editar" (click)="editAccount(account.IdCuenta)"></span>
                   &nbsp;&nbsp;
-                  <span class="btn btn-info glyphicon glyphicon-refresh" (click)="changeStatus(account.IdCuenta)" title="Cambiar estado"></span>
+                  <span *ngIf="editar" class="btn btn-info glyphicon glyphicon-refresh" (click)="changeStatus(account.IdCuenta)" title="Cambiar estado"></span>
                 </td>
               </tr>             
             </tbody>

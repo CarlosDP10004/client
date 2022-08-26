@@ -10,7 +10,7 @@
     </div><br>
     <div class="=row">
       <div class="col-md-8">
-        <span (click)="addDepartament()" class="btn btn-primary btn-lg">Nuevo departamento</span>
+        <span *ngIf="agregar" (click)="addDepartament()" class="btn btn-primary btn-lg">Nuevo departamento</span>
       </div>&nbsp;
       <div class="col-md-4 input-icono">  
         <input type="text" class="forms-control tamanio" placeholder="Buscar..." [(ngModel)]="departamento" name="departamento">      
@@ -40,9 +40,9 @@
                   <ng-template #desactivado>Desactivado</ng-template>
                 </td>
                 <td>
-                  <span class="btn btn-primary glyphicon glyphicon-pencil" title="Editar" (click)="editDepartament(departament.IdUnidad)"></span>
+                  <span *ngIf="editar" class="btn btn-primary glyphicon glyphicon-pencil" title="Editar" (click)="editDepartament(departament.IdUnidad)"></span>
                   &nbsp;&nbsp;
-                  <span class="btn btn-info glyphicon glyphicon-refresh" title="Cambiar estado" (click)="changeStatus(departament.IdUnidad)"></span>
+                  <span *ngIf="editar" class="btn btn-info glyphicon glyphicon-refresh" title="Cambiar estado" (click)="changeStatus(departament.IdUnidad)"></span>
                 </td>
               </tr>             
             </tbody>            

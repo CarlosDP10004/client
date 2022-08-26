@@ -28,7 +28,7 @@
                 <th >{{item.IdConfiguracion}}</th>
                 <td>{{item.Tipo}}</td>
                 <td>{{item.Nombre}}</td>
-                <td><span class="btn btn-primary " (click)="editSetting(item.IdConfiguracion)">
+                <td><span *ngIf="editar" class="btn btn-primary " (click)="editSetting(item.IdConfiguracion)">
                   <span class="glyphicon glyphicon-pencil"></span></span></td>
               </tr>              
             </tbody>

@@ -36,7 +36,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let asset of assets | activo: filter2 | paginate: { itemsPerPage: 10, currentPage: page }">
+              <tr *ngFor="let asset of assets | activo: filter2 | paginate: { itemsPerPage: number, currentPage: page }">
                 <th>{{asset.CodigoAF}}</th>
                 <td>{{asset.Descripcion}}</td>               
                 <td>{{asset.NombreMarca}}</td>               
@@ -60,7 +60,15 @@
                                  previousLabel="Anterior"
                                  responsive="true"
                                  screenReaderPaginationLabel="Paginacion" >
-            </pagination-controls>                          
+            </pagination-controls>  
+            <div class="mt-3" align="right">
+              Items por pagina:
+              <select #selectList (change)="seleccion(selectList.value)">
+                <option *ngFor="let size of pageSizes" [ngValue]="size">
+                  {{ size }}
+                </option>
+              </select>
+            </div>
         </div>
       </div>
     </div>

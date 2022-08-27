@@ -33,7 +33,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let request of requests | descargo: filter5 | paginate: { itemsPerPage: 10, currentPage: page }">
+              <tr *ngFor="let request of requests | descargo: filter5 | paginate: { itemsPerPage: number, currentPage: page }">
                 <th>{{request.IdSolicitud}}</th>
                 <td>{{request.Solicitante}}</td>               
                 <td>{{request.Fecha_Solicitud}}</td>
@@ -54,7 +54,15 @@
                                  previousLabel="Anterior"
                                  responsive="true"
                                  screenReaderPaginationLabel="Paginacion" >
-            </pagination-controls>                          
+            </pagination-controls> 
+            <div class="mt-3" align="right">
+              Items por pagina:
+              <select #selectList (change)="seleccion(selectList.value)">
+                <option *ngFor="let size of pageSizes" [ngValue]="size">
+                  {{ size }}
+                </option>
+              </select>
+            </div>                         
         </div>
       </div>
     </div>

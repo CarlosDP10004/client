@@ -23,6 +23,11 @@ export class BrandsListComponent implements OnInit {
   global: any[] = [];
   permissions: any[] = [];
 
+  number: number = 10;
+  pageSize = 10;
+  pageSizes = [10,20,30,50,100];
+  sizeI:number;
+
   constructor(
     private bsModalService: BsModalService,
     private brandService: BrandService,
@@ -31,6 +36,12 @@ export class BrandsListComponent implements OnInit {
   ) { 
     this.showAll();
     this.getPermissions();
+  }
+
+  seleccion(sizeI:number){
+    console.log(sizeI);
+    this.number = sizeI;
+    console.log(sizeI);
   }
 
   showAll() {

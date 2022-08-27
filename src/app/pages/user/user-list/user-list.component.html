@@ -33,7 +33,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let user of users | usuario:filter3 | paginate: { itemsPerPage: 10, currentPage: page }">
+              <tr *ngFor="let user of users | usuario:filter3 | paginate: { itemsPerPage: number, currentPage: page }">
                 <th>{{user.IdUsuario}}</th>
                 <td>{{user.NombreUsuario}}</td>                
                 <td>
@@ -57,7 +57,15 @@
                                  previousLabel="Anterior"
                                  responsive="true"
                                  screenReaderPaginationLabel="Paginacion" >
-            </pagination-controls>                                                      
+            </pagination-controls>   
+            <div class="mt-3" align="right">
+              Items por pagina:
+              <select #selectList (change)="seleccion(selectList.value)">
+                <option *ngFor="let size of pageSizes" [ngValue]="size">
+                  {{ size }}
+                </option>
+              </select>
+            </div>                                                   
         </div>
       </div>
     </div>

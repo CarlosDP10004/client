@@ -38,4 +38,12 @@
     justify-self: unset;
     justify-content: center;
     justify-items: center;
+    z-index: 99 !important;
+}
+
+.marcaIma{     
+    margin-bottom: -600px !important;
+    margin-left: 370px !important;
+    margin-top: -50px !important;
+    opacity: 0.1;
 }

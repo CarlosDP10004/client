@@ -37,7 +37,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let maintenance of maintenances | asig :filter4">
+              <tr *ngFor="let maintenance of maintenances | asig :filter4 | paginate: { itemsPerPage: number, currentPage: page }">
                 <th>{{maintenance.IdMantenimiento}}</th>
                 <td>{{maintenance.CodigoAF}}</td>                    
                 <td>{{maintenance.FechaInicio | date:'dd/MM/yyyy'}}</td>
@@ -64,7 +64,15 @@
                                  previousLabel="Anterior"
                                  responsive="true"
                                  screenReaderPaginationLabel="Paginacion" >
-            </pagination-controls>                          
+            </pagination-controls>       
+            <div class="mt-3" align="right">
+              Items por pagina:
+              <select #selectList (change)="seleccion(selectList.value)">
+                <option *ngFor="let size of pageSizes" [ngValue]="size">
+                  {{ size }}
+                </option>
+              </select>
+            </div>                   
         </div>
       </div>
     </div>

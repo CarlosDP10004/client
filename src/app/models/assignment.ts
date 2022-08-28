@@ -1,5 +1,6 @@
 export interface Assignment {
     IdUnidad:number;
+    JefeUnidad:string;
     IdPlaza:number;
     IdEstado:number;
     IdArchivo:number;
@@ -10,6 +11,7 @@ export interface Assignment {
 
 export class AssignmentModel implements Assignment{
     IdUnidad: number;
+    JefeUnidad: string;
     IdPlaza: number;
     IdEstado: number;
     IdArchivo: number;
@@ -19,6 +21,7 @@ export class AssignmentModel implements Assignment{
         let assignment = new AssignmentModel();
         let array: any[] = [];
         assignment.IdUnidad = form.get('IdUnidad').value;
+        assignment.JefeUnidad = form.get('JefeUnidad').value;
         assignment.IdPlaza = form.get('IdPlaza').value;
         assignment.IdEstado = form.get('IdEstado').value;
         assignment.IdArchivo = archivo;

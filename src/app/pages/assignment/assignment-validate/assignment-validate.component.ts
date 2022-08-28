@@ -79,6 +79,7 @@ export class AssignmentValidateComponent implements OnInit {
     let IdAssignment = this.route.snapshot.paramMap.get("id");
     this.validateAssignment = this.formBuilder.group({
       IdUnidad:['',[Validators.required]],
+      JefeUnidad:['',[Validators.required]],
       IdPlaza:['',[Validators.required]],
       Empleado:['',[Validators.required]],
       IdEstado:['',[Validators.required]],
@@ -152,6 +153,7 @@ export class AssignmentValidateComponent implements OnInit {
       console.log(this.assignmentData);
       if(this.validateAssignment!=null && this.assignmentData!=null){
         this.validateAssignment.controls['IdUnidad'].setValue(this.assignmentData.IdUnidad);
+        this.validateAssignment.controls['JefeUnidad'].setValue(this.assignmentData.JefeUnidad);
         this.validateAssignment.controls['IdPlaza'].setValue(this.assignmentData.IdPlaza);
         this.validateAssignment.controls['IdEstado'].setValue(this.assignmentData.IdEstado);
         this.currentStatus =  this.assignmentData.estado.NombreEstado == 'Pendiente' ? true : false;

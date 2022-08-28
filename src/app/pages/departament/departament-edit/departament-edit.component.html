@@ -5,7 +5,13 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="onClose()"><span aria-hidden="true">&times;</span></button>
           <h4 class="modal-title sombra" id="add-modal-label"><img src="../../../assets/images/editar.png" alt="Logo de la DNM" class="Icono">&nbsp;&nbsp;Editar departamento</h4>
         </div>
-        <div class="modal-body">          
+        <div class="modal-body">   
+          <div class="form-group">
+            <label class="col-sm-2 control-label texto">Código</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" formControlName="CodigoUnidad" />
+            </div>
+          </div>         
           <div class="form-group">
             <label class="col-sm-2 control-label texto">Nombre</label>
             <div class="col-sm-10">

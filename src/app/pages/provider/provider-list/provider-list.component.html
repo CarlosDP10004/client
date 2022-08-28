@@ -24,6 +24,7 @@
             <thead>
               <tr class="estiloCabecera">
                 <th scope="col" width="10%" bgcolor="#c9a892">Correlativo</th>
+                <th scope="col"  bgcolor="#c9a892">Documento</th>
                 <th scope="col"  bgcolor="#c9a892">Nombre proveedor</th>
                 <th scope="col"  bgcolor="#c9a892">Estado</th>
                 <th scope="col"  bgcolor="#c9a892">Acciones</th>
@@ -32,6 +33,7 @@
             <tbody>
               <tr *ngFor="let provider of providers | proveedor: proveedor| paginate: { itemsPerPage: number, currentPage: page }">
                 <th >{{provider.IdProveedor}}</th>
+                <td>{{provider.DocumentoProveedor}}</td>
                 <td>{{provider.NombreProveedor}}</td>
                 <td>
                   <p *ngIf="provider.Estado; else desactivado">Activo</p>

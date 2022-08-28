@@ -81,6 +81,7 @@ export class AssignmentEditComponent implements OnInit {
     let IdAssignment = this.route.snapshot.paramMap.get("id");
     this.editAssignment = this.formBuilder.group({
       IdUnidad:['',[Validators.required]],
+      JefeUnidad:['',[Validators.required]],
       IdPlaza:['',[Validators.required]],
       Empleado:['',[Validators.required]],
       IdEstado:['',[Validators.required]],
@@ -155,6 +156,7 @@ export class AssignmentEditComponent implements OnInit {
       
       if(this.editAssignment!=null && this.assignmentData!=null){
         this.editAssignment.controls['IdUnidad'].setValue(this.assignmentData.IdUnidad);
+        this.editAssignment.controls['JefeUnidad'].setValue(this.assignmentData.JefeUnidad);
         this.editAssignment.controls['IdPlaza'].setValue(this.assignmentData.IdPlaza);
         this.editAssignment.controls['IdEstado'].setValue(this.assignmentData.IdEstado);         
         this.warning = this.assignmentData.estado.NombreEstado == 'Aprobada' ? true : false;

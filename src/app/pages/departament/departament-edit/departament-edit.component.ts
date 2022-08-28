@@ -29,6 +29,7 @@ export class DepartamentEditComponent implements OnInit {
     private errorService: ErrorService
   ) {
     this.editDepartament = this.builder.group({
+      CodigoUnidad:new FormControl('', []),
       IdUsuario: new FormControl(null, []),
       NombreUnidad: new FormControl('', [])
     });
@@ -51,6 +52,7 @@ export class DepartamentEditComponent implements OnInit {
           this.departamentData = data;
           
           if (this.editDepartament!=null && this.departamentData!=null) {
+            this.editDepartament.controls['CodigoUnidad'].setValue(this.departamentData.CodigoUnidad);
             this.editDepartament.controls['NombreUnidad'].setValue(this.departamentData.NombreUnidad);
             this.editDepartament.controls['IdUsuario'].setValue(this.departamentData.IdUsuario);
           }
@@ -73,6 +75,7 @@ export class DepartamentEditComponent implements OnInit {
 
   guardarDepartamento(){
     let departamentData = {
+      'CodigoUnidad': this.editDepartament.get('CodigoUnidad').value,
       'NombreUnidad': this.editDepartament.get('NombreUnidad').value,
       'IdUsuario': this.editDepartament.get('IdUsuario').value,
     };

@@ -9,6 +9,7 @@ import { AttachmentService } from 'src/app/core/http/attachment.service';
 import { ClasificationService } from 'src/app/core/http/clasification.service';
 import { DepartamentsService } from 'src/app/core/http/departaments.service';
 import { ErrorService } from 'src/app/core/http/error.service';
+import { RequestService } from 'src/app/core/http/request.service';
 import { WorkStationService } from 'src/app/core/http/work-station.service';
 import { AssignmentModel } from 'src/app/models/assignment';
 import Swal from 'sweetalert2';
@@ -34,11 +35,14 @@ export class AssignmentAddComponent implements OnInit {
   filterClasification: any[] = [];
   filterAsset: any[] = [];
 
+  aux: any;
+
   constructor(
     private formBuilder:FormBuilder,   
     private assignmentService: AssignmentService,
     private workStationService: WorkStationService,
     private router:Router,
+    private requestService: RequestService,
     private departamentService: DepartamentsService,
     private assetService: AssetsService,
     private errorService: ErrorService,
@@ -62,6 +66,7 @@ export class AssignmentAddComponent implements OnInit {
   createNewForm() {
     this.addAssignment = this.formBuilder.group({
       IdUnidad:[null,[Validators.required]],
+      JefeUnidad: ['',[Validators.required]],
       IdPlaza:[null,[Validators.required]],
       Empleado:[null,[Validators.required]],
       IdEstado:['Pendiente',[]],
@@ -184,6 +189,13 @@ export class AssignmentAddComponent implements OnInit {
         confirmButtonColor: '#c9a892',
         confirmButtonText: 'Aceptar'
       }) 
+    });
+
+    this.requestService.getUnitBoss(IdUnidad).subscribe(data => {
+      this.aux = data;
+      this.addAssignment.controls['JefeUnidad'].setValue(this.aux.displayname[0]);      
+    }, error => { 
+      console.log("ocurrió un error al procesar los datos: "+ error);
     });
   }
 

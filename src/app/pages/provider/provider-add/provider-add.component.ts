@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { ErrorService } from 'src/app/core/http/error.service';
@@ -14,6 +14,9 @@ export class ProviderAddComponent implements OnInit {
   addProvider: FormGroup;
   event: EventEmitter<any>=new EventEmitter();
 
+  options = [{id:1, name: 'DUI'},{id:2, name:'NIT'}];
+  selected: number;
+
   constructor(
     private bsModalRef: BsModalRef,
     private builder: FormBuilder,
@@ -21,7 +24,9 @@ export class ProviderAddComponent implements OnInit {
     private providerService: ProviderService,
     private errorService: ErrorService
   ) { 
-    this.addProvider = this.builder.group({      
+    this.addProvider = this.builder.group({
+      Seleccion: new FormControl(null, []),
+      DocumentoProveedor: new FormControl(null, []),
       NombreProveedor: new FormControl('', [])
     });
   }
@@ -31,6 +36,7 @@ export class ProviderAddComponent implements OnInit {
 
   guardarProveedor(){
     let postData = {
+      'DocumentoProveedor': this.addProvider.get('DocumentoProveedor').value,
       'NombreProveedor': this.addProvider.get('NombreProveedor').value
     };
     this.providerService.addProvider(postData).subscribe(data=>{
@@ -47,5 +53,7 @@ export class ProviderAddComponent implements OnInit {
   onClose(){
     this.bsModalRef.hide();
   }
+
+  get Seleccion():any{return this.addProvider.get('Seleccion');}
 
 }

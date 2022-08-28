@@ -28,15 +28,23 @@
 
       <div class="row Espacio">
         <div class="col-sm-6">
+          <label class="col-sm-10 control-label texto">Jefe de la unidad</label><br />
+          <input class="form-control bor tam" formControlName="JefeUnidad" disabled/>          
+        </div>
+        
+        <div class="col-sm-6">
+          <label class="col-sm-4 control-label texto">Plaza:</label><br />
+          <input type="text" class="form-control bor tam" disabled formControlName="Empleado"/>
+        </div>
+      </div>
+
+      <div class="row Espacio">
+        <div class="col-sm-6">
           <label class="col-sm-4 control-label texto">Estado:</label><br />
           <select class="form-control bor tam" formControlName="IdEstado" disabled>
             <option value="" hidden>Selecciona el Estado</option>
             <option *ngFor="let item of statusAssignments" [value]="item.IdEstado">{{item.NombreEstado}}</option>
           </select>
-        </div>
-        <div class="col-sm-6">
-          <label class="col-sm-4 control-label texto">Plaza:</label><br />
-          <input type="text" class="form-control bor tam" disabled formControlName="Empleado"/>
         </div>
       </div>
     

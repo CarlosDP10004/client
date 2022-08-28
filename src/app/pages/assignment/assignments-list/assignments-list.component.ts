@@ -15,6 +15,11 @@ export class AssignmentsListComponent implements OnInit {
   page: number = 1;
   assignments: any[] = [];
 
+  number: number = 10;
+  pageSize = 10;
+  pageSizes = [10,20,30,50,100];
+  sizeI:number;
+
   constructor(
     private assignmentService: AssignmentService,
     private errorService: ErrorService,
@@ -23,6 +28,12 @@ export class AssignmentsListComponent implements OnInit {
 
   ngOnInit(): void {
     this.showAll();
+  }
+
+  seleccion(sizeI:number){
+    console.log(sizeI);
+    this.number = sizeI;
+    console.log(sizeI);
   }
 
   showAll(){

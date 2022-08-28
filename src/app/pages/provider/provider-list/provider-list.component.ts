@@ -23,6 +23,11 @@ export class ProviderListComponent {
   global: any[] = [];
   permissions: any[] = [];
 
+  number: number = 10;
+  pageSize = 10;
+  pageSizes = [10,20,30,50,100];
+  sizeI:number;
+
   constructor(
     private bsModalService: BsModalService,
     private providerService: ProviderService,
@@ -32,6 +37,12 @@ export class ProviderListComponent {
     this.showAll();
     this.getPermissions();
    }
+   seleccion(sizeI:number){
+    console.log(sizeI);
+    this.number = sizeI;
+    console.log(sizeI);
+  }
+
   showAll() {
     this.providerService.showAll().subscribe(data => {
       Object.assign(this.providers, data);

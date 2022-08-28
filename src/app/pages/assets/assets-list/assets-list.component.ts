@@ -10,9 +10,16 @@ import Swal from 'sweetalert2';
   styleUrls: ['./assets-list.component.scss']
 })
 export class AssetsListComponent {
+  
   filter2: any;  
   page: number = 1;
-  assets: any[] = [];
+  assets: any[] = []; 
+
+  number: number = 10;
+  pageSize = 10;
+  pageSizes = [10,20,30,50,100];
+  sizeI:number;
+  
 
   constructor(
     private assetService: AssetsService,
@@ -21,6 +28,12 @@ export class AssetsListComponent {
 
   ) { 
     this.showAll();
+  }
+
+  seleccion(sizeI:number){
+    console.log(sizeI);
+    this.number = sizeI;
+    console.log(sizeI);
   }
 
   showAll(){

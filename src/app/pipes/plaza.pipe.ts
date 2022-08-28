@@ -12,6 +12,7 @@ export class PlazaPipe implements PipeTransform {
     for(const workStation of value){
       if(workStation.IdPlaza.toString().toLowerCase().includes(args.toLowerCase())
       || workStation.NombrePlaza.toLowerCase().includes(args.toLowerCase()) 
+      || workStation.NombreEmpleado.toLowerCase().includes(args.toLowerCase()) 
       || workStation.NombreUnidad.toString().toLowerCase().includes(args.toLowerCase())      
        )
       {

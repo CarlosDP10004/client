@@ -25,6 +25,11 @@ export class DepartamentListComponent {
   global: any[] = [];
   permissions: any[] = [];
 
+  number: number = 10;
+  pageSize = 10;
+  pageSizes = [10,20,30,50,100];
+  sizeI:number;
+
   constructor(
     private bsModalService: BsModalService,
     private toastr: ToastrService,
@@ -36,6 +41,12 @@ export class DepartamentListComponent {
     this.getPermissions();
    }
 
+
+   seleccion(sizeI:number){
+    console.log(sizeI);
+    this.number = sizeI;
+    console.log(sizeI);
+  }
 
   showAll(){
     this.departamentService.showAll().subscribe(data => {

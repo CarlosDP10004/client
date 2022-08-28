@@ -19,6 +19,11 @@ export class ReadmissionListComponent {
   assets: any[] = [];
   bsModalRef: BsModalRef;
 
+  number: number = 10;
+  pageSize = 10;
+  pageSizes = [10,20,30,50,100];
+  sizeI:number;
+
   constructor(
     private bsModalService: BsModalService,
     private readmisionService: ReadmisionService,
@@ -26,6 +31,12 @@ export class ReadmissionListComponent {
     private toastr: ToastrService
   ) { 
     this.showAll();
+  }
+
+  seleccion(sizeI:number){
+    console.log(sizeI);
+    this.number = sizeI;
+    console.log(sizeI);
   }
 
   showAll(){

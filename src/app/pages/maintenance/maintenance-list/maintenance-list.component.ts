@@ -22,6 +22,11 @@ export class MaintenanceListComponent implements OnInit {
   requestData: any;
   id: any;
   code: string;
+
+  number: number = 10;
+  pageSize = 10;
+  pageSizes = [10,20,30,50,100];
+  sizeI:number;
   @Output() messageEvent = new EventEmitter<string>();
 
   constructor(
@@ -39,6 +44,12 @@ export class MaintenanceListComponent implements OnInit {
       this.id = params['id'];
     })    
     this.showAll(this.id);
+  }
+
+  seleccion(sizeI:number){
+    console.log(sizeI);
+    this.number = sizeI;
+    console.log(sizeI);
   }
 
   showAll(idAsset: any){

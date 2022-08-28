@@ -17,6 +17,9 @@ export class ProviderEditComponent implements OnInit {
   id: number;
   providerData: any;
 
+  options = [{id:1, name: 'DUI'},{id:2, name:'NIT'}];
+  selected: number;
+
   constructor(
     private builder: FormBuilder, 
     private providerService: ProviderService,
@@ -25,6 +28,8 @@ export class ProviderEditComponent implements OnInit {
     private errorService: ErrorService
   ) { 
     this.editProvider = this.builder.group({
+      Seleccion: new FormControl(null, []),
+      DocumentoProveedor: new FormControl(null, []),
       NombreProveedor: new FormControl(null, [])
     });
 
@@ -33,8 +38,9 @@ export class ProviderEditComponent implements OnInit {
       if (this.id !== undefined) {
         this.providerService.getProvider(this.id).subscribe(data => {
           this.providerData = data;
-          
+          this.selected = this.providerData.DocumentoProveedor.length > 9 ? 2 : 1;
           if (this.editProvider!=null && this.providerData!=null) {
+            this.editProvider.controls['DocumentoProveedor'].setValue(this.providerData.DocumentoProveedor);
             this.editProvider.controls['NombreProveedor'].setValue(this.providerData.NombreProveedor);
           }
         }, error => { 
@@ -55,6 +61,7 @@ export class ProviderEditComponent implements OnInit {
 
   guardarProveedor(){
     let providerData = {
+      'DocumentoProveedor': this.editProvider.get('DocumentoProveedor').value,
       'NombreProveedor': this.editProvider.get('NombreProveedor').value,
     };
     this.providerService.editProvider(this.id, providerData).subscribe(data => {       

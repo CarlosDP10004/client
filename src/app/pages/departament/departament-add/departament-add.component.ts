@@ -25,9 +25,10 @@ export class DepartamentAddComponent implements OnInit {
     private departamentService: DepartamentsService,
     private errorService: ErrorService
   ) {
-    this.addDepartament = this.builder.group({      
+    this.addDepartament = this.builder.group({   
+      CodigoUnidad: new FormControl('', []),
       NombreUnidad: new FormControl('', []),
-      IdUsuario: new FormControl('', [])
+      IdUsuario: new FormControl(null, [])
     });
     this.userService.showAll().subscribe(data => {
       Object.assign(this.users, data);
@@ -48,6 +49,7 @@ export class DepartamentAddComponent implements OnInit {
 
   guardarDepartamento(){
     let postData = {
+      'CodigoUnidad': this.addDepartament.get('CodigoUnidad').value,
       'NombreUnidad': this.addDepartament.get('NombreUnidad').value,
       'IdUsuario': this.addDepartament.get('IdUsuario').value
     };

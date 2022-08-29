@@ -3,8 +3,10 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { AssetsService } from 'src/app/core/http/assets.service';
+import { AuthService } from 'src/app/core/http/auth.service';
 import { ErrorService } from 'src/app/core/http/error.service';
 import { MaintenanceService } from 'src/app/core/http/maintenance.service';
+import { PermissionModel } from 'src/app/models/permission';
 import Swal from 'sweetalert2';
 import { MaintenanceAddComponent } from '../maintenance-add/maintenance-add.component';
 
@@ -23,6 +25,9 @@ export class MaintenanceListComponent implements OnInit {
   id: any;
   code: string;
 
+  global: any[] = [];
+  permissions: any[] = [];
+
   number: number = 10;
   pageSize = 10;
   pageSizes = [10,20,30,50,100];
@@ -34,6 +39,7 @@ export class MaintenanceListComponent implements OnInit {
     private assetsService: AssetsService,
     private errorService: ErrorService,
     private route: ActivatedRoute,
+    private authService: AuthService,
     private toastr: ToastrService,
     private router: Router
   ) { }
@@ -44,6 +50,7 @@ export class MaintenanceListComponent implements OnInit {
       this.id = params['id'];
     })    
     this.showAll(this.id);
+    this.getPermissions();
   }
 
   seleccion(sizeI:number){
@@ -87,5 +94,30 @@ export class MaintenanceListComponent implements OnInit {
       this.toastr.success(error.toString());
     });
   }
+
+  getPermissions(){
+    let aux = new PermissionModel();
+    this.authService.getPermission().subscribe(async data => {
+      Object.assign(this.global, data);
+      this.permissions = aux.validatePermission(this.global, 'Mantenimientos');
+    }, error =>{
+      console.log(error);
+    });
+}
+
+
+validate(permission: string){
+    let authorized = false;
+    this.permissions.forEach(x => {       
+      if(x.name.includes(permission)){
+        authorized = true;
+      }
+    });
+    return authorized;
+}
+
+
+get agregar() { return this.validate('Agregar'); }
+get editar() { return this.validate('Editar'); }
 
 }

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AboutusComponent } from 'src/app/pages/aboutus/aboutus.component';
 import { HomeComponent } from 'src/app/pages/home/home.component';
 import { UnauthorizedComponent } from '../unauthorized/unauthorized.component';
 import { TemplateComponent } from './template.component';
@@ -105,6 +106,10 @@ const routes: Routes = [
         loadChildren: () =>
         import('../../pages/reports/reports.module').then(m => m.ReportsModule)
       },
+      {
+        path: "Assets/AboutUs", 
+        component: AboutusComponent
+      } ,
       {
         path: "Unauthorized", 
         component: UnauthorizedComponent

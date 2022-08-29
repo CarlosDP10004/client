@@ -12,7 +12,7 @@
 
     <div class="=row">
       <div class="col-md-8">
-        <span routerLink="/Assets/Supplies/Add" class="btn btn-primary btn-lg">Nuevo activo</span>             
+        <span *ngIf="agregar" routerLink="/Assets/Supplies/Add" class="btn btn-primary btn-lg">Nuevo activo</span>             
         </div>&nbsp;
       <div class="col-md-4 input-icono">  
         <input type="text" class="forms-control tamanio" placeholder="Buscar..." [(ngModel)]="filter2" name="filter2">      
@@ -45,9 +45,9 @@
                 <td>{{asset.Fecha_Compra}}</td>
                 <td>{{asset.NombreEstado}}</td>
                 <td>
-                  <span class="btnEspacio btn btn-primary btn-sm glyphicon glyphicon-pencil" title="Editar" (click)="editAsset(asset.IdActivoFijo)"></span>            
-                  <span class="btnEspacio btn btn-info btn-sm glyphicon glyphicon-list" title="Ver histórico" (click)="watchTrace(asset.IdActivoFijo)"></span>                 
-                  <span *ngIf="asset.NombreEstado == 'En Bodega' || asset.NombreEstado == 'En Mantenimiento'" class="btn btn-default btn-sm glyphicon glyphicon-cog" title="Mantenimiento" (click)="maintenance(asset.IdActivoFijo)"></span>
+                  <span *ngIf="editar" class="btnEspacio btn btn-primary btn-sm glyphicon glyphicon-pencil" title="Editar" (click)="editAsset(asset.IdActivoFijo)"></span>            
+                  <span *ngIf="historico" class="btnEspacio btn btn-info btn-sm glyphicon glyphicon-list" title="Ver histórico" (click)="watchTrace(asset.IdActivoFijo)"></span>                 
+                  <span *ngIf="asset.NombreEstado == 'En Bodega' || asset.NombreEstado == 'En Mantenimiento' && mantenimiento" class="btn btn-default btn-sm glyphicon glyphicon-cog" title="Mantenimiento" (click)="maintenance(asset.IdActivoFijo)"></span>
                 </td>
               </tr>             
             </tbody>            

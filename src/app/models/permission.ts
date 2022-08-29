@@ -65,19 +65,19 @@ export class PermissionModel implements Permission{
     setPermission(list: any): any {
         let permission = new PermissionModel();
 
-        let activos = ['Activos.Lista', 'Asignaciones.Lista', 'Descargos.Lista', 'Salidas.Lista', 'PréstamosExt.Lista', 'PréstamosInt.Lista', 'Activos.Agregar', 'Asignaciones.Agregar', 'Descargos.Agregar', 'Salidas.Agregar', 'PréstamosExt.Agregar', 'PréstamosInt.Agregar', 'Activos.Editar', 'Asignaciones.Editar', 'Descargos.Editar', 'Salidas.Editar', 'PréstamosExt.Editar', 'PréstamosInt.Editar'];
+        let activos = ['Activos.Lista', 'Asignaciones.Lista', 'Descargos.Lista', 'Salidas.Lista', 'PréstamosExt.Lista', 'PréstamosInt.Lista', 'Activos.Agregar', 'Asignaciones.Agregar', 'Descargos.Agregar', 'Salidas.Agregar', 'PréstamosExt.Agregar', 'PréstamosInt.Agregar', 'Activos.Editar', 'Asignaciones.Editar', 'Asignaciones.Remover', 'Asignaciones.Validar', 'Descargos.Validar', 'Salidas.Validar', 'PréstamosExt.Validar', 'PréstamosInt.Validar', 'Activos.Histórico', 'Mantenimientos.Lista', 'Mantenimientos.Agregar', 'Mantenimientos.Editar'];
         let reportes = ['Reportes.General', 'Reportes.Depreciación', 'Reportes.Amortización', 'Reportes.Unidades', 'Reportes.Estados', 'Reportes.Histórico',];
         let catalogos = ['Unidades.Lista', 'Proveedores.Lista', 'Plazas.Lista', 'Marcas.Lista', 'Cuentas.Lista', 'Clasificaciones.Lista', 'Unidades.Agregar', 'Proveedores.Agregar', 'Plazas.Agregar', 'Marcas.Agregar', 'Cuentas.Agregar', 'Clasificaciones.Agregar', 'Unidades.Editar', 'Proveedores.Editar', 'Plazas.Editar', 'Marcas.Editar', 'Cuentas.Editar', 'Clasificaciones.Editar',];
         let seguridad = ['Roles.Lista', 'Usuarios.Lista', 'Roles.Agregar', 'Usuarios.Agregar', 'Roles.Editar', 'Usuarios.Editar',];
 
 
         permission.asset = this.validateList(list, activos) ? true : false;
-        permission.registerAsset = this.validateList(list, ['Activos.Lista', 'Activos.Agregar', 'Activos.Editar']) ? true : false;
-        permission.assignmentAsset = this.validateList(list, ['Asignaciones.Lista', 'Asignaciones.Agregar', 'Asignaciones.Editar']) ? true : false;
-        permission.dischargeAsset = this.validateList(list, ['Descargos.Lista', 'Descargos.Agregar', 'Descargos.Editar']) ? true : false;
-        permission.departureAsset = this.validateList(list, ['Salidas.Lista', 'Salidas.Agregar', 'Salidas.Editar']) ? true : false;
-        permission.extLoanAsset = this.validateList(list, ['PréstamosExt.Lista', 'PréstamosExt.Agregar', 'PréstamosExt.Editar']) ? true : false;
-        permission.intLoanAsset = this.validateList(list, ['PréstamosInt.Lista', 'PréstamosInt.Agregar', 'PréstamosInt.Editar']) ? true : false;
+        permission.registerAsset = this.validateList(list, ['Activos.Lista', 'Activos.Agregar', 'Activos.Editar', 'Activos.Histórico']) ? true : false;
+        permission.assignmentAsset = this.validateList(list, ['Asignaciones.Lista', 'Asignaciones.Agregar', 'Asignaciones.Editar', 'Asignaciones.Remover', 'Asignaciones.Validar']) ? true : false;
+        permission.dischargeAsset = this.validateList(list, ['Descargos.Lista', 'Descargos.Agregar', 'Descargos.Validar']) ? true : false;
+        permission.departureAsset = this.validateList(list, ['Salidas.Lista', 'Salidas.Agregar', 'Salidas.Validar']) ? true : false;
+        permission.extLoanAsset = this.validateList(list, ['PréstamosExt.Lista', 'PréstamosExt.Agregar', 'PréstamosExt.Validar']) ? true : false;
+        permission.intLoanAsset = this.validateList(list, ['PréstamosInt.Lista', 'PréstamosInt.Agregar', 'PréstamosInt.Validar']) ? true : false;
         permission.readmision = this.validateList(list, ['Reingresos.Lista', 'Reingresos.Editar']) ? true : false;
 
         permission.report = this.validateList(list, reportes) ? true : false;

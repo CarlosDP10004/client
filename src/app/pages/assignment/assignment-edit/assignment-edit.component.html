@@ -116,7 +116,7 @@
             </select>
         </div>
         <div class="col-sm-1">
-          <a type="submit" class="btn alinear" style="float: right" (click)="removeAssignment(editAssignment.controls['ListaActivosAsignados']?.value[i]?.IdActivoFijo, i)">                
+          <a *ngIf="remover" type="submit" class="btn alinear" style="float: right" (click)="removeAssignment(editAssignment.controls['ListaActivosAsignados']?.value[i]?.IdActivoFijo, i)">                
             <img src="..\assets\images\trash.png" width="23" height="23">
           </a>
         </div>

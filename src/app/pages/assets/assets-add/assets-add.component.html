@@ -92,7 +92,7 @@
               [searchable]="true"                
               placeholder="Selecciona el proveedor"
               size="10">
-                <ng-option *ngFor="let item of providers" [value]="item.IdProveedor">{{item.DocumentoProveedor}} - {{item.NombreProveedor}}</ng-option>
+                <ng-option *ngFor="let item of providers" [value]="item.IdProveedor">{{item.DocumentoProveedor | documento}} - {{item.NombreProveedor}}</ng-option>
              </ng-select>
             <FONT COLOR="red">
               <small *ngIf="IdProveedor.invalid && IdProveedor.touched">

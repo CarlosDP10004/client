@@ -31,7 +31,7 @@ export class InterceptorService implements HttpInterceptor{
       });
     }
     
-    if(isExpired - new Date().getTime() <= 300000 && this.authService.getToken() != null){
+    if(isExpired - new Date().getTime() <= 300000 && isExpired - new Date().getTime() > 0 && this.authService.getToken() != null){
       Swal.fire({
         title: 'Su sesión está a punto de expirar!!',
         text: "De clic en la opción extender para continuar logueado, o en cerrar sesión para salir del aplicativo",

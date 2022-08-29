@@ -151,6 +151,7 @@ export class ExternalLoansAddComponent implements OnInit {
   }  
 
   chargeBoss(){
+    this.assets = [];
     let IdUnit = this.addRequest.get('IdUnidadActual').value;
     this.requestService.getUnitBoss(IdUnit).subscribe(data => {
       this.aux = data;

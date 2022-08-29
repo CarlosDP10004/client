@@ -21,7 +21,7 @@ import { AboutusComponent } from './pages/aboutus/aboutus.component';
     AppComponent, 
     UnauthorizedComponent,
     NotfoundComponent,
-    AboutusComponent,                
+    AboutusComponent,              
   ],
   imports: [
     BrowserModule,

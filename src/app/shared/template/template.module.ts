@@ -26,6 +26,7 @@ import { DepartamentoPipe } from '../../pipes/departamento.pipe';
 import { PlazaPipe } from '../../pipes/plaza.pipe';
 import { MarcaPipe } from '../../pipes/marca.pipe';
 import { ProveedorPipe } from '../../pipes/proveedor.pipe';
+import { DocumentoPipe } from '../../pipes/documento.pipe'
 
 
 @NgModule({
@@ -50,6 +51,7 @@ import { ProveedorPipe } from '../../pipes/proveedor.pipe';
     PlazaPipe,
     MarcaPipe,
     ProveedorPipe,   
+    DocumentoPipe
   ],
   imports: [
     CommonModule,
@@ -77,6 +79,7 @@ import { ProveedorPipe } from '../../pipes/proveedor.pipe';
     PlazaPipe,
     MarcaPipe,
     ProveedorPipe,     
+    DocumentoPipe
   ],
   bootstrap: [TemplateComponent]
 })

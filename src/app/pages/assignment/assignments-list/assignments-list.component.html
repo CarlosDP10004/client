@@ -11,7 +11,7 @@
     <br>
     <div class="=row">
       <div class="col-md-8">
-        <span routerLink="/Assets/Assignments/Add" class="btn btn-primary btn-lg">Nueva asignación</span>             
+        <span *ngIf="agregar" routerLink="/Assets/Assignments/Add" class="btn btn-primary btn-lg">Nueva asignación</span>             
         </div>&nbsp;
       <div class="col-md-4 input-icono">  
         <input type="text" class="forms-control tamanio" placeholder="Buscar..." [(ngModel)]="filter4" name="filter4">      
@@ -42,13 +42,13 @@
                 <td>{{assignment.Fecha_Asignacion || 'N/A' }}</td>
                 <td>{{assignment.NombreEstado}}</td>
                 <td>
-                  <span *ngIf="assignment.NombreEstado == 'Pendiente'; else bloqueado" class="btn btn-primary glyphicon glyphicon-pencil" title="Editar" (click)="editAssignment(assignment.IdAsignacion)"></span>
+                  <span *ngIf="assignment.NombreEstado == 'Pendiente' && editar; else bloqueado" class="btn btn-primary glyphicon glyphicon-pencil" title="Editar" (click)="editAssignment(assignment.IdAsignacion)"></span>
                   &nbsp;&nbsp;
-                  <span *ngIf="assignment.NombreEstado == 'Pendiente'" class="btn btn-info glyphicon glyphicon-refresh" title="Cambiar estado" (click)="validateAssignment(assignment.IdAsignacion)"></span>
+                  <span *ngIf="assignment.NombreEstado == 'Pendiente' && validar" class="btn btn-info glyphicon glyphicon-refresh" title="Cambiar estado" (click)="validateAssignment(assignment.IdAsignacion)"></span>
                   <ng-template #bloqueado>
                     <span class="btn btn-primary glyphicon glyphicon-eye-open" title="Ver detalles" (click)="detailsAssignment(assignment.IdAsignacion)"></span>
                     &nbsp;&nbsp;
-                    <span *ngIf="assignment.NombreEstado == 'Aprobada'" class="btn btn-info glyphicon glyphicon-wrench" title="Reasignar" (click)="reAssignment(assignment.IdAsignacion)"></span>
+                    <span *ngIf="assignment.NombreEstado == 'Aprobada' && editar" class="btn btn-info glyphicon glyphicon-wrench" title="Reasignar" (click)="reAssignment(assignment.IdAsignacion)"></span>
                   </ng-template>
                   
                 </td>

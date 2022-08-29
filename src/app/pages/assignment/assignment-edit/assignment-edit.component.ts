@@ -7,11 +7,13 @@ import { AccountService } from 'src/app/core/http/account.service';
 import { AssetsService } from 'src/app/core/http/assets.service';
 import { AssignmentService } from 'src/app/core/http/assignment.service';
 import { AttachmentService } from 'src/app/core/http/attachment.service';
+import { AuthService } from 'src/app/core/http/auth.service';
 import { ClasificationService } from 'src/app/core/http/clasification.service';
 import { DepartamentsService } from 'src/app/core/http/departaments.service';
 import { ErrorService } from 'src/app/core/http/error.service';
 import { WorkStationService } from 'src/app/core/http/work-station.service';
 import { AssignmentModel } from 'src/app/models/assignment';
+import { PermissionModel } from 'src/app/models/permission';
 import Swal from 'sweetalert2';
 import { AssignmentRemoveComponent } from '../assignment-remove/assignment-remove.component';
 
@@ -44,6 +46,9 @@ export class AssignmentEditComponent implements OnInit {
 
   warning: boolean = false;
 
+  global: any[] = [];
+  permissions: any[] = [];
+
   constructor(
     private formBuilder:FormBuilder,   
     private assignmentService: AssignmentService,
@@ -57,6 +62,7 @@ export class AssignmentEditComponent implements OnInit {
     private clasificationService: ClasificationService,
     private attachmentService: AttachmentService,       
     private toastr: ToastrService,
+    private authService: AuthService,
     private bsModalService: BsModalService,
   ) { }
 
@@ -75,6 +81,7 @@ export class AssignmentEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.createNewForm();
+    this.getPermissions();
   }
 
   createNewForm() {
@@ -295,6 +302,30 @@ export class AssignmentEditComponent implements OnInit {
       }
     });
   }
+
+  getPermissions(){
+    let aux = new PermissionModel();
+    this.authService.getPermission().subscribe(async data => {
+      Object.assign(this.global, data);
+      this.permissions = aux.validatePermission(this.global, 'Asignaciones');
+    }, error =>{
+      console.log(error);
+    });
+}
+
+
+validate(permission: string){
+    let authorized = false;
+    this.permissions.forEach(x => {       
+      if(x.name.includes(permission)){
+        authorized = true;
+      }
+    });
+    return authorized;
+}
+
+
+  get remover() { return this.validate('Remover'); }
 
 
   get ListaActivos(): any { return this.editAssignment.get('ListaActivos') as any; }

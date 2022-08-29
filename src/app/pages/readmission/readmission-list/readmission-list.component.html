@@ -41,7 +41,7 @@
                 <td>{{asset.JefeUnidadActual}}</td>
                 <td>{{asset.Solicitante}}</td>                
                 <td>
-                  <span class="btn btn-primary glyphicon glyphicon-pencil" title="Editar" (click)="editAdmision(asset.IdActivoFijo)"></span>
+                  <span *ngIf="editar" class="btn btn-primary glyphicon glyphicon-pencil" title="Editar" (click)="editAdmision(asset.IdActivoFijo)"></span>
                   
                 </td>
               </tr>             

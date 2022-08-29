@@ -12,7 +12,7 @@
 
     <div class="=row">
       <div class="col-md-8">
-        <span routerLink="/Assets/Internal-Loans/Add" class="btn btn-primary btn-lg">Nueva solicitud</span>             
+        <span *ngIf="agregar" routerLink="/Assets/Internal-Loans/Add" class="btn btn-primary btn-lg">Nueva solicitud</span>             
         </div>&nbsp;
       <div class="col-md-4 input-icono">  
         <input type="text" class="forms-control tamanio" placeholder="Buscar..." [(ngModel)]="filter5" name="filter5">      
@@ -39,7 +39,7 @@
                 <td>{{request.Fecha_Solicitud}}</td>
                 <td>{{request.NombreEstado}}</td>
                 <td>
-                  <span *ngIf="request.NombreEstado == 'Pendiente'" class="btn btn-info glyphicon glyphicon-check" title="Validar Solicitud" (click)="validateRequest(request.IdSolicitud)"></span>
+                  <span *ngIf="request.NombreEstado == 'Pendiente' && validar" class="btn btn-info glyphicon glyphicon-check" title="Validar Solicitud" (click)="validateRequest(request.IdSolicitud)"></span>
                   &nbsp;&nbsp;
                   <span *ngIf="request.NombreEstado != 'Pendiente'" class="btn btn-primary glyphicon glyphicon-eye-open" title="Detalles" (click)="detailsRequest(request.IdSolicitud)"></span>
                 </td>

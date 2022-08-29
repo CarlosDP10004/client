@@ -15,7 +15,7 @@
 
     <div class="=row">
       <div class="col-md-8">
-        <span (click)="addMaintenance()" class="btn btn-primary btn-lg">Nuevo Mantenimiento</span>             
+        <span *ngIf="agregar" (click)="addMaintenance()" class="btn btn-primary btn-lg">Nuevo Mantenimiento</span>             
         </div>&nbsp;
       <div class="col-md-4 input-icono">  
         <input type="text" class="forms-control tamanio" placeholder="Buscar..." [(ngModel)]="filter4" name="filter4">      
@@ -47,7 +47,7 @@
                 </td>                 
                 <td>{{maintenance.NombreEstado}}</td>
                 <td>
-                  <span *ngIf="maintenance.NombreEstado == 'Iniciado'" class="btn btn-primary glyphicon glyphicon-pencil" title="Editar" (click)="editMaintenance(maintenance.IdMantenimiento)"></span>
+                  <span *ngIf="maintenance.NombreEstado == 'Iniciado' && editar" class="btn btn-primary glyphicon glyphicon-pencil" title="Editar" (click)="editMaintenance(maintenance.IdMantenimiento)"></span>
                   &nbsp;&nbsp;
                   <span *ngIf="maintenance.NombreEstado == 'Finalizado'" class="btn btn-default glyphicon glyphicon-eye-open" title="Detalles" (click)="detailsMaintenance(maintenance.IdMantenimiento)"></span>
                   

@@ -13,13 +13,15 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UnauthorizedComponent } from './shared/unauthorized/unauthorized.component';
 import { NotfoundComponent } from './shared/notfound/notfound.component';
+import { AboutusComponent } from './pages/aboutus/aboutus.component';
 
 
 @NgModule({
   declarations: [
     AppComponent, 
     UnauthorizedComponent,
-    NotfoundComponent,                
+    NotfoundComponent,
+    AboutusComponent,                
   ],
   imports: [
     BrowserModule,

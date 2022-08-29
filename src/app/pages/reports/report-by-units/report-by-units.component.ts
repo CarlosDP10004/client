@@ -89,7 +89,7 @@ export class ReportByUnitsComponent implements OnInit {
     let filter = {
       'Desde': this.filters.get('Desde').value,      
       'Hasta': this.filters.get('Hasta').value,
-      'IdUnidad': this.filters.get('IdUnidad').value,
+      'IdUnidad': this.filters.get('IdUnidad').value.length > 0 ? this.filters.get('IdUnidad').value : []
     }
     this.unidades = "";
     this.response = []; 

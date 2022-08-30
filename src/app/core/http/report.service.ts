@@ -80,7 +80,7 @@ export class ReportService {
         }, 
         tableLineWidth: 0.1, //grosor de la linea externa de la tabla
         tableLineColor: [0,0,0], //color externo de la tabla          
-        theme: 'striped',    //tema de cuadricula si se le quita toma por defecto el striped    
+        theme: 'grid',    //tema de cuadricula si se le quita toma por defecto el striped    
         margin:{top: pdfHeight + 15},
         html: '#Reporte',
         useCss: true, //Sustituye el Style defaultpor el implementado propio

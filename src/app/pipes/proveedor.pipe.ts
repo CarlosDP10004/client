@@ -11,6 +11,7 @@ export class ProveedorPipe implements PipeTransform {
     const resultPosts = [];   
     for(const provider of value){
       if(provider.IdProveedor.toString().toLowerCase().includes(args.toLowerCase())
+      || provider.DocumentoProveedor.toLowerCase().includes(args.toLowerCase())  
       || provider.NombreProveedor.toLowerCase().includes(args.toLowerCase()) )      
       {
         resultPosts.push(provider);      };

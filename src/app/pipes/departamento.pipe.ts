@@ -11,6 +11,7 @@ export class DepartamentoPipe implements PipeTransform {
     const resultPosts = [];   
     for(const departament of value){
       if(departament.IdUnidad.toString().toLowerCase().includes(args.toLowerCase())
+      ||departament.CodigoUnidad.toString().toLowerCase().includes(args.toLowerCase())
       || departament.NombreUnidad.toLowerCase().includes(args.toLowerCase()) 
       || departament.NombreUsuario.toString().toLowerCase().includes(args.toLowerCase())      
        )

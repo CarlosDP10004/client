@@ -1,0 +1,57 @@
+.TituloUsuarioList{
+    border-bottom: 3px solid #5fbae9;
+}
+
+th, td {
+    border: 1px solid rgb(194, 194, 194);
+    text-align: center;   
+    word-wrap: break-word;
+}
+
+.fuenteTitulo{
+    justify-items: center;
+    margin-top: -10px;
+}
+
+.estiloCabecera{
+    font-size: large;
+}
+
+.texto {      
+    text-align: center;
+    font-size: larger;  
+    background-color: #313945; 
+    color: white;
+    border-left: 8px solid #5fbae9;
+    border-top-right-radius: 15px;
+    width: fit-content;    
+}
+
+.texto2 {      
+    text-align: justify;
+    margin-top: -10px!important;  
+}
+
+.ico{
+    background-image: url("../../../assets/images/acercaDe.png");
+}
+.tamanio{      
+    height: 40px;
+    margin-left: -25px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    background-color: white;
+}
+
+.SN {
+    background-image: url("../../../assets/images/SB3.jpeg");    
+    background-position:  center;
+    background-size: cover; 
+    align-items: center;
+    width: 450px;    
+    height: 535px;    
+    border-radius: 15px;
+    margin-bottom: 10px;
+     
+  }
+

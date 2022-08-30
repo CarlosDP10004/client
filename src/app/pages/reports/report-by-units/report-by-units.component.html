@@ -83,8 +83,8 @@
           <table id="Reporte" class="table">  
             <thead>      
             <tr>
-              <th style="text-align: center" bgcolor="#c9a892">N° Inventario</th>
-              <th style="text-align: center" bgcolor="#c9a892">Nombre</th>
+              <th width="13%" style="text-align: center" bgcolor="#c9a892">N° Inventario</th>
+              <th width="13%" style="text-align: center" bgcolor="#c9a892">Nombre</th>
               <th style="text-align: center" bgcolor="#c9a892">Marca</th>
               <th style="text-align: center" bgcolor="#c9a892">Modelo</th>
               <th style="text-align: center" bgcolor="#c9a892">Serie</th>
@@ -95,7 +95,7 @@
               <th style="text-align: center" bgcolor="#c9a892">Fecha Adquisición</th>
             </tr>     
           </thead>  
-          <tbody>  
+          <tbody style="font-size: 9px !important;">  
             <tr *ngFor="let item of response">
               <th style="text-align: center">{{item.CodigoAF}}</th>
               <td style="text-align: center">{{item.Descripcion}}</td>

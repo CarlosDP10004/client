@@ -85,7 +85,6 @@ export class InternalLoansValidateComponent implements OnInit {
     let IdRequest = this.route.snapshot.paramMap.get("id");
     this.requestService.getRequest(IdRequest).subscribe(data => {
       this.requestData = data;
-      console.log(this.requestData);
       this.setStatus(this.requestData.IdEstado);
       if(this.validateRequest!=null && this.requestData!=null){
         this.validateRequest.controls['Tipo'].setValue(this.requestData.Tipo);

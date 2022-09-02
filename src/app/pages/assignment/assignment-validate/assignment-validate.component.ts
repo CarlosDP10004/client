@@ -150,7 +150,6 @@ export class AssignmentValidateComponent implements OnInit {
     this.assignmentService.getAssignment(IdAssignment).subscribe(data => {
       this.assignmentData = data;
       this.chargeWorkStation(this.assignmentData.IdUnidad, this.assignmentData.IdPlaza);
-      console.log(this.assignmentData);
       if(this.validateAssignment!=null && this.assignmentData!=null){
         this.validateAssignment.controls['IdUnidad'].setValue(this.assignmentData.IdUnidad);
         this.validateAssignment.controls['JefeUnidad'].setValue(this.assignmentData.JefeUnidad);

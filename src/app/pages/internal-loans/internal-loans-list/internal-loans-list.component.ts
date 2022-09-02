@@ -37,9 +37,9 @@ export class InternalLoansListComponent implements OnInit {
   }
 
   seleccion(sizeI:number){
-    console.log(sizeI);
+    
     this.number = sizeI;
-    console.log(sizeI);
+    
   }
 
   showAll(){

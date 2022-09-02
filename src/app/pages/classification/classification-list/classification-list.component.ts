@@ -40,9 +40,9 @@ export class ClassificationListComponent {
   }
 
   seleccion(sizeI:number){
-    console.log(sizeI);
+    
     this.number = sizeI;
-    console.log(sizeI);
+    
   }
 
   showAll(){
@@ -105,7 +105,6 @@ export class ClassificationListComponent {
     this.authService.getPermission().subscribe(async data => {
       Object.assign(this.global, data);
       this.permissions = aux.validatePermission(this.global, 'Clasificaciones');
-      console.log(this.permissions);
     }, error =>{
       console.log(error);
     });

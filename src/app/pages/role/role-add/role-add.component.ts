@@ -42,7 +42,6 @@ export class RoleAddComponent implements OnInit {
       'Permisos': this.addRol.get('Permisos').value,
     };
     this.rolService.addRole(postData).subscribe(data=>{
-      console.log(data);
       if(data!=null){
         this.event.emit('OK');
         this.toastr.success(data.toString());

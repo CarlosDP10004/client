@@ -26,7 +26,6 @@ export class AssetsTimelineComponent {
     let IdAsset = this.route.snapshot.paramMap.get("id");
     this.assetService.getTraceAsset(IdAsset).subscribe(data => {
       Object.assign(this.trace, data);
-      console.log(this.trace);
     }, error =>{
       Swal.fire({
         icon: 'error',

@@ -37,15 +37,14 @@ export class ExternalLoansListComponent implements OnInit {
   }
 
   seleccion(sizeI:number){
-    console.log(sizeI);
+    
     this.number = sizeI;
-    console.log(sizeI);
+    
   }
 
   showAll(){
     this.requestService.showAll('Externo').subscribe(data => {      
       Object.assign(this.requests, data);
-      console.log(this.requests);
     }, error => {
       Swal.fire({
         icon: [401, 403].indexOf(error.status) ? 'info' : 'error',

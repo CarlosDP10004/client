@@ -109,7 +109,6 @@ export class DeparturesValidateComponent implements OnInit {
   setStatus(id: number){
     this.status.forEach(element => {
       if(element.IdEstado == id){ 
-        console.log(element);
         this.isPending = element.NombreEstado == 'Pendiente' ? true : false;
       }
     });

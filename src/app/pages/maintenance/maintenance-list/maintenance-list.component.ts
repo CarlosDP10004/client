@@ -54,15 +54,14 @@ export class MaintenanceListComponent implements OnInit {
   }
 
   seleccion(sizeI:number){
-    console.log(sizeI);
+    
     this.number = sizeI;
-    console.log(sizeI);
+    
   }
 
   showAll(idAsset: any){
     this.maintenanceService.showAll(idAsset).subscribe(data => {      
       Object.assign(this.maintenances, data);
-      console.log(this.maintenances);
     }, error => {
       Swal.fire({
         icon: [401, 403].indexOf(error.status) ? 'info' : 'error',

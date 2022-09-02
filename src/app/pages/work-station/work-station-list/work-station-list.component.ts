@@ -40,9 +40,9 @@ export class WorkStationListComponent {
 
 
    seleccion(sizeI:number){
-    console.log(sizeI);
+    
     this.number = sizeI;
-    console.log(sizeI);
+    
   }
 
   showAll(){

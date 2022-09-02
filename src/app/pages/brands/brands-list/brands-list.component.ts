@@ -39,9 +39,9 @@ export class BrandsListComponent implements OnInit {
   }
 
   seleccion(sizeI:number){
-    console.log(sizeI);
+    
     this.number = sizeI;
-    console.log(sizeI);
+    
   }
 
   showAll() {
@@ -108,7 +108,6 @@ export class BrandsListComponent implements OnInit {
     this.authService.getPermission().subscribe(async data => {
       Object.assign(this.global, data);
       this.permissions = aux.validatePermission(this.global, 'Marcas');
-      console.log(this.permissions);
     }, error =>{
       console.log(error);
     });

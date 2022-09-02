@@ -38,9 +38,9 @@ export class ProviderListComponent {
     this.getPermissions();
    }
    seleccion(sizeI:number){
-    console.log(sizeI);
+    
     this.number = sizeI;
-    console.log(sizeI);
+    
   }
 
   showAll() {

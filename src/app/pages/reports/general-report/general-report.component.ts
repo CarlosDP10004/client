@@ -75,6 +75,7 @@ export class GeneralReportComponent implements OnInit {
       'Desde': this.filters.get('Desde').value,      
       'Hasta': this.filters.get('Hasta').value,
     }
+    this.response = [];
     this.setRange();    
     this.reportService.getGeneral(filter).subscribe(data => {
       this.showReport = true;

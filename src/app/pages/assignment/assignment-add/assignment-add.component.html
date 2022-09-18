@@ -37,7 +37,7 @@
           formControlName="IdPlaza"            
           (change)="chargeEmployeeName()"
           [searchable]="true"                
-          placeholder="Selecciona la plaza"
+          placeholder="Selecciona el Empleado"
           size="10" >
           <ng-option *ngFor="let item of workStations" [value]="item.IdPlaza">{{item.NombreEmpleado}}</ng-option>
         </ng-select>

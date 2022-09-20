@@ -53,9 +53,9 @@ export class ReportHistoryComponent implements OnInit {
 
   ngOnInit(): void {
     this.filters = this.formBuilder.group({
-      IdCuenta:['',[Validators.required]],
-      IdClasificacion:['',[Validators.required]],
-      IdActivoFijo:['',[Validators.required]],
+      IdCuenta:[null,[Validators.required]],
+      IdClasificacion:[null,[Validators.required]],
+      IdActivoFijo:[null,[Validators.required]],
     });
     this.settingService.getTitle().subscribe(data => {
       this.Titulo = data['ValorCadena'];
@@ -138,20 +138,22 @@ export class ReportHistoryComponent implements OnInit {
     });
   }
 
-  chargeClasification(value){
+  chargeClasification(){
+    let IdCuenta = this.filters.get('IdCuenta').value;
     this.filterClasification = [];
     this.clasifications.forEach(element => {
-      if(element.IdCuenta == value){
+      if(element.IdCuenta == IdCuenta ){
         this.filterClasification.push(element);
       }
     });
     return this.filterClasification;
   }
 
-  chargeAssets(value){
+  chargeAssets(){
+    let IdClasificacion = this.filters.get('IdClasificacion').value;
     this.filterAsset = [];
     this.assets.forEach(element => {
-      if(element.IdClasificacion == value){
+      if(element.IdClasificacion == IdClasificacion){
         this.filterAsset.push(element);          
       }
     });        

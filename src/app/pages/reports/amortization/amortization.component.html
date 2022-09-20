@@ -105,7 +105,10 @@
               <td style="text-align: center">{{item.ValorCompra | currency: 'USD'| thousand}}</td>
               <td style="text-align: center">{{item.VidaUtil}}</td>
               <td style="text-align: center">{{item.Importe  | currency: 'USD'| thousand}}</td>
-              <td style="text-align: center">{{item.ValorResidual  | currency: 'USD'| thousand}}</td>         
+              <td style="text-align: center">
+                <p *ngIf="item.ValorResidual > 0; else amortizado">{{ item.ValorResidual | currency: 'USD'| thousand}}</p>
+                <ng-template #amortizado style="text-align: center">{{item.ValorCompra * 0.10 | currency: 'USD'| thousand}}</ng-template>
+              </td>
             </tbody>
             </table>
         </div>

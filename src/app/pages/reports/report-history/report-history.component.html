@@ -13,24 +13,39 @@
         <div class="EncabezadoForm shadow-X"><b>&nbsp;Datos Generales:</b></div>
         <div class="EstiloForm1">
           <div class="row Espacio">
-          <div class="margen col-sm-3"><label class="col-sm-6 control-label texto">Cuenta:</label>
-            <select class="form-control" formControlName="IdCuenta" (change)="chargeClasification($event.target.value)">
-              <option value="" hidden>Selecciona la cuenta</option>
-              <option *ngFor="let item of accounts" [value]="item.IdCuenta">{{item.NombreCuenta}}</option>
-            </select>         
+          <div class="margen col-sm-4"><label class="col-sm-6 control-label texto">Cuenta:</label>
+            <ng-select                                 
+                formControlName="IdCuenta"                
+                [searchable]="true"                
+                placeholder="Selecciona la Cuenta"
+                size="10"
+                (change)="chargeClasification()">
+                  <ng-option *ngFor="let item of accounts" [value]="item.IdCuenta">{{item.NombreCuenta}}</ng-option>
+            </ng-select>          
+
+                   
           </div>
   
-          <div class="col-sm-3"><label class="col-sm-6 control-label texto">Clasificación:</label>
-            <select class="form-control" formControlName="IdClasificacion" (change)="chargeAssets($event.target.value)">
-              <option value="" hidden>Selecciona la clasificación</option>
-              <option *ngFor="let item of filterClasification" [value]="item.IdClasificacion">{{item.Descripcion}}</option>
-            </select>          
+          <div class="col-sm-4"><label class="col-sm-6 control-label texto">Clasificación:</label>
+            <ng-select                                 
+            formControlName="IdClasificacion"            
+            [searchable]="true"                
+            placeholder="Selecciona la Clasificación"
+            size="10"
+            (change)="chargeAssets()">
+              <ng-option *ngFor="let item of filterClasification" [value]="item.IdClasificacion">{{item.Descripcion}}</ng-option>
+        </ng-select> 
+      
           </div>
-          <div class="col-sm-5"><label class="col-sm-8 control-label texto">Código Activo Fijo:</label>
-            <select class="form-control" formControlName="IdActivoFijo">
-              <option value="" hidden>Selecciona el activo fijo</option>
-              <option *ngFor="let item of filterAsset" [value]="item.IdActivoFijo">{{item.CodigoAF}}</option>
-            </select>          
+          <div class="col-sm-3"><label class="col-sm-12 control-label texto">Código Activo Fijo:</label>
+            <ng-select                                 
+            formControlName="IdActivoFijo"            
+            [searchable]="true"                
+            placeholder="Selecciona el activo fijo"
+            size="10">
+              <ng-option *ngFor="let item of filterAsset" [value]="item.IdActivoFijo">{{item.CodigoAF}}</ng-option>
+        </ng-select> 
+    
           </div>
         
       </div> 

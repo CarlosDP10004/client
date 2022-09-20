@@ -104,10 +104,16 @@
               <td style="text-align: center">{{item.Descripcion}}</td> 
               <td style="text-align: center">{{item.FechaCompra | date:'dd/MM/yyyy'}}</td>
               <td style="text-align: center">{{item.ValorCompra | currency: 'USD'| thousand}}</td>
-              <td style="text-align: center">{{item.ValorResidual  | currency: 'USD'| thousand}}</td>
+              <td style="text-align: center">
+                <p *ngIf="item.ValorResidual > 0; else depreciado">{{ item.ValorResidual | currency: 'USD'| thousand}}</p>
+                <ng-template #depreciado style="text-align: center">{{item.ValorCompra * 0.10 | currency: 'USD'| thousand}}</ng-template>
+              </td> 
               <td style="text-align: center">{{item.DepreciacionAnual  | currency: 'USD'| thousand}}</td>
               <td style="text-align: center">{{item.DepreciacionAcumulada  | currency: 'USD'| thousand}}</td>
-              <td style="text-align: center">{{item.ValorResidual  | currency: 'USD'| thousand}}</td>          
+              <td style="text-align: center">
+                <p *ngIf="item.ValorResidual > 0; else depreciado">{{ item.ValorResidual | currency: 'USD'| thousand}}</p>
+                <ng-template #depreciado style="text-align: center">{{item.ValorCompra * 0.10 | currency: 'USD'| thousand}}</ng-template>
+              </td>         
               <td style="text-align: center">{{item.DepreciacionAnual  | currency: 'USD'| thousand}}</td>          
             </tbody> 
             </table>
